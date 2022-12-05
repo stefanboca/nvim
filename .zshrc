@@ -84,7 +84,7 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 # Other env variables
-export NODE_EXTRA_CA_CERTS=~/.config/Bitwarden\ CLI/homelab-root.crt
+# export NODE_EXTRA_CA_CERTS=~/.config/Bitwarden\ CLI/homelab-root.crt
 export EDITOR=lvim
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #[ -f "/home/doctorwho/.ghcup/env" ] && source "/home/doctorwho/.ghcup/env" # ghcup-env
