@@ -93,4 +93,5 @@ export IGN_IP=127.0.0.1
 # Needed to get flatpak working
 export GIO_MODULE_DIR=/usr/lib/x86_64-linux-gnu/gio/modules
 # Needed because of nvidia driver from cuda repository issues
-# export WAYLAND_DISPLAY=
+# export XDG_RUNTIME_DIR=
+export WAYLAND_DISPLAY=

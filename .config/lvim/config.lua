@@ -109,9 +109,9 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 -- ---remove servers from the skipped list
-vim.tbl_map(function(server)
-    return server ~= "taplo"
-end, lvim.lsp.automatic_configuration.skipped_servers)
+-- vim.tbl_map(function(server)
+--     return server ~= "taplo"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
@@ -331,7 +331,6 @@ lvim.plugins = {
 
             rust_tools.setup(opts)
         end,
-        ft = { "rust", "rs" },
     },
     {
         "saecki/crates.nvim",
@@ -359,12 +358,12 @@ lvim.plugins = {
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands = {
-    {
-        "BufEnter", {
-            pattern = { "*.toml" }, callback = function()
-                require("lvim.lsp.manager").setup("taplo")
-            end
-        }
-    }
-}
+-- lvim.autocommands = {
+--     {
+--         "BufEnter", {
+--             pattern = { "*.toml" }, callback = function()
+--                 require("lvim.lsp.manager").setup("taplo")
+--             end
+--         }
+--     }
+-- }
