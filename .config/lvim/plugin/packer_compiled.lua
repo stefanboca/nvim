@@ -244,7 +244,7 @@ _G.packer_plugins = {
   },
   ["neoscroll.nvim"] = {
     cond = { "\27LJ\2\n9\0\0\1\0\3\0\t6\0\0\0009\0\1\0009\0\2\0\n\0\0\0X\0\2€+\0\1\0X\1\1€+\0\2\0L\0\2\0\fneovide\6g\bvim\0" },
-    config = { "\27LJ\2\nÕ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rmappings\1\0\5\24use_local_scrolloff\1\rstop_eof\2\16hide_cursor\2\25cursor_scrolls_alone\2\22respect_scrolloff\1\1\n\0\0\n<C-u>\n<C-d>\n<C-b>\n<C-f>\n<C-y>\n<C-e>\azt\azz\azb\nsetup\14neoscroll\frequire\0" },
+    config = { "\27LJ\2\nÕ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rmappings\1\0\5\25cursor_scrolls_alone\2\22respect_scrolloff\1\24use_local_scrolloff\1\rstop_eof\2\16hide_cursor\2\1\n\0\0\n<C-u>\n<C-d>\n<C-b>\n<C-f>\n<C-y>\n<C-e>\azt\azz\azb\nsetup\14neoscroll\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -354,10 +354,10 @@ _G.packer_plugins = {
     url = "https://github.com/ahmedkhalf/project.nvim"
   },
   ["rust-tools.nvim"] = {
-    config = { "\27LJ\2\nŽ\n\0\0\v\0004\0p6\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\1€K\0\1\0005\2\20\0005\3\5\0006\4\1\0'\6\3\0B\4\2\0029\4\4\4=\4\6\0035\4\a\0=\4\b\0035\4\17\0004\5\t\0005\6\t\0>\6\1\0055\6\n\0>\6\2\0055\6\v\0>\6\3\0055\6\f\0>\6\4\0055\6\r\0>\6\5\0055\6\14\0>\6\6\0055\6\15\0>\6\a\0055\6\16\0>\6\b\5=\5\18\4=\4\19\3=\3\21\0025\3\24\0006\4\1\0'\6\22\0B\4\2\0029\4\23\4=\4\25\0036\4\1\0'\6\22\0B\4\2\0029\4\26\4=\4\27\3=\3\28\0026\3\29\0009\3\30\0039\3\31\0036\5\29\0009\5\30\0059\5 \5'\a!\0B\5\2\2'\6\"\0&\5\6\5B\3\2\2\14\0\3\0X\4\1€'\3#\0\18\4\3\0'\5$\0&\4\5\4\18\5\3\0'\6%\0&\5\6\0056\6\29\0009\6\30\0069\6&\6\18\b\4\0B\6\2\2\15\0\6\0X\a\18€6\6\29\0009\6\30\0069\6&\6\18\b\5\0B\6\2\2\15\0\6\0X\a\v€5\6*\0006\a\1\0'\t(\0B\a\2\0029\a)\a\18\t\4\0\18\n\5\0B\a\3\2=\a+\6=\6'\2X\6\14€'\6,\0'\a-\0\18\b\4\0'\t.\0\18\n\5\0&\6\n\0066\a\29\0009\a/\a\18\t\6\0006\n\29\0009\n0\n9\n1\n9\n2\nB\a\3\0019\0063\1\18\b\2\0B\6\2\1K\0\1\0\nsetup\nERROR\vlevels\blog\vnotify\16\n liblldb: \17\n codelldb: 0Either codelldb or liblldb is not readable.\fadapter\1\0\0\25get_codelldb_adapter\19rust-tools.dap\bdap\17filereadable\24lldb/lib/liblldb.so\21adapter/codelldb\5(/mason/packages/codelldb/extension/\tdata\fstdpath\tglob\afn\bvim\vserver\fon_init\19common_on_init\14on_attach\1\0\0\21common_on_attach\rlvim.lsp\ntools\1\0\0\18hover_actions\vborder\1\0\1\15auto_focus\2\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•°\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•¯\16FloatBorder\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•®\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•­\16FloatBorder\16inlay_hints\1\0\n\24right_align_padding\3\a\26max_len_align_padding\3\1\18max_len_align\1\23other_hints_prefix\a=>\14highlight\fComment\27parameter_hints_prefix\a<-\25show_parameter_hints\2\22only_current_line\1\tauto\2\16right_align\1\rexecutor\1\0\1%reload_workspace_from_cargo_toml\2\rtermopen\25rust-tools/executors\15rust-tools\frequire\npcall\0" },
+    config = { "\27LJ\2\nŽ\n\0\0\v\0004\0p6\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\1€K\0\1\0005\2\20\0005\3\5\0006\4\1\0'\6\3\0B\4\2\0029\4\4\4=\4\6\0035\4\a\0=\4\b\0035\4\17\0004\5\t\0005\6\t\0>\6\1\0055\6\n\0>\6\2\0055\6\v\0>\6\3\0055\6\f\0>\6\4\0055\6\r\0>\6\5\0055\6\14\0>\6\6\0055\6\15\0>\6\a\0055\6\16\0>\6\b\5=\5\18\4=\4\19\3=\3\21\0025\3\24\0006\4\1\0'\6\22\0B\4\2\0029\4\23\4=\4\25\0036\4\1\0'\6\22\0B\4\2\0029\4\26\4=\4\27\3=\3\28\0026\3\29\0009\3\30\0039\3\31\0036\5\29\0009\5\30\0059\5 \5'\a!\0B\5\2\2'\6\"\0&\5\6\5B\3\2\2\14\0\3\0X\4\1€'\3#\0\18\4\3\0'\5$\0&\4\5\4\18\5\3\0'\6%\0&\5\6\0056\6\29\0009\6\30\0069\6&\6\18\b\4\0B\6\2\2\15\0\6\0X\a\18€6\6\29\0009\6\30\0069\6&\6\18\b\5\0B\6\2\2\15\0\6\0X\a\v€5\6*\0006\a\1\0'\t(\0B\a\2\0029\a)\a\18\t\4\0\18\n\5\0B\a\3\2=\a+\6=\6'\2X\6\14€'\6,\0'\a-\0\18\b\4\0'\t.\0\18\n\5\0&\6\n\0066\a\29\0009\a/\a\18\t\6\0006\n\29\0009\n0\n9\n1\n9\n2\nB\a\3\0019\0063\1\18\b\2\0B\6\2\1K\0\1\0\nsetup\nERROR\vlevels\blog\vnotify\16\n liblldb: \17\n codelldb: 0Either codelldb or liblldb is not readable.\fadapter\1\0\0\25get_codelldb_adapter\19rust-tools.dap\bdap\17filereadable\24lldb/lib/liblldb.so\21adapter/codelldb\5(/mason/packages/codelldb/extension/\tdata\fstdpath\tglob\afn\bvim\vserver\fon_init\19common_on_init\14on_attach\1\0\0\21common_on_attach\rlvim.lsp\ntools\1\0\0\18hover_actions\vborder\1\0\1\15auto_focus\2\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•°\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•¯\16FloatBorder\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•®\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•­\16FloatBorder\16inlay_hints\1\0\n\23other_hints_prefix\a=>\18max_len_align\1\27parameter_hints_prefix\a<-\25show_parameter_hints\2\22only_current_line\1\14highlight\fComment\tauto\2\24right_align_padding\3\a\26max_len_align_padding\3\1\16right_align\1\rexecutor\1\0\1%reload_workspace_from_cargo_toml\2\rtermopen\25rust-tools/executors\15rust-tools\frequire\npcall\0" },
     loaded = true,
     path = "/home/doctorwho/.local/share/lunarvim/site/pack/packer/start/rust-tools.nvim",
-    url = "https://github.com/simrat39/rust-tools.nvim"
+    url = "https://github.com/kdarkhan/rust-tools.nvim"
   },
   ["schemastore.nvim"] = {
     loaded = true,
@@ -390,7 +390,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["tmux.nvim"] = {
-    config = { "\27LJ\2\nù\1\0\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\2B\0\2\1K\0\1\0\vresize\1\0\1\31enable_default_keybindings\2\15navigation\1\0\1\31enable_default_keybindings\2\14copy_sync\1\0\0\1\0\5\17sync_unnamed\1\17sync_deletes\1\19sync_clipboard\1\venable\1\26redirect_to_clipboard\1\nsetup\ttmux\frequire\0" },
+    config = { "\27LJ\2\nù\1\0\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\2B\0\2\1K\0\1\0\vresize\1\0\1\31enable_default_keybindings\2\15navigation\1\0\1\31enable_default_keybindings\2\14copy_sync\1\0\0\1\0\5\19sync_clipboard\1\17sync_unnamed\1\17sync_deletes\1\venable\1\26redirect_to_clipboard\1\nsetup\ttmux\frequire\0" },
     loaded = true,
     path = "/home/doctorwho/.local/share/lunarvim/site/pack/packer/start/tmux.nvim",
     url = "https://github.com/aserowy/tmux.nvim"
@@ -502,43 +502,35 @@ end
 
 -- Setup for: vim-svelte
 time([[Setup for vim-svelte]], true)
-try_loadstring("\27LJ\2\n’\1\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\2\0\0\ats\25svelte_preprocessors\1\0\3\tname\ats\aas\15typescript\btag\vscript\29svelte_preprocessor_tags\6g\bvim\0", "setup", "vim-svelte")
+try_loadstring("\27LJ\2\n’\1\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\2\0\0\ats\25svelte_preprocessors\1\0\3\aas\15typescript\btag\vscript\tname\ats\29svelte_preprocessor_tags\6g\bvim\0", "setup", "vim-svelte")
 time([[Setup for vim-svelte]], false)
 time([[packadd for vim-svelte]], true)
 vim.cmd [[packadd vim-svelte]]
 time([[packadd for vim-svelte]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.indentlines\frequire\0", "config", "indent-blankline.nvim")
-time([[Config for indent-blankline.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23lvim.core.nvimtree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
+-- Config for: lir.nvim
+time([[Config for lir.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18lvim.core.lir\frequire\0", "config", "lir.nvim")
+time([[Config for lir.nvim]], false)
 -- Config for: rust-tools.nvim
 time([[Config for rust-tools.nvim]], true)
-try_loadstring("\27LJ\2\nŽ\n\0\0\v\0004\0p6\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\1€K\0\1\0005\2\20\0005\3\5\0006\4\1\0'\6\3\0B\4\2\0029\4\4\4=\4\6\0035\4\a\0=\4\b\0035\4\17\0004\5\t\0005\6\t\0>\6\1\0055\6\n\0>\6\2\0055\6\v\0>\6\3\0055\6\f\0>\6\4\0055\6\r\0>\6\5\0055\6\14\0>\6\6\0055\6\15\0>\6\a\0055\6\16\0>\6\b\5=\5\18\4=\4\19\3=\3\21\0025\3\24\0006\4\1\0'\6\22\0B\4\2\0029\4\23\4=\4\25\0036\4\1\0'\6\22\0B\4\2\0029\4\26\4=\4\27\3=\3\28\0026\3\29\0009\3\30\0039\3\31\0036\5\29\0009\5\30\0059\5 \5'\a!\0B\5\2\2'\6\"\0&\5\6\5B\3\2\2\14\0\3\0X\4\1€'\3#\0\18\4\3\0'\5$\0&\4\5\4\18\5\3\0'\6%\0&\5\6\0056\6\29\0009\6\30\0069\6&\6\18\b\4\0B\6\2\2\15\0\6\0X\a\18€6\6\29\0009\6\30\0069\6&\6\18\b\5\0B\6\2\2\15\0\6\0X\a\v€5\6*\0006\a\1\0'\t(\0B\a\2\0029\a)\a\18\t\4\0\18\n\5\0B\a\3\2=\a+\6=\6'\2X\6\14€'\6,\0'\a-\0\18\b\4\0'\t.\0\18\n\5\0&\6\n\0066\a\29\0009\a/\a\18\t\6\0006\n\29\0009\n0\n9\n1\n9\n2\nB\a\3\0019\0063\1\18\b\2\0B\6\2\1K\0\1\0\nsetup\nERROR\vlevels\blog\vnotify\16\n liblldb: \17\n codelldb: 0Either codelldb or liblldb is not readable.\fadapter\1\0\0\25get_codelldb_adapter\19rust-tools.dap\bdap\17filereadable\24lldb/lib/liblldb.so\21adapter/codelldb\5(/mason/packages/codelldb/extension/\tdata\fstdpath\tglob\afn\bvim\vserver\fon_init\19common_on_init\14on_attach\1\0\0\21common_on_attach\rlvim.lsp\ntools\1\0\0\18hover_actions\vborder\1\0\1\15auto_focus\2\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•°\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•¯\16FloatBorder\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•®\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•­\16FloatBorder\16inlay_hints\1\0\n\24right_align_padding\3\a\26max_len_align_padding\3\1\18max_len_align\1\23other_hints_prefix\a=>\14highlight\fComment\27parameter_hints_prefix\a<-\25show_parameter_hints\2\22only_current_line\1\tauto\2\16right_align\1\rexecutor\1\0\1%reload_workspace_from_cargo_toml\2\rtermopen\25rust-tools/executors\15rust-tools\frequire\npcall\0", "config", "rust-tools.nvim")
+try_loadstring("\27LJ\2\nŽ\n\0\0\v\0004\0p6\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\1€K\0\1\0005\2\20\0005\3\5\0006\4\1\0'\6\3\0B\4\2\0029\4\4\4=\4\6\0035\4\a\0=\4\b\0035\4\17\0004\5\t\0005\6\t\0>\6\1\0055\6\n\0>\6\2\0055\6\v\0>\6\3\0055\6\f\0>\6\4\0055\6\r\0>\6\5\0055\6\14\0>\6\6\0055\6\15\0>\6\a\0055\6\16\0>\6\b\5=\5\18\4=\4\19\3=\3\21\0025\3\24\0006\4\1\0'\6\22\0B\4\2\0029\4\23\4=\4\25\0036\4\1\0'\6\22\0B\4\2\0029\4\26\4=\4\27\3=\3\28\0026\3\29\0009\3\30\0039\3\31\0036\5\29\0009\5\30\0059\5 \5'\a!\0B\5\2\2'\6\"\0&\5\6\5B\3\2\2\14\0\3\0X\4\1€'\3#\0\18\4\3\0'\5$\0&\4\5\4\18\5\3\0'\6%\0&\5\6\0056\6\29\0009\6\30\0069\6&\6\18\b\4\0B\6\2\2\15\0\6\0X\a\18€6\6\29\0009\6\30\0069\6&\6\18\b\5\0B\6\2\2\15\0\6\0X\a\v€5\6*\0006\a\1\0'\t(\0B\a\2\0029\a)\a\18\t\4\0\18\n\5\0B\a\3\2=\a+\6=\6'\2X\6\14€'\6,\0'\a-\0\18\b\4\0'\t.\0\18\n\5\0&\6\n\0066\a\29\0009\a/\a\18\t\6\0006\n\29\0009\n0\n9\n1\n9\n2\nB\a\3\0019\0063\1\18\b\2\0B\6\2\1K\0\1\0\nsetup\nERROR\vlevels\blog\vnotify\16\n liblldb: \17\n codelldb: 0Either codelldb or liblldb is not readable.\fadapter\1\0\0\25get_codelldb_adapter\19rust-tools.dap\bdap\17filereadable\24lldb/lib/liblldb.so\21adapter/codelldb\5(/mason/packages/codelldb/extension/\tdata\fstdpath\tglob\afn\bvim\vserver\fon_init\19common_on_init\14on_attach\1\0\0\21common_on_attach\rlvim.lsp\ntools\1\0\0\18hover_actions\vborder\1\0\1\15auto_focus\2\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•°\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•¯\16FloatBorder\1\3\0\0\bâ”‚\16FloatBorder\1\3\0\0\bâ•®\16FloatBorder\1\3\0\0\bâ”€\16FloatBorder\1\3\0\0\bâ•­\16FloatBorder\16inlay_hints\1\0\n\23other_hints_prefix\a=>\18max_len_align\1\27parameter_hints_prefix\a<-\25show_parameter_hints\2\22only_current_line\1\14highlight\fComment\tauto\2\24right_align_padding\3\a\26max_len_align_padding\3\1\16right_align\1\rexecutor\1\0\1%reload_workspace_from_cargo_toml\2\rtermopen\25rust-tools/executors\15rust-tools\frequire\npcall\0", "config", "rust-tools.nvim")
 time([[Config for rust-tools.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 -- Config for: nvim-dap
 time([[Config for nvim-dap]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18lvim.core.dap\frequire\0", "config", "nvim-dap")
 time([[Config for nvim-dap]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.treesitter\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
-time([[Config for nvim-surround]], false)
--- Config for: project.nvim
-time([[Config for project.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.project\frequire\0", "config", "project.nvim")
-time([[Config for project.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23lvim.core.nvimtree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.mason\frequire\0", "config", "mason.nvim")
+time([[Config for mason.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.alpha\frequire\0", "config", "alpha-nvim")
@@ -547,62 +539,70 @@ time([[Config for alpha-nvim]], false)
 time([[Config for vim-illuminate]], true)
 try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.illuminate\frequire\0", "config", "vim-illuminate")
 time([[Config for vim-illuminate]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-try_loadstring("\27LJ\2\nñ\3\0\0\v\0\23\00166\0\0\0'\2\1\0B\0\2\0024\1\0\0006\2\2\0009\2\3\0029\2\4\0029\2\5\0029\2\6\2\15\0\2\0X\3\f€\21\2\1\0\22\2\0\0029\3\a\0006\5\b\0B\5\1\2'\6\t\0'\a\n\0'\b\v\0'\t\f\0'\n\r\0B\3\a\2<\3\2\0019\2\a\0006\4\14\0B\4\1\2'\5\15\0B\2\3\0029\3\16\0\18\5\2\0B\3\2\2\15\0\3\0X\4\3€\21\3\1\0\22\3\0\3<\2\3\0016\3\0\0'\5\17\0B\3\2\0029\3\18\3B\3\1\0016\3\0\0'\5\19\0B\3\2\0029\3\18\0035\5\20\0=\1\21\5B\3\2\0016\3\0\0'\5\22\0B\3\2\0029\3\18\3B\3\1\1K\0\1\0\"luasnip.loaders.from_snipmate\npaths\1\0\0 luasnip.loaders.from_vscode\14lazy_load\29luasnip.loaders.from_lua\17is_directory\rsnippets\19get_config_dir\22friendly-snippets\nstart\vpacker\tpack\tsite\20get_runtime_dir\15join_paths\22friendly_snippets\fsources\fluasnip\fbuiltin\tlvim\15lvim.utils\frequire\2\0", "config", "LuaSnip")
-time([[Config for LuaSnip]], false)
--- Config for: fidget.nvim
-time([[Config for fidget.nvim]], true)
-try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vfidget\frequire\0", "config", "fidget.nvim")
-time([[Config for fidget.nvim]], false)
--- Config for: nvim-dap-ui
-time([[Config for nvim-dap-ui]], true)
-try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\rsetup_ui\18lvim.core.dap\frequire\0", "config", "nvim-dap-ui")
-time([[Config for nvim-dap-ui]], false)
--- Config for: crates.nvim
-time([[Config for crates.nvim]], true)
-try_loadstring("\27LJ\2\nh\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\fnull_ls\1\0\0\1\0\2\tname\16crates.nvim\fenabled\2\nsetup\vcrates\frequire\0", "config", "crates.nvim")
-time([[Config for crates.nvim]], false)
--- Config for: tmux.nvim
-time([[Config for tmux.nvim]], true)
-try_loadstring("\27LJ\2\nù\1\0\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\2B\0\2\1K\0\1\0\vresize\1\0\1\31enable_default_keybindings\2\15navigation\1\0\1\31enable_default_keybindings\2\14copy_sync\1\0\0\1\0\5\17sync_unnamed\1\17sync_deletes\1\19sync_clipboard\1\venable\1\26redirect_to_clipboard\1\nsetup\ttmux\frequire\0", "config", "tmux.nvim")
-time([[Config for tmux.nvim]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.mason\frequire\0", "config", "mason.nvim")
-time([[Config for mason.nvim]], false)
--- Config for: bigfile.nvim
-time([[Config for bigfile.nvim]], true)
-try_loadstring("\27LJ\2\nS\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\3\0009\2\4\0029\2\1\0029\2\2\2B\0\2\1K\0\1\0\fbuiltin\tlvim\vconfig\fbigfile\frequire\30\1\0\3\0\2\0\0046\0\0\0003\2\1\0B\0\2\1K\0\1\0\0\npcall\0", "config", "bigfile.nvim")
-time([[Config for bigfile.nvim]], false)
--- Config for: nvim-navic
-time([[Config for nvim-navic]], true)
-try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.breadcrumbs\frequire\0", "config", "nvim-navic")
-time([[Config for nvim-navic]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.lualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.treesitter\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\2\n`\0\0\3\0\6\0\v6\0\0\0009\0\1\0009\0\2\0\15\0\0\0X\1\5€6\0\3\0'\2\4\0B\0\2\0029\0\5\0B\0\1\1K\0\1\0\nsetup\18lvim.core.cmp\frequire\bcmp\fbuiltin\tlvim\0", "config", "nvim-cmp")
 time([[Config for nvim-cmp]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.project\frequire\0", "config", "project.nvim")
+time([[Config for project.nvim]], false)
+-- Config for: nvim-dap-ui
+time([[Config for nvim-dap-ui]], true)
+try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\rsetup_ui\18lvim.core.dap\frequire\0", "config", "nvim-dap-ui")
+time([[Config for nvim-dap-ui]], false)
 -- Config for: onedarker.nvim
 time([[Config for onedarker.nvim]], true)
 try_loadstring("\27LJ\2\nš\1\0\0\3\0\t\0\0196\0\0\0\15\0\0\0X\1\15€6\0\0\0009\0\1\0\a\0\2\0X\0\v€6\0\3\0'\2\2\0B\0\2\0029\0\4\0B\0\1\0016\0\0\0009\0\5\0009\0\6\0009\0\a\0'\1\2\0=\1\b\0K\0\1\0\ntheme\foptions\flualine\fbuiltin\nsetup\frequire\14onedarker\16colorscheme\tlvim\30\1\0\3\0\2\0\0046\0\0\0003\2\1\0B\0\2\1K\0\1\0\0\npcall\0", "config", "onedarker.nvim")
 time([[Config for onedarker.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: bigfile.nvim
+time([[Config for bigfile.nvim]], true)
+try_loadstring("\27LJ\2\nS\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\3\0009\2\4\0029\2\1\0029\2\2\2B\0\2\1K\0\1\0\fbuiltin\tlvim\vconfig\fbigfile\frequire\30\1\0\3\0\2\0\0046\0\0\0003\2\1\0B\0\2\1K\0\1\0\0\npcall\0", "config", "bigfile.nvim")
+time([[Config for bigfile.nvim]], false)
+-- Config for: crates.nvim
+time([[Config for crates.nvim]], true)
+try_loadstring("\27LJ\2\nh\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\fnull_ls\1\0\0\1\0\2\tname\16crates.nvim\fenabled\2\nsetup\vcrates\frequire\0", "config", "crates.nvim")
+time([[Config for crates.nvim]], false)
+-- Config for: fidget.nvim
+time([[Config for fidget.nvim]], true)
+try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vfidget\frequire\0", "config", "fidget.nvim")
+time([[Config for fidget.nvim]], false)
 -- Config for: leap.nvim
 time([[Config for leap.nvim]], true)
 try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\25add_default_mappings\tleap\frequire\0", "config", "leap.nvim")
 time([[Config for leap.nvim]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+try_loadstring("\27LJ\2\nñ\3\0\0\v\0\23\00166\0\0\0'\2\1\0B\0\2\0024\1\0\0006\2\2\0009\2\3\0029\2\4\0029\2\5\0029\2\6\2\15\0\2\0X\3\f€\21\2\1\0\22\2\0\0029\3\a\0006\5\b\0B\5\1\2'\6\t\0'\a\n\0'\b\v\0'\t\f\0'\n\r\0B\3\a\2<\3\2\0019\2\a\0006\4\14\0B\4\1\2'\5\15\0B\2\3\0029\3\16\0\18\5\2\0B\3\2\2\15\0\3\0X\4\3€\21\3\1\0\22\3\0\3<\2\3\0016\3\0\0'\5\17\0B\3\2\0029\3\18\3B\3\1\0016\3\0\0'\5\19\0B\3\2\0029\3\18\0035\5\20\0=\1\21\5B\3\2\0016\3\0\0'\5\22\0B\3\2\0029\3\18\3B\3\1\1K\0\1\0\"luasnip.loaders.from_snipmate\npaths\1\0\0 luasnip.loaders.from_vscode\14lazy_load\29luasnip.loaders.from_lua\17is_directory\rsnippets\19get_config_dir\22friendly-snippets\nstart\vpacker\tpack\tsite\20get_runtime_dir\15join_paths\22friendly_snippets\fsources\fluasnip\fbuiltin\tlvim\15lvim.utils\frequire\2\0", "config", "LuaSnip")
+time([[Config for LuaSnip]], false)
+-- Config for: tmux.nvim
+time([[Config for tmux.nvim]], true)
+try_loadstring("\27LJ\2\nù\1\0\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\2B\0\2\1K\0\1\0\vresize\1\0\1\31enable_default_keybindings\2\15navigation\1\0\1\31enable_default_keybindings\2\14copy_sync\1\0\0\1\0\5\19sync_clipboard\1\17sync_unnamed\1\17sync_deletes\1\venable\1\26redirect_to_clipboard\1\nsetup\ttmux\frequire\0", "config", "tmux.nvim")
+time([[Config for tmux.nvim]], false)
+-- Config for: nvim-navic
+time([[Config for nvim-navic]], true)
+try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.breadcrumbs\frequire\0", "config", "nvim-navic")
+time([[Config for nvim-navic]], false)
+-- Config for: nvim-surround
+time([[Config for nvim-surround]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
+time([[Config for nvim-surround]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.indentlines\frequire\0", "config", "indent-blankline.nvim")
+time([[Config for indent-blankline.nvim]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
--- Config for: lir.nvim
-time([[Config for lir.nvim]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18lvim.core.lir\frequire\0", "config", "lir.nvim")
-time([[Config for lir.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -615,12 +615,12 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'vim-sanegx', 'Comment.nvim', 'flit.nvim', 'dial.nvim', 'todo-comments.nvim', 'lsp_signature.nvim', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'vim-cursorword'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
 vim.cmd [[au WinScrolled * ++once lua require("packer.load")({'neoscroll.nvim'}, { event = "WinScrolled *" }, _G.packer_plugins)]]
+vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'vim-cursorword'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'vim-sanegx', 'gitsigns.nvim', 'Comment.nvim', 'todo-comments.nvim', 'flit.nvim', 'lsp_signature.nvim', 'dial.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'toggleterm.nvim', 'which-key.nvim', 'bufferline.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufEnter * ++once lua require("packer.load")({'vim-cursorword'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

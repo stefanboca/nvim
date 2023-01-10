@@ -109,9 +109,9 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 -- ---remove servers from the skipped list
--- vim.tbl_map(function(server)
---     return server ~= "taplo"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
+vim.tbl_map(function(server)
+    return server ~= "taplo"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
@@ -269,7 +269,10 @@ lvim.plugins = {
         end
     },
     {
-        "simrat39/rust-tools.nvim",
+        -- Inlay hints are broken, so for now use this fork until the PR is merged
+        -- https://github.com/simrat39/rust-tools.nvim/pull/307
+        "kdarkhan/rust-tools.nvim",
+        -- "simrat39/rust-tools.nvim",
         config = function()
             local status_ok, rust_tools = pcall(require, "rust-tools")
             if not status_ok then
@@ -358,12 +361,12 @@ lvim.plugins = {
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands = {
---     {
---         "BufEnter", {
---             pattern = { "*.toml" }, callback = function()
---                 require("lvim.lsp.manager").setup("taplo")
---             end
---         }
---     }
--- }
+lvim.autocommands = {
+    {
+        "BufEnter", {
+            pattern = { "*.toml" }, callback = function()
+                require("lvim.lsp.manager").setup("taplo")
+            end
+        }
+    }
+}

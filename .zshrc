@@ -94,4 +94,6 @@ export IGN_IP=127.0.0.1
 export GIO_MODULE_DIR=/usr/lib/x86_64-linux-gnu/gio/modules
 # Needed because of nvidia driver from cuda repository issues
 # export XDG_RUNTIME_DIR=
-export WAYLAND_DISPLAY=
+# export WAYLAND_DISPLAY=
+# Needed for apps using winit for the time being
+export WINIT_UNIX_BACKEND=x11
