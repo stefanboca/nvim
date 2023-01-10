@@ -28,9 +28,9 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Tmux Plugin Settings
-export ZSH_TMUX_AUTOSTART=true  # Automatically starts tmux (default: false)
-export ZSH_TMUX_AUTOSTART_ONCE=true    # Autostart only if tmux hasn't been started previously (default: true)
-export ZSH_TMUX_AUTOCONNECT=true        # Automatically connect to a previous session if it exits (default: true)
+export ZSH_TMUX_AUTOSTART=false  # Automatically starts tmux (default: false)
+export ZSH_TMUX_AUTOSTART_ONCE=false    # Autostart only if tmux hasn't been started previously (default: true)
+export ZSH_TMUX_AUTOCONNECT=false        # Automatically connect to a previous session if it exits (default: true)
 export ZSH_TMUX_AUTOQUIT=false      # Automatically closes terminal once tmux exits (default: ZSH_TMUX_AUTOSTART)
 export ZSH_TMUX_UNICODE=true # Set tmux -u option to support unicode
 if [[ $VSCODE ]]; then
@@ -84,16 +84,15 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 # Other env variables
-# export NODE_EXTRA_CA_CERTS=~/.config/Bitwarden\ CLI/homelab-root.crt
 export EDITOR=lvim
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #[ -f "/home/doctorwho/.ghcup/env" ] && source "/home/doctorwho/.ghcup/env" # ghcup-env
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
 # Needed to get flatpak working
-export GIO_MODULE_DIR=/usr/lib/x86_64-linux-gnu/gio/modules
+# export GIO_MODULE_DIR=/usr/lib/x86_64-linux-gnu/gio/modules
 # Needed because of nvidia driver from cuda repository issues
 # export XDG_RUNTIME_DIR=
 # export WAYLAND_DISPLAY=
 # Needed for apps using winit for the time being
-export WINIT_UNIX_BACKEND=x11
+# export WINIT_UNIX_BACKEND=x11
