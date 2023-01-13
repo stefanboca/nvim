@@ -77,6 +77,8 @@ lvim.builtin.which_key.mappings["R"] = {
     o = { "<cmd>RustOpenExternalDocs<Cr>", "Open External Docs" },
 }
 lvim.builtin.which_key.mappings["lo"] = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" }
+lvim.builtin.which_key.mappings["lr"] = { ":IncRename ", "Rename" }
+lvim.builtin.which_key.mappings["sn"] = { "<cmd>Noice telescope<CR>", "Noice" }
 
 lvim.builtin.treesitter.ensure_installed = {
     "bash",
@@ -138,13 +140,6 @@ lvim.plugins = {
         end
     },
     {
-        "ray-x/lsp_signature.nvim",
-        event = "BufRead",
-        config = function()
-            require "lsp_signature".setup()
-        end
-    },
-    {
         "simrat39/symbols-outline.nvim",
         cmd = "SymbolsOutline",
         config = function()
@@ -179,17 +174,12 @@ lvim.plugins = {
                     "<C-y>", "<C-e>", "zt", "zz", "zb" },
                 hide_cursor = true, -- Hide cursor while scrolling
                 stop_eof = true, -- Stop at <EOF> when scrolling downwards
-                use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
                 respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
                 cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-                easing_function = nil, -- Default easing function
-                pre_hook = nil, -- Function to run before the scrolling animation starts
-                post_hook = nil, -- Function to run after the scrolling animation ends
             })
         end,
-        cond = function()
-            return vim.g.neovide == nil
-        end
+        cond = not vim.g.neovide,
+        enabled = false
     },
     {
         "folke/todo-comments.nvim",
@@ -242,19 +232,20 @@ lvim.plugins = {
             })
         end
     },
-    -- {
-    --     "chipsenkbeil/distant.nvim",
-    --     config = function()
-    --         require("distant").setup {
-    --             -- Applies Chip's personal settings to every machine you connect to
-    --             --
-    --             -- 1. Ensures that distant servers terminate with no connections
-    --             -- 2. Provides navigation bindings for remote directories
-    --             -- 3. Provides keybinding to jump into a remote file"s parent directory
-    --             ["*"] = require("distant.settings").chip_default()
-    --         }
-    --     end
-    -- },
+    {
+        "chipsenkbeil/distant.nvim",
+        config = function()
+            require("distant").setup {
+                -- Applies Chip's personal settings to every machine you connect to
+                --
+                -- 1. Ensures that distant servers terminate with no connections
+                -- 2. Provides navigation bindings for remote directories
+                -- 3. Provides keybinding to jump into a remote file"s parent directory
+                ["*"] = require("distant.settings").chip_default()
+            }
+        end,
+        enabled = false
+    },
     {
         "ellisonleao/glow.nvim"
     },
@@ -263,16 +254,13 @@ lvim.plugins = {
     },
     {
         "evanleck/vim-svelte",
-        setup = function()
+        init = function()
             vim.g.svelte_preprocessor_tags = { { name = "ts", tag = "script", as = "typescript" } }
             vim.g.svelte_preprocessors = { "ts" }
         end
     },
     {
-        -- Inlay hints are broken, so for now use this fork until the PR is merged
-        -- https://github.com/simrat39/rust-tools.nvim/pull/307
-        "kdarkhan/rust-tools.nvim",
-        -- "simrat39/rust-tools.nvim",
+        "simrat39/rust-tools.nvim",
         config = function()
             local status_ok, rust_tools = pcall(require, "rust-tools")
             if not status_ok then
@@ -337,8 +325,7 @@ lvim.plugins = {
     },
     {
         "saecki/crates.nvim",
-        tag = "v0.3.0",
-        requires = { "nvim-lua/plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("crates").setup {
                 null_ls = {
@@ -356,7 +343,49 @@ lvim.plugins = {
     },
     {
         'glacambre/firenvim',
-        run = function() vim.fn['firenvim#install'](0) end
+        build = function() vim.fn['firenvim#install'](0) end
+    },
+    {
+        "lervag/vimtex",
+        init = function()
+            vim.g.vimtex_view_method = "zathura"
+        end
+    },
+    { "MunifTanjim/nui.nvim" },
+    { "rcarriga/nvim-notify" },
+    {
+        "folke/noice.nvim",
+        config = function()
+            require("noice").setup({
+                lsp = {
+                    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                },
+                -- you can enable a preset for easier configuration
+                presets = {
+                    bottom_search = false, -- use a classic bottom cmdline for search
+                    command_palette = true, -- position the cmdline and popupmenu together
+                    long_message_to_split = true, -- long messages will be sent to a split
+                    inc_rename = true, -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = true, -- add a border to hover docs and signature help
+                },
+            })
+        end,
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        cond = not vim.g.neovide
+    },
+    {
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup()
+        end,
     }
 }
 
