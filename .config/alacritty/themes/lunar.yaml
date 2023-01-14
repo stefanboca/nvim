@@ -20,7 +20,7 @@ colors:
     cursor: '#2d59a1'
 
   normal:
-    black:   '#000000'
+    black:   '#2d59a1'
     red:     '#f7768e'
     green:   '#73daca'
     yellow:  '#e0af68'
@@ -29,7 +29,7 @@ colors:
     cyan:    '#7dcfff'
 
   bright:
-    black:   '#000000'
+    black:   '#3d59a1'
     red:     '#f7768e'
     green:   '#9ece6a'
     yellow:  '#e0af68'
@@ -38,7 +38,7 @@ colors:
     cyan:    '#7dcfff'
 
   dim:
-    black:   '#000000'
+    black:   '#16161e'
     red:     '#db4b4b'
     green:   '#41a6b5'
     yellow:  '#e0af68'
