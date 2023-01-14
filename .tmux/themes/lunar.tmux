@@ -1,14 +1,14 @@
 #!/bin/bash
 lunar_black="#16161e"
-lunar_red="#f7768e"
-lunar_green="#73daca"
-lunar_yellow="#e0af68"
-lunar_blue="#7aa2f7"
-lunar_magenta="#bb9af7"
-lunar_cyan="#7dcfff"
+lunar_green="green"
+lunar_blue="blue"
+lunar_magenta="magenta"
+lunar_cyan="cyan"
 lunar_white="#c0caf5"
 lunar_visual_grey="#292e42"
 lunar_comment_grey="#292e42"
+lunar_bg="#1a1b26"
+lunar_bg_visual="#2d59a1"
 
 get() {
    local option=$1
@@ -41,21 +41,16 @@ set "status-left-length" "100"
 set "status-right-length" "100"
 set "status-right-attr" "none"
 
-set "message-fg" "$lunar_white"
-set "message-bg" "$lunar_black"
-
-set "message-command-fg" "$lunar_white"
-set "message-command-bg" "$lunar_black"
+set "message-style" "fg=$lunar_white,bg=$lunar_black"
+set "message-command-style" "fg=$lunar_white,bg=$lunar_black"
 
 set "status-attr" "none"
 set "status-left-attr" "none"
 
-setw "window-status-fg" "$lunar_black"
-setw "window-status-bg" "$lunar_black"
+setw "window-status-style" "fg=$lunar_black,bg=$lunar_black"
 setw "window-status-attr" "none"
 
-setw "window-status-activity-bg" "$lunar_black"
-setw "window-status-activity-fg" "$lunar_black"
+setw "window-status-activity-style" "fg=$lunar_black,bg=$lunar_black"
 setw "window-status-activity-attr" "none"
 
 setw "window-status-separator" ""
@@ -63,16 +58,14 @@ setw "window-status-separator" ""
 set "window-style" "fg=$lunar_comment_grey"
 set "window-active-style" "fg=$lunar_white"
 
-set "pane-border-fg" "$lunar_white"
-set "pane-border-bg" "$lunar_black"
-set "pane-active-border-fg" "$lunar_green"
-set "pane-active-border-bg" "$lunar_black"
-
-set "display-panes-active-colour" "$lunar_yellow"
+set "display-panes-active-colour" "$lunar_black"
 set "display-panes-colour" "$lunar_blue"
 
-set "status-bg" "$lunar_black"
-set "status-fg" "$lunar_white"
+set "pane-border-style" "fg=$lunar_white,bg=$lunar_black"
+set "pane-active-border-style" "fg=$lunar_green,bg=$lunar_black"
+
+set "status-style" "fg=$lunar_white,bg=$lunar_black"
+set "mode-style" "fg=$lunar_bg,bg=$lunar_bg_visual"
 
 set "@prefix_highlight_fg" "$lunar_black"
 set "@prefix_highlight_bg" "$lunar_green"
