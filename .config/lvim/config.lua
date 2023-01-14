@@ -1,3 +1,4 @@
+vim.opt.clipboard = ""
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
 vim.opt.signcolumn = "yes"
@@ -16,7 +17,6 @@ end
 lvim.leader = "space"
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
 lvim.builtin.cmp.cmdline.enable = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -230,7 +230,8 @@ lvim.plugins = {
             require("whitespace-nvim").setup {
                 highlight = "DiffDelete",
                 ignored_filetypes = { "TelescopePrompt", "Trouble", "help", "alpha", "dashboard", "diff", "git",
-                    "gitcommit", "unite", "qf", "markdown", "fugitive", "toggleterm", "lazy" }
+                    "gitcommit", "unite", "qf", "markdown", "fugitive", "toggleterm", "lazy", "lspinfo", "cmdline_popup",
+                    "nui", "popup", "cmdline", "nui.popup" }
             }
         end
     },

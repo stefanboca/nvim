@@ -1,0 +1,73 @@
+# Colors (Lunar)
+asdf: hello there kenobi
+colors:
+  # Default colors
+  primary:
+    foreground: '#c0caf5'
+    background: '#1a1b26'
+    dim_foreground: '#a9b1d6'
+
+  cursor:
+    text: '#1a1b26'
+    cursor: '#c0caf5'
+
+  vi_mode_cursor:
+    text: '#1a1b26'
+    cursor: '#c0caf5'
+
+  selection:
+    text: '#1a1b26'
+    cursor: '#2d59a1'
+
+  normal:
+    black:   '#000000'
+    red:     '#f7768e'
+    green:   '#73daca'
+    yellow:  '#e0af68'
+    blue:    '#7aa2f7'
+    magenta: '#bb9af7'
+    cyan:    '#7dcfff'
+
+  bright:
+    black:   '#000000'
+    red:     '#f7768e'
+    green:   '#9ece6a'
+    yellow:  '#e0af68'
+    blue:    '#89ddff'
+    magenta: '#bb9af7'
+    cyan:    '#7dcfff'
+
+  dim:
+    black:   '#000000'
+    red:     '#db4b4b'
+    green:   '#41a6b5'
+    yellow:  '#e0af68'
+    blue:    '#0db9d7'
+    magenta: '#bb9af7'
+    cyan:    '#7dcfff'
+
+  search:
+    focused_match:
+      foreground: '#000000'
+      background: '#ff9e64'
+    matches:
+      foreground: '#c0caf5'
+      background: '#3d59a1'
+
+  line_indicator:
+    foreground: '#1a1b26'
+    background: '#1abc9c'
+
+  hints:
+    start:
+      foreground: '#000000'
+      background: '#ff9e64'
+    end:
+      foreground: '#c0caf5'
+      background: '#3d59a1'
+
+  transparent_background_colors: true
+
+  footer_bar:
+    foreground: '#a9b1d6'
+    background: '#16161e'
