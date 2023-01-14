@@ -85,7 +85,7 @@ export PATH="$PNPM_HOME:$PATH"
 
 # Other env variables
 export EDITOR=lvim
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #[ -f "/home/doctorwho/.ghcup/env" ] && source "/home/doctorwho/.ghcup/env" # ghcup-env
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1

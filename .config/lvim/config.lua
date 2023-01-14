@@ -1,21 +1,8 @@
---[[
-lvim is the global options object
-Linters should be filled in as strings with either a global executable or a path to an executable
-]]
-
-vim.opt.clipboard = ""
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
-vim.g.better_whitespace_filetypes_blacklist = { "alpha", "dashboard", "diff", "git", "gitcommit", "unite", "qf", "help",
-    "markdown", "fugitive", "toggleterm" }
-
--- general
-lvim.log.level = "warn"
-lvim.format_on_save = false
-lvim.colorscheme = "onedarker"
 
 -- neovide
 if vim.g.neovide then
@@ -25,33 +12,34 @@ if vim.g.neovide then
     vim.g.neovide_hide_mouse_when_typing = true
 end
 
--- keymappings [view all the defaults by pressing <leader>Lk]
+-- general
 lvim.leader = "space"
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.log.level = "warn"
+lvim.format_on_save = true
+lvim.colorscheme = "onedarker"
+lvim.builtin.cmp.cmdline.enable = true
+
+-- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
-lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
-    -- for input mode
     i = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-n>"] = actions.cycle_history_next,
         ["<C-p>"] = actions.cycle_history_prev,
     },
-    -- for normal mode
     n = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
     },
 }
 
--- Use which-key to add extra bindings with the leader-key prefix
-lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope Projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["t"] = {
     name = "+Trouble",
     r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -70,40 +58,16 @@ lvim.builtin.which_key.mappings["R"] = {
     p = { "<cmd>RustParentModule<Cr>", "Parent Module" },
     d = { "<cmd>RustDebuggables<Cr>", "Debuggables" },
     v = { "<cmd>RustViewCrateGraph<Cr>", "View Crate Graph" },
-    R = {
-        "<cmd>lua require('rust-tools/workspace_refresh')._reload_workspace_from_cargo_toml()<Cr>",
-        "Reload Workspace",
-    },
+    R = { "<cmd>lua require('rust-tools/workspace_refresh')._reload_workspace_from_cargo_toml()<Cr>", "Reload Workspace" },
     o = { "<cmd>RustOpenExternalDocs<Cr>", "Open External Docs" },
 }
 lvim.builtin.which_key.mappings["lo"] = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" }
-lvim.builtin.which_key.mappings["lr"] = { ":IncRename ", "Rename" }
+lvim.builtin.which_key.mappings["lR"] = { ":IncRename ", "Immediate Rename" }
+lvim.builtin.which_key.mappings["lt"] = { "<cmd>lua require('whitespace-nvim').trim()<Cr>", "Trim Whitespace" }
 lvim.builtin.which_key.mappings["sn"] = { "<cmd>Noice telescope<CR>", "Noice" }
 
-lvim.builtin.treesitter.ensure_installed = {
-    "bash",
-    "c",
-    "javascript",
-    "json",
-    "lua",
-    "python",
-    "typescript",
-    "tsx",
-    "css",
-    "rust",
-    "java",
-    "yaml",
-    "toml",
-}
-lvim.builtin.treesitter.highlight.enabled = true
-
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.dap.active = true
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-
--- generic LSP settings
+-- Automatically install missing parsers when entering buffer
+lvim.builtin.treesitter.auto_install = true
 
 ---configure a server manually.
 ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
@@ -111,14 +75,16 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 -- ---remove servers from the skipped list
-vim.tbl_map(function(server)
-    return server ~= "taplo"
-end, lvim.lsp.automatic_configuration.skipped_servers)
+-- vim.tbl_map(function(server)
+--     return server ~= "taplo"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
 
-local formatters = require "lvim.lsp.null-ls.formatters"
+local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup {
     { name = "black" },
 }
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {}
 
 -- Additional Plugins
 lvim.plugins = {
@@ -129,21 +95,21 @@ lvim.plugins = {
     {
         "ggandor/leap.nvim",
         config = function()
-            require "leap".add_default_mappings()
+            require("leap").add_default_mappings()
         end
     },
     {
         "ggandor/flit.nvim",
         event = "BufRead",
         config = function()
-            require "flit".setup()
+            require("flit").setup {}
         end
     },
     {
         "simrat39/symbols-outline.nvim",
         cmd = "SymbolsOutline",
         config = function()
-            require "symbols-outline".setup()
+            require("symbols-outline").setup {}
         end
     },
     {
@@ -168,7 +134,7 @@ lvim.plugins = {
         "karb94/neoscroll.nvim",
         event = "WinScrolled",
         config = function()
-            require("neoscroll").setup({
+            require("neoscroll").setup {
                 -- All these keys will be mapped to their corresponding default scrolling animation
                 mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>",
                     "<C-y>", "<C-e>", "zt", "zz", "zb" },
@@ -176,16 +142,25 @@ lvim.plugins = {
                 stop_eof = true, -- Stop at <EOF> when scrolling downwards
                 respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
                 cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-            })
+            }
         end,
         cond = not vim.g.neovide,
+        enabled = false
+    },
+    {
+        "declancm/cinnamon.nvim",
+        config = function()
+            require("cinnamon").setup {
+                default_delay = 5,
+            }
+        end,
         enabled = false
     },
     {
         "folke/todo-comments.nvim",
         event = "BufRead",
         config = function()
-            require("todo-comments").setup()
+            require("todo-comments").setup {}
         end,
     },
     {
@@ -209,13 +184,13 @@ lvim.plugins = {
     {
         "kylechui/nvim-surround",
         config = function()
-            require("nvim-surround").setup()
+            require("nvim-surround").setup {}
         end
     },
     {
         "aserowy/tmux.nvim",
         config = function()
-            require("tmux").setup({
+            require("tmux").setup {
                 copy_sync = {
                     enable = false,
                     redirect_to_clipboard = false,
@@ -229,7 +204,7 @@ lvim.plugins = {
                 resize = {
                     enable_default_keybindings = true,
                 }
-            })
+            }
         end
     },
     {
@@ -250,7 +225,14 @@ lvim.plugins = {
         "ellisonleao/glow.nvim"
     },
     {
-        "ntpeters/vim-better-whitespace"
+        'johnfrankmorgan/whitespace.nvim',
+        config = function()
+            require("whitespace-nvim").setup {
+                highlight = "DiffDelete",
+                ignored_filetypes = { "TelescopePrompt", "Trouble", "help", "alpha", "dashboard", "diff", "git",
+                    "gitcommit", "unite", "qf", "markdown", "fugitive", "toggleterm", "lazy" }
+            }
+        end
     },
     {
         "evanleck/vim-svelte",
@@ -258,70 +240,6 @@ lvim.plugins = {
             vim.g.svelte_preprocessor_tags = { { name = "ts", tag = "script", as = "typescript" } }
             vim.g.svelte_preprocessors = { "ts" }
         end
-    },
-    {
-        "simrat39/rust-tools.nvim",
-        config = function()
-            local status_ok, rust_tools = pcall(require, "rust-tools")
-            if not status_ok then
-                return
-            end
-
-            local opts = {
-                tools = {
-                    executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
-                    reload_workspace_from_cargo_toml = true,
-                    inlay_hints = {
-                        auto = true,
-                        only_current_line = false,
-                        show_parameter_hints = true,
-                        parameter_hints_prefix = "<-",
-                        other_hints_prefix = "=>",
-                        max_len_align = false,
-                        max_len_align_padding = 1,
-                        right_align = false,
-                        right_align_padding = 7,
-                        highlight = "Comment",
-                    },
-                    hover_actions = {
-                        border = {
-                            { "╭", "FloatBorder" },
-                            { "─", "FloatBorder" },
-                            { "╮", "FloatBorder" },
-                            { "│", "FloatBorder" },
-                            { "╯", "FloatBorder" },
-                            { "─", "FloatBorder" },
-                            { "╰", "FloatBorder" },
-                            { "│", "FloatBorder" },
-                        },
-                        auto_focus = true,
-                    },
-                },
-                server = {
-                    on_attach = require("lvim.lsp").common_on_attach,
-                    on_init = require("lvim.lsp").common_on_init,
-                },
-            }
-
-            local path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/") or ""
-            local codelldb_path = path .. "adapter/codelldb"
-            local liblldb_path = path .. "lldb/lib/liblldb.so"
-
-            if vim.fn.filereadable(codelldb_path) and vim.fn.filereadable(liblldb_path) then
-                opts.dap = {
-                    adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-                }
-            else
-                local msg = "Either codelldb or liblldb is not readable."
-                    .. "\n codelldb: "
-                    .. codelldb_path
-                    .. "\n liblldb: "
-                    .. liblldb_path
-                vim.notify(msg, vim.log.levels.ERROR)
-            end
-
-            rust_tools.setup(opts)
-        end,
     },
     {
         "saecki/crates.nvim",
@@ -336,14 +254,10 @@ lvim.plugins = {
         end,
     },
     {
-        "j-hui/fidget.nvim",
-        config = function()
-            require("fidget").setup()
-        end,
-    },
-    {
-        'glacambre/firenvim',
-        build = function() vim.fn['firenvim#install'](0) end
+        "glacambre/firenvim",
+        build = function()
+            vim.fn["firenvim#install"](0)
+        end
     },
     {
         "lervag/vimtex",
@@ -356,7 +270,7 @@ lvim.plugins = {
     {
         "folke/noice.nvim",
         config = function()
-            require("noice").setup({
+            require("noice").setup {
                 lsp = {
                     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                     override = {
@@ -373,7 +287,7 @@ lvim.plugins = {
                     inc_rename = true, -- enables an input dialog for inc-rename.nvim
                     lsp_doc_border = true, -- add a border to hover docs and signature help
                 },
-            })
+            }
         end,
         dependencies = {
             "MunifTanjim/nui.nvim",
@@ -384,9 +298,38 @@ lvim.plugins = {
     {
         "smjonas/inc-rename.nvim",
         config = function()
-            require("inc_rename").setup()
+            require("inc_rename").setup {}
         end,
-    }
+    },
+    {
+        "stevearc/dressing.nvim",
+        config = function()
+            require("dressing").setup {}
+        end
+    },
+    {
+        "simrat39/rust-tools.nvim",
+        config = function()
+            local extensions_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/") or ""
+
+            require("rust-tools").setup {
+                tools = {
+                    executor = require("rust-tools/executors").quickfix, -- can be quickfix or termopen
+                    hover_actions = {
+                        auto_focus = true,
+                    },
+                },
+                server = {
+                    on_attach = require("lvim.lsp").common_on_attach,
+                    on_init = require("lvim.lsp").common_on_init,
+                },
+                dap = {
+                    adapter = require("rust-tools.dap").get_codelldb_adapter(extensions_path .. "adapter/codelldb",
+                        extensions_path .. "lldb/lib/liblldb.so"),
+                }
+            }
+        end,
+    },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
