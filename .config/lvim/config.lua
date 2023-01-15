@@ -233,7 +233,7 @@ lvim.plugins = {
                 highlight = "DiffDelete",
                 ignored_filetypes = { "TelescopePrompt", "Trouble", "help", "alpha", "dashboard", "diff", "git",
                     "gitcommit", "unite", "qf", "markdown", "fugitive", "toggleterm", "lazy", "lspinfo", "cmdline_popup",
-                    "nui", "popup", "cmdline", "nui.popup" }
+                    "nui", "popup", "cmdline", "nui.popup", "mason" }
             }
         end
     },

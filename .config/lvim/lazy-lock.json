@@ -17,7 +17,7 @@
   "flit.nvim": { "branch": "main", "commit": "be110f9814a45788d10537fd59b3c76d956bb7ad" },
   "friendly-snippets": { "branch": "main", "commit": "484fb38b8f493ceeebf4e6fc499ebe41e10aae25" },
   "gitsigns.nvim": { "branch": "main", "commit": "d4f8c01280413919349f5df7daccd0c172143d7c" },
-  "glow.nvim": { "branch": "main", "commit": "4e4c6486110d9d9905d2efc5fd2d562212f0d212" },
+  "glow.nvim": { "branch": "main", "commit": "c88184a0bbd3e32e0274ad8c3782aba718f1053c" },
   "inc-rename.nvim": { "branch": "main", "commit": "48c4aa2be19f79e79b465a9bb37ee9fbe6c606f5" },
   "indent-blankline.nvim": { "branch": "master", "commit": "c4c203c3e8a595bc333abaf168fcb10c13ed5fb7" },
   "lazy.nvim": { "branch": "main", "commit": "d2110278be136fd977d357ff49689352d58b2e83" },
@@ -29,7 +29,7 @@
   "mason.nvim": { "branch": "main", "commit": "b71538a5f02fd9a6047a900310d2834acec5a508" },
   "neodev.nvim": { "branch": "main", "commit": "258b83f48405c6b530c09dd96950693664dc6bc0" },
   "nlsp-settings.nvim": { "branch": "main", "commit": "215b537cfb3fad7c9c2e352fe47a10698b0993e0" },
-  "noice.nvim": { "branch": "main", "commit": "e8f0cdc08bd4e637fa8c9da2a454622c5b55beae" },
+  "noice.nvim": { "branch": "main", "commit": "3d4b80d720fea1905a9df004e70a329f58b3f2b7" },
   "nui.nvim": { "branch": "main", "commit": "257da38029d3859ed111804f9d4e95b0fa993a31" },
   "null-ls.nvim": { "branch": "main", "commit": "6830a1ed04f89e6d556cb6bcc200433173004307" },
   "nvim-autopairs": { "branch": "master", "commit": "03580d758231956d33c8dd91e2be195106a79fa4" },
@@ -63,7 +63,7 @@
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-sanegx": { "branch": "master", "commit": "e97c10401d781199ba1aecd07790d0771314f3f5" },
   "vim-svelte": { "branch": "main", "commit": "0e93ec53c3667753237282926fec626785622c1c" },
-  "vimtex": { "branch": "master", "commit": "bd0173e7d3c0097c5b855265ce83f5863f073c85" },
+  "vimtex": { "branch": "master", "commit": "57da13348bce93dda80d4d4494db42e07c96b018" },
   "which-key.nvim": { "branch": "main", "commit": "b7e0b1f16c20bc1ea0515851bc5740d1c1f18444" },
-  "whitespace.nvim": { "branch": "master", "commit": "1d958cba250668a9d8eea068e3fb03bc67adf1b8" }
+  "whitespace.nvim": { "branch": "master", "commit": "f24cdd38ca1cf2f8cb2caf6b9d126d5c36021c88" }
 }
