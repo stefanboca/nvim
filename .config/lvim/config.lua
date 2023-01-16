@@ -11,6 +11,8 @@ if vim.g.neovide then
     vim.g.neovide_cursor_vfx_mode = "pixiedust"
     vim.g.neovide_scroll_animation_length = 0.4
     vim.g.neovide_hide_mouse_when_typing = true
+    vim.o.winblend = 30
+    vim.o.pumblend = 30
 end
 
 -- general
@@ -63,7 +65,6 @@ lvim.builtin.which_key.mappings["R"] = {
 }
 lvim.builtin.which_key.mappings["lo"] = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" }
 lvim.builtin.which_key.mappings["lR"] = { ":IncRename ", "Immediate Rename" }
-lvim.builtin.which_key.mappings["lt"] = { "<cmd>lua require('whitespace-nvim').trim()<Cr>", "Trim Whitespace" }
 lvim.builtin.which_key.mappings["sn"] = { "<cmd>Noice telescope<CR>", "Noice" }
 
 -- Automatically install missing parsers when entering buffer
@@ -122,14 +123,12 @@ lvim.plugins = {
         "monaqa/dial.nvim",
         event = "BufRead",
         config = function()
-            vim.cmd [[
-                nmap <C-a> <Plug>(dial-increment)
-                nmap <C-x> <Plug>(dial-decrement)
-                vmap <C-a> <Plug>(dial-increment)
-                vmap <C-x> <Plug>(dial-decrement)
-                vmap g<C-a> <Plug>(dial-increment-additional)
-                vmap g<C-x> <Plug>(dial-decrement-additional)
-        ]]
+            vim.api.nvim_set_keymap("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
+            vim.api.nvim_set_keymap("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
+            vim.api.nvim_set_keymap("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
+            vim.api.nvim_set_keymap("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
+            vim.api.nvim_set_keymap("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
+            vim.api.nvim_set_keymap("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
         end,
     },
     {
@@ -227,13 +226,28 @@ lvim.plugins = {
         "ellisonleao/glow.nvim"
     },
     {
-        'johnfrankmorgan/whitespace.nvim',
+        "kaplanz/nvim-retrail",
         config = function()
-            require("whitespace-nvim").setup {
-                highlight = "DiffDelete",
-                ignored_filetypes = { "TelescopePrompt", "Trouble", "help", "alpha", "dashboard", "diff", "git",
-                    "gitcommit", "unite", "qf", "markdown", "fugitive", "toggleterm", "lazy", "lspinfo", "cmdline_popup",
-                    "nui", "popup", "cmdline", "nui.popup", "mason" }
+            require("retrail").setup {
+                hlgroup = "DiffDelete",
+                filetype = {
+                    exclude = {
+                        "",
+                        "aerial",
+                        "alpha",
+                        "checkhealth",
+                        "cmp_menu",
+                        "diff",
+                        "lazy",
+                        "lspinfo",
+                        "man",
+                        "mason",
+                        "TelescopePrompt",
+                        "Trouble",
+                        "WhichKey",
+                        "toggleterm",
+                    },
+                }
             }
         end
     },
@@ -338,8 +352,10 @@ lvim.plugins = {
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands = {
     {
-        "BufEnter", {
-            pattern = { "*.toml" }, callback = function()
+        "BufEnter",
+        {
+            pattern = { "*.toml" },
+            callback = function()
                 require("lvim.lsp.manager").setup("taplo")
             end
         }
