@@ -44,35 +44,49 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 setopt correct
 
 
-
 # User configuration
 
 # dotfiles
 # https://www.atlassian.com/git/tutorials/dotfiles
 alias dotf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
-# functions to load heavy apps
-export NVM_DIR="$HOME/.nvm"
-load_nvm () {
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# lazy load heavy apps
+function lazy_load() {
+    local load_fn="$1"
+    shift
+    local globals=("$@")
+    for cmd in "${globals[@]}"; do
+        eval "function ${cmd}(){ unset -f ${globals[*]}; ${load_fn}; unset -f ${load_fn}; ${cmd} \$@; }"
+    done
 }
-#load_conda() {
-#    # >>> conda initialize >>>
-#    # !! Contents within this block are managed by 'conda init' !!
-#    __conda_setup="$('/home/doctorwho/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-#    if [ $? -eq 0 ]; then
-#        eval "$__conda_setup"
-#    else
-#        if [ -f "/home/doctorwho/miniconda3/etc/profile.d/conda.sh" ]; then
-#            . "/home/doctorwho/miniconda3/etc/profile.d/conda.sh"
-#        else
-#            export PATH="/home/doctorwho/miniconda3/bin:$PATH"
-#        fi
-#    fi
-#    unset __conda_setup
-#}
 
+_load_conda() {
+   # >>> conda initialize >>>
+   # !! Contents within this block are managed by 'conda init' !!
+   __conda_setup="$('/home/doctorwho/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+   if [ $? -eq 0 ]; then
+       eval "$__conda_setup"
+   else
+       if [ -f "/home/doctorwho/miniconda3/etc/profile.d/conda.sh" ]; then
+           . "/home/doctorwho/miniconda3/etc/profile.d/conda.sh"
+       else
+           export PATH="/home/doctorwho/miniconda3/bin:$PATH"
+       fi
+   fi
+   unset __conda_setup
+}
+lazy_load "_load_conda" conda
+
+export NVM_DIR="$HOME/.nvm"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    _NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+    function _load_nvm() {
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    }
+    lazy_load "_load_nvm" "${_NODE_GLOBALS[@]}" node nvm yarn
+    unset _NODE_GLOBALS
+fi
 
 
 # Path appends
@@ -89,10 +103,3 @@ export EDITOR=lvim
 #[ -f "/home/doctorwho/.ghcup/env" ] && source "/home/doctorwho/.ghcup/env" # ghcup-env
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
-# Needed to get flatpak working
-# export GIO_MODULE_DIR=/usr/lib/x86_64-linux-gnu/gio/modules
-# Needed because of nvidia driver from cuda repository issues
-# export XDG_RUNTIME_DIR=
-# export WAYLAND_DISPLAY=
-# Needed for apps using winit for the time being
-# export WINIT_UNIX_BACKEND=x11
