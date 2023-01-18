@@ -13,8 +13,8 @@ export MODE_CURSOR_VIINS="blinking bar"
 export MODE_CURSOR_REPLACE="orange block"
 export MODE_CURSOR_VICMD="orange block"
 export MODE_CURSOR_SEARCH="orange steady underline"
-export MODE_CURSOR_VISUAL="orange steady bar"
-export MODE_CURSOR_VLINE="orange steady bar"
+export MODE_CURSOR_VISUAL="orange steady block"
+export MODE_CURSOR_VLINE="orange steady block"
 
 zstyle ':autocomplete:*' fzf-completion yes
 
@@ -47,3 +47,15 @@ EOBUNDLES
 antigen theme lukerandall
 
 antigen apply
+
+bindkey -M viins '^[[A' up-line-or-history
+bindkey -M viins '^[[B' down-line-or-history
+bindkey -M viins '^[OA' up-line-or-history
+bindkey -M viins '^[OB' down-line-or-history
+bindkey -M vicmd '^[[A' up-line-or-history
+bindkey -M vicmd '^[[B' down-line-or-history
+bindkey -M vicmd '^[OA' up-line-or-history
+bindkey -M vicmd '^[OB' down-line-or-history
+bindkey -M vicmd 'k' up-line-or-history
+bindkey -M vicmd 'j' down-line-or-history
+
