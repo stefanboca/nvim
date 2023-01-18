@@ -1,0 +1,43 @@
+# vim: ft=zsh
+
+# export ANTIGEN_LOG=~/antigen-log
+export HYPHEN_INSENSITIVE="true"
+export COMPLETION_WAITING_DOTS="true"
+export DISABLE_UNTRACKED_FILES_DIRTY="true"
+export DISABLE_MAGIC_FUNCTIONS="true"
+
+export ZSH_TMUX_AUTOCONNECT=false
+export ZSH_TMUX_UNICODE=true
+
+zstyle ':autocomplete:*' fzf-completion yes
+
+antigen use oh-my-zsh
+
+antigen bundles << EOBUNDLES
+    jeffreytse/zsh-vi-mode
+    zsh-users/zsh-completions
+    marlonrichert/zsh-autocomplete@main
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-syntax-highlighting
+    lukechilds/zsh-nvm
+    command-not-found
+    wd
+
+    git
+    git-extras
+    git-lfs
+
+    tmux
+    ubuntu
+    docker
+    docker-compose
+    systemd
+    djui/alias-tips
+    unixorn/fzf-zsh-plugin@main
+
+    qoomon/zsh-lazyload
+EOBUNDLES
+
+antigen theme lukerandall
+
+antigen apply
