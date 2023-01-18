@@ -9,12 +9,19 @@ export DISABLE_MAGIC_FUNCTIONS="true"
 export ZSH_TMUX_AUTOCONNECT=false
 export ZSH_TMUX_UNICODE=true
 
+export MODE_CURSOR_VIINS="blinking bar"
+export MODE_CURSOR_REPLACE="orange block"
+export MODE_CURSOR_VICMD="orange block"
+export MODE_CURSOR_SEARCH="orange steady underline"
+export MODE_CURSOR_VISUAL="orange steady bar"
+export MODE_CURSOR_VLINE="orange steady bar"
+
 zstyle ':autocomplete:*' fzf-completion yes
 
 antigen use oh-my-zsh
 
 antigen bundles << EOBUNDLES
-    jeffreytse/zsh-vi-mode
+    softmoth/zsh-vim-mode@main
     zsh-users/zsh-completions
     marlonrichert/zsh-autocomplete@main
     zsh-users/zsh-autosuggestions
