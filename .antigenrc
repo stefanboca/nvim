@@ -21,24 +21,23 @@ zstyle ':autocomplete:*' fzf-completion yes
 antigen use oh-my-zsh
 
 antigen bundles << EOBUNDLES
-    softmoth/zsh-vim-mode@main
     zsh-users/zsh-completions
-    marlonrichert/zsh-autocomplete@main
     zsh-users/zsh-autosuggestions
     zsh-users/zsh-syntax-highlighting
-    lukechilds/zsh-nvm
+    softmoth/zsh-vim-mode@main
     command-not-found
     wd
 
+    tmux
+    docker
+    docker-compose
+    systemd
+    lukechilds/zsh-nvm
     git
     git-extras
     git-lfs
 
-    tmux
     ubuntu
-    docker
-    docker-compose
-    systemd
     djui/alias-tips
     unixorn/fzf-zsh-plugin@main
 
