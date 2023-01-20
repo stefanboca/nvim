@@ -1,0 +1,4 @@
+*.FCStd diff=fcinfo
+*.fcstd diff=fcinfo
+
+
