@@ -8,6 +8,7 @@ setopt correct
 # dotfiles
 # https://www.atlassian.com/git/tutorials/dotfiles
 alias dotf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dotfcp="dotf commit -m\"update\"; dotf push"
 
 # lazy load heavy apps
 _load_conda() {
