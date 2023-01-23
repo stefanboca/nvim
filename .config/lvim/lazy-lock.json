@@ -18,7 +18,7 @@
   "friendly-snippets": { "branch": "main", "commit": "484fb38b8f493ceeebf4e6fc499ebe41e10aae25" },
   "gitsigns.nvim": { "branch": "main", "commit": "d4f8c01280413919349f5df7daccd0c172143d7c" },
   "glow.nvim": { "branch": "main", "commit": "c88184a0bbd3e32e0274ad8c3782aba718f1053c" },
-  "inc-rename.nvim": { "branch": "main", "commit": "48c4aa2be19f79e79b465a9bb37ee9fbe6c606f5" },
+  "inc-rename.nvim": { "branch": "main", "commit": "550e012030ff90dbfb577092368d167f65f9a865" },
   "indent-blankline.nvim": { "branch": "master", "commit": "c4c203c3e8a595bc333abaf168fcb10c13ed5fb7" },
   "lazy.nvim": { "branch": "main", "commit": "d2110278be136fd977d357ff49689352d58b2e83" },
   "leap.nvim": { "branch": "main", "commit": "ff4c3663e5a0a0ecbb3fffbc8318825def35d2aa" },
