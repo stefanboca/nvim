@@ -26,6 +26,7 @@ antigen bundles << EOBUNDLES
     zsh-users/zsh-syntax-highlighting
     softmoth/zsh-vim-mode@main
     command-not-found
+    thefuck
     wd
 
     tmux
