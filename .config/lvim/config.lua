@@ -282,9 +282,6 @@ lvim.plugins = {
         init = function()
             vim.g.vimtex_view_method = "zathura"
         end,
-        config = function()
-            vim.cmd("call vimtex#init()")
-        end
     },
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },

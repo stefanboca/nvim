@@ -68,6 +68,6 @@
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-sanegx": { "branch": "master", "commit": "e97c10401d781199ba1aecd07790d0771314f3f5" },
   "vim-svelte": { "branch": "main", "commit": "0e93ec53c3667753237282926fec626785622c1c" },
-  "vimtex": { "branch": "master", "commit": "13fa591e82f7fe0fedbb097e9869d32f6af207fe" },
+  "vimtex": { "branch": "master", "commit": "b8607084b324ab0c98892ca20f78433904aecef5" },
   "which-key.nvim": { "branch": "main", "commit": "e4fa445065a2bb0bbc3cca85346b67817f28e83e" }
 }
