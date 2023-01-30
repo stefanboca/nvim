@@ -27,7 +27,7 @@
   "lunar.nvim": { "branch": "master", "commit": "29eedf78c430ad9acebdcba814d77619edbe2bac" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "5b388c0de30f1605671ebfb9a20a620cda50ffce" },
   "mason.nvim": { "branch": "main", "commit": "41d6a88c9d08380f7e1e33d8471ffe36c0900347" },
-  "mini.nvim": { "branch": "main", "commit": "41940bbdb2a030ed0ddce0f2b1b4083ad5055c4e" },
+  "mini.nvim": { "branch": "main", "commit": "e742f416df94846cb0c5936db46d650ac1339058" },
   "neodev.nvim": { "branch": "main", "commit": "e905fb76f78fa19500ca3b9fac256b057aad535a" },
   "nlsp-settings.nvim": { "branch": "main", "commit": "06816026ccce2e8246e952d55ea87ddd26a9d2a4" },
   "noice.nvim": { "branch": "main", "commit": "34f7cf628666c6eb0c93fbe8a0490e977ac78b7b" },
