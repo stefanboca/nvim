@@ -41,7 +41,8 @@ lvim.builtin.telescope.defaults.mappings = {
 }
 
 lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
-lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope Projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["s"]["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["s"]["S"] = { "<cmd>Telescope persisted<CR>", "Sessions" }
 lvim.builtin.which_key.mappings["t"] = {
     name = "+Trouble",
     r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -280,6 +281,9 @@ lvim.plugins = {
         "lervag/vimtex",
         init = function()
             vim.g.vimtex_view_method = "zathura"
+        end,
+        config = function()
+            vim.cmd("call vimtex#init()")
         end
     },
     { "MunifTanjim/nui.nvim" },
@@ -347,6 +351,31 @@ lvim.plugins = {
             }
         end,
     },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+            require("treesitter-context").setup {}
+        end
+    },
+    {
+        "echasnovski/mini.nvim",
+        config = function()
+            require("mini.indentscope").setup {}
+        end
+    },
+    {
+        "nvim-pack/nvim-spectre",
+        config = function()
+            require("spectre").setup {}
+        end
+    },
+    {
+        "olimorris/persisted.nvim",
+        config = function()
+            require("persisted").setup()
+            require("telescope").load_extension("persisted")
+        end,
+    }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
