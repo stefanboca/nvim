@@ -275,13 +275,17 @@ lvim.plugins = {
         "glacambre/firenvim",
         build = function()
             vim.fn["firenvim#install"](0)
-        end
+        end,
+        cond = not not vim.g.started_by_firenvim
     },
     {
         "lervag/vimtex",
         init = function()
             vim.g.vimtex_view_method = "zathura"
         end,
+        config = function()
+            vim.cmd("call vimtex#init()")
+        end
     },
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },
