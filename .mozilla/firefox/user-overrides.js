@@ -22,6 +22,12 @@ user_pref("browser.newtabpage.enabled", true);
  * [SETUP-CHROME] Override this if you trust and use a privacy respecting search engine ***/
 user_pref("keyword.enabled", true);
 
+/* 1601: control when to send a cross-origin referer
+ * 0=always (default), 1=only if base domains match, 2=only if hosts match
+ * [SETUP-WEB] Breakage: older modems/routers and some sites e.g banks, vimeo, icloud, instagram
+ * If "2" is too strict, then override to "0" and use Smart Referer extension (Strict mode + add exceptions) ***/
+user_pref("network.http.referer.XOriginPolicy", 0);
+
 /* 2022: disable all DRM content (EME: Encryption Media Extension)
  * Optionally hide the setting which also disables the DRM prompt
  * [SETUP-WEB] e.g. Netflix, Amazon Prime, Hulu, HBO, Disney+, Showtime, Starz, DirectTV
@@ -29,6 +35,19 @@ user_pref("keyword.enabled", true);
  * [TEST] https://bitmovin.com/demos/drm
  * [1] https://www.eff.org/deeplinks/2017/10/drms-dead-canary-how-we-just-lost-web-what-we-learned-it-and-what-we-need-do-next ***/
 user_pref("media.eme.enabled", true);
+
+/* 2620: enforce PDFJS, disable PDFJS scripting
+ * This setting controls if the option "Display in Firefox" is available in the setting below
+ *   and by effect controls whether PDFs are handled in-browser or externally ("Ask" or "Open With")
+ * [WHY] pdfjs is lightweight, open source, and secure: the last exploit was June 2015 [1]
+ *   It doesn't break "state separation" of browser content (by not sharing with OS, independent apps).
+ *   It maintains disk avoidance and application data isolation. It's convenient. You can still save to disk.
+ * [NOTE] JS can still force a pdf to open in-browser by bundling its own code
+ * [SETUP-CHROME] You may prefer a different pdf reader for security/workflow reasons
+ * [SETTING] General>Applications>Portable Document Format (PDF)
+ * [1] https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=pdf.js+firefox ***/
+// user_pref("pdfjs.disabled", false); // [DEFAULT: false]
+user_pref("pdfjs.enableScripting", true); // [FF86+]
 
 /* 4501: enable privacy.resistFingerprinting [FF41+]
  * [SETUP-WEB] RFP can cause some website breakage: mainly canvas, use a site exception via the urlbar
