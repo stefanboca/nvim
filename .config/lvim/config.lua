@@ -2,7 +2,7 @@ vim.opt.clipboard = ""
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
 vim.opt.signcolumn = "yes"
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 16
 vim.opt.sidescrolloff = 8
 
 -- neovide
@@ -105,16 +105,12 @@ lvim.plugins = {
     {
         "ggandor/flit.nvim",
         event = "BufRead",
-        config = function()
-            require("flit").setup {}
-        end
+        config = true
     },
     {
         "simrat39/symbols-outline.nvim",
         cmd = "SymbolsOutline",
-        config = function()
-            require("symbols-outline").setup {}
-        end
+        config = true
     },
     {
         "metakirby5/codi.vim",
@@ -161,9 +157,7 @@ lvim.plugins = {
     {
         "folke/todo-comments.nvim",
         event = "BufRead",
-        config = function()
-            require("todo-comments").setup {}
-        end,
+        config = true
     },
     {
         "itchyny/vim-cursorword",
@@ -185,9 +179,7 @@ lvim.plugins = {
     },
     {
         "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup {}
-        end
+        config = true
     },
     {
         "aserowy/tmux.nvim",
@@ -224,7 +216,9 @@ lvim.plugins = {
         enabled = false
     },
     {
-        "ellisonleao/glow.nvim"
+        "ellisonleao/glow.nvim",
+        config = true,
+        cmd = "Glow"
     },
     {
         "kaplanz/nvim-retrail",
@@ -319,15 +313,11 @@ lvim.plugins = {
     },
     {
         "smjonas/inc-rename.nvim",
-        config = function()
-            require("inc_rename").setup {}
-        end,
+        config = true
     },
     {
         "stevearc/dressing.nvim",
-        config = function()
-            require("dressing").setup {}
-        end
+        config = true
     },
     {
         "simrat39/rust-tools.nvim",
@@ -354,9 +344,7 @@ lvim.plugins = {
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
-        config = function()
-            require("treesitter-context").setup {}
-        end
+        config = true
     },
     {
         "echasnovski/mini.nvim",
@@ -366,9 +354,7 @@ lvim.plugins = {
     },
     {
         "nvim-pack/nvim-spectre",
-        config = function()
-            require("spectre").setup {}
-        end
+        config = true
     },
     {
         "olimorris/persisted.nvim",
