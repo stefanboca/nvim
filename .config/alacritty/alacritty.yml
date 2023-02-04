@@ -194,14 +194,14 @@ draw_bold_text_with_bright_colors: true
   #  background: '#1d1f21'
   #  foreground: '#c5c8c6'
 
-  # Bright and dim foreground colors
-  #
-  # The dimmed foreground color is calculated automatically if it is not
-  # present. If the bright foreground color is not set, or
-  # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
-  # color will be used.
-  #dim_foreground: '#828482'
-  #bright_foreground: '#eaeaea'
+    # Bright and dim foreground colors
+    #
+    # The dimmed foreground color is calculated automatically if it is not
+    # present. If the bright foreground color is not set, or
+    # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
+    # color will be used.
+    #dim_foreground: '#828482'
+    #bright_foreground: '#eaeaea'
 
   # Cursor colors
   #
@@ -868,7 +868,7 @@ draw_bold_text_with_bright_colors: true
   #- { key: M,              mods: Command,                    action: Minimize              }
   #- { key: Q,              mods: Command,                    action: Quit                  }
   #- { key: W,              mods: Command,                    action: Quit                  }
-  #- { key: N,              mods: Command,                    action: SpawnNewInstance      }
+  #- { key: N,              mods: Command,                    action: CreateNewWindow       }
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
@@ -889,7 +889,7 @@ draw_bold_text_with_bright_colors: true
   #   - Info
   #   - Debug
   #   - Trace
-  #log_level: Trace
+  #log_level: Warn
 
   # Renderer override.
   #   - glsl3
