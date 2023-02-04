@@ -68,7 +68,7 @@ user_pref("privacy.resistFingerprinting.letterboxing", false); // [HIDDEN PREF]
 
 /* 4520: disable WebGL (Web Graphics Library)
  * [SETUP-WEB] If you need it then override it. RFP still randomizes canvas for naive scripts ***/
-user_pref("webgl.disabled", true);
+user_pref("webgl.disabled", false);
 
 /* 5003: disable saving passwords
  * [NOTE] This does not clear any passwords already saved
