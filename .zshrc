@@ -8,6 +8,7 @@ setopt correct
 # dotfiles
 # https://www.atlassian.com/git/tutorials/dotfiles
 alias dotf="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dotfs="dotf status"
 alias dotfac="dotf add -u && dotf commit -m\"update\""
 alias dotfp="dotf push"
 
