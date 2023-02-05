@@ -84,6 +84,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyz
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup {
     { name = "black", filetype = "python" },
+    { name = "gersemi", filetype = "cmake" },
 }
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
