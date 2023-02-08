@@ -20,6 +20,7 @@ lvim.leader = "space"
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.builtin.cmp.cmdline.enable = true
+lvim.builtin.indentlines.active = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
@@ -277,10 +278,12 @@ lvim.plugins = {
         "lervag/vimtex",
         init = function()
             vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_compiler_method = "tectonic"
         end,
         config = function()
             vim.cmd("call vimtex#init()")
-        end
+        end,
+        enabled = false
     },
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },
