@@ -84,7 +84,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyz
 
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup {
-    { name = "black", filetype = "python" },
+    { name = "black",   filetype = "python" },
     { name = "gersemi", filetype = "cmake" },
 }
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -272,7 +272,8 @@ lvim.plugins = {
         build = function()
             vim.fn["firenvim#install"](0)
         end,
-        cond = not not vim.g.started_by_firenvim
+        cond = not not vim.g.started_by_firenvim,
+        enabled = false
     },
     {
         "lervag/vimtex",
@@ -377,6 +378,15 @@ lvim.autocommands = {
             pattern = { "*.toml" },
             callback = function()
                 require("lvim.lsp.manager").setup("taplo")
+            end
+        }
+    },
+    {
+        "BufEnter",
+        {
+            pattern = { "*.tex" },
+            callback = function()
+                vim.cmd("setlocal shiftwidth=2 softtabstop=2 expandtab tw=100")
             end
         }
     }
