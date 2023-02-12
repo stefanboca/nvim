@@ -75,22 +75,12 @@ lvim.builtin.treesitter.auto_install = true
 ---configure a server manually.
 ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
 -- NOTE: Requires `:LvimCacheReset` to take effect!!
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer", "pyright" })
 
 -- ---remove servers from the skipped list
 -- vim.tbl_map(function(server)
 --     return server ~= "taplo"
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
-
-local formatters = require("lvim.lsp.null-ls.formatters")
-formatters.setup {
-    { name = "black",   filetype = "python" },
-    { name = "gersemi", filetype = "cmake" },
-}
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
---     { name = "flake8", filetype = "python" },
--- }
 
 -- Additional Plugins
 lvim.plugins = {
@@ -326,6 +316,7 @@ lvim.plugins = {
     },
     {
         "simrat39/rust-tools.nvim",
+        ft = "rust",
         config = function()
             local extensions_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/") or ""
 
@@ -371,23 +362,4 @@ lvim.plugins = {
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands = {
-    {
-        "BufEnter",
-        {
-            pattern = { "*.toml" },
-            callback = function()
-                require("lvim.lsp.manager").setup("taplo")
-            end
-        }
-    },
-    {
-        "BufEnter",
-        {
-            pattern = { "*.tex" },
-            callback = function()
-                vim.cmd("setlocal shiftwidth=2 softtabstop=2 expandtab tw=100")
-            end
-        }
-    }
-}
+-- lvim.autocommands = {}
