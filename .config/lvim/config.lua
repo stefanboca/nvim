@@ -358,6 +358,10 @@ lvim.plugins = {
             require("persisted").setup()
             require("telescope").load_extension("persisted")
         end,
+    },
+    {
+        "IndianBoy42/tree-sitter-just",
+        config = true
     }
 }
 

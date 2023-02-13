@@ -19,13 +19,19 @@ _load_conda() {
 }
 lazyload conda -- "_load_conda"
 lazyload ghc -- "[ -f \"$HOME/.ghcup/env\" ] && source \"$HOME/.ghcup/env\""
+lazyload ros2 rviz2 rqt -- "source /opt/ros/rolling/setup.zsh"
 
 # Path appends
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
 # Other env variables
 export EDITOR=lvim
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
 
 # zprof
