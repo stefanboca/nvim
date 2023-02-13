@@ -29,9 +29,4 @@ export EDITOR=lvim
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
 # zprof
