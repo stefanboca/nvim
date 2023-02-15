@@ -1,4 +1,4 @@
-vim.cmd("setlocal shiftwidth=2 softtabstop=2 expandtab tw=100")
+vim.cmd("setlocal formatexpr= shiftwidth=2 softtabstop=2 expandtab tw=100")
 
 local null_ls = require("null-ls")
 
