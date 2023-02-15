@@ -151,19 +151,6 @@ lvim.plugins = {
         event = "BufRead",
         config = true
     },
-    {
-        "itchyny/vim-cursorword",
-        event = { "BufEnter", "BufNewFile" },
-        config = function()
-            vim.api.nvim_command("augroup user_plugin_cursorword")
-            vim.api.nvim_command("autocmd!")
-            vim.api.nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0")
-            vim.api.nvim_command("autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif")
-            vim.api.nvim_command("autocmd InsertEnter * let b:cursorword = 0")
-            vim.api.nvim_command("autocmd InsertLeave * let b:cursorword = 1")
-            vim.api.nvim_command("augroup END")
-        end
-    },
     { "tpope/vim-repeat" },
     {
         "felipec/vim-sanegx",
@@ -236,7 +223,8 @@ lvim.plugins = {
                     },
                 }
             }
-        end
+        end,
+        enabled = false
     },
     {
         "evanleck/vim-svelte",
@@ -346,6 +334,10 @@ lvim.plugins = {
         "echasnovski/mini.nvim",
         config = function()
             require("mini.indentscope").setup {}
+            require("mini.cursorword").setup {}
+            require("mini.trailspace").setup {}
+
+            vim.api.nvim_set_hl(0, "MiniTrailspace", { bg = "red" })
         end
     },
     {
