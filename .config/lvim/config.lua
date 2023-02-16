@@ -2,7 +2,7 @@ vim.opt.clipboard = ""
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
 vim.opt.signcolumn = "yes"
-vim.opt.scrolloff = 16
+vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
 
 -- neovide
@@ -167,19 +167,23 @@ lvim.plugins = {
             require("tmux").setup {
                 copy_sync = {
                     enable = false,
-                    redirect_to_clipboard = false,
-                    sync_clipboard = false,
-                    sync_deletes = false,
-                    sync_unnamed = false,
                 },
-                navigation = {
-                    enable_default_keybindings = true,
-                },
-                resize = {
-                    enable_default_keybindings = true,
-                }
             }
-        end
+        end,
+        enabled = false
+    },
+    {
+        "numToStr/Navigator.nvim",
+        keys = { "<C-h>", "<C-l>", "<C-k>", "<C-j>", "<C-p>", },
+        config = function()
+            require("Navigator").setup {}
+            vim.keymap.set({ 'n', 't' }, '<C-h>', '<CMD>NavigatorLeft<CR>')
+            vim.keymap.set({ 'n', 't' }, '<C-l>', '<CMD>NavigatorRight<CR>')
+            vim.keymap.set({ 'n', 't' }, '<C-k>', '<CMD>NavigatorUp<CR>')
+            vim.keymap.set({ 'n', 't' }, '<C-j>', '<CMD>NavigatorDown<CR>')
+            vim.keymap.set({ 'n', 't' }, '<C-p>', '<CMD>NavigatorPrevious<CR>')
+        end,
+        enabled = true,
     },
     {
         "chipsenkbeil/distant.nvim",
