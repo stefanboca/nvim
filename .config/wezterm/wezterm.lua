@@ -5,9 +5,7 @@ return {
     },
     font_size = 11,
     color_scheme = "Lunar",
-    color_schemes = {
-        ["Lunar"] = require("lunar"),
-    },
+    color_schemes = require("color_schemes"),
     keys = {
         { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
     },
