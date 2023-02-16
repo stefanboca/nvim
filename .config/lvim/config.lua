@@ -4,6 +4,7 @@ vim.opt.shiftwidth = 4
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
+vim.opt.title = false
 
 -- neovide
 if vim.g.neovide then
