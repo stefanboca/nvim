@@ -21,6 +21,7 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.builtin.cmp.cmdline.enable = true
 lvim.builtin.indentlines.active = false
+lvim.colorscheme = "lunar"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
@@ -353,6 +354,10 @@ lvim.plugins = {
     },
     {
         "IndianBoy42/tree-sitter-just",
+        config = true
+    },
+    {
+        "norcalli/nvim-colorizer.lua",
         config = true
     }
 }
