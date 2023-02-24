@@ -46,14 +46,16 @@ lvim.builtin.telescope.defaults.mappings = {
 lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
 lvim.builtin.which_key.mappings["s"]["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["s"]["S"] = { "<cmd>Telescope persisted<CR>", "Sessions" }
+lvim.builtin.which_key.mappings["s"]["T"] = { "<cmd>TodoTelescope<CR>", "ToDo" }
 lvim.builtin.which_key.mappings["t"] = {
     name = "+Trouble",
     r = { "<cmd>Trouble lsp_references<cr>", "References" },
     f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
     d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-    q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-    l = { "<cmd>Trouble loclist<cr>", "LocationList" },
     w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+    t = { "<cmd>TodoTrouble<cr>", "ToDo" },
+    q = { "<cmd>TodoQuickFix<cr>", "ToDo QuickFix" },
+    l = { "<cmd>TodoLocList<cr>", "ToDo LocationList" },
 }
 lvim.builtin.which_key.mappings["R"] = {
     name = "+Rust",
@@ -151,6 +153,7 @@ lvim.plugins = {
     {
         "folke/todo-comments.nvim",
         event = "BufRead",
+        cmd = {"TodoQuickFix", "TodoLocList", "TodoTrouble", "TodoTelescope"},
         config = true
     },
     { "tpope/vim-repeat" },
@@ -163,17 +166,6 @@ lvim.plugins = {
         config = true
     },
     {
-        "aserowy/tmux.nvim",
-        config = function()
-            require("tmux").setup {
-                copy_sync = {
-                    enable = false,
-                },
-            }
-        end,
-        enabled = false
-    },
-    {
         "numToStr/Navigator.nvim",
         keys = { "<C-h>", "<C-l>", "<C-k>", "<C-j>", "<C-p>", },
         config = function()
@@ -184,21 +176,6 @@ lvim.plugins = {
             vim.keymap.set({ 'n', 't' }, '<C-j>', '<CMD>NavigatorDown<CR>')
             vim.keymap.set({ 'n', 't' }, '<C-p>', '<CMD>NavigatorPrevious<CR>')
         end,
-        enabled = true,
-    },
-    {
-        "chipsenkbeil/distant.nvim",
-        config = function()
-            require("distant").setup {
-                -- Applies Chip's personal settings to every machine you connect to
-                --
-                -- 1. Ensures that distant servers terminate with no connections
-                -- 2. Provides navigation bindings for remote directories
-                -- 3. Provides keybinding to jump into a remote file"s parent directory
-                ["*"] = require("distant.settings").chip_default()
-            }
-        end,
-        enabled = false
     },
     {
         "ellisonleao/glow.nvim",
@@ -326,8 +303,7 @@ lvim.plugins = {
                     on_init = require("lvim.lsp").common_on_init,
                 },
                 dap = {
-                    adapter = require("rust-tools.dap").get_codelldb_adapter(extensions_path .. "adapter/codelldb",
-                        extensions_path .. "lldb/lib/liblldb.so"),
+                    adapter = require("rust-tools.dap").get_codelldb_adapter(extensions_path .. "adapter/codelldb", extensions_path .. "lldb/lib/liblldb.so"),
                 }
             }
         end,
@@ -342,8 +318,6 @@ lvim.plugins = {
             require("mini.indentscope").setup {}
             require("mini.cursorword").setup {}
             require("mini.trailspace").setup {}
-
-            vim.api.nvim_set_hl(0, "MiniTrailspace", { bg = "red" })
         end
     },
     {
@@ -353,7 +327,7 @@ lvim.plugins = {
     {
         "olimorris/persisted.nvim",
         config = function()
-            require("persisted").setup()
+            require("persisted").setup {}
             require("telescope").load_extension("persisted")
         end,
     },
