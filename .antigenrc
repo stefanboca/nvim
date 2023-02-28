@@ -43,7 +43,7 @@ antigen bundles << EOBUNDLES
 
     ubuntu
     djui/alias-tips
-    unixorn/fzf-zsh-plugin@main
+    # unixorn/fzf-zsh-plugin@main
 
     qoomon/zsh-lazyload
 EOBUNDLES

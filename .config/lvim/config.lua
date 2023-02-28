@@ -81,10 +81,13 @@ lvim.builtin.treesitter.auto_install = true
 -- NOTE: Requires `:LvimCacheReset` to take effect!!
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer", "pyright" })
 
--- ---remove servers from the skipped list
--- vim.tbl_map(function(server)
---     return server ~= "taplo"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
+-- ---remove servers and filetypes from the skipped list
+lvim.lsp.automatic_configuration.skipped_filetypes = vim.tbl_filter(function(filetype)
+    return filetype ~= "toml"
+end, lvim.lsp.automatic_configuration.skipped_filetypes)
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+    return server ~= "graphql"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- Additional Plugins
 lvim.plugins = {
@@ -153,7 +156,7 @@ lvim.plugins = {
     {
         "folke/todo-comments.nvim",
         event = "BufRead",
-        cmd = {"TodoQuickFix", "TodoLocList", "TodoTrouble", "TodoTelescope"},
+        cmd = { "TodoQuickFix", "TodoLocList", "TodoTrouble", "TodoTelescope" },
         config = true
     },
     { "tpope/vim-repeat" },
