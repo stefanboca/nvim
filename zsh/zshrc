@@ -2,7 +2,6 @@
 source ~/.antigen/antigen.zsh
 antigen init ~/.antigenrc
 
-fpath+=${ZDOTDIR:-~}/.zsh_functions
 setopt correct
 
 # lazy load heavy apps
