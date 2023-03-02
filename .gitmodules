@@ -1,9 +1,6 @@
-[submodule ".config/kitty/kitty-themes"]
-	path = .config/kitty/kitty-themes
-	url = https://github.com/dexpota/kitty-themes.git
-[submodule ".config/alacritty/alacritty-theme"]
-	path = .config/alacritty/alacritty-theme
-	url = https://github.com/eendroroy/alacritty-theme.git
-[submodule ".antigen"]
-	path = .antigen
+[submodule "zsh/antigen"]
+	path = zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "firefox/arkenfox"]
+	path = firefox/arkenfox
+	url = https://github.com/arkenfox/user.js.git
