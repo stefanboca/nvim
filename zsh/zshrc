@@ -2,24 +2,4 @@
 source ~/.antigen/antigen.zsh
 antigen init ~/.antigenrc
 
-setopt correct
-
-# lazy load heavy apps
-_load_conda() {
-    export CONDA_ROOT="$HOME/.miniconda3"
-   _conda_setup="$('$CONDA_ROOT/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-   [ $? -eq 0 ] && eval "$_conda_setup" || [ -f "$CONDA_ROOT/etc/profile.d/conda.sh" ] && . "$CONDA_ROOT/etc/profile.d/conda.sh"
-}
-lazyload conda -- "_load_conda"
-lazyload ghc -- "[ -f \"$HOME/.ghcup/env\" ] && source \"$HOME/.ghcup/env\""
-lazyload ros2 rviz2 rqt -- "source /opt/ros/rolling/setup.zsh"
-
-# Path appends
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
-
-# Other env variables
-export EDITOR=lvim
-# needed for ignition gazebo
-export IGN_IP=127.0.0.1
-
 # zprof
