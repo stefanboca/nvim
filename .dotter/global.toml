@@ -22,7 +22,11 @@
 
 [vim.files]
 "vim/vimrc" = "~/.vimrc"
+
+[nvim.files]
 "vim/nvim" = "~/.config/nvim"
+
+[lvim.files]
 "vim/lvim" = "~/.config/lvim"
 
 [cargo.files]
@@ -35,6 +39,9 @@
 
 [alacritty.files]
 "alacritty" = "~/.config/alacritty"
+
+[alacritty.variables]
+alacritty_font_size = "8.5"
 
 [wezterm.files]
 "wezterm" = "~/.config/wezterm"
