@@ -48,7 +48,7 @@ antigen bundles << EOBUNDLES
     qoomon/zsh-lazyload
 EOBUNDLES
 
-antigen theme lukerandall
+antigen theme mytheme
 
 antigen apply
 

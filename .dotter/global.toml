@@ -13,6 +13,7 @@
 "zsh/zshrc" = "~/.zshrc"
 "zsh/antigenrc" = "~/.antigenrc"
 "zsh/antigen" = { target = "~/.antigen", type = "symbolic" }
+"zsh/mytheme.zsh-theme" = "~/.antigen/bundles/robbyrussell/oh-my-zsh/themes/mytheme.zsh-theme"
 
 [bash.files]
 "bash/bashrc" = "~/.bashrc"
