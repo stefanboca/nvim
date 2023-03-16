@@ -11,9 +11,11 @@
 
 [zsh.files]
 "zsh/zshrc" = "~/.zshrc"
+"zsh/antigen" = { target = "~/.local/share/antigen", type = "symbolic" }
 "zsh/antigenrc" = "~/.antigenrc"
-"zsh/antigen" = { target = "~/.antigen", type = "symbolic" }
-"zsh/mytheme.zsh-theme" = "~/.antigen/bundles/robbyrussell/oh-my-zsh/themes/mytheme.zsh-theme"
+# TODO: resolve
+# If this is linked before omz is installed, then the git clone fails
+# "zsh/mytheme.zsh-theme" = "~/.cache/antigen/bundles/robbyrussell/oh-my-zsh/themes/mytheme.zsh-theme"
 
 [bash.files]
 "bash/bashrc" = "~/.bashrc"

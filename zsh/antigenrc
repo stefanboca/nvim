@@ -76,10 +76,12 @@ lazyload ghc -- "[ -f \"$HOME/.ghcup/env\" ] && source \"$HOME/.ghcup/env\""
 lazyload ros2 rviz2 rqt -- "source /opt/ros/rolling/setup.zsh"
 
 # Path appends
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+export FLYCTL_INSTALL="/home/doctorwho/.fly"
+export PATH="$PATH:$HOME/.local/share/go/bin:$HOME/.local/bin:$FLYCTL_INSTALL/bin"
 
 # Other env variables
 export EDITOR=lvim
+export GOPATH=~/.local/share/go
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
 
