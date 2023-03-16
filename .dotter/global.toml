@@ -26,10 +26,10 @@
 "vim/vimrc" = "~/.vimrc"
 
 [nvim.files]
-"vim/nvim" = "~/.config/nvim"
+"nvim" = "~/.config/nvim"
 
 [lvim.files]
-"vim/lvim" = "~/.config/lvim"
+"lvim" = "~/.config/lvim"
 
 [cargo.files]
 "cargo/config.toml" = "~/.cargo/config.toml"
