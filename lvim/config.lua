@@ -135,9 +135,9 @@ lvim.plugins = {
                 -- All these keys will be mapped to their corresponding default scrolling animation
                 mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>",
                     "<C-y>", "<C-e>", "zt", "zz", "zb" },
-                hide_cursor = true, -- Hide cursor while scrolling
-                stop_eof = true, -- Stop at <EOF> when scrolling downwards
-                respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+                hide_cursor = true,          -- Hide cursor while scrolling
+                stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+                respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
                 cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
             }
         end,
@@ -266,11 +266,11 @@ lvim.plugins = {
                 },
                 -- you can enable a preset for easier configuration
                 presets = {
-                    bottom_search = false, -- use a classic bottom cmdline for search
-                    command_palette = true, -- position the cmdline and popupmenu together
+                    bottom_search = false,        -- use a classic bottom cmdline for search
+                    command_palette = true,       -- position the cmdline and popupmenu together
                     long_message_to_split = true, -- long messages will be sent to a split
-                    inc_rename = true, -- enables an input dialog for inc-rename.nvim
-                    lsp_doc_border = true, -- add a border to hover docs and signature help
+                    inc_rename = true,            -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = true,        -- add a border to hover docs and signature help
                 },
             }
         end,
@@ -306,7 +306,8 @@ lvim.plugins = {
                     on_init = require("lvim.lsp").common_on_init,
                 },
                 dap = {
-                    adapter = require("rust-tools.dap").get_codelldb_adapter(extensions_path .. "adapter/codelldb", extensions_path .. "lldb/lib/liblldb.so"),
+                    adapter = require("rust-tools.dap").get_codelldb_adapter(extensions_path .. "adapter/codelldb",
+                        extensions_path .. "lldb/lib/liblldb.so"),
                 }
             }
         end,
