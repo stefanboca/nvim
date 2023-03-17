@@ -16,6 +16,4 @@ return {
     color_scheme = "Lunar",
     color_schemes = require("color_schemes"),
     keys = keys,
-    enable_wayland = false,
-    front_end = "WebGpu",
 }
