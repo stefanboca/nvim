@@ -19,8 +19,6 @@ export MODE_CURSOR_SEARCH="orange steady underline"
 export MODE_CURSOR_VISUAL="orange steady block"
 export MODE_CURSOR_VLINE="orange steady block"
 
-zstyle ':autocomplete:*' fzf-completion yes
-
 antigen use oh-my-zsh
 
 antigen bundles << EOBUNDLES
@@ -43,7 +41,7 @@ antigen bundles << EOBUNDLES
 
     ubuntu
     djui/alias-tips
-    # unixorn/fzf-zsh-plugin@main
+    unixorn/fzf-zsh-plugin@main
 
     qoomon/zsh-lazyload
 EOBUNDLES

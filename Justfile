@@ -1,10 +1,11 @@
 default:
 	@just --choose
 
-install-all: install-dotfiles install-lvim install-zsh-theme
+install-all: install-lvim install-dotfiles install-zsh-theme
 
 install-dotfiles:
-  dotter
+  @echo "Installing dotfiles..."
+  @dotter
 
 install-lvim:
 	@echo "Installing LunarVim..."
@@ -14,4 +15,5 @@ install-lvim:
 	@rm /tmp/install_lvim.sh
 
 install-zsh-theme:
-  cp ./zsh/mytheme.zsh-theme ~/.cache/antigen/bundles/robbyrussell/oh-my-zsh/themes/mytheme.zsh-theme
+  @echo "Instaling ZSH theme..."
+  @cp ./zsh/mytheme.zsh-theme ~/.cache/antigen/bundles/robbyrussell/oh-my-zsh/themes/mytheme.zsh-theme
