@@ -45,7 +45,7 @@
 "alacritty" = "~/.config/alacritty"
 
 [alacritty.variables]
-alacritty_font_size = "8.5"
+font_size = "8.5"
 
 [wezterm.files]
 "wezterm" = "~/.config/wezterm"

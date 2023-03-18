@@ -19,7 +19,6 @@
 [diff "fcinfo"]
 	textconv=fcinfo
 [alias]
-	s = status
 	unstage = restore --staged
 	last = log -n1 HEAD
 	visual = !gitk
