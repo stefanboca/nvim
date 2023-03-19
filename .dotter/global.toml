@@ -21,8 +21,9 @@
 "bash/bashrc" = "~/.bashrc"
 
 [tmux.files]
-"tmux/tmux.conf" = "~/.tmux.conf"
-"tmux/themes" = "~/.tmux/themes"
+"tmux/tmux.conf" = "~/.config/tmux/tmux.conf"
+"tmux/themes" = "~/.config/tmux/themes"
+"tmux/tpm" = { target = "~/.config/tmux/plugins/tpm", type = "symbolic" }
 
 [vim.files]
 "vim/vimrc" = "~/.vimrc"

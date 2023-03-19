@@ -6,9 +6,6 @@ export COMPLETION_WAITING_DOTS="true"
 export DISABLE_UNTRACKED_FILES_DIRTY="true"
 export DISABLE_MAGIC_FUNCTIONS="true"
 
-export ZSH_TMUX_AUTOCONNECT=false
-export ZSH_TMUX_UNICODE=true
-
 # export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 
@@ -32,7 +29,6 @@ antigen bundles << EOBUNDLES
     thefuck
     wd
 
-    tmux
     docker
     docker-compose
     systemd
