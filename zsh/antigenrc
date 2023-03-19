@@ -19,6 +19,8 @@ export MODE_CURSOR_SEARCH="orange steady underline"
 export MODE_CURSOR_VISUAL="orange steady block"
 export MODE_CURSOR_VLINE="orange steady block"
 
+export FZF_PATH="$HOME/.local/share/fzf"
+
 antigen use oh-my-zsh
 
 antigen bundles << EOBUNDLES
