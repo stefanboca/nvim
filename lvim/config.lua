@@ -24,7 +24,6 @@ lvim.builtin.cmp.cmdline.enable = true
 lvim.builtin.indentlines.active = false
 lvim.colorscheme = "lunar"
 
--- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 
@@ -75,6 +74,13 @@ lvim.builtin.which_key.mappings["sn"] = { "<cmd>Noice telescope<CR>", "Noice" }
 
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
+local _, ts_rainbow = pcall(require, "ts-rainbow")
+lvim.builtin.treesitter.rainbow = {
+    enable = true,
+    query = 'rainbow-parens',
+    strategy = ts_rainbow.strategy.global,
+}
+
 
 ---configure a server manually.
 ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
@@ -179,6 +185,7 @@ lvim.plugins = {
             vim.keymap.set({ 'n', 't' }, '<C-j>', '<CMD>NavigatorDown<CR>')
             vim.keymap.set({ 'n', 't' }, '<C-p>', '<CMD>NavigatorPrevious<CR>')
         end,
+        enabled = false
     },
     {
         "ellisonleao/glow.nvim",
@@ -342,6 +349,9 @@ lvim.plugins = {
     {
         "norcalli/nvim-colorizer.lua",
         config = true
+    },
+    {
+        url = "https://gitlab.com/HiPhish/nvim-ts-rainbow2.git",
     }
 }
 
