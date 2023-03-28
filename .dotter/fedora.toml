@@ -1,2 +1,5 @@
 [alacritty.variables]
 font_size = "10"
+
+[cargo.variables]
+mold_path = "/usr/bin/mold"

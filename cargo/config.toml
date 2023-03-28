@@ -1,11 +1,15 @@
+{{#if (is_executable "sccache")}}
 [build]
 rustc-wrapper = "sccache"
+{{/if}}
 
+{{#if (is_executable "mold")}}
 [target.x86_64-unknown-linux-gnu]
 linker = "clang-15"
 rustflags = [
     "-C",
     "link-arg=-fuse-ld=mold",
     "-C",
-    "link-arg=--ld-path=/usr/local/bin/mold",
+    "link-arg=--ld-path={{mold_path}}",
 ]
+{{/if}}
