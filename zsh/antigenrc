@@ -7,7 +7,7 @@ export DISABLE_UNTRACKED_FILES_DIRTY="true"
 export DISABLE_MAGIC_FUNCTIONS="true"
 
 export NVM_DIR="$HOME/.local/share/nvm"
-export NVM_LAZY_LOAD=true
+# export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 
 export MODE_CURSOR_VIINS="blinking bar"
