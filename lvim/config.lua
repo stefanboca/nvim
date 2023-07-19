@@ -356,4 +356,14 @@ lvim.plugins = {
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands = {}
+lvim.autocommands = {
+    -- fix https://github.com/neovim/neovim/issues/21856
+    {
+        "VimLeave",
+        {
+            callback = function()
+                vim.fn.jobstart("", { detach = true })
+            end,
+        }
+    }
+}
