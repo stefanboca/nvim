@@ -23,6 +23,7 @@ lvim.format_on_save = true
 lvim.builtin.cmp.cmdline.enable = true
 lvim.builtin.indentlines.active = false
 lvim.colorscheme = "lunar"
+lvim.builtin.treesitter.highlight.enable = true
 
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
