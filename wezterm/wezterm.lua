@@ -8,7 +8,7 @@ local keys = {
 vim.setup(keys)
 
 -- TODO: each module exports an object containing some config, which all get merged
-return {
+local config = {
     font = wezterm.font {
         family = "Fira Code",
     },
@@ -17,3 +17,13 @@ return {
     color_schemes = require("color_schemes"),
     keys = keys,
 }
+
+-- for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+--     if gpu.backend == 'Vulkan' and gpu.device_type == 'DiscreteGpu' then
+--         config.webgpu_preferred_adapter = gpu
+--         config.front_end = 'WebGpu'
+--         break
+--     end
+-- end
+
+return config
