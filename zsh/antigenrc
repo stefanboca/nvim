@@ -74,7 +74,7 @@ lazyload ros2 rviz2 rqt -- "source /opt/ros/rolling/setup.zsh"
 
 # Path appends
 export FLYCTL_INSTALL="/home/doctorwho/.fly"
-export PATH="$PATH:$HOME/.local/share/go/bin:$HOME/.local/bin:$FLYCTL_INSTALL/bin:/home/doctorwho/.local/share/spicetify"
+export PATH="$PATH:$HOME/.local/share/go/bin:$HOME/.local/bin:$FLYCTL_INSTALL/bin:/home/doctorwho/.local/share/spicetify:/opt/gradle/gradle-8.2.1/bin"
 
 # Other env variables
 export EDITOR=lvim
