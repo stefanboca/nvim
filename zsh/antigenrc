@@ -30,8 +30,8 @@ antigen bundles << EOBUNDLES
     thefuck
     wd
 
-    docker
-    docker-compose
+    #docker
+    #docker-compose
     systemd
     lukechilds/zsh-nvm
     git
