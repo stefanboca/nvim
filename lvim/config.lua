@@ -225,7 +225,8 @@ lvim.plugins = {
         init = function()
             vim.g.svelte_preprocessor_tags = { { name = "ts", tag = "script", as = "typescript" } }
             vim.g.svelte_preprocessors = { "ts" }
-        end
+        end,
+        enabled = false
     },
     {
         "saecki/crates.nvim",

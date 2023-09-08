@@ -25,7 +25,7 @@
   "lunar.nvim": { "branch": "master", "commit": "08bbc93b96ad698d22fc2aa01805786bcedc34b9" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "e86a4c84ff35240639643ffed56ee1c4d55f538e" },
   "mason.nvim": { "branch": "main", "commit": "fe9e34a9ab4d64321cdc3ecab4ea1809239bb73f" },
-  "mini.nvim": { "branch": "main", "commit": "ab94192dd36b35c6752aac7154c7130922c27af7" },
+  "mini.nvim": { "branch": "main", "commit": "ff00eec0fe5e897aab3b88d3499c4eb7a8cd9ad8" },
   "neodev.nvim": { "branch": "main", "commit": "9f0205a08757711f57589a1dffa8abf525f4a23b" },
   "nlsp-settings.nvim": { "branch": "main", "commit": "64976a5ac70a9a43f3b1b42c5b1564f7f0e4077e" },
   "noice.nvim": { "branch": "main", "commit": "894db25ec726d32047799d4d0a982b701bec453b" },
@@ -65,6 +65,5 @@
   "vim-illuminate": { "branch": "master", "commit": "5ed17582a8e97bf0a0c617c3cf762e98f87b9859" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-sanegx": { "branch": "master", "commit": "e97c10401d781199ba1aecd07790d0771314f3f5" },
-  "vim-svelte": { "branch": "main", "commit": "0e93ec53c3667753237282926fec626785622c1c" },
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" }
 }
