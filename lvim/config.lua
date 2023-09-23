@@ -86,7 +86,7 @@ lvim.builtin.treesitter.rainbow = {
 ---configure a server manually.
 ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
 -- NOTE: Requires `:LvimCacheReset` to take effect!!
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer", "pyright" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer", })
 
 -- ---remove servers and filetypes from the skipped list
 lvim.lsp.automatic_configuration.skipped_filetypes = vim.tbl_filter(function(filetype)

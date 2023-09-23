@@ -1,5 +1,5 @@
 -- require("lvim.lsp.manager").setup("ruff_lsp")
-require("lvim.lsp.manager").setup("pyright")
+-- require("lvim.lsp.manager").setup("pyright")
 -- require("lvim.lsp.manager").setup("jedi_language_server")
 -- require("lvim.lsp.manager").setup("pylyzer")
 -- require("lvim.lsp.manager").setup("pyre")
