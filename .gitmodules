@@ -1,12 +1,6 @@
-[submodule "zsh/antigen"]
-	path = zsh/antigen
-	url = https://github.com/zsh-users/antigen.git
 [submodule "firefox/arkenfox"]
 	path = firefox/arkenfox
 	url = https://github.com/arkenfox/user.js.git
-[submodule "tmux/tpm"]
-	path = tmux/tpm
-	url = https://github.com/tmux-plugins/tpm.git
 [submodule "lazyvim"]
 	path = lazyvim
 	url = git@forgejo.home.lan:stefanboca/lazyvim.git

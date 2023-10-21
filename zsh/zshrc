@@ -1,6 +1,6 @@
 # zmodload zsh/zprof
 export ADOTDIR=$HOME/.cache/antigen
 source ~/.local/share/antigen/antigen.zsh
-antigen init ~/.local/share/antigen/antigenrc
+antigen init ~/.antigenrc
 
 # zprof

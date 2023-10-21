@@ -19,35 +19,41 @@ export MODE_CURSOR_VLINE="orange steady block"
 
 export FZF_PATH="$HOME/.local/share/fzf"
 
-antigen use oh-my-zsh
+antigen use prezto
 
-antigen bundles << EOBUNDLES
-    zsh-users/zsh-completions
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-syntax-highlighting
-    softmoth/zsh-vim-mode@main
-    command-not-found
-    thefuck
-    wd
+antigen bundle sorin-ionescu/prezto modules/environment
+antigen bundle sorin-ionescu/prezto modules/helper
 
-    #docker
-    #docker-compose
-    systemd
-    lukechilds/zsh-nvm
-    git
-    git-extras
-    git-lfs
+antigen bundle sorin-ionescu/prezto modules/syntax-highlighting
+antigen bundle sorin-ionescu/prezto modules/autosuggestions
 
-    ubuntu
-    djui/alias-tips
-    unixorn/fzf-zsh-plugin@main
+antigen bundle sorin-ionescu/prezto modules/command-not-found
+antigen bundle sorin-ionescu/prezto modules/directory
+antigen bundle sorin-ionescu/prezto modules/editor
+#antigen bundle sorin-ionescu/prezto modules/git
+antigen bundle sorin-ionescu/prezto modules/prompt
+antigen bundle sorin-ionescu/prezto modules/tmux
+antigen bundle sorin-ionescu/prezto modules/utility
 
-    qoomon/zsh-lazyload
-EOBUNDLES
+antigen bundle ohmyzsh/ohmyzsh plugins/wd
+antigen bundle ohmyzsh/ohmyzsh plugins/systemd
+antigen bundle ohmyzsh/ohmyzsh plugins/git
+antigen bundle ohmyzsh/ohmyzsh plugins/git-extras
+antigen bundle ohmyzsh/ohmyzsh plugins/git-lfs
 
-antigen theme mytheme
+antigen bundle softmoth/zsh-vim-mode@main
+antigen bundle djui/alias-tips
+antigen bundle lukechilds/zsh-nvm
+antigen bundle unixorn/fzf-zsh-plugin@main
+antigen bundle qoomon/zsh-lazyload
+
+antigen bundle sorin-ionescu/prezto modules/completion
 
 antigen apply
+
+# set prompt
+PS1='%{%F{green}%}%n%{%F{magenta}%}@%{%F{cyan}%}%m %{%F{blue}%}%1~$ %{%f%}'
+RPS1="%(?..%{%B%F{red}%}%? ↵%f%b%})"
 
 bindkey -M viins '^[[A' up-line-or-history
 bindkey -M viins '^[[B' down-line-or-history
@@ -77,12 +83,11 @@ export FLYCTL_INSTALL="/home/doctorwho/.fly"
 export PATH="$PATH:$HOME/.local/share/go/bin:$HOME/.local/bin:$FLYCTL_INSTALL/bin:/home/doctorwho/.local/share/spicetify:/opt/gradle/gradle-8.2.1/bin"
 
 # Other env variables
-export EDITOR=lvim
+export EDITOR=nvim
 export GOPATH=~/.local/share/go
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
 
 # aliases
-alias wezterm="__EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json wezterm"
 alias ls=exa
 
