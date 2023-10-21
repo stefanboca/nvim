@@ -27,4 +27,27 @@ return {
       },
     },
   },
+  {
+    "lervag/vimtex",
+    config = function()
+      vim.g.vimtex_view_method = "zathura"
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        texlab = {
+          settings = {
+            texlab = {
+              build = {
+                executable = "tectonic",
+                args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }
