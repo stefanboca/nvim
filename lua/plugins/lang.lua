@@ -14,6 +14,17 @@ return {
   { import = "lazyvim.plugins.extras.lang.yaml" },
   {
     "IndianBoy42/tree-sitter-just",
-    config = true,
+    ft = { "just" },
+    config = function(opts)
+      require("tree-sitter-just").setup(opts)
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "just",
+      },
+    },
   },
 }
