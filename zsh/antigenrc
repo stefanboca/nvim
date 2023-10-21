@@ -30,7 +30,7 @@ antigen bundle sorin-ionescu/prezto modules/helper
 antigen bundle sorin-ionescu/prezto modules/syntax-highlighting
 antigen bundle sorin-ionescu/prezto modules/autosuggestions
 
-antigen bundle sorin-ionescu/prezto modules/command-not-found
+#antigen bundle sorin-ionescu/prezto modules/command-not-found
 antigen bundle sorin-ionescu/prezto modules/directory
 antigen bundle sorin-ionescu/prezto modules/editor
 #antigen bundle sorin-ionescu/prezto modules/git
@@ -91,6 +91,11 @@ export EDITOR=nvim
 export GOPATH=~/.local/share/go
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
+
+# shell helpers
+function mkcd {
+  mkdir -p $@ && cd ${@:$#}
+}
 
 # aliases
 alias sl=exa
