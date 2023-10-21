@@ -19,15 +19,6 @@
 "tmux/themes" = "~/.config/tmux/themes"
 "tmux/tpm" = { target = "~/.config/tmux/plugins/tpm", type = "symbolic" }
 
-[vim.files]
-"vim/vimrc" = "~/.vimrc"
-
-[nvim.files]
-"nvim" = "~/.config/nvim"
-
-[lvim.files]
-"lvim" = "~/.config/lvim"
-
 [cargo.files]
 "cargo/config.toml" = "~/.cargo/config.toml"
 
