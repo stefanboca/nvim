@@ -53,3 +53,6 @@ font_size = "8.5"
 
 [xplr.files]
 "xplr" = "~/.config/xplr"
+
+[lazyvim.files]
+"lazyvim" = "~/.config/nvim"
