@@ -31,6 +31,7 @@ antigen bundle sorin-ionescu/prezto modules/command-not-found
 antigen bundle sorin-ionescu/prezto modules/directory
 antigen bundle sorin-ionescu/prezto modules/editor
 #antigen bundle sorin-ionescu/prezto modules/git
+antigen bundle sorin-ionescu/prezto modules/history
 antigen bundle sorin-ionescu/prezto modules/prompt
 antigen bundle sorin-ionescu/prezto modules/tmux
 antigen bundle sorin-ionescu/prezto modules/utility
