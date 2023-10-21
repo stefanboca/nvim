@@ -1,13 +1,7 @@
 [helpers]
 
-[default.files]
-"default/clang-format" = "~/.clang-format"
-"default/clang-tidy" = "~/.clang-tidy"
-"default/condarc" = "~/.condarc"
-"default/gitconfig" = "~/.gitconfig"
-"default/gitattributes" = "~/.gitattributes"
-# This needs to be a template (not a symlink) for proper permissions
-"default/sshconfig" = { target = "~/.ssh/config", type = "template" }
+[git.files]
+"gitconfig" = "~/.gitconfig"
 
 [zsh.files]
 "zsh/zshrc" = "~/.zshrc"
