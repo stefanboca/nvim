@@ -19,6 +19,9 @@ export MODE_CURSOR_VLINE="orange steady block"
 
 export FZF_PATH="$HOME/.local/share/fzf"
 
+zstyle ':prezto:module:syntax-highlighting' color 'yes'
+zstyle ':prezto:module:autosuggestions' color 'yes'
+
 antigen use prezto
 
 antigen bundle sorin-ionescu/prezto modules/environment
