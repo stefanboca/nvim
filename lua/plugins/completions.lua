@@ -10,14 +10,14 @@ return {
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-j>"] = cmp.mapping(function()
           if cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           else
             cmp.complete()
           end
         end),
         ["<C-k>"] = cmp.mapping(function()
           if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
           else
             cmp.complete()
           end
@@ -28,7 +28,7 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace })
-          elseif luasnip.expand_or_jumpable() then
+          elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           else
             fallback()
