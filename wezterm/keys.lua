@@ -13,9 +13,6 @@ function M.apply(config)
 		-- Open Command Palette
 		{ key = "p", mods = "LEADER|CTRL", action = act.ActivateCommandPalette },
 
-		-- Clear
-		{ key = "l", mods = "CTRL", action = act.ClearScrollback("ScrollbackOnly") },
-
 		-- Pane Navigation
 		{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
 		{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
