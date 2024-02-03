@@ -32,3 +32,6 @@ font_size = "8.5"
 
 [lazyvim.files]
 "lazyvim" = "~/.config/nvim"
+
+[gitui.files]
+"gitui" = "~/.config/gitui"
