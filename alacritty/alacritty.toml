@@ -20,7 +20,7 @@ style = "Light"
 
 [font.normal]
 family = "FiraCode Nerd Font"
-style = "Retina"
+style = "Regular"
 
 [window]
 dynamic_padding = true
