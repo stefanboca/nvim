@@ -24,6 +24,7 @@ return {
     opts = {
       ensure_installed = {
         "just",
+        "svelte",
       },
     },
   },
