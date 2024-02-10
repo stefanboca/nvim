@@ -1,9 +1,5 @@
 return {
-  {
-    "norcalli/nvim-colorizer.lua",
-    ft = { "css", "html" },
-    config = true,
-  },
+  { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
   {
     "hiphish/rainbow-delimiters.nvim",
     config = function(_, opts)
