@@ -105,6 +105,9 @@ export GOPATH=~/.local/share/go
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
 
+# rust esp toolchain path export (if it exists)
+test -f "~/export-esp.sh" && source ~/export-esp.sh
+
 # shell helpers
 function mkcd {
   mkdir -p $@ && cd ${@:$#}
