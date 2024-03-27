@@ -4,3 +4,5 @@
 
 -- When wrap is enabled, wrap on word boundaries
 vim.o.linebreak = true
+
+vim.g.lazyvim_python_lsp = "basedpyright"
