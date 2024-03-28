@@ -17,8 +17,8 @@ function M.apply(config)
 	config.text_blink_rate_rapid = 0
 
 	config.window_padding = {
-		left = 1,
-		right = 1,
+		left = 0,
+		right = 0,
 		top = 0,
 		bottom = 0,
 	}
