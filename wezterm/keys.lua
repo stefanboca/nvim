@@ -8,7 +8,7 @@ function M.apply(config)
 	config.leader = { key = " ", mods = "CTRL", timeout_milliseconds = 1000 }
 	config.keys = {
 		-- Pass <C-Space> to pane if repeated
-		{ key = " ", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
+		{ key = " ", mods = "LEADER|CTRL", action = act.SendKey({ key = " ", mods = "CTRL" }) },
 
 		-- Open Command Palette
 		{ key = "p", mods = "LEADER|CTRL", action = act.ActivateCommandPalette },
