@@ -1,0 +1,51 @@
+#!/bin/env python3
+
+import re
+import subprocess
+from datetime import datetime
+from datetime import tzinfo
+
+import requests
+from dateutil.parser import parse
+from dateutil.tz import gettz
+
+def run(cmd: list[str]) -> subprocess.CompletedProcess[bytes]:
+    print("$", " ".join(cmd))
+    return subprocess.run(cmd)
+
+
+def get_status() -> tuple[bool, tzinfo | None]:
+    s = str(subprocess.run(["timedatectl"], capture_output=True).stdout)
+
+    tz = gettz(re.search(r"Time zone: ([\w\/]+)", s).group(1))
+    ntp_enabled = "inactive" not in s
+
+    return (ntp_enabled, tz)
+
+
+def set_time(t: datetime, ntp_enabled: bool = True):
+    cmd = ""
+    if ntp_enabled:
+        cmd += "timedatectl set-ntp false && "
+    cmd += f"timedatectl set-time '{t.strftime("%Y-%m-%d %H:%M:%S")}'"
+    if ntp_enabled:
+        cmd += " && timedatectl set-ntp true"
+
+    _ = run(
+        [
+            "pkexec",
+            "sh",
+            "-c",
+            cmd
+        ]
+    )
+
+
+def main():
+    ntp_enabled, tz = get_status()
+    t = parse(requests.get("https://google.com").headers["Date"]).astimezone(tz)
+    set_time(t, ntp_enabled)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,5 +1,8 @@
 [helpers]
 
+[scripts.files]
+"scripts" = "~/.local/bin"
+
 [git.files]
 "gitconfig" = "~/.gitconfig"
 
