@@ -1,21 +1,25 @@
 #!/bin/env python3
 
+import os
 import re
 import subprocess
-from datetime import datetime
-from datetime import tzinfo
+import sys
+from datetime import datetime, tzinfo
 
 import requests
 from dateutil.parser import parse
 from dateutil.tz import gettz
 
-def run(cmd: list[str]) -> subprocess.CompletedProcess[bytes]:
+
+def run(
+    cmd: list[str], capture_output: bool = False
+) -> subprocess.CompletedProcess[bytes]:
     print("$", " ".join(cmd))
-    return subprocess.run(cmd)
+    return subprocess.run(cmd, capture_output=capture_output)
 
 
 def get_status() -> tuple[bool, tzinfo | None]:
-    s = str(subprocess.run(["timedatectl"], capture_output=True).stdout)
+    s = str(run(["timedatectl"], capture_output=True).stdout)
 
     tz = gettz(re.search(r"Time zone: ([\w\/]+)", s).group(1))
     ntp_enabled = "inactive" not in s
@@ -23,29 +27,33 @@ def get_status() -> tuple[bool, tzinfo | None]:
     return (ntp_enabled, tz)
 
 
-def set_time(t: datetime, ntp_enabled: bool = True):
-    cmd = ""
-    if ntp_enabled:
-        cmd += "timedatectl set-ntp false && "
-    cmd += f"timedatectl set-time '{t.strftime("%Y-%m-%d %H:%M:%S")}'"
-    if ntp_enabled:
-        cmd += " && timedatectl set-ntp true"
+def set_ntp(enabled: bool = True):
+    _ = run(["timedatectl", "set-ntp", "true" if enabled else "false"])
 
-    _ = run(
-        [
-            "pkexec",
-            "sh",
-            "-c",
-            cmd
-        ]
-    )
+
+def set_time(t: datetime):
+    _ = run(["timedatectl", "set-time", t.strftime("%Y-%m-%d %H:%M:%S")])
 
 
 def main():
     ntp_enabled, tz = get_status()
-    t = parse(requests.get("https://google.com").headers["Date"]).astimezone(tz)
-    set_time(t, ntp_enabled)
+
+    # has to be HTTP (not HTTPS) b/c ssl verification won't work if system time isn't set
+    # also there's really no point to using HTTPS for this
+    t = parse(requests.get("http://google.com").headers["Date"])
+
+    if ntp_enabled:
+        set_ntp(False)
+
+    set_time(t.astimezone(tz))
+
+    if ntp_enabled:
+        set_ntp(False)
 
 
 if __name__ == "__main__":
+    if os.getuid() != 0:
+        # elevate to root
+        os.execlp("pkexec", "pkexec", sys.executable, *sys.argv)
+
     main()
