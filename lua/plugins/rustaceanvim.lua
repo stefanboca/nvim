@@ -23,6 +23,7 @@ return {
               O = { mapping("openDocs"), "Open docs" },
               r = { mapping("run"), "Run" },
               R = { mapping("runnables"), "Runnables" },
+              m = { mapping("expandMacro"), "Expand Macro" },
             },
             ["<leader>dr"] = { mapping("debuggables"), "Rust Debuggables" },
           }, { buffer = bufnr })
