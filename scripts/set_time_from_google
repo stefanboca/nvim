@@ -48,7 +48,7 @@ def main():
     set_time(t.astimezone(tz))
 
     if ntp_enabled:
-        set_ntp(False)
+        set_ntp(True)
 
 
 if __name__ == "__main__":
