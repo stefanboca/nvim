@@ -38,12 +38,12 @@ def set_time(t: datetime):
 def main():
     ntp_enabled, tz = get_status()
 
+    if ntp_enabled:
+        set_ntp(False)
+
     # has to be HTTP (not HTTPS) b/c ssl verification won't work if system time isn't set
     # also there's really no point to using HTTPS for this
     t = parse(requests.get("http://google.com").headers["Date"])
-
-    if ntp_enabled:
-        set_ntp(False)
 
     set_time(t.astimezone(tz))
 
