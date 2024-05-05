@@ -11,7 +11,7 @@ function M.apply(config)
 		{ key = " ", mods = "LEADER|CTRL", action = act.SendKey({ key = " ", mods = "CTRL" }) },
 
 		-- Open Command Palette
-		{ key = "p", mods = "LEADER|CTRL", action = act.ActivateCommandPalette },
+		{ key = ":", mods = "LEADER|SHIFT", action = act.ActivateCommandPalette },
 
 		-- Pane Navigation
 		{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
@@ -32,7 +32,7 @@ function M.apply(config)
 		{ key = "-", mods = "LEADER", action = act.SplitPane({ direction = "Down", top_level = false }) },
 
 		-- Tab Navigation
-		{ key = "'", mods = "LEADER", action = act.ShowTabNavigator },
+		{ key = "w", mods = "LEADER", action = act.ShowTabNavigator },
 		{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 		{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 
@@ -46,6 +46,15 @@ function M.apply(config)
 		{ key = "[", mods = "LEADER", action = act.ActivateCopyMode },
 		{ key = "]", mods = "LEADER", action = act.PasteFrom("Clipboard") },
 	}
+
+	for i = 0, 9 do
+		-- <LEADER-i> to activate that tab
+		table.insert(config.keys, {
+			key = tostring(i),
+			mods = "LEADER",
+			action = act.ActivateTab(i),
+		})
+	end
 end
 
 return M
