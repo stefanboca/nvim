@@ -71,11 +71,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-syntax-highlighting zsh-autosuggestions
-  zsh-completions
   wd
   systemd
   git git-extras git-lfs
+  dnf
+
+  zsh-syntax-highlighting zsh-autosuggestions
+  zsh-completions
   alias-tips
   fzf-zsh-plugin
   zsh-nvm
@@ -85,12 +87,13 @@ plugins=(
 ### PLUGIN SETTINGS ###
 # fzf-zsh-plugin
 export FZF_PATH="$HOME/.local/share/fzf"
-
 # zsh-nvm
 export NVM_DIR="$HOME/.local/share/nvm"
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
+# alias-tips
+export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
 
 source $ZSH/oh-my-zsh.sh
 
