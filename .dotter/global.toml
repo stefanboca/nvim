@@ -8,7 +8,7 @@
 
 [zsh.files]
 "zsh/zshrc" = "~/.zshrc"
-"zsh/antigenrc" = "~/.antigenrc"
+"zsh/custom" = { target = "~/.config/oh-my-zsh/custom/", type = "symbolic" }
 
 [tmux.files]
 "tmux/tmux.conf" = "~/.config/tmux/tmux.conf"
