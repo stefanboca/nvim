@@ -11,11 +11,6 @@ function M.apply(config)
 	config.tab_bar_at_bottom = true
 	config.tab_and_split_indices_are_zero_based = true
 
-	config.cursor_blink_ease_in = "Constant"
-	config.cursor_blink_ease_out = "Constant"
-	config.text_blink_rate = 0
-	config.text_blink_rate_rapid = 0
-
 	config.window_padding = {
 		left = 0,
 		right = 0,
