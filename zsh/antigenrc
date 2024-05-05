@@ -104,6 +104,9 @@ export EDITOR=nvim
 export GOPATH=~/.local/share/go
 # needed for ignition gazebo
 export IGN_IP=127.0.0.1
+# python rye
+export RYE_HOME='/home/doctorwho/.config/rye'
+source "/home/doctorwho/.config/rye/env"
 
 # rust esp toolchain path export (if it exists)
 test -f "~/export-esp.sh" && source ~/export-esp.sh
