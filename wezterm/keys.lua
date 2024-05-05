@@ -45,16 +45,6 @@ function M.apply(config)
 		-- Copy mode
 		{ key = "[", mods = "LEADER", action = act.ActivateCopyMode },
 		{ key = "]", mods = "LEADER", action = act.PasteFrom("Clipboard") },
-
-		-- Clears the scrollback, then sends CTRL-L to ask the shell to redraw its prompt
-		{
-			key = "l",
-			mods = "CTRL",
-			action = act.Multiple({
-				act.ClearScrollback("ScrollbackOnly"),
-				act.SendKey({ key = "L", mods = "CTRL" }),
-			}),
-		},
 	}
 
 	for i = 0, 9 do
