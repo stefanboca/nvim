@@ -8,6 +8,7 @@
 
 [zsh.files]
 "zsh/zshrc" = "~/.zshrc"
+"zsh/zshenv" = "~/.zshenv"
 "zsh/custom" = { target = "~/.config/oh-my-zsh/custom/", type = "symbolic" }
 
 [tmux.files]
