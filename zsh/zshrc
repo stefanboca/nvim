@@ -76,7 +76,8 @@ plugins=(
   git git-extras git-lfs
   dnf
 
-  zsh-syntax-highlighting zsh-autosuggestions
+  zsh-autosuggestions
+  zsh-syntax-highlighting
   zsh-completions
   alias-tips
   fzf-zsh-plugin
