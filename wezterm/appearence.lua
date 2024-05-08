@@ -17,6 +17,8 @@ function M.apply(config)
 		top = 0,
 		bottom = 0,
 	}
+
+	config.default_cursor_style = "BlinkingBlock"
 end
 
 return M

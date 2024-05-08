@@ -4,7 +4,6 @@ local config = wezterm.config_builder()
 
 config.term = "wezterm"
 config.check_for_updates = false
-config.animation_fps = 1
 
 local modules = {
 	"front_end",
