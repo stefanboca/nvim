@@ -32,6 +32,7 @@ return {
     config = function()
       vim.g.vimtex_view_method = "zathura"
     end,
+    enabled = false,
   },
   {
     "neovim/nvim-lspconfig",
