@@ -1,5 +1,4 @@
-if ! [[ "$PATH" =~ "$HOME/.local/bin" ]]
-then
+if ! [[ "$PATH" =~ "$HOME/.local/bin" ]] then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
@@ -9,28 +8,39 @@ test -f "$HOME/export-esp.sh" && source "$HOME/export-esp.sh"
 
 # python rye
 export RYE_HOME="$HOME/.config/rye"
-if [[ -d "$RYE_HOME" ]]
-then
+if [[ -d "$RYE_HOME" ]] then
   source "$RYE_HOME/env"
 fi
 
 # golang
 export GOPATH="$HOME/.local/share/go"
-if [[ -d "$GOPATH" ]]
-then
+if [[ -d "$GOPATH" ]] then
   PATH="$PATH:$GOPATH/bin"
 fi
 
 # spicetify
-if [[ -d "$HOME/.local/share/spicetify" ]]
-then
+if [[ -d "$HOME/.local/share/spicetify" ]] then
   PATH="$PATH:$HOME/.local/share/spicetify"
 fi
 
 # gradle
-if [[ -d "/opt/gradle/gradle-8.2.1" ]]
-then
+if [[ -d "/opt/gradle/gradle-8.2.1" ]] then
   PATH="$PATH:/opt/gradle/gradle-8.2.1/bin"
+fi
+
+# spinnaker sdk
+export SPINNAKER_GENTL64_CTI=/opt/spinnaker/lib/spinnaker-gentl/Spinnaker_GenTL.cti
+if [[ -d /opt/spinnaker/lib/spinnaker-gentl ]] then
+	if [[ -z $GENICAM_GENTL64_PATH ]] then
+		export GENICAM_GENTL64_PATH=/opt/spinnaker/lib/spinnaker-gentl
+	elif [[ $GENICAM_GENTL64_PATH != *"/opt/spinnaker/lib/spinnaker-gentl"* ]] then
+		export GENICAM_GENTL64_PATH=/opt/spinnaker/lib/spinnaker-gentl:$GENICAM_GENTL64_PATH
+	fi
+fi
+if [[ -d /opt/spinnaker/bin ]] then
+	if ! [[ $PATH =~ "/opt/spinnaker/bin" ]] then
+		PATH="$PATH:/opt/spinnaker/bin"
+	fi
 fi
 
 export PATH
