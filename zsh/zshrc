@@ -102,5 +102,9 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR=nvim
 
+# rust esp toolchain
+export ESPUP_EXPORT_FILE="$ZSH_CUSTOM/export-esp.sh"
+test -f "$ESPUP_EXPORT_FILE" && source "$ESPUP_EXPORT_FILE"
+
 alias sl=exa
 alias o=xdg-open

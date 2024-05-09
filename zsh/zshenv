@@ -2,9 +2,8 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin" ]] then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# rust cargo and esp toolchain
+# rust cargo
 test -f "$HOME/.cargo/env" && source "$HOME/.cargo/env"
-test -f "$HOME/export-esp.sh" && source "$HOME/export-esp.sh"
 
 # python rye
 export RYE_HOME="$HOME/.config/rye"
