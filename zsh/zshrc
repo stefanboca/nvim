@@ -75,6 +75,7 @@ plugins=(
   systemd
   git git-extras git-lfs
   dnf
+  thefuck
 
   zsh-autosuggestions
   zsh-syntax-highlighting
