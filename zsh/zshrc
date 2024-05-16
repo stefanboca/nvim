@@ -76,12 +76,12 @@ plugins=(
   git git-extras git-lfs
   dnf
   thefuck
+  fzf
 
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
   alias-tips
-  fzf-zsh-plugin
   zsh-nvm
   # zsh-vi-mode
 )
