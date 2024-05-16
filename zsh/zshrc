@@ -107,5 +107,5 @@ export EDITOR=nvim
 export ESPUP_EXPORT_FILE="$ZSH_CUSTOM/export-esp.sh"
 test -f "$ESPUP_EXPORT_FILE" && source "$ESPUP_EXPORT_FILE"
 
-alias sl=exa
+alias sl=eza
 alias o=xdg-open
