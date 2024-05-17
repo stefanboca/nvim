@@ -1,21 +1,5 @@
 return {
   {
-    "IndianBoy42/tree-sitter-just",
-    ft = { "just" },
-    config = function(opts)
-      require("tree-sitter-just").setup(opts)
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "just",
-        "svelte",
-      },
-    },
-  },
-  {
     "lervag/vimtex",
     config = function()
       vim.g.vimtex_view_method = "zathura"
