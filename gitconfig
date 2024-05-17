@@ -1,3 +1,5 @@
+# vim: ft=gitconfig
+
 [user]
 	name = Stefan Boca
 	email = stefan.r.boca@gmail.com
