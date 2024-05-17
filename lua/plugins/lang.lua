@@ -41,21 +41,16 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    -- dependencies = {
-    --   "folke/which-key.nvim",
-    -- },
     opts = {
       server = {
         on_attach = function(_, bufnr)
-          local wk = require("which-key")
-
           local function mapping(cmd)
             return function()
               vim.cmd.RustLsp(cmd)
             end
           end
 
-          wk.register({
+          require("which-key").register({
             ["<leader>cR"] = {
               name = "+Rust",
               c = { mapping("codeAction"), "Code Action" },
