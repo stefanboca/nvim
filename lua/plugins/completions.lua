@@ -1,6 +1,4 @@
 return {
-  -- Disable native_snippets for now, until support is better
-  -- { import = "lazyvim.plugins.extras.coding.native_snippets" },
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)

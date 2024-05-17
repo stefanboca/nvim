@@ -1,5 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
   {
     "hiphish/rainbow-delimiters.nvim",
     config = function(_, opts)
