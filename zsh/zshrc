@@ -109,3 +109,4 @@ test -f "$ESPUP_EXPORT_FILE" && source "$ESPUP_EXPORT_FILE"
 
 alias sl=eza
 alias o=xdg-open
+alias lg=lazygit
