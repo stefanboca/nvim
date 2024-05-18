@@ -9,7 +9,7 @@ font_size = "8.5"
 "gitui" = "~/.config/gitui"
 
 [lazygit.files]
-"lazygit" = "~/.config/lazygit"
+"lazygit" = { target = "~/.config/lazygit", type = "symbolic" }
 
 [lazyvim.files]
 "lazyvim" = "~/.config/nvim"
@@ -19,7 +19,6 @@ font_size = "8.5"
 
 [git.files]
 "gitconfig" = "~/.gitconfig"
-
 
 [tmux.files]
 "tmux/tmux.conf" = "~/.config/tmux/tmux.conf"
