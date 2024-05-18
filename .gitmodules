@@ -1,6 +1,3 @@
-[submodule "firefox/arkenfox"]
-	path = firefox/arkenfox
-	url = https://github.com/arkenfox/user.js.git
 [submodule "lazyvim"]
 	path = lazyvim
 	url = git@forgejo.home.lan:stefanboca/lazyvim.git

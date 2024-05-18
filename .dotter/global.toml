@@ -17,11 +17,6 @@
 [cargo.files]
 "cargo/config.toml" = "~/.cargo/config.toml"
 
-[firefox.files]
-"firefox/user-overrides.js" = "~/.mozilla/firefox/user-overrides.js"
-"firefox/arkenfox/updater.sh" = "~/.mozilla/firefox/updater.sh"
-"firefox/arkenfox/prefsCleaner.sh" = "~/.mozilla/firefox/prefsCleaner.sh"
-
 [alacritty.files]
 "alacritty" = "~/.config/alacritty"
 
