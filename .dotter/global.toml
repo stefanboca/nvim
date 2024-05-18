@@ -15,7 +15,8 @@ font_size = "8.5"
 "lazyvim" = "~/.config/nvim"
 
 [neovide.files]
-"neovide" = "~/.config/neovide"
+"neovide/config.toml" = "~/.config/neovide/config.toml"
+"neovide/neovide.desktop" = "~/.local/share/applications/neovide.desktop"
 
 [scripts.files]
 "scripts" = "~/.local/bin"
