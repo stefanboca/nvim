@@ -4,7 +4,7 @@ local M = {}
 
 function M.apply(config)
 	config.color_scheme = "Tokyo Night"
-	config.font = wezterm.font({ family = "Fira Code" })
+	config.font = wezterm.font_with_fallback({ { family = "Fira Code" }, { family = "FiraCode Nerd Font" } })
 	config.font_size = 10
 
 	config.use_fancy_tab_bar = false
