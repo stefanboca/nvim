@@ -3,6 +3,7 @@ return {
   { import = "lazyvim.plugins.extras.coding.mini-surround" },
   { import = "lazyvim.plugins.extras.coding.yanky" },
   { import = "lazyvim.plugins.extras.dap.core" },
+  { import = "lazyvim.plugins.extras.editor.dial" },
   { import = "lazyvim.plugins.extras.editor.leap" },
   { import = "lazyvim.plugins.extras.editor.navic" },
   { import = "lazyvim.plugins.extras.editor.trouble-v3" }, -- remove when trouble v3 is out of beta
