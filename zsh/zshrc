@@ -83,7 +83,6 @@ plugins=(
   zsh-completions
   alias-tips
   zsh-nvm
-  # zsh-vi-mode
 )
 
 ### PLUGIN SETTINGS ###
