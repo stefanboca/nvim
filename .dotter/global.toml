@@ -8,6 +8,9 @@ font_size = "8.5"
 [gitui.files]
 "gitui" = "~/.config/gitui"
 
+[lazygit.files]
+"lazygit" = "~/.config/lazygit"
+
 [lazyvim.files]
 "lazyvim" = "~/.config/nvim"
 
