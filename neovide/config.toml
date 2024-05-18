@@ -1,0 +1,8 @@
+maximized = true
+fork = true
+frame = "none"
+title-hidden = true
+
+[font]
+normal = [{ family = "Fira Code" }, { family = "FiraCode Nerd Font" }]
+size = 10
