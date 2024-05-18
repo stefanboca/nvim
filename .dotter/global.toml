@@ -1,24 +1,25 @@
 [helpers]
 
+[alacritty.files]
+"alacritty" = "~/.config/alacritty"
+[alacritty.variables]
+font_size = "8.5"
+
+[gitui.files]
+"gitui" = "~/.config/gitui"
+
+[lazyvim.files]
+"lazyvim" = "~/.config/nvim"
+
 [scripts.files]
 "scripts" = "~/.local/bin"
 
 [git.files]
 "gitconfig" = "~/.gitconfig"
 
-[zsh.files]
-"zsh/zshrc" = "~/.zshrc"
-"zsh/zshenv" = "~/.zshenv"
-"zsh/custom" = { target = "~/.config/oh-my-zsh/custom/", type = "symbolic" }
 
 [tmux.files]
 "tmux/tmux.conf" = "~/.config/tmux/tmux.conf"
-
-[alacritty.files]
-"alacritty" = "~/.config/alacritty"
-
-[alacritty.variables]
-font_size = "8.5"
 
 [wezterm.files]
 "wezterm" = "~/.config/wezterm"
@@ -26,8 +27,7 @@ font_size = "8.5"
 [xplr.files]
 "xplr" = "~/.config/xplr"
 
-[lazyvim.files]
-"lazyvim" = "~/.config/nvim"
-
-[gitui.files]
-"gitui" = "~/.config/gitui"
+[zsh.files]
+"zsh/zshrc" = "~/.zshrc"
+"zsh/zshenv" = "~/.zshenv"
+"zsh/custom" = { target = "~/.config/oh-my-zsh/custom/", type = "symbolic" }
