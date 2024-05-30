@@ -5,7 +5,6 @@ return {
   { import = "lazyvim.plugins.extras.editor.dial" },
   { import = "lazyvim.plugins.extras.editor.leap" },
   { import = "lazyvim.plugins.extras.editor.navic" },
-  { import = "lazyvim.plugins.extras.editor.trouble-v3" }, -- remove when trouble v3 is out of beta
   { import = "lazyvim.plugins.extras.formatting.black" },
   { import = "lazyvim.plugins.extras.formatting.prettier" },
 
