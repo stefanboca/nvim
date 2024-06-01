@@ -2,8 +2,6 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      opts.completion.completeopt = "menu,menuone,noinsert,noselect"
-
       local cmp = require("cmp")
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
