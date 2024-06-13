@@ -25,7 +25,7 @@ return {
               R = { mapping("runnables"), "Runnables" },
               m = { mapping("expandMacro"), "Expand Macro" },
             },
-            ["<leader>dr"] = { mapping("debuggables"), "Rust Debuggables" },
+            ["<leader>dR"] = { mapping("debuggables"), "Rust Debuggables" },
           }, { buffer = bufnr })
         end,
       },
