@@ -22,3 +22,5 @@
   difftool = true
 [pull]
 	rebase = false
+[status]
+	submoduleSummary = true
