@@ -1,6 +1,11 @@
 return {
   {
     "mrcjkb/rustaceanvim",
+    dependencies = {
+      {
+        "jay-babu/mason-nvim-dap.nvim",
+      },
+    },
     opts = {
       server = {
         on_attach = function(_, bufnr)
