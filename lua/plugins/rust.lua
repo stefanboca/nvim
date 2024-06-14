@@ -2,9 +2,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     dependencies = {
-      {
-        "jay-babu/mason-nvim-dap.nvim",
-      },
+      { "jay-babu/mason-nvim-dap.nvim" },
     },
     opts = {
       server = {
