@@ -11,9 +11,6 @@ return {
           source = "if_many",
         },
       },
-      codelens = {
-        enabled = true,
-      },
     },
   },
 }
