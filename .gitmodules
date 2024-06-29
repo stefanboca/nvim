@@ -1,6 +1,6 @@
 [submodule "lazyvim"]
 	path = lazyvim
-	url = git@forgejo.home.lan:stefanboca/lazyvim.git
+	url = ssh://git@forgejo-home.local:2222/stefanboca/lazyvim.git
 [submodule "zsh/custom/alias-tips"]
 	path = zsh/custom/plugins/alias-tips
 	url = https://github.com/djui/alias-tips.git
