@@ -12,7 +12,7 @@ font_size = "8.5"
 "lazygit" = { target = "~/.config/lazygit", type = "symbolic" }
 
 [lazyvim.files]
-"lazyvim" = "~/.config/nvim"
+"lazyvim" = { target = "~/.config/nvim", type = "symbolic" }
 
 [neovide.files]
 "neovide/config.toml" = "~/.config/neovide/config.toml"
