@@ -6,6 +6,8 @@
 	signingkey = ~/.ssh/id_ed25519
 [gpg]
 	format = ssh
+[commit]
+	gpgsign = true
 [core]
 	editor = nvim
 	autocrlf = input
