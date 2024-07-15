@@ -3,7 +3,6 @@
 [user]
 	name = Stefan Boca
 	email = stefan.r.boca@gmail.com
-	signingkey = ~/.ssh/id_ed25519
 [gpg]
 	format = ssh
 [commit]
@@ -29,3 +28,5 @@
 	rebase = false
 [status]
 	submoduleSummary = true
+[tag]
+	gpgsign = true
