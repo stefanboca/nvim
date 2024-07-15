@@ -3,8 +3,13 @@
 [user]
 	name = Stefan Boca
 	email = stefan.r.boca@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC9wCJxy/++oRXAekKU/R6byETPBBOOfHpaoYje3r+Ci doctorwho@pc-doctorwho-ux8402
 [gpg]
 	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
+[tag]
+	gpgsign = true
 [commit]
 	gpgsign = true
 [core]
@@ -28,5 +33,3 @@
 	rebase = false
 [status]
 	submoduleSummary = true
-[tag]
-	gpgsign = true
