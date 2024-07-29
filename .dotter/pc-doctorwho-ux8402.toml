@@ -1,1 +1,1 @@
-packages = ["git", "lazygit", "lazyvim", "neovide", "wezterm", "zsh"]
+packages = ["git", "lazygit", "lazyvim", "jujutsu", "neovide", "wezterm", "zsh"]

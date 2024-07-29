@@ -1,0 +1,22 @@
+[user]
+name = "Stefan Boca"
+email = "stefan.r.boca@gmail.com"
+
+[ui]
+editor = "nvim"
+
+[merge-tools]
+difft.diff-args = ["--color=always", "$left", "$right"]
+nvim.edit-args = ["-c", "DiffEditor $left $right $output"]
+
+[template-aliases]
+"format_short_id(id)" = "id.shortest(3)"
+
+[signing]
+sign-all = true
+backend = "ssh"
+key = "/home/doctorwho/.ssh/id_ed25519.pub"
+backends.ssh.allowed-signers = "/home/doctorwho/.config/git/allowed_signers"
+
+[core]
+watchman.register_snapshot_trigger = true
