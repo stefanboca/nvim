@@ -1,3 +1,1 @@
-includes = [".dotter/fedora.toml"]
-
 packages = ["git", "lazygit", "lazyvim", "neovide", "scripts", "wezterm", "zsh"]
