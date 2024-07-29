@@ -22,7 +22,8 @@ font_size = "8.5"
 "scripts" = "~/.local/bin"
 
 [git.files]
-"gitconfig" = "~/.gitconfig"
+"git/gitconfig" = "~/.gitconfig"
+"git/ignore" = "~/.config/git/ignore"
 
 [tmux.files]
 "tmux/tmux.conf" = "~/.config/tmux/tmux.conf"
