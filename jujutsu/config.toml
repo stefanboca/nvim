@@ -5,12 +5,15 @@ email = "stefan.r.boca@gmail.com"
 [ui]
 editor = "nvim"
 
+[revsets]
+log = "@ | ancestors(immutable_heads()..) | trunk()"
+
 [merge-tools]
 difft.diff-args = ["--color=always", "$left", "$right"]
 nvim.edit-args = ["-c", "DiffEditor $left $right $output"]
 
 [template-aliases]
-"format_short_id(id)" = "id.shortest(3)"
+"format_short_id(id)" = "id.shortest()"
 
 [signing]
 sign-all = true
