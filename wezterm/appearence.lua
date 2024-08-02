@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local M = {}
 
 function M.apply(config)
-	config.color_scheme = "Tokyo Night"
+	config.color_scheme = "Catppuccin Mocha"
 	config.font = wezterm.font_with_fallback({ { family = "Fira Code" }, { family = "FiraCode Nerd Font" } })
 	config.font_size = 10
 
