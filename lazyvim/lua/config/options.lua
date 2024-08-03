@@ -9,6 +9,8 @@ vim.o.clipboard = "unnamed"
 
 vim.g.lazyvim_python_lsp = "basedpyright"
 
+vim.g.root_spec = { "lsp", { ".git", "lua", ".jj" }, "cwd" }
+
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
