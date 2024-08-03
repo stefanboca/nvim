@@ -38,6 +38,7 @@ return {
           },
         },
         ["core.integrations.nvim-cmp"] = {},
+        ["core.integrations.otter"] = {},
         ["core.integrations.telescope"] = {},
         ["external.conceal-wrap"] = {},
         ["external.interim-ls"] = {
