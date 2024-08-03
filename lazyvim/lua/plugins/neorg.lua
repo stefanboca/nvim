@@ -27,12 +27,7 @@ return {
     cmd = { "Neorg" },
     opts = {
       load = {
-        ["core.defaults"] = {
-          disabled = {
-            "core.clipboard",
-            "core.clipboard.code-blocks",
-          },
-        },
+        ["core.defaults"] = {},
         ["core.concealer"] = {},
         ["core.completion"] = { config = { engine = { module_name = "external.lsp-completion" } } },
         ["core.dirman"] = {
