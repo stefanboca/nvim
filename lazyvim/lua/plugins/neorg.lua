@@ -17,8 +17,6 @@ return {
   {
     "nvim-neorg/neorg",
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-neorg/neorg-telescope" },
       { "benlubas/neorg-conceal-wrap" },
       { "benlubas/neorg-interim-ls" },
       { "benlubas/neorg-se" },
@@ -39,7 +37,6 @@ return {
         },
         ["core.integrations.nvim-cmp"] = {},
         ["core.integrations.otter"] = {},
-        ["core.integrations.telescope"] = {},
         ["external.conceal-wrap"] = {},
         ["external.interim-ls"] = {
           config = {
