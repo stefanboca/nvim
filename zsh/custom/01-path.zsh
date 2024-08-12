@@ -2,7 +2,7 @@
 test -f "$HOME/.cargo/env" && source "$HOME/.cargo/env"
 
 # python rye
-export RYE_HOME="$HOME/.config/rye"
+export RYE_HOME="$HOME/.local/share/rye"
 # test -d "$RYE_HOME" && source "$RYE_HOME/env"
 
 # golang
@@ -10,6 +10,13 @@ export GOPATH="$HOME/.local/share/go"
 if [[ -d "$GOPATH" ]] then
   PATH="$PATH:$GOPATH/bin"
 fi
+
+# pixi
+export PIXI_HOME="$HOME/.local/share/pixi"
+if [[ -d "$PIXI_HOME" ]] then
+  PATH="$PIXI_HOME/bin:$PATH"
+fi
+
 
 # spicetify
 if [[ -d "$HOME/.local/share/spicetify" ]] then
