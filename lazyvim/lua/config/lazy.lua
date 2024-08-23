@@ -20,7 +20,7 @@ require("lazy").setup({
     {
       "LazyVim/LazyVim",
       opts = {
-        colorscheme = "catppuccin-mocha",
+        colorscheme = "catppuccin",
       },
       import = "lazyvim.plugins",
     },
@@ -35,12 +35,15 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "catppuccin-mocha", "tokyonight", "habamax" } },
+  rocks = { hererocks = true },
+  dev = {
+    path = "~/data/project",
+  },
+  install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
   }, -- automatically check for plugin updates
-  rocks = { hererocks = true },
   performance = {
     rtp = {
       -- disable some rtp plugins
