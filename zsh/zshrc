@@ -83,7 +83,6 @@ plugins=(
   zsh-syntax-highlighting
   zsh-completions
   alias-tips
-  zsh-nvm
 )
 
 ### PLUGIN SETTINGS ###
