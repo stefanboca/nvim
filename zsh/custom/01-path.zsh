@@ -1,10 +1,6 @@
 # rust cargo
 test -f "$HOME/.cargo/env" && source "$HOME/.cargo/env"
 
-# python rye
-export RYE_HOME="$HOME/.local/share/rye"
-# test -d "$RYE_HOME" && source "$RYE_HOME/env"
-
 # golang
 export GOPATH="$HOME/.local/share/go"
 if [[ -d "$GOPATH" ]] then
