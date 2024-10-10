@@ -1,5 +1,8 @@
 [helpers]
 
+[just.files]
+"Justfile" = "~/.config/just/justfile"
+
 [alacritty.files]
 "alacritty" = "~/.config/alacritty"
 [alacritty.variables]
