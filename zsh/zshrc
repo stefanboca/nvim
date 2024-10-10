@@ -86,13 +86,6 @@ plugins=(
 )
 
 ### PLUGIN SETTINGS ###
-# fzf-zsh-plugin
-export FZF_PATH="$HOME/.local/share/fzf"
-# zsh-nvm
-export NVM_DIR="$HOME/.local/share/nvm"
-export NVM_COMPLETION=true
-export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim' 'neovide')
 # alias-tips
 export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
 
@@ -104,3 +97,6 @@ export EDITOR=nvim
 
 # rust esp toolchain
 export ESPUP_EXPORT_FILE="$ZSH_CUSTOM/export-esp.zsh"
+
+bindkey ${FZF_WD_BINDKEY:-'^B'} wd_browse_widget
+

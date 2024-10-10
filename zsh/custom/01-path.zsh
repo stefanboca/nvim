@@ -13,7 +13,6 @@ if [[ -d "$PIXI_HOME" ]] then
   PATH="$PIXI_HOME/bin:$PATH"
 fi
 
-
 # spicetify
 if [[ -d "$HOME/.local/share/spicetify" ]] then
   PATH="$PATH:$HOME/.local/share/spicetify"
