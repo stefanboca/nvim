@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
--- config.term = "wezterm"
+config.term = "wezterm"
 config.check_for_updates = false
 
 config.front_end = "WebGpu"
