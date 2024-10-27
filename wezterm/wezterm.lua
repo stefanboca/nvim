@@ -7,10 +7,10 @@ config.check_for_updates = false
 
 config.front_end = "WebGpu"
 
+config.scrollback_lines = 10000
+
 -- Appearence
 config.color_scheme = "Catppuccin Macchiato"
-config.font = wezterm.font_with_fallback({ { family = "Fira Code" }, { family = "FiraCode Nerd Font" } })
-config.font_size = 10
 config.colors = {
 	background = "000000",
 }
@@ -19,6 +19,10 @@ config.inactive_pane_hsb = {
 }
 config.window_background_opacity = 0.7
 config.text_background_opacity = 0.5
+
+config.font = wezterm.font_with_fallback({ { family = "Fira Code" }, { family = "FiraCode Nerd Font" } })
+config.font_size = 10
+
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.tab_and_split_indices_are_zero_based = true
