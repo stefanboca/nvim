@@ -11,9 +11,14 @@ config.front_end = "WebGpu"
 config.color_scheme = "Catppuccin Macchiato"
 config.font = wezterm.font_with_fallback({ { family = "Fira Code" }, { family = "FiraCode Nerd Font" } })
 config.font_size = 10
+config.colors = {
+	background = "000000",
+}
 config.inactive_pane_hsb = {
 	brightness = 0.85,
 }
+config.window_background_opacity = 0.7
+config.text_background_opacity = 0.5
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.tab_and_split_indices_are_zero_based = true
@@ -23,7 +28,7 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-config.default_cursor_style = "BlinkingBlock"
+config.default_cursor_style = "SteadyBlock"
 
 -- Keys
 local act = wezterm.action

@@ -6,9 +6,7 @@ return {
       background = {
         dark = "macchiato",
       },
-      dim_inactive = {
-        enabled = true,
-      },
+      transparent_background = true,
       term_colors = true,
     },
   },
