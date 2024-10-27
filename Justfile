@@ -7,7 +7,7 @@ install-omz:
 update-all: update-dnf update-flatpak update-rust update-crates update-uv update-omz update-tldr
 
 update-dnf:
-  sudo dnf5 upgrade --refresh
+  sudo dnf upgrade --refresh
 
 update-flatpak:
   flatpak update
