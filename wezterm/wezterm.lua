@@ -11,9 +11,14 @@ config.scrollback_lines = 10000
 
 -- Appearence
 config.color_scheme = "Catppuccin Macchiato"
+
+local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
+bar.apply_to_config(config)
+
 config.colors = {
 	background = "000000",
 }
+
 config.inactive_pane_hsb = {
 	brightness = 0.85,
 }
@@ -25,6 +30,7 @@ config.font_size = 10
 
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
+
 config.tab_and_split_indices_are_zero_based = true
 config.window_padding = {
 	left = 0,
