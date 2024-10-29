@@ -1,1 +1,0 @@
-export MENUCONFIG_STYLE=default

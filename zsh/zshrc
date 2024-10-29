@@ -93,10 +93,5 @@ source $ZSH/oh-my-zsh.sh
 
 ### USER CONFIGURATION ###
 
-export EDITOR=nvim
-
-# rust esp toolchain
-export ESPUP_EXPORT_FILE="$ZSH_CUSTOM/export-esp.zsh"
-
 bindkey ${FZF_WD_BINDKEY:-'^B'} wd_browse_widget
 
