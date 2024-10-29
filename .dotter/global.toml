@@ -40,6 +40,9 @@ font_size = "8.5"
 [xplr.files]
 "xplr" = "~/.config/xplr"
 
+[zathura.files]
+"zathura/zathurarc" = "~/.config/zathura/zathurarc"
+
 [zsh.files]
 "zsh/zshrc" = "~/.zshrc"
 "zsh/zshenv" = "~/.zshenv"
