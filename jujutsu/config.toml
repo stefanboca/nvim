@@ -3,11 +3,14 @@ name = "Stefan Boca"
 email = "stefan.r.boca@gmail.com"
 
 [ui]
+default-command = "log"
 editor = "nvim"
 log-word-wrap = true
+# paginate = "never"
 
 [revsets]
 log = "@ | ancestors(immutable_heads()..) | trunk()"
+# log = "@ | ancestors(remote_bookmarks().., 2) | trunk()"
 
 [merge-tools]
 difft.diff-args = ["--color=always", "$left", "$right"]
@@ -23,4 +26,5 @@ key = "/home/doctorwho/.ssh/id_ed25519.pub"
 backends.ssh.allowed-signers = "/home/doctorwho/.config/git/allowed_signers"
 
 [core]
+core.fsmonitor = "none"
 watchman.register_snapshot_trigger = true
