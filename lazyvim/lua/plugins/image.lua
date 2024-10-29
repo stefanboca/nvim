@@ -8,5 +8,6 @@ return {
     opts = {
       backend = "kitty",
     },
+    enabled = not vim.g.neovide,
   },
 }
