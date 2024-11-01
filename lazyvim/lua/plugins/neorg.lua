@@ -10,16 +10,10 @@ return {
     cmd = { "Neorg" },
   },
   {
-    "benlubas/neorg-se",
-    ft = { "norg" },
-    cmd = { "Neorg" },
-  },
-  {
     "nvim-neorg/neorg",
     dependencies = {
       { "benlubas/neorg-conceal-wrap" },
       { "benlubas/neorg-interim-ls" },
-      { "benlubas/neorg-se" },
     },
     ft = { "norg" },
     cmd = { "Neorg" },
@@ -27,7 +21,7 @@ return {
       load = {
         ["core.defaults"] = {},
         ["core.concealer"] = {},
-        ["core.completion"] = { config = { engine = { module_name = "external.lsp-completion" } } },
+        ["core.completion"] = { config = { engine = "nvim-cmp" } },
         ["core.dirman"] = {
           config = {
             workspaces = {
@@ -35,26 +29,31 @@ return {
             },
           },
         },
+        ["core.highlights"] = {},
+        ["core.latex.renderer"] = {
+          config = {
+            render_on_enter = true,
+          },
+        },
         ["core.integrations.nvim-cmp"] = {},
         ["core.integrations.otter"] = {},
         ["external.conceal-wrap"] = {},
-        ["external.interim-ls"] = {
-          config = {
-            completion_provider = {
-              enable = true,
-              categories = true,
-            },
-          },
-        },
-        ["external.search"] = { config = { index_on_start = true } },
       },
     },
   },
+
   {
-    "nvim-cmp",
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "neorg" })
-    end,
+    "saghen/blink.cmp",
+    optional = true,
+    opts = {
+      sources = { completion = { enabled_providers = { "neorg" } } },
+      proviers = {
+        neorg = {
+          name = "neorg",
+          module = "blink.compat.source",
+          score_offset = 3,
+        },
+      },
+    },
   },
 }
-
