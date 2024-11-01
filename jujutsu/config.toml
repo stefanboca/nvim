@@ -3,21 +3,21 @@ name = "Stefan Boca"
 email = "stefan.r.boca@gmail.com"
 
 [ui]
-default-command = "log"
+default-command = ["log", "--no-pager"]
 editor = "nvim"
 log-word-wrap = true
-# paginate = "never"
+paginate = "auto"
+
+[aliases]
+rb = ["rebase"]
+l = ["log", "-r", "@ | ancestors(immutable_heads()..) | trunk()"]
 
 [revsets]
-log = "@ | ancestors(immutable_heads()..) | trunk()"
-# log = "@ | ancestors(remote_bookmarks().., 2) | trunk()"
+log = "@ | ancestors(immutable_heads().., 4) | trunk()"
 
 [merge-tools]
 difft.diff-args = ["--color=always", "$left", "$right"]
 nvim.edit-args = ["-c", "DiffEditor $left $right $output"]
-
-[template-aliases]
-"format_short_id(id)" = "id.shortest()"
 
 [signing]
 sign-all = true
