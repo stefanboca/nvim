@@ -17,9 +17,8 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 if vim.g.neovide then
-  vim.o.pumblend = 100
-  vim.o.winblend = 100
-
+  vim.o.pumblend = 80
+  vim.o.winblend = 80
   vim.g.neovide_transparency = 0.7
 
   vim.g.neovide_floating_blur_amount_x = 8.0
