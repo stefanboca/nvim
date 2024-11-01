@@ -37,7 +37,7 @@ require("lazy").setup({
   },
   rocks = { hererocks = true },
   dev = {
-    path = "~/data/project",
+    path = "~/data/plugins",
   },
   install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
   checker = {
