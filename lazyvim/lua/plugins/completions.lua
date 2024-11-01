@@ -1,16 +1,31 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-      })
-      opts.window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-      }
-    end,
+    "saghen/blink.cmp",
+    version = "*",
+    optional = true,
+    build = "cargo build --release",
+    opts = {
+      keymap = "enter",
+
+      trigger = { signature_help = { enabled = true } },
+      fuzzy = { prebuiltBinaries = { download = false } },
+
+      windows = {
+        autocomplete = {
+          selection = "manual",
+          draw = "simple",
+        },
+      },
+    },
+  },
+
+  {
+    "catppuccin/nvim",
+    optional = true,
+    opts = {
+      integrations = {
+        blink_cmp = true,
+      },
+    },
   },
 }
