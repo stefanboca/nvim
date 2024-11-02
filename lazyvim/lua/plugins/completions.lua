@@ -1,14 +1,16 @@
 return {
   {
     "saghen/blink.cmp",
-    version = "*",
+    version = false,
     optional = true,
     build = "cargo build --release",
     opts = {
-      keymap = "enter",
+      keymap = {
+        preset = "enter",
+      },
 
       trigger = { signature_help = { enabled = true } },
-      fuzzy = { prebuiltBinaries = { download = false } },
+      fuzzy = { prebuilt_binaries = { download = false } },
 
       windows = {
         autocomplete = {
