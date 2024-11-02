@@ -15,7 +15,14 @@ return {
       windows = {
         autocomplete = {
           selection = "manual",
-          draw = "simple",
+          draw = "reversed",
+          winblend = vim.o.pumblend,
+        },
+        documentation = {
+          winblend = vim.o.pumblend,
+        },
+        signature_help = {
+          winblend = vim.o.pumblend,
         },
       },
     },
