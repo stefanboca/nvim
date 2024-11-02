@@ -77,6 +77,7 @@ plugins=(
   systemd
   thefuck
   wd
+  rust
 
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -87,6 +88,9 @@ plugins=(
 ### PLUGIN SETTINGS ###
 # alias-tips
 export ZSH_PLUGINS_ALIAS_TIPS_EXPAND=1
+
+# rust cargo
+test -f "$HOME/.cargo/env" && source "$HOME/.cargo/env"
 
 source $ZSH/oh-my-zsh.sh
 

@@ -1,6 +1,3 @@
-# rust cargo
-test -f "$HOME/.cargo/env" && source "$HOME/.cargo/env"
-
 # golang
 export GOPATH="$HOME/.local/share/go"
 if [[ -d "$GOPATH" ]] then
