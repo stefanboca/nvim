@@ -4,12 +4,13 @@ email = "stefan.r.boca@gmail.com"
 
 [ui]
 default-command = ["log", "--no-pager"]
-editor = "nvim"
+editor = ["nvim", "--cmd", "let g:flatten_wait=1"]
 log-word-wrap = true
 paginate = "auto"
 
 [aliases]
 rb = ["rebase"]
+s = ["status", "--no-pager"]
 l = ["log", "-r", "@ | ancestors(immutable_heads()..) | trunk()"]
 
 [revsets]
