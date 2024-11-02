@@ -31,6 +31,9 @@ font_size = "8.5"
 [jujutsu.files]
 "jujutsu/config.toml" = { target = "~/.config/jj/config.toml", type = "symbolic" }
 
+[starship.files]
+"starship/starship.toml" = { target = "~/.config/starship.toml", type = "symbolic" }
+
 [tmux.files]
 "tmux/tmux.conf" = "~/.config/tmux/tmux.conf"
 

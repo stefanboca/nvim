@@ -5,6 +5,7 @@ packages = [
   "lazyvim",
   "jujutsu",
   "neovide",
+  "starship",
   "wezterm",
   "zathura",
   "zsh",
