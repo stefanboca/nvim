@@ -24,6 +24,7 @@ require("lazy").setup({
   },
   -- import custom plugins
   { import = "plugins" },
+  { "folke/lazy.nvim", version = false },
 }, {
   defaults = {
     lazy = false,
@@ -33,7 +34,7 @@ require("lazy").setup({
     path = "~/data/plugins",
   },
   install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
-  checker = { enabled = false },
+  checker = { enabled = false }, -- TODO: remove on v11.4.2
   performance = {
     rtp = {
       -- disable some rtp plugins
