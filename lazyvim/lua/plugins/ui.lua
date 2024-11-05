@@ -24,17 +24,18 @@ return {
       },
     },
   },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    dependencies = {
-      "saifulapm/neotree-file-nesting-config",
-    },
-    opts = function(_, opts)
-      opts.window.mappings["e"] = "toggle_node"
-      opts.nesting_rules =
-        vim.tbl_extend("force", opts.nesting_rules or {}, require("neotree-file-nesting-config").nesting_rules)
-    end,
-  },
+
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   dependencies = {
+  --     "saifulapm/neotree-file-nesting-config",
+  --   },
+  --   opts = function(_, opts)
+  --     opts.window.mappings["e"] = "toggle_node"
+  --     opts.nesting_rules =
+  --       vim.tbl_extend("force", opts.nesting_rules or {}, require("neotree-file-nesting-config").nesting_rules)
+  --   end,
+  -- },
 
   {
     "s1n7ax/nvim-window-picker",
@@ -88,5 +89,11 @@ return {
         opts = { lsp = { auto_attach = true } },
       },
     },
+  },
+
+  {
+    "meznaric/key-analyzer.nvim",
+    cmd = "KeyAnalyzer",
+    opts = {},
   },
 }

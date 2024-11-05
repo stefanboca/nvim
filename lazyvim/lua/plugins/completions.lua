@@ -9,7 +9,10 @@ return {
         preset = "enter",
       },
 
-      trigger = { signature_help = { enabled = true } },
+      trigger = {
+        completion = { keyword_range = "full" },
+        signature_help = { enabled = true },
+      },
       fuzzy = { prebuilt_binaries = { download = false } },
 
       windows = {

@@ -1,20 +1,8 @@
 return {
-  {
-    "benlubas/neorg-conceal-wrap",
-    ft = { "norg" },
-    cmd = { "Neorg" },
-  },
-  {
-    "benlubas/neorg-interim-ls",
-    ft = { "norg" },
-    cmd = { "Neorg" },
-  },
+  { "benlubas/neorg-conceal-wrap", lazy = true },
   {
     "nvim-neorg/neorg",
-    dependencies = {
-      { "benlubas/neorg-conceal-wrap" },
-      { "benlubas/neorg-interim-ls" },
-    },
+    version = "*",
     ft = { "norg" },
     cmd = { "Neorg" },
     opts = {
@@ -46,12 +34,16 @@ return {
     "saghen/blink.cmp",
     optional = true,
     opts = {
-      sources = { completion = { enabled_providers = { "neorg" } } },
-      proviers = {
-        neorg = {
-          name = "neorg",
-          module = "blink.compat.source",
-          score_offset = 3,
+      sources = {
+        completion = {
+          enabled_providers = { "neorg" },
+        },
+        providers = {
+          neorg = {
+            name = "neorg",
+            module = "blink.compat.source",
+            score_offset = 3,
+          },
         },
       },
     },
