@@ -19,7 +19,6 @@ require("lazy").setup({
   {
     "LazyVim/LazyVim",
     dev = true,
-    opts = { colorscheme = "catppuccin" },
     import = "lazyvim.plugins",
   },
   -- import custom plugins
@@ -33,7 +32,7 @@ require("lazy").setup({
   dev = {
     path = "~/data/plugins",
   },
-  install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
+  install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = false }, -- TODO: remove on v11.4.2
   performance = {
     rtp = {

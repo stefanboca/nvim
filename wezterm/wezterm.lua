@@ -10,7 +10,7 @@ config.front_end = "WebGpu"
 config.scrollback_lines = 10000
 
 -- Appearence
-config.color_scheme = "Catppuccin Macchiato"
+config.color_scheme = "Tokyo Night"
 
 local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 bar.apply_to_config(config)
