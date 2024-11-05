@@ -13,7 +13,9 @@ config.scrollback_lines = 10000
 config.color_scheme = "Tokyo Night"
 
 local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
-bar.apply_to_config(config)
+bar.apply_to_config(config, {
+	padding = { left = 1, right = 1 },
+})
 
 config.colors = {
 	background = "000000",
@@ -31,7 +33,6 @@ config.font_size = 10
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
-config.tab_and_split_indices_are_zero_based = true
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -83,12 +84,12 @@ config.keys = {
 	{ key = "[", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "]", mods = "LEADER", action = act.PasteFrom("Clipboard") },
 }
-for i = 0, 9 do
+for i = 1, 9 do
 	-- <LEADER-i> to activate that tab
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "LEADER",
-		action = act.ActivateTab(i),
+		action = act.ActivateTab(i - 1),
 	})
 end
 -- config.debug_key_events = true
