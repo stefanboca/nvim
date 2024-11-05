@@ -10,11 +10,26 @@ paginate = "auto"
 
 [aliases]
 rb = ["rebase"]
+d = ["diff", "--no-pager"]
 s = ["status", "--no-pager"]
-l = ["log", "-r", "@ | ancestors(immutable_heads()..) | trunk()"]
+
+# log aliases
+l = ["log"]
+c = ["log", "--no-pager", "-r", "log_current()"]
+current = ["log", "-r", "log_current()"]
+m = ["log", "--no-pager", "-r", "log_mine()"]
+mine = ["log", "-r", "log_mine()"]
+a = ["log", "-r", "all()"]
+all = ["log", "-r", "all()"]
 
 [revsets]
-log = "@ | ancestors(immutable_heads().., 4) | trunk()"
+# log = "@ | ancestors(mutable(), 2) | trunk()"
+# log = "@ | ancestors(immutable_heads().., 4) | trunk()"
+log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
+
+[revset-aliases]
+"log_current()" = "@ | ancestors(reachable(@, mutable()), 2) | trunk()"
+"log_mine()" = "@ | ancestors(reachable(mine(), mutable()), 2) | trunk()"
 
 [merge-tools]
 difft.diff-args = ["--color=always", "$left", "$right"]
