@@ -63,10 +63,6 @@ local blink_cmp_spec = {
 }
 
 return {
-  {
-    "LazyVim/LazyVim",
-    dev = true,
-  },
   { "saghen/blink.compat", dev = true },
 
   -- jjsigns_spec,
