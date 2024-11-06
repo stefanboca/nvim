@@ -17,14 +17,10 @@ bar.apply_to_config(config, {
 	padding = { left = 1, right = 1 },
 })
 
-config.colors = {
-	background = "000000",
-}
-
 config.inactive_pane_hsb = {
 	brightness = 0.85,
 }
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.8
 config.text_background_opacity = 0.5
 
 config.font = wezterm.font_with_fallback({ { family = "Fira Code" }, { family = "FiraCode Nerd Font" } })
@@ -40,6 +36,10 @@ config.window_padding = {
 	bottom = 0,
 }
 config.default_cursor_style = "SteadyBlock"
+
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+workspace_switcher.zoxide_path = "/home/doctorwho/.cargo/bin/zoxide"
+config.default_workspace = "~"
 
 -- Keys
 local act = wezterm.action
@@ -83,6 +83,9 @@ config.keys = {
 	-- Copy mode
 	{ key = "[", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "]", mods = "LEADER", action = act.PasteFrom("Clipboard") },
+
+	-- smart_workspace_switcher
+	{ key = "s", mods = "LEADER", action = workspace_switcher.switch_workspace() },
 }
 for i = 1, 9 do
 	-- <LEADER-i> to activate that tab
