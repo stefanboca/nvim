@@ -1,5 +1,6 @@
 _G.dd = function(...)
   Snacks.debug.inspect(...)
+  return ...
 end
 _G.bt = function()
   Snacks.debug.backtrace()
@@ -12,35 +13,24 @@ local render_math_spec = {
   opts = {},
 }
 
-local jjsigns_spec = {
-  "jjsigns.nvim",
-  lazy = false,
-  dev = true,
-  opts = {
-    auto_attach = true,
-    debug = {
-      enabled = true,
-      verbose = true,
-    },
-  },
-}
-
 local blink_cmp_spec = {
-  { "dmitmel/cmp-digraphs", lazy = true },
-  { "chrisgrieser/cmp-nerdfont", lazy = true },
-  { "hrsh7th/cmp-emoji", lazy = true },
-  {
-    "uga-rosa/cmp-dictionary",
-    opts = { exact_length = 2, paths = { "/home/doctorwho/.dotfiles/some_words.txt" } },
-    lazy = true,
-  },
   {
     "saghen/blink.cmp",
     dev = true,
+    dependencies = {
+      { "dmitmel/cmp-digraphs" },
+      { "chrisgrieser/cmp-nerdfont" },
+      { "hrsh7th/cmp-emoji" },
+      -- {
+      --   "uga-rosa/cmp-dictionary",
+      --   opts = { exact_length = 2, paths = { "/home/doctorwho/.dotfiles/some_words.txt" } },
+      --   lazy = true,
+      -- },
+    },
     opts = {
       sources = {
         completion = {
-          enabled_providers = {},
+          enabled_providers = { "emoji", "nerdfont", "digraphs" },
         },
         providers = {
           emoji = {
@@ -70,9 +60,26 @@ local blink_cmp_spec = {
 }
 
 return {
-  { "saghen/blink.compat", dev = true },
+  { "gonstoll/wezterm-types", lazy = true },
+  {
+    "folke/lazydev.nvim",
+    dependencies = {},
+    opts = {
+      library = {
+        { path = "wezterm-types", mods = { "wezterm" } },
+        { path = "luvit-meta/library", words = { "vim.uv" } },
+      },
+    },
+  },
 
-  -- jjsigns_spec,
+  {
+    "saghen/blink.compat",
+    dev = true,
+    opts = {
+      debug = false,
+    },
+  },
+
   -- render_math_spec,
-  -- blink_cmp_spec
+  -- blink_cmp_spec,
 }

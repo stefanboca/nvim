@@ -1,4 +1,5 @@
 return {
+  { "saghen/blink.compat" },
   {
     "saghen/blink.cmp",
     version = false,
@@ -18,7 +19,9 @@ return {
       windows = {
         autocomplete = {
           selection = "manual",
-          draw = "reversed",
+          draw = {
+            columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
+          },
           winblend = vim.o.pumblend,
         },
         documentation = {

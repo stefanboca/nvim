@@ -7,7 +7,7 @@ return {
       background = {
         dark = "macchiato",
       },
-      transparent_background = true,
+      transparent_background = not vim.g.neovide,
       term_colors = true,
     },
   },
@@ -16,7 +16,7 @@ return {
     optional = true,
     opts = {
       style = "night",
-      transparent = true,
+      transparent = not vim.g.neovide,
     },
   },
   {

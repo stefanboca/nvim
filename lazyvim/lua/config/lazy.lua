@@ -19,6 +19,12 @@ require("lazy").setup({
   {
     "LazyVim/LazyVim",
     dev = true,
+    opts = {
+      news = {
+        lazyvim = true,
+        neovim = true,
+      },
+    },
     import = "lazyvim.plugins",
   },
   -- import custom plugins

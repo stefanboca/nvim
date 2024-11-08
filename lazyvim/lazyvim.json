@@ -36,8 +36,8 @@
     "lazyvim.plugins.extras.util.rest"
   ],
   "news": {
-    "NEWS.md": "6520"
+    "NEWS.md": "7107",
+    "doc/news.txt": "13731"
   },
   "version": 6
 }
-

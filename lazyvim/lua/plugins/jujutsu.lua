@@ -10,12 +10,33 @@ function M.wk_desc(buf)
 end
 
 return {
+  -- Ignore .jj as well
+  {
+    "ibhagwan/fzf-lua",
+    opts = {
+      files = {
+        find_opts = [[-type f -not -path '*/\(\.git|\.jj\)/*' -printf '%P\n']],
+        rg_opts = [[--color=never --files --hidden --follow -g "!.git" -g "!.jj"]],
+        fd_opts = [[--color=never --type f --hidden --follow --exclude .git --exclude .jj]],
+      },
+    },
+  },
+
+  -- Un-nest neovim instances
   {
     "willothy/flatten.nvim",
-    opts = {},
     -- Ensure that it runs first to minimize delay when opening file from terminal
     lazy = false,
-    priority = 1001,
+    priority = 50001,
+    opts = {
+      window = {
+        open = "alternate",
+      },
+      block_for = {
+        jj = true,
+        jjdescription = true,
+      },
+    },
   },
 
   {

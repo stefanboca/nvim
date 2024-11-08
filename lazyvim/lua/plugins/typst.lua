@@ -1,25 +1,10 @@
 -- mostly a copy of https://github.com/LazyVim/LazyVim/pull/4042 until it's merged
 
 return {
-  -- recommended = function()
-  --   return LazyVim.extras.wants({
-  --     ft = { "typst" },
-  --   })
-  -- end,
-
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = { "typst" },
-    },
-  },
-
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "tinymist",
-      },
     },
   },
 
@@ -31,6 +16,10 @@ return {
           settings = {
             formatterMode = "typstyle",
           },
+          -- single_file_support = true,
+          root_dir = function()
+            return LazyVim.root.get()
+          end,
         },
       },
     },
@@ -64,7 +53,7 @@ return {
     },
     opts = {
       dependencies_bin = {
-        ["tinymist"] = "tinymist",
+        tinymist = "tinymist",
       },
     },
   },
