@@ -16,7 +16,7 @@ return {
           settings = {
             formatterMode = "typstyle",
           },
-          -- single_file_support = true,
+          single_file_support = true,
           root_dir = function()
             return LazyVim.root.get()
           end,
@@ -38,11 +38,12 @@ return {
   {
     "chomosuke/typst-preview.nvim",
     cmd = { "TypstPreview" },
-    build = function(plugin)
-      local typst_preview = require("typst-preview")
-      typst_preview.setup(plugin.opts)
-      typst_preview.update()
-    end,
+    -- build = function()
+    -- _G.t1 = _G.c == true
+    -- require("typst-preview.config").opts.dependencies_bin["tinymist"] = "tinymist"
+    -- require("typst-preview").update()
+    -- _G.t2 = _G.c == true
+    -- end,
     keys = {
       {
         "<leader>cp",
@@ -53,8 +54,13 @@ return {
     },
     opts = {
       dependencies_bin = {
-        tinymist = "tinymist",
+        -- tinymist = "tinymist",
       },
     },
+    -- config = function(_, opts)
+    --   _G.c = false
+    --   require("typst-preview").setup(opts)
+    --   _G.c = true
+    -- end,
   },
 }

@@ -20,7 +20,11 @@ return {
         autocomplete = {
           selection = "manual",
           draw = {
-            columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
+            padding = { 1, 0 },
+            columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+            components = {
+              kind_icon = { width = { fill = true } },
+            },
           },
           winblend = vim.o.pumblend,
         },

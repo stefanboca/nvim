@@ -29,7 +29,7 @@ require("lazy").setup({
   },
   -- import custom plugins
   { import = "plugins" },
-  { "folke/lazy.nvim", version = false },
+  { "folke/lazy.nvim" },
 }, {
   defaults = {
     lazy = false,

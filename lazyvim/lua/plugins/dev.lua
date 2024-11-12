@@ -79,6 +79,21 @@ return {
       debug = false,
     },
   },
+  -- {
+  --   "saghen/blink.cmp",
+  --   dev = true,
+  --   opts = {
+  --     sources = {
+  --       providers = {
+  --         snippets = {
+  --           opts = {
+  --             friendly_snippets = true,
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
   -- render_math_spec,
   -- blink_cmp_spec,
