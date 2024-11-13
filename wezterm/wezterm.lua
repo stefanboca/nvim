@@ -22,7 +22,7 @@ config.inactive_pane_hsb = {
 }
 config.window_background_opacity = 0.8
 config.text_background_opacity = 0.5
-config.font = wezterm.font({ family = "Lilex", harfbuzz_features = { "cv09", "cv10", "cv11", "ss01" } })
+config.font = wezterm.font({ family = "Lilex", harfbuzz_features = { "cv09", "cv10", "cv11", "ss01", "ss03" } })
 config.font_size = 10
 
 config.use_fancy_tab_bar = false
