@@ -4,5 +4,8 @@ frame = "none"
 title-hidden = true
 
 [font]
-normal = [{ family = "Fira Code" }, { family = "FiraCode Nerd Font" }]
+normal = [{ family = "Lilex" }]
 size = 10
+
+[font.features]
+Lilex = ["+cv10", "+cv11", "+ss01"]
