@@ -8,4 +8,4 @@ normal = [{ family = "Lilex" }]
 size = 10
 
 [font.features]
-Lilex = ["+cv10", "+cv11", "+ss01"]
+Lilex = ["+cv09", "+cv10", "+cv11", "+ss01"]
