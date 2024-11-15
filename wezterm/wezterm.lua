@@ -1,9 +1,11 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 
+---@type Config
 local config = wezterm.config_builder()
 
 config.term = "wezterm"
 config.check_for_updates = false
+config.warn_about_missing_glyphs = false
 
 config.front_end = "WebGpu"
 
@@ -56,6 +58,16 @@ config.keys = {
 	-- Pass <C-Space> to pane if repeated
 	{ key = " ", mods = "LEADER|CTRL", action = act.SendKey({ key = " ", mods = "CTRL" }) },
 
+	-- Clears the scrollback and viewport, and then sends CTRL-L to ask the shell to redraw its prompt
+	{
+		key = "K",
+		mods = "CTRL|SHIFT",
+		action = act.Multiple({
+			act.ClearScrollback("ScrollbackAndViewport"),
+			act.SendKey({ key = "L", mods = "CTRL" }),
+		}),
+	},
+
 	-- Open Command Palette
 	{ key = ":", mods = "LEADER|SHIFT", action = act.ActivateCommandPalette },
 
@@ -64,7 +76,7 @@ config.keys = {
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
 	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
-	{ key = "q", mods = "LEADER", action = act.PaneSelect },
+	{ key = "q", mods = "LEADER", action = act.PaneSelect({ mode = "Activate" }) },
 
 	-- Pane Manipulation
 	{ key = "m", mods = "LEADER", action = act.TogglePaneZoomState },
