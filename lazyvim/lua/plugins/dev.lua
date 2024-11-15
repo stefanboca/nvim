@@ -1,5 +1,8 @@
 _G.dd = function(...)
-  Snacks.debug.inspect(...)
+  local args = { ... }
+  vim.schedule(function()
+    Snacks.debug.inspect(table.unpack(args))
+  end)
   return ...
 end
 _G.bt = function()
