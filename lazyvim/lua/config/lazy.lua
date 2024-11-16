@@ -18,7 +18,7 @@ require("lazy").setup({
   -- add LazyVim and import its plugins
   {
     "LazyVim/LazyVim",
-    dev = true,
+    dev = false,
     opts = {
       news = {
         lazyvim = true,
@@ -29,7 +29,6 @@ require("lazy").setup({
   },
   -- import custom plugins
   { import = "plugins" },
-  { "folke/lazy.nvim" },
 }, {
   defaults = {
     lazy = false,
@@ -39,7 +38,7 @@ require("lazy").setup({
     path = "~/data/plugins",
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = false }, -- TODO: remove on v11.4.2
+  checker = { enabled = false },
   performance = {
     rtp = {
       -- disable some rtp plugins
