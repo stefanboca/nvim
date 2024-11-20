@@ -38,12 +38,6 @@ return {
   {
     "chomosuke/typst-preview.nvim",
     cmd = { "TypstPreview" },
-    -- build = function()
-    -- _G.t1 = _G.c == true
-    -- require("typst-preview.config").opts.dependencies_bin["tinymist"] = "tinymist"
-    -- require("typst-preview").update()
-    -- _G.t2 = _G.c == true
-    -- end,
     keys = {
       {
         "<leader>cp",
@@ -54,13 +48,8 @@ return {
     },
     opts = {
       dependencies_bin = {
-        -- tinymist = "tinymist",
+        tinymist = "tinymist",
       },
     },
-    -- config = function(_, opts)
-    --   _G.c = false
-    --   require("typst-preview").setup(opts)
-    --   _G.c = true
-    -- end,
   },
 }
