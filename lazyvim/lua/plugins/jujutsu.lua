@@ -28,15 +28,53 @@ return {
     -- Ensure that it runs first to minimize delay when opening file from terminal
     lazy = false,
     priority = 50001,
-    opts = {
-      window = {
-        open = "alternate",
-      },
-      block_for = {
-        jj = true,
-        jjdescription = true,
-      },
-    },
+    opts = function()
+      local saved_terminal = nil
+      local is_open = nil
+
+      return {
+        window = {
+          open = "alternate",
+        },
+        block_for = {
+          jj = true,
+          jjdescription = true,
+        },
+        callbacks = {
+          pre_open = function()
+            saved_terminal, _ = Snacks.terminal.get(nil, { cwd = LazyVim.root(), create = false })
+            if saved_terminal then
+              is_open = saved_terminal:valid()
+            end
+          end,
+          post_open = function(bufnr, winnr, ft, is_blocking)
+            if is_blocking and saved_terminal then
+              saved_terminal:hide()
+            else
+              vim.api.nvim_set_current_win(winnr)
+            end
+
+            if vim.tbl_contains({ "gitcommit", "gitrebase", "jj", "jjdescription" }, ft) then
+              vim.api.nvim_create_autocmd("BufWritePost", {
+                buffer = bufnr,
+                once = true,
+
+                callback = vim.schedule_wrap(function()
+                  vim.api.nvim_buf_delete(bufnr, {})
+                end),
+              })
+            end
+          end,
+          block_end = vim.schedule_wrap(function()
+            if saved_terminal and is_open then
+              saved_terminal:show()
+            end
+            saved_terminal = nil
+            is_open = nil
+          end),
+        },
+      }
+    end,
   },
 
   {

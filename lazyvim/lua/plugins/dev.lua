@@ -8,6 +8,7 @@ end
 _G.bt = function()
   Snacks.debug.backtrace()
 end
+vim.print = _G.dd
 
 local render_math_spec = {
   "render-math.nvim",
@@ -67,10 +68,10 @@ return {
   {
     "folke/lazydev.nvim",
     dependencies = {},
+    opts_extend = { "library" },
     opts = {
       library = {
         { path = "wezterm-types", mods = { "wezterm" } },
-        { path = "luvit-meta/library", words = { "vim.uv" } },
       },
     },
   },
@@ -80,6 +81,7 @@ return {
     dev = true,
     opts = {
       debug = false,
+      enable_events = false,
     },
   },
   -- {
