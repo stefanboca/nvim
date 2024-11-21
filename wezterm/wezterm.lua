@@ -13,23 +13,11 @@ config.scrollback_lines = 10000
 
 -- Appearence
 config.color_scheme = "Tokyo Night"
-
-local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
-bar.apply_to_config(config, {
-	padding = { left = 1, right = 1 },
-})
-
-config.inactive_pane_hsb = {
-	brightness = 0.85,
-}
+config.inactive_pane_hsb = { hue = 1.02, saturation = 0.8, brightness = 0.75 }
 config.window_background_opacity = 0.8
 config.text_background_opacity = 0.5
 config.font = wezterm.font({ family = "Lilex", harfbuzz_features = { "cv09", "cv10", "cv11", "ss01", "ss03" } })
 config.font_size = 10
-
-config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = true
-
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -38,7 +26,18 @@ config.window_padding = {
 }
 config.default_cursor_style = "SteadyBlock"
 
+-- Tab bar
+local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
+bar.apply_to_config(config, {
+	padding = { left = 1, right = 1 },
+})
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
+
 -- Workspace
+---@class SmartWorkspaceSwitcher : PluginResponse
+---@field zoxide_path string
+---@field switch_workspace fun(opts?: table): KeyAssignment
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 workspace_switcher.zoxide_path = "/home/doctorwho/.cargo/bin/zoxide"
 config.default_workspace = "~"
