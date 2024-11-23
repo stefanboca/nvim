@@ -10,6 +10,11 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroup("typst"),
   pattern = { "typst" },
   callback = function(event)
-    vim.bo[event.buf].textwidth = 80
+    local bufnr = event.buf
+    vim.bo[bufnr].textwidth = 80
+
+    local pairs = require("mini.pairs")
+    pairs.map_buf(bufnr, "i", " ", { action = "open", pair = "  ", neigh_pattern = "%$%$" })
+    pairs.map_buf(bufnr, "i", "$", { action = "closeopen", pair = "$$" })
   end,
 })
