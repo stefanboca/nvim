@@ -16,19 +16,11 @@ d = ["diff"]
 l = ["log"]
 c = ["log", "-r", "log_current()"]
 current = ["log", "-r", "log_current()"]
-m = ["log", "-r", "log_mine()"]
-mine = ["log", "-r", "log_mine()"]
 a = ["log", "-r", "all()"]
 all = ["log", "-r", "all()"]
 
-[revsets]
-# log = "@ | ancestors(mutable(), 2) | trunk()"
-# log = "@ | ancestors(immutable_heads().., 4) | trunk()"
-log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
-
 [revset-aliases]
-"log_current()" = "@ | ancestors(reachable(@, mutable()), 2) | trunk()"
-"log_mine()" = "@ | ancestors(reachable(mine(), mutable()), 2) | trunk()"
+"log_current()" = "ancestors(immutable_heads()..@, 2)"
 
 [merge-tools]
 difft.diff-args = ["--color=always", "$left", "$right"]
