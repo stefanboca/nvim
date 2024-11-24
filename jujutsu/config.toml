@@ -3,21 +3,20 @@ name = "Stefan Boca"
 email = "stefan.r.boca@gmail.com"
 
 [ui]
-default-command = ["log", "--no-pager"]
+default-command = ["log"]
 editor = ["nvim"]
 log-word-wrap = true
 paginate = "auto"
 
 [aliases]
 rb = ["rebase"]
-d = ["diff", "--no-pager"]
-s = ["status", "--no-pager"]
+d = ["diff"]
 
 # log aliases
 l = ["log"]
-c = ["log", "--no-pager", "-r", "log_current()"]
+c = ["log", "-r", "log_current()"]
 current = ["log", "-r", "log_current()"]
-m = ["log", "--no-pager", "-r", "log_mine()"]
+m = ["log", "-r", "log_mine()"]
 mine = ["log", "-r", "log_mine()"]
 a = ["log", "-r", "all()"]
 all = ["log", "-r", "all()"]
