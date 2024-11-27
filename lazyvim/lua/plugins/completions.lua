@@ -10,30 +10,42 @@ return {
         preset = "enter",
       },
 
-      trigger = {
-        completion = { keyword_range = "full" },
-        signature_help = { enabled = true },
+      completion = {
+        keyword = { range = "full" },
+        list = {
+          selection = "preselect",
+        },
+        accept = {
+          auto_brackets = {
+            enabled = true,
+          },
+        },
+        menu = {
+          winblend = vim.o.pumblend,
+          draw = {
+            columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
+          },
+        },
+
+        documentation = {
+          auto_show = false,
+          window = {
+            winblend = vim.o.pumblend,
+          },
+        },
+
+        ghost_text = { enabled = true },
       },
+
       fuzzy = { prebuilt_binaries = { download = false } },
 
-      windows = {
-        autocomplete = {
-          selection = "manual",
-          draw = {
-            padding = { 1, 0 },
-            columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-            components = {
-              kind_icon = { width = { fill = true } },
-            },
-          },
-          winblend = vim.o.pumblend,
-        },
-        documentation = {
-          winblend = vim.o.pumblend,
-        },
-        signature_help = {
-          winblend = vim.o.pumblend,
-        },
+      signatures = {
+        enabled = true,
+        window = { winblend = vim.o.pumblend },
+      },
+
+      appearence = {
+        kind_icons = LazyVim.config.icons.kinds,
       },
     },
   },
