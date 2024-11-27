@@ -13,7 +13,7 @@ return {
       completion = {
         keyword = { range = "full" },
         list = {
-          selection = "preselect",
+          selection = "manual",
         },
         accept = {
           auto_brackets = {
