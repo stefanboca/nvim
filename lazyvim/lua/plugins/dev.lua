@@ -1,15 +1,3 @@
-_G.dd = function(...)
-  local args = { ... }
-  vim.schedule(function()
-    Snacks.debug.inspect(table.unpack(args))
-  end)
-  return ...
-end
-_G.bt = function()
-  Snacks.debug.backtrace()
-end
-vim.print = _G.dd
-
 local render_math_spec = {
   "render-math.nvim",
   lazy = false,
