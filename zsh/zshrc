@@ -96,5 +96,3 @@ source $ZSH/oh-my-zsh.sh
 
 ### USER CONFIGURATION ###
 
-bindkey ${FZF_WD_BINDKEY:-'^B'} wd_browse_widget
-
