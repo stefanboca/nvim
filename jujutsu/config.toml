@@ -11,6 +11,8 @@ paginate = "auto"
 [aliases]
 rb = ["rebase"]
 d = ["diff"]
+dt = ["diff", "--tool=difft"]
+gfar = ["git", "fetch", "--all-remotes"]
 
 # log aliases
 l = ["log"]
