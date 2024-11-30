@@ -1,6 +1,6 @@
-_G.dd = function(...)
+_G.dd = vim.schedule_wrap(function(...)
   Snacks.debug.inspect(...)
-end
+end)
 _G.bt = function()
   Snacks.debug.backtrace()
 end
