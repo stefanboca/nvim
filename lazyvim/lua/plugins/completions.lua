@@ -2,9 +2,7 @@ return {
   { "saghen/blink.compat" },
   {
     "saghen/blink.cmp",
-    version = false,
     optional = true,
-    build = "cargo build --release",
     opts = {
       keymap = {
         preset = "enter",
@@ -28,7 +26,7 @@ return {
         },
 
         documentation = {
-          auto_show = false,
+          auto_show = true,
           window = {
             winblend = vim.o.pumblend,
           },
@@ -42,20 +40,6 @@ return {
       signatures = {
         enabled = true,
         window = { winblend = vim.o.pumblend },
-      },
-
-      appearence = {
-        kind_icons = LazyVim.config.icons.kinds,
-      },
-    },
-  },
-
-  {
-    "catppuccin/nvim",
-    optional = true,
-    opts = {
-      integrations = {
-        blink_cmp = true,
       },
     },
   },

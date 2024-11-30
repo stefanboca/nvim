@@ -8,6 +8,7 @@ vim.o.linebreak = true
 vim.o.clipboard = "unnamed"
 
 vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_blink_main = true
 
 vim.g.root_spec = { "lsp", { ".git", "lua", ".jj" }, "cwd" }
 
