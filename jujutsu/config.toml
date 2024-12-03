@@ -13,6 +13,7 @@ rb = ["rebase"]
 d = ["diff"]
 dt = ["diff", "--tool=difft"]
 gfar = ["git", "fetch", "--all-remotes"]
+s = ["show", "-s"]
 
 # log aliases
 l = ["log"]
