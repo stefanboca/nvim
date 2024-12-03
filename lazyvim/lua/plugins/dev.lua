@@ -64,30 +64,6 @@ return {
     },
   },
 
-  {
-    "saghen/blink.compat",
-    dev = true,
-    opts = {
-      debug = false,
-      enable_events = false,
-    },
-  },
-  -- {
-  --   "saghen/blink.cmp",
-  --   dev = true,
-  --   opts = {
-  --     sources = {
-  --       providers = {
-  --         snippets = {
-  --           opts = {
-  --             friendly_snippets = true,
-  --           },
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
-
   -- render_math_spec,
   -- blink_cmp_spec,
 }

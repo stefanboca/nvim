@@ -18,7 +18,7 @@ require("lazy").setup({
   -- add LazyVim and import its plugins
   {
     "LazyVim/LazyVim",
-    dev = false,
+    dev = true,
     opts = {
       news = {
         lazyvim = true,
