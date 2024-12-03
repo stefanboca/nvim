@@ -4,7 +4,7 @@ email = "stefan.r.boca@gmail.com"
 
 [ui]
 default-command = ["log"]
-editor = ["nvim"]
+editor = ["nvim", "-c", "lua vim.g.desc_quit_on_write = true"]
 log-word-wrap = true
 paginate = "auto"
 

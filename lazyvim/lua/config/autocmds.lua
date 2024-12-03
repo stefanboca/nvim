@@ -18,3 +18,22 @@ vim.api.nvim_create_autocmd("FileType", {
     pairs.map_buf(bufnr, "i", "$", { action = "closeopen", pair = "$$" })
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("vcs_delete"),
+  pattern = { "gitcommit", "gitrebase", "jj", "jjdescription" },
+  callback = function(event)
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      group = augroup("vcs_delete_buf_" .. event.buf),
+      buffer = event.buf,
+      once = true,
+      callback = vim.schedule_wrap(function()
+        Snacks.bufdelete({ buf = event.buf, wipe = true })
+        if vim.g.desc_quit_on_write then
+          require("persistence").stop()
+          vim.cmd([[quit]])
+        end
+      end),
+    })
+  end,
+})

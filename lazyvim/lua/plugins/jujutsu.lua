@@ -53,17 +53,6 @@ return {
             else
               vim.api.nvim_set_current_win(winnr)
             end
-
-            if vim.tbl_contains({ "gitcommit", "gitrebase", "jj", "jjdescription" }, ft) then
-              vim.api.nvim_create_autocmd("BufWritePost", {
-                buffer = bufnr,
-                once = true,
-
-                callback = vim.schedule_wrap(function()
-                  vim.api.nvim_buf_delete(bufnr, {})
-                end),
-              })
-            end
           end,
           block_end = vim.schedule_wrap(function()
             if saved_terminal and is_open then
