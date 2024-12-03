@@ -17,13 +17,13 @@ s = ["show", "-s"]
 
 # log aliases
 l = ["log"]
-c = ["log", "-r", "log_current()"]
-current = ["log", "-r", "log_current()"]
+c = ["log", "-r", "current_branch()"]
+current = ["log", "-r", "current_branch()"]
 a = ["log", "-r", "all()"]
 all = ["log", "-r", "all()"]
 
 [revset-aliases]
-"log_current()" = "ancestors(immutable_heads()..@, 2)"
+"current_branch()" = "ancestors(immutable_heads()..@, 2)"
 
 [merge-tools]
 difft.diff-args = ["--color=always", "$left", "$right"]
