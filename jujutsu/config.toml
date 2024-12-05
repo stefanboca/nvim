@@ -7,6 +7,7 @@ default-command = ["log"]
 editor = ["nvim", "-c", "lua vim.g.desc_quit_on_write = true"]
 log-word-wrap = true
 paginate = "auto"
+conflict-marker-style = "snapshot"
 
 [aliases]
 rb = ["rebase"]
@@ -25,15 +26,27 @@ all = ["log", "-r", "all()"]
 [revset-aliases]
 "current_branch()" = "ancestors(immutable_heads()..@, 2)"
 
-[merge-tools]
-difft.diff-args = ["--color=always", "$left", "$right"]
-nvim.edit-args = ["-c", "DiffEditor $left $right $output"]
+[merge-tools.difft]
+program = "difft"
+diff-args = ["--color=always", "$left", "$right"]
+# diff-args = ["--color=always", "--display=inline", "$left", "$right"]
+
+[merge-tools.nvim]
+program = "nvim"
+diff-args = ["-c", "DiffEditor $left $right"]
+edit-args = ["-c", "DiffEditor $left $right"]
+merge-tool-edits-conflict-markers = true
+conflict-marker-style = "snapshot"
 
 [signing]
 sign-all = true
 backend = "ssh"
 key = "/home/doctorwho/.ssh/id_ed25519.pub"
 backends.ssh.allowed-signers = "/home/doctorwho/.config/git/allowed_signers"
+
+[git]
+push-bookmark-prefix = "stefanboca/push-"
+private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
 
 [core]
 core.fsmonitor = "none"
