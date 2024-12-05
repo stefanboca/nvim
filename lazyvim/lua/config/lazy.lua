@@ -1,3 +1,24 @@
+if vim.env.PROF then
+  local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
+  vim.opt.rtp:append(snacks)
+  require("snacks.profiler").startup({
+    startup = {
+      -- stop profiler on this event.
+      -- event = "VimEnter",
+      -- event = "UiEnter",
+      event = "VeryLazy",
+    },
+  })
+end
+
+_G.dd = function(...)
+  Snacks.debug.inspect(...)
+end
+_G.bt = function()
+  Snacks.debug.backtrace()
+end
+vim.print = _G.dd
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"

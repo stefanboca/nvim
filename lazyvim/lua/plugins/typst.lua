@@ -13,13 +13,10 @@ return {
     opts = {
       servers = {
         tinymist = {
+          single_file_support = true, -- Fixes LSP attachment in non-Git directories
           settings = {
             formatterMode = "typstyle",
           },
-          single_file_support = true,
-          root_dir = function()
-            return LazyVim.root.get()
-          end,
         },
       },
     },
@@ -37,13 +34,13 @@ return {
 
   {
     "chomosuke/typst-preview.nvim",
-    cmd = { "TypstPreview" },
+    cmd = { "TypstPreview", "TypstPreviewToggle", "TypstPreviewUpdate" },
     keys = {
       {
         "<leader>cp",
         ft = "typst",
         "<cmd>TypstPreviewToggle<cr>",
-        desc = "Typst Preview",
+        desc = "Toggle Typst Preview",
       },
     },
     opts = {

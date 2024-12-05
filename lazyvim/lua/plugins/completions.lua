@@ -21,7 +21,15 @@ return {
         menu = {
           winblend = vim.o.pumblend,
           draw = {
-            columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
+            columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "fill", "kind" } },
+            components = {
+              fill = {
+                width = { fill = true },
+                text = function()
+                  return ""
+                end,
+              },
+            },
           },
         },
 

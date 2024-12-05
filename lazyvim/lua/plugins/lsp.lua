@@ -20,11 +20,9 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        -- softwrap = 20,
         multiple_diag_under_cursor = true,
         multilines = true,
         show_all_diags_on_cursorline = true,
-        enable_on_insert = true,
       },
     },
     config = function(_, opts)

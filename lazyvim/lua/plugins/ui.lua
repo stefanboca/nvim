@@ -1,4 +1,11 @@
 return {
+  -- {
+  --   "folke/drop.nvim",
+  --   opts = {
+  --     filetype = { "snacks_dashboard" },
+  --   },
+  -- },
+
   {
     "catppuccin/nvim",
     optional = true,
@@ -19,10 +26,6 @@ return {
       transparent = not vim.g.neovide,
     },
   },
-  {
-    "LazyVim/LazyVim",
-    opts = { colorscheme = "tokyonight" },
-  },
 
   {
     "nvim-lualine/lualine.nvim",
@@ -37,28 +40,50 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      filesystem = {
-        window = {
-          fuzzy_finder_mappings = {
-            ["<c-j>"] = "move_cursor_down",
-            ["<c-k>"] = "move_cursor_up",
-          },
+      window = { mappings = { e = "toggle_node" } },
+      nesting_rules = {
+        ["README.*"] = {
+          ignore_case = true,
+          pattern = "README%.(.*)$",
+          files = { "AUTHORS", "CHANGELOG*", "CONTRIBUT*", "LICENSE*", "RELEASE_NOTES*", "ROADMAP*", "SECURITY*" },
+        },
+        [".gitignore"] = {
+          pattern = "%.gitignore$",
+          files = { "%.gitattributes", "%.gitmodules" },
+        },
+        ["pyproject.toml"] = {
+          pattern = "pyproject%.toml$",
+          files = { "%.python-version", "uv%.lock" },
+        },
+        ["Cargo.toml"] = {
+          pattern = "Cargo%.toml$",
+          files = { "*clippy%.toml", "*rustfmt%.toml", "Cargo%.lock", "rust-toolchain%.toml" },
+        },
+        ["flake.nix"] = {
+          pattern = "flake%.nix$",
+          files = { "flake%.lock" },
+        },
+        ["package.json"] = {
+          pattern = "package%.json$",
+          -- stylua: ignore
+          files = { "%.node-version", "%.npm*", "%.pnpm*", "package-lock%.json", "pnpm*", "yarn*", "netlify*", "vercel*", "*eslint*", "*prettier*", "node_modules" },
+        },
+        ["svelte.config.*"] = {
+          pattern = "svelte%.config%.(.*)$",
+          -- stylua: ignore
+          files = { "postcss%.config%.*", "tailwind%.config%.*", "windi%.config%.*",  "tsconfig%.*", "vite%.config%.*", "%.svelte-kit"},
+        },
+        ["+layout.svelte"] = {
+          pattern = "+layout%.svelte$",
+          files = { "+layout%.*" },
+        },
+        ["+page.svelte"] = {
+          pattern = "+page%.svelte$",
+          files = { "+page%.*" },
         },
       },
     },
   },
-
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   dependencies = {
-  --     "saifulapm/neotree-file-nesting-config",
-  --   },
-  --   opts = function(_, opts)
-  --     opts.window.mappings["e"] = "toggle_node"
-  --     opts.nesting_rules =
-  --       vim.tbl_extend("force", opts.nesting_rules or {}, require("neotree-file-nesting-config").nesting_rules)
-  --   end,
-  -- },
 
   {
     "s1n7ax/nvim-window-picker",
