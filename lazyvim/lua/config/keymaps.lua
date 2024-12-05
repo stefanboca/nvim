@@ -4,12 +4,16 @@
 
 local map = vim.keymap.set
 
--- Remap diagnostic jumps to not open float
+-- Remap diagnostic jumps to not open float and not wrap
 local diagnostic_goto = function(next, severity)
-  local count = next and 1 or -1
-  severity = severity and vim.diagnostic.severity[severity] or nil
+  local opts = {
+    count = next and 1 or -1,
+    severity = vim.diagnostic.severity[severity],
+    wrap = false,
+    float = false,
+  }
   return function()
-    vim.diagnostic.jump({ count = count, severity = severity, float = false })
+    vim.diagnostic.jump(opts)
   end
 end
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
