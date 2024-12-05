@@ -93,26 +93,8 @@ return {
       show_prompt = false,
       filter_rules = {
         bo = {
-          filetype = {
-            "Trouble",
-            "alpha",
-            "dashboard",
-            "edgy",
-            "fzf",
-            "help",
-            "lazy",
-            "lazyterm",
-            "mason",
-            "neo-tree",
-            "noice",
-            "notify",
-            "snacks_dashboard",
-            "snacks_notif",
-            "snacks_terminal",
-            "snacks_win",
-            "toggleterm",
-            "trouble",
-          },
+          -- stylua: ignore
+          filetype = { "Trouble", "alpha", "dashboard", "edgy", "fzf", "help", "lazy", "lazyterm", "mason", "neo-tree", "noice", "notify", "snacks_dashboard", "snacks_notif", "snacks_terminal", "snacks_win", "toggleterm", "trouble", },
           buftype = { "Outline", "Trouble", "nofile", "qf", "terminal", "trouble" },
         },
       },
