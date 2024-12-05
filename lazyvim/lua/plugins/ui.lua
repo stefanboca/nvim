@@ -7,6 +7,41 @@ return {
   -- },
 
   {
+    "b0o/incline.nvim",
+    opts = {
+      window = {
+        padding = 0,
+        margin = { horizontal = 0, vertical = 0 },
+      },
+      render = function(props)
+        local buf_path = vim.api.nvim_buf_get_name(props.buf)
+        local filename = vim.fn.fnamemodify(buf_path, ":t")
+        if filename == "" then
+          return
+        end
+        local dirname = vim.fn.fnamemodify(buf_path, ":~:.:h")
+
+        local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+        local modified = vim.bo[props.buf].modified
+        return {
+          ft_icon and { " ", ft_icon, " ", guifg = ft_color } or "",
+          modified and { " ● ", group = "BufferCurrentMod" } or " ",
+          dirname ~= "." and { dirname, "/", group = "Comment" } or "",
+          { filename, gui = "bold" },
+          " ",
+        }
+      end,
+    },
+  },
+  -- Remove path from lualine
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      table.remove(opts.sections.lualine_c, 4)
+    end,
+  },
+
+  {
     "catppuccin/nvim",
     optional = true,
     lazy = true,
