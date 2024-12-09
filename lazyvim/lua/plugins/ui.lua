@@ -71,6 +71,19 @@ return {
       },
     },
   },
+  -- Macro recording indicator
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_x, {
+        function()
+          local record_id = vim.fn.reg_recording()
+          return (record_id ~= "") and ("recording @" .. record_id) or ""
+        end,
+        color = { gui = "bold" },
+      })
+    end,
+  },
 
   {
     "nvim-neo-tree/neo-tree.nvim",
