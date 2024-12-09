@@ -9,6 +9,8 @@ function M.wk_desc(buf)
   })
 end
 
+local saved_terminal = nil
+
 return {
   -- Ignore .jj as well
   {
@@ -28,42 +30,34 @@ return {
     -- Ensure that it runs first to minimize delay when opening file from terminal
     lazy = false,
     priority = 50001,
-    opts = function()
-      local saved_terminal = nil
-      local is_open = nil
-
-      return {
-        window = {
-          open = "alternate",
-        },
-        block_for = {
-          jj = true,
-          jjdescription = true,
-        },
-        callbacks = {
-          pre_open = function()
-            saved_terminal, _ = Snacks.terminal.get(nil, { cwd = LazyVim.root(), create = false })
-            if saved_terminal then
-              is_open = saved_terminal:valid()
-            end
-          end,
-          post_open = function(bufnr, winnr, ft, is_blocking)
-            if is_blocking and saved_terminal then
-              saved_terminal:hide()
-            else
-              vim.api.nvim_set_current_win(winnr)
-            end
-          end,
-          block_end = vim.schedule_wrap(function()
-            if saved_terminal and is_open then
-              saved_terminal:show()
-            end
-            saved_terminal = nil
-            is_open = nil
-          end),
-        },
-      }
-    end,
+    opts = {
+      window = {
+        open = "alternate",
+      },
+      block_for = {
+        jj = true,
+        jjdescription = true,
+      },
+      nest_if_no_args = true,
+      callbacks = {
+        pre_open = function()
+          saved_terminal, _ = Snacks.terminal.get(nil, { cwd = LazyVim.root(), create = false })
+        end,
+        post_open = function(bufnr, winnr, ft, is_blocking)
+          if is_blocking and saved_terminal then
+            saved_terminal:hide()
+          else
+            vim.api.nvim_set_current_win(winnr)
+          end
+        end,
+        block_end = vim.schedule_wrap(function()
+          if saved_terminal then
+            saved_terminal:show()
+          end
+          saved_terminal = nil
+        end),
+      },
+    },
   },
 
   {
