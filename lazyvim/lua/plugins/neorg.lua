@@ -35,16 +35,7 @@ return {
     optional = true,
     opts = {
       sources = {
-        completion = {
-          enabled_providers = { "neorg" },
-        },
-        providers = {
-          neorg = {
-            name = "neorg",
-            module = "blink.compat.source",
-            score_offset = 3,
-          },
-        },
+        compat = { "neorg" },
       },
     },
   },

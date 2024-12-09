@@ -1,5 +1,5 @@
 return {
-  { "saghen/blink.compat" },
+  { "saghen/blink.compat", lazy = true },
   {
     "saghen/blink.cmp",
     optional = true,
@@ -20,6 +20,7 @@ return {
         },
         menu = {
           winblend = vim.o.pumblend,
+          direction_priority = { "n", "s" },
           draw = {
             columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "fill", "kind" } },
             components = {

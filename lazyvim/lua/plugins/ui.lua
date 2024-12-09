@@ -93,7 +93,8 @@ return {
         ["README.*"] = {
           ignore_case = true,
           pattern = "README%.(.*)$",
-          files = { "AUTHORS", "CHANGELOG*", "CONTRIBUT*", "LICENSE*", "RELEASE_NOTES*", "ROADMAP*", "SECURITY*" },
+          -- stylua: ignore
+          files = { "AUTHORS", "CHANGELOG*", "CONTRIBUT*", "LICENSE*", "RELEASE_NOTES*", "ROADMAP*", "SECURITY*", "GOVERNANCE*" },
         },
         [".gitignore"] = {
           pattern = "%.gitignore$",
