@@ -2,6 +2,7 @@ return {
   { "saghen/blink.compat", lazy = true },
   {
     "saghen/blink.cmp",
+    dev = true,
     optional = true,
     opts = {
       keymap = {
@@ -49,6 +50,14 @@ return {
       signatures = {
         enabled = true,
         window = { winblend = vim.o.pumblend },
+      },
+
+      sources = {
+        providers = {
+          lazydev = {
+            fallback = { "lsp" },
+          },
+        },
       },
     },
   },

@@ -35,7 +35,13 @@ return {
     optional = true,
     opts = {
       sources = {
-        compat = { "neorg" },
+        per_filetype = { neorg = { "neorg" } },
+        providers = {
+          neorg = {
+            name = "nerog",
+            module = "blink.compat.source",
+          },
+        },
       },
     },
   },

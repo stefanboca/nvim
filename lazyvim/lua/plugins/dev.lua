@@ -21,9 +21,7 @@ local blink_cmp_spec = {
     },
     opts = {
       sources = {
-        completion = {
-          enabled_providers = { "emoji", "nerdfont", "digraphs" },
-        },
+        default = { "emoji", "nerdfont", "digraphs" },
         providers = {
           emoji = {
             name = "emoji",
