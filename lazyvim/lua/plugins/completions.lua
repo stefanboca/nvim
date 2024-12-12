@@ -47,7 +47,7 @@ return {
 
       fuzzy = { prebuilt_binaries = { download = false } },
 
-      signatures = {
+      signature = {
         enabled = true,
         window = { winblend = vim.o.pumblend },
       },
@@ -55,7 +55,7 @@ return {
       sources = {
         providers = {
           lazydev = {
-            fallback = { "lsp" },
+            fallbacks = { "lsp" },
           },
         },
       },
