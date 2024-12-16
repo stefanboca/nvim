@@ -23,6 +23,8 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroup("vcs_delete"),
   pattern = { "gitcommit", "gitrebase", "jj", "jjdescription" },
   callback = function(event)
+    vim.opt_local.spell = true
+
     vim.api.nvim_create_autocmd("BufWritePost", {
       group = augroup("vcs_delete_buf_" .. event.buf),
       buffer = event.buf,

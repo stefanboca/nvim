@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
+local wk = require("which-key")
 
 -- Remap diagnostic jumps to not open float and not wrap
 local diagnostic_goto = function(next, severity)
@@ -24,5 +25,5 @@ map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- Remap macro recording to 'Q' instead of 'q'
-map("n", "q", "<nop>", {})
+wk.add({ "q", "<nop>", mode = "n", hidden = true })
 map("n", "Q", "q", { desc = "Record macro", noremap = true })
