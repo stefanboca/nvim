@@ -58,6 +58,8 @@ config.default_workspace = "~"
 local act = wezterm.action
 config.leader = { key = " ", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
+	{ key = "Enter", mods = "ALT", action = act.DisableDefaultAssignment },
+
 	-- Pass <C-Space> to pane if repeated
 	{ key = " ", mods = "LEADER|CTRL", action = act.SendKey({ key = " ", mods = "CTRL" }) },
 

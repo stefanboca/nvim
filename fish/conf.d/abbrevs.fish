@@ -3,6 +3,6 @@ abbr lj lazyjj
 abbr n nvim
 abbr nv neovide
 
-abbr o xdg-open
+abbr o open
 abbr s eza
 abbr sl eza -la

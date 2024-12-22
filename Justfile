@@ -27,7 +27,7 @@ update-omz:
   $ZSH/tools/upgrade.sh
 
 update-fisher:
-  fish -c 'fisher update'
+  fish -c 'fisher update' > /dev/null
 
 update-tldr:
   tldr --update

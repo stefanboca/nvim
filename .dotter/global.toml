@@ -1,7 +1,7 @@
 [helpers]
 
 [just.files]
-"Justfile" = "~/.config/just/justfile"
+"Justfile" = { target = "~/.config/just/justfile", type = "symbolic" }
 
 [alacritty.files]
 "alacritty" = "~/.config/alacritty"
@@ -28,8 +28,7 @@ font_size = "8.5"
 "scripts" = "~/.local/bin"
 
 [git.files]
-"git/gitconfig" = "~/.gitconfig"
-"git/ignore" = "~/.config/git/ignore"
+"git" = { target = "~/.config/git", type = "symbolic", recurse = false }
 
 [jujutsu.files]
 "jujutsu" = { target = "~/.config/jj", type = "symbolic", recurse = false }
