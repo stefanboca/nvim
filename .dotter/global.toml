@@ -9,7 +9,7 @@
 font_size = "8.5"
 
 [fish.files]
-"fish/" = { target = "~/.config/fish", type = "symbolic", recurse = false }
+"fish" = { target = "~/.config/fish", type = "symbolic", recurse = false }
 
 [gitui.files]
 "gitui" = "~/.config/gitui"
