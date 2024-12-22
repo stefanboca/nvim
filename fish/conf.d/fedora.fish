@@ -1,0 +1,13 @@
+abbr dnfl "dnf list"
+abbr dnfli "dnf list --installed"
+abbr dnfmc "dnf makecache"
+abbr dnfp "dnf info"
+abbr dnfs "dnf search"
+abbr dnfrq "dnf repoquery"
+
+abbr dnfu "sudo dnf upgrade"
+abbr dnfi "sudo dnf install"
+abbr dnfri "sudo dnf reinstall"
+abbr dnfsw "sudo dnf swap"
+abbr dnfr "sudo dnf remove"
+abbr dnfc "sudo dnf clean all"
