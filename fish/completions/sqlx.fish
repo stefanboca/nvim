@@ -1,0 +1,1 @@
+sqlx completions fish | source
