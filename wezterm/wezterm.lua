@@ -1,5 +1,7 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
+local transparent = false
+
 ---@type Config
 local config = wezterm.config_builder()
 
@@ -12,10 +14,12 @@ config.front_end = "WebGpu"
 config.scrollback_lines = 10000
 
 -- Appearence
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "Tokyo Night Storm"
 config.inactive_pane_hsb = { hue = 1.02, saturation = 0.8, brightness = 0.75 }
-config.window_background_opacity = 0.8
-config.text_background_opacity = 0.5
+if transparent then
+	config.window_background_opacity = 0.8
+	config.text_background_opacity = 0.5
+end
 config.font = wezterm.font({ family = "Lilex", harfbuzz_features = { "cv09", "cv10", "cv11", "ss01", "ss03" } })
 config.font_size = 10
 config.window_padding = {

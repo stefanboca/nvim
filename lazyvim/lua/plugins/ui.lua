@@ -49,7 +49,7 @@ return {
       background = {
         dark = "macchiato",
       },
-      transparent_background = not vim.g.neovide,
+      transparent_background = not vim.g.neovide and vim.g.transparent,
       term_colors = true,
     },
   },
@@ -57,8 +57,8 @@ return {
     "folke/tokyonight.nvim",
     optional = true,
     opts = {
-      style = "night",
-      transparent = not vim.g.neovide,
+      style = "storm",
+      transparent = not vim.g.neovide and vim.g.transparent,
     },
   },
 
