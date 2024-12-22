@@ -1,5 +1,5 @@
 return {
-  { "saghen/blink.compat", lazy = true },
+  { "saghen/blink.compat", dev = true, lazy = true },
   {
     "saghen/blink.cmp",
     dev = true,
@@ -7,6 +7,7 @@ return {
     opts = {
       keymap = {
         preset = "enter",
+        -- cmdline = {},
       },
 
       completion = {
@@ -18,6 +19,9 @@ return {
           auto_brackets = {
             enabled = true,
           },
+        },
+        trigger = {
+          prefetch_on_insert = true,
         },
         menu = {
           winblend = vim.o.pumblend,
@@ -48,17 +52,38 @@ return {
       fuzzy = { prebuilt_binaries = { download = false } },
 
       signature = {
-        enabled = true,
+        -- enabled = true,
         window = { winblend = vim.o.pumblend },
       },
 
       sources = {
-        providers = {
-          lazydev = {
-            fallbacks = { "lsp" },
-          },
-        },
+        cmdline = function()
+          local type = vim.fn.getcmdtype()
+          -- Search forward and backward
+          if type == "/" or type == "?" then
+            return { "buffer" }
+          end
+          -- Commands
+          if type == ":" then
+            return { "cmdline" }
+          end
+          return {}
+        end,
       },
     },
   },
+
+  -- disable noice signature auto-show, because blink handles it
+  -- {
+  --   "noice.nvim",
+  --   opts = {
+  --     lsp = {
+  --       signature = {
+  --         auto_open = {
+  --           enabled = false,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 }
