@@ -4,7 +4,7 @@ install-omz:
   @echo "Installing Oh My Zsh..."
   env ZSH="$HOME/.config/oh-my-zsh" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-update-all: update-dnf update-flatpak update-rust update-crates update-uv update-omz update-tldr
+update-all: update-dnf update-flatpak update-rust update-crates update-uv update-tldr
 
 update-dnf:
   sudo dnf upgrade --refresh
