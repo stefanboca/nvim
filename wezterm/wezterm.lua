@@ -15,7 +15,7 @@ config.scrollback_lines = 10000
 
 -- Appearence
 config.color_scheme = "Tokyo Night Storm"
-config.inactive_pane_hsb = { hue = 1.02, saturation = 0.8, brightness = 0.75 }
+config.inactive_pane_hsb = { hue = 1, saturation = 0.9, brightness = 0.75 }
 if transparent then
 	config.window_background_opacity = 0.8
 	config.text_background_opacity = 0.5
