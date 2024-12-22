@@ -1,9 +1,10 @@
 packages = [
-  "just",
+  "fish",
   "git",
+  "jujutsu",
+  "just",
   "lazygit",
   "lazyvim",
-  "jujutsu",
   "neovide",
   "starship",
   "wezterm",
