@@ -12,13 +12,13 @@ font_size = "8.5"
 "fish" = { target = "~/.config/fish", type = "symbolic", recurse = false }
 
 [gitui.files]
-"gitui" = "~/.config/gitui"
+"gitui" = { target = "~/.config/gitui", type = "symbolic", recurse = false }
 
 [lazygit.files]
-"lazygit" = { target = "~/.config/lazygit", type = "symbolic" }
+"lazygit" = { target = "~/.config/lazygit", type = "symbolic", recurse = false }
 
 [lazyvim.files]
-"lazyvim" = { target = "~/.config/nvim", type = "symbolic" }
+"lazyvim" = { target = "~/.config/nvim", type = "symbolic", recurse = false }
 
 [neovide.files]
 "neovide/config.toml" = "~/.config/neovide/config.toml"
@@ -32,7 +32,7 @@ font_size = "8.5"
 "git/ignore" = "~/.config/git/ignore"
 
 [jujutsu.files]
-"jujutsu/config.toml" = { target = "~/.config/jj/config.toml", type = "symbolic" }
+"jujutsu" = { target = "~/.config/jj", type = "symbolic", recurse = false }
 
 [starship.files]
 "starship/starship.toml" = { target = "~/.config/starship.toml", type = "symbolic" }
