@@ -1,5 +1,5 @@
 export EDITOR="nvim"
-export LESS="-FRX"
+export LESS="-FRXS"
 
 # rust esp toolchain
 export ESPUP_EXPORT_FILE="$ZSH_CUSTOM/export-esp.zsh"

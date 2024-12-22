@@ -1,5 +1,5 @@
-alias sl=eza
-alias s="eza -la"
+alias s=eza
+alias sl="eza -la"
 alias o=xdg-open
 alias lg=lazygit
 alias lj=lazyjj
