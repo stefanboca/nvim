@@ -79,10 +79,10 @@ plugins=(
   wd
   rust
 
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-completions
-  alias-tips
+  # zsh-autosuggestions
+  # zsh-syntax-highlighting
+  # zsh-completions
+  # alias-tips
 )
 
 ### PLUGIN SETTINGS ###
