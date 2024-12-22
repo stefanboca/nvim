@@ -9,5 +9,4 @@ packages = [
   "starship",
   "wezterm",
   "zathura",
-  "zsh",
 ]
