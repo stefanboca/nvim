@@ -13,8 +13,11 @@ conflict-marker-style = "snapshot"
 rb = ["rebase"]
 d = ["diff"]
 dt = ["diff", "--tool=difft"]
-gfar = ["git", "fetch", "--all-remotes"]
 s = ["show", "-s"]
+
+g = ["git"]
+gp = ["git", "push"]
+gfar = ["git", "fetch", "--all-remotes"]
 
 # log aliases
 l = ["log"]
@@ -45,7 +48,7 @@ key = "/home/doctorwho/.ssh/id_ed25519.pub"
 backends.ssh.allowed-signers = "/home/doctorwho/.config/git/allowed_signers"
 
 [git]
-push-bookmark-prefix = "stefanboca/push-"
+push-bookmark-prefix = "sb/push-"
 private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
 
 [core]
