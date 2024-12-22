@@ -20,9 +20,9 @@ vim.g.loaded_ruby_provider = 0
 vim.g.transparent = false
 
 if vim.g.neovide then
+  vim.o.pumblend = 80
+  vim.o.winblend = 80
   if vim.g.transparent then
-    vim.o.pumblend = 80
-    vim.o.winblend = 80
     vim.g.neovide_transparency = 0.8
   end
 
