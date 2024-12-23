@@ -45,6 +45,9 @@ font_size = "8.5"
 [xplr.files]
 "xplr" = "~/.config/xplr"
 
+[yazi.files]
+"yazi" = { target = "~/.config/yazi", type = "symbolic", recurse = false }
+
 [zathura.files]
 "zathura/zathurarc" = "~/.config/zathura/zathurarc"
 

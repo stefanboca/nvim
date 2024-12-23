@@ -6,7 +6,7 @@ packages = [
   "lazygit",
   "lazyvim",
   "neovide",
-  "starship",
   "wezterm",
+  "yazi",
   "zathura",
 ]
