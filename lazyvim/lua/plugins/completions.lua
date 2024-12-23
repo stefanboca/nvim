@@ -3,17 +3,24 @@ return {
   {
     "saghen/blink.cmp",
     dev = true,
+    event = { "InsertEnter", "CmdlineEnter" },
     optional = true,
     opts = {
       keymap = {
         preset = "enter",
-        -- cmdline = {},
+        cmdline = {
+          preset = "default",
+          ["<Tab>"] = { "select_next", "fallback" },
+          ["<S-Tab>"] = { "select_prev", "fallback" },
+        },
       },
 
       completion = {
         keyword = { range = "full" },
         list = {
-          selection = "manual",
+          selection = function(ctx)
+            return ctx.mode == "cmdline" and "auto_insert" or "manual"
+          end,
         },
         accept = {
           auto_brackets = {
