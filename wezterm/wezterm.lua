@@ -5,6 +5,10 @@ local transparent = false
 ---@type Config
 local config = wezterm.config_builder()
 
+local home = os.getenv("HOME")
+config.set_environment_variables = {
+	TERMINFO_DIRS = home .. "/.local/share/terminfo:/usr/share/terminfo",
+}
 config.term = "wezterm"
 config.check_for_updates = false
 config.warn_about_missing_glyphs = false
