@@ -1,3 +1,4 @@
+-- profiling
 if vim.env.PROF then
   local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
   vim.opt.rtp:append(snacks)
@@ -11,6 +12,7 @@ if vim.env.PROF then
   })
 end
 
+-- some debug functions
 _G.dd = function(...)
   Snacks.debug.inspect(...)
 end

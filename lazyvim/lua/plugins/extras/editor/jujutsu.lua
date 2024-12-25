@@ -1,6 +1,4 @@
-local M = {}
-
-function M.wk_desc(buf)
+local function wk_desc(buf)
   local wk = require("which-key")
   wk.add({
     { "<localleader><CR>", desc = "Accept changeset" },
@@ -15,6 +13,7 @@ return {
   -- Ignore .jj as well
   {
     "ibhagwan/fzf-lua",
+    optional = true,
     opts = {
       files = {
         find_opts = [[-type f -not -path '*/\(\.git|\.jj\)/*' -printf '%P\n']],
@@ -72,10 +71,10 @@ return {
       },
       hooks = {
         on_tree_mount = function(context)
-          M.wk_desc(context.buf)
+          wk_desc(context.buf)
         end,
         on_diff_mount = function(context)
-          M.wk_desc(context.buf)
+          wk_desc(context.buf)
         end,
       },
     },

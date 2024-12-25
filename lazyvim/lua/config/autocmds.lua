@@ -6,6 +6,7 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("custom_" .. name, { clear = true })
 end
 
+-- add autopairs for typst equations
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("typst"),
   pattern = { "typst" },
@@ -19,6 +20,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- autoclose on write for interactuve vcs tasks
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("vcs_delete"),
   pattern = { "gitcommit", "gitrebase", "jj", "jjdescription" },

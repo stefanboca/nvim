@@ -1,6 +1,12 @@
--- mostly a copy of https://github.com/LazyVim/LazyVim/pull/4042 until it's merged
+-- a copy of https://github.com/LazyVim/LazyVim/pull/4042 until it's merged
 
 return {
+  recommended = function()
+    return LazyVim.extras.wants({
+      ft = { "typst" },
+    })
+  end,
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -13,6 +19,19 @@ return {
     opts = {
       servers = {
         tinymist = {
+          keys = {
+            {
+              "<leader>cP",
+              function()
+                local buf_name = vim.api.nvim_buf_get_name(0)
+                LazyVim.lsp.execute({
+                  command = "tinymist.pinMain",
+                  arguments = { buf_name },
+                })
+              end,
+              desc = "Pin main file",
+            },
+          },
           single_file_support = true, -- Fixes LSP attachment in non-Git directories
           settings = {
             formatterMode = "typstyle",
@@ -46,6 +65,15 @@ return {
     opts = {
       dependencies_bin = {
         tinymist = "tinymist",
+      },
+    },
+  },
+
+  {
+    "folke/ts-comments.nvim",
+    opts = {
+      lang = {
+        typst = { "// %s", "/* %s */" },
       },
     },
   },

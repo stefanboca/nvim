@@ -58,7 +58,7 @@ return {
       fuzzy = { prebuilt_binaries = { download = false } },
 
       signature = {
-        -- enabled = true,
+        enabled = true,
         window = { winblend = vim.o.pumblend },
       },
 
@@ -77,19 +77,9 @@ return {
         end,
       },
     },
+    spec = {
+      -- disable noice signature auto-show, because blink handles it
+      { "noice.nvim", opts = { lsp = { signature = { auto_open = { enabled = false } } } } },
+    },
   },
-
-  -- disable noice signature auto-show, because blink handles it
-  -- {
-  --   "noice.nvim",
-  --   opts = {
-  --     lsp = {
-  --       signature = {
-  --         auto_open = {
-  --           enabled = false,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
 }

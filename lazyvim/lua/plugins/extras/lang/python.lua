@@ -4,8 +4,10 @@ return {
     branch = "regexp",
     enabled = true,
     opts = {
-      options = {
-        picker = "fzf-lua",
+      settings = {
+        options = {
+          picker = "fzf-lua",
+        },
       },
     },
   },

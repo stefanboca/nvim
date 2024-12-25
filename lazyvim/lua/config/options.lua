@@ -10,6 +10,7 @@ vim.o.clipboard = "unnamed"
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_blink_main = true
 
+-- add .jj
 vim.g.root_spec = { "lsp", { ".git", "lua", ".jj" }, "cwd" }
 
 vim.g.loaded_node_provider = 0
@@ -17,8 +18,10 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- custom setting - enables colorcheme transparency
 vim.g.transparent = false
 
+-- neovide settings
 if vim.g.neovide then
   vim.o.pumblend = 80
   vim.o.winblend = 80

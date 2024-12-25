@@ -1,11 +1,33 @@
 return {
-  -- {
-  --   "folke/drop.nvim",
-  --   opts = {
-  --     filetype = { "snacks_dashboard" },
-  --   },
-  -- },
+  -- screen saver
+  {
+    "folke/drop.nvim",
+    cond = not vim.g.transparent,
+    opts = {
+      filetype = { "snacks_dashboard" },
+    },
+  },
 
+  -- colorscheme transparency and styles
+  {
+    "catppuccin",
+    opts = {
+      background = {
+        dark = "macchiato",
+      },
+      transparent_background = not vim.g.neovide and vim.g.transparent,
+      term_colors = true,
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      style = "storm",
+      transparent = not vim.g.neovide and vim.g.transparent,
+    },
+  },
+
+  -- buffer paths in top right of window
   {
     "b0o/incline.nvim",
     opts = {
@@ -32,36 +54,18 @@ return {
         }
       end,
     },
-  },
-  -- Remove path from lualine
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      table.remove(opts.sections.lualine_c, 4)
-    end,
-  },
-
-  {
-    "catppuccin/nvim",
-    optional = true,
-    lazy = true,
-    opts = {
-      background = {
-        dark = "macchiato",
+    specs = {
+      -- Remove path from lualine
+      {
+        "nvim-lualine/lualine.nvim",
+        opts = function(_, opts)
+          table.remove(opts.sections.lualine_c, 4)
+        end,
       },
-      transparent_background = not vim.g.neovide and vim.g.transparent,
-      term_colors = true,
-    },
-  },
-  {
-    "folke/tokyonight.nvim",
-    optional = true,
-    opts = {
-      style = "storm",
-      transparent = not vim.g.neovide and vim.g.transparent,
     },
   },
 
+  -- lyaline style
   {
     "nvim-lualine/lualine.nvim",
     opts = {
@@ -85,55 +89,7 @@ return {
     end,
   },
 
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = { mappings = { e = "toggle_node" } },
-      nesting_rules = {
-        ["README.*"] = {
-          ignore_case = true,
-          pattern = "README%.(.*)$",
-          -- stylua: ignore
-          files = { "AUTHORS", "CHANGELOG*", "CONTRIBUT*", "LICENSE*", "RELEASE_NOTES*", "ROADMAP*", "SECURITY*", "GOVERNANCE*" },
-        },
-        [".gitignore"] = {
-          pattern = "%.gitignore$",
-          files = { "%.gitattributes", "%.gitmodules" },
-        },
-        ["pyproject.toml"] = {
-          pattern = "pyproject%.toml$",
-          files = { "%.python-version", "uv%.lock" },
-        },
-        ["Cargo.toml"] = {
-          pattern = "Cargo%.toml$",
-          files = { "*clippy%.toml", "*rustfmt%.toml", "Cargo%.lock", "rust-toolchain%.toml" },
-        },
-        ["flake.nix"] = {
-          pattern = "flake%.nix$",
-          files = { "flake%.lock" },
-        },
-        ["package.json"] = {
-          pattern = "package%.json$",
-          -- stylua: ignore
-          files = { "%.node-version", "%.npm*", "%.pnpm*", "package-lock%.json", "pnpm*", "yarn*", "netlify*", "vercel*", "*eslint*", "*prettier*", "node_modules" },
-        },
-        ["svelte.config.*"] = {
-          pattern = "svelte%.config%.(.*)$",
-          -- stylua: ignore
-          files = { "postcss%.config%.*", "tailwind%.config%.*", "windi%.config%.*",  "tsconfig%.*", "vite%.config%.*", "%.svelte-kit"},
-        },
-        ["+layout.svelte"] = {
-          pattern = "+layout%.svelte$",
-          files = { "+layout%.*" },
-        },
-        ["+page.svelte"] = {
-          pattern = "+page%.svelte$",
-          files = { "+page%.*" },
-        },
-      },
-    },
-  },
-
+  -- window picker for neo-tree
   {
     "s1n7ax/nvim-window-picker",
     lazy = true,
@@ -150,33 +106,38 @@ return {
     },
   },
 
+  -- pretty inline diagnostics
   {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      {
-        "SmiteshP/nvim-navbuddy",
-        dev = true,
-        dependencies = {
-          "SmiteshP/nvim-navic",
-          "MunifTanjim/nui.nvim",
-        },
-        keys = {
-          {
-            "<leader>cN",
-            function()
-              require("nvim-navbuddy").open()
-            end,
-            desc = "Open Navbuddy",
-          },
-        },
-        opts = { lsp = { auto_attach = true } },
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        multiple_diag_under_cursor = true,
+        multilines = true,
+        show_all_diags_on_cursorline = true,
+        enable_on_insert = true,
       },
     },
+    config = function(_, opts)
+      local diags = require("tiny-inline-diagnostic.diagnostic")
+      Snacks.toggle({
+        name = "Diagnostics",
+        get = function()
+          return diags.enabled
+        end,
+        set = diags.toggle,
+      }):map("<leader>ud")
+      require("tiny-inline-diagnostic").setup(opts)
+    end,
+    spec = { { "neovim/nvim-lspconfig", opts = { virtual_text = false } } },
   },
-
+  -- rounded float diagnostics
   {
-    "meznaric/key-analyzer.nvim",
-    cmd = "KeyAnalyzer",
-    opts = {},
+    "neovim/nvim-lspconfig",
+    opts = {
+      diagnostics = {
+        float = { border = "rounded" },
+      },
+    },
   },
 }

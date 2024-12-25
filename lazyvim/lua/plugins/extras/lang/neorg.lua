@@ -1,4 +1,10 @@
 return {
+  recommended = function()
+    return LazyVim.extras.wants({
+      ft = { "norg" },
+    })
+  end,
+
   { "benlubas/neorg-conceal-wrap", lazy = true },
   {
     "nvim-neorg/neorg",
