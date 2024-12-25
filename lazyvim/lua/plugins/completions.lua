@@ -16,7 +16,6 @@ return {
       },
 
       completion = {
-        keyword = { range = "full" },
         list = {
           selection = function(ctx)
             return ctx.mode == "cmdline" and "auto_insert" or "manual"
