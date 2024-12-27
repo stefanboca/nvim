@@ -11,6 +11,9 @@ font_size = "8.5"
 [fish.files]
 "fish" = { target = "~/.config/fish", type = "symbolic", recurse = false }
 
+[ghostty.files]
+"ghostty" = { target = "~/.config/ghostty", type = "symbolic", recurse = false }
+
 [gitui.files]
 "gitui" = { target = "~/.config/gitui", type = "symbolic", recurse = false }
 
