@@ -5,9 +5,8 @@ local transparent = false
 ---@type Config
 local config = wezterm.config_builder()
 
-local home = os.getenv("HOME")
 config.set_environment_variables = {
-	TERMINFO_DIRS = home .. "/.local/share/terminfo:/usr/share/terminfo",
+	TERMINFO_DIRS = os.getenv("XDG_DATA_HOME") .. "/.local/share/terminfo:/usr/share/terminfo",
 }
 config.term = "wezterm"
 config.check_for_updates = false
@@ -47,7 +46,7 @@ config.tab_bar_at_bottom = true
 ---@field zoxide_path string
 ---@field switch_workspace fun(opts?: table): KeyAssignment
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
-workspace_switcher.zoxide_path = "/home/doctorwho/.cargo/bin/zoxide"
+workspace_switcher.zoxide_path = os.getenv("CARGO_HOME") .. "/.local/share/cargo/bin/zoxide"
 config.default_workspace = "~"
 
 -- config.unix_domains = { { name = "unix" } }
