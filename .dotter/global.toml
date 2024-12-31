@@ -1,8 +1,5 @@
 [helpers]
 
-[just.files]
-"Justfile" = { target = "~/.config/just/justfile", type = "symbolic" }
-
 [alacritty.files]
 "alacritty" = "~/.config/alacritty"
 [alacritty.variables]

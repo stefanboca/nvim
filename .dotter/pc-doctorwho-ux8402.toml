@@ -3,7 +3,6 @@ packages = [
   "ghostty",
   "git",
   "jujutsu",
-  "just",
   "lazygit",
   "lazyvim",
   "neovide",
