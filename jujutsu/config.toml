@@ -17,6 +17,7 @@ s = ["show", "-s"]
 
 g = ["git"]
 gp = ["git", "push"]
+gf = ["git", "fetch"]
 gfar = ["git", "fetch", "--all-remotes"]
 
 # log aliases
