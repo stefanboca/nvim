@@ -3,7 +3,7 @@ function _tide_item_jj
         return 1
     end
 
-    set jj_status (jj log -r@ -n1 --ignore-working-copy --no-graph --color always -T '
+    set -l jj_status (jj log -r@ --ignore-working-copy --no-graph --color always -T '
     separate(" ",
         change_id.shortest(8),
         commit_id.shortest(8),
@@ -27,7 +27,6 @@ function _tide_item_jj
         if(conflict, "conflict"),
         if(divergent, "divergent"),
         if(hidden, "hidden"),
-    )' | string trim)
-    set jj_info $jj_status
-    _tide_print_item jj $tide_jj_icon' ' "($(string join ', ' $jj_info))"
+    )')
+    _tide_print_item jj $tide_jj_icon' ' "($jj_status)"
 end
