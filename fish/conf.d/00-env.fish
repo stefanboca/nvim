@@ -20,14 +20,3 @@ set -gx ELAN_HOME $XDG_DATA_HOME/elan
 set -gx PIXI_HOME $XDG_DATA_HOME/pixi
 
 fish_add_path -g $CARGO_HOME/bin $GOPATH/bin $PIXI_HOME/bin $ELAN_HOME/bin
-
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-    set -gx EDITOR nvim
-    set -gx LESS -FRXS
-
-    set -gx fish_key_bindings fish_user_key_bindings
-    fzf_configure_bindings --history=
-
-    zoxide init fish | source
-end
