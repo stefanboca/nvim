@@ -38,15 +38,15 @@ return {
         jjdescription = true,
       },
       nest_if_no_args = true,
-      callbacks = {
+      hooks = {
         pre_open = function()
           saved_terminal, _ = Snacks.terminal.get(nil, { cwd = LazyVim.root(), create = false })
         end,
-        post_open = function(bufnr, winnr, ft, is_blocking)
-          if is_blocking and saved_terminal then
+        post_open = function(opts)
+          if opts.is_blocking and saved_terminal then
             saved_terminal:hide()
           else
-            vim.api.nvim_set_current_win(winnr)
+            vim.api.nvim_set_current_win(opts.winnr)
           end
         end,
         block_end = vim.schedule_wrap(function()
