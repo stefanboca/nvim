@@ -1,3 +1,5 @@
+status is-interactive || exit 0
+
 abbr dnfl "dnf5 list"
 abbr dnfli "dnf5 list --installed"
 abbr dnfmc "dnf5 makecache"

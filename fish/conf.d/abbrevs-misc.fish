@@ -1,3 +1,5 @@
+status is-interactive || exit 0
+
 abbr lg lazygit
 abbr lj lazyjj
 abbr n nvim

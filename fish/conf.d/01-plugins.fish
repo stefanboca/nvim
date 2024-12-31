@@ -1,6 +1,8 @@
-set -gp fish_complete_path ~/.config/fish_plugins/completions
-set -gp fish_function_path ~/.config/fish_plugins/functions
+set -gx fisher_path $XDG_DATA_HOME/fish/plugins
 
-for f in ~/.config/fish_plugins/conf.d/*.fish
+set -gp fish_complete_path $fisher_path/completions
+set -gp fish_function_path $fisher_path/functions
+
+for f in $fisher_path/conf.d/*.fish
     source $f
 end

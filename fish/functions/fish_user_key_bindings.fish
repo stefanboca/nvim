@@ -1,8 +1,10 @@
-function fish_user_key_bindings --description "Vi-style bindings that inherit emacs-style bindings in insert mode"
+function fish_user_key_bindings
+    # Vi bindings that inherit emacs bindings in insert mode
     fish_default_key_bindings -M insert
     fish_vi_key_bindings --no-erase insert
 
-    if command -q fzf_configure_bindings
+    # Disable fzf history - use builtin pager
+    if functions -q fzf_configure_bindings
         fzf_configure_bindings --history=
     end
 end
