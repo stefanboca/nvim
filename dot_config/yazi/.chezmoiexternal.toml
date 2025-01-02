@@ -1,0 +1,5 @@
+["theme.toml"]
+type = "file"
+url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/heads/main/extras/yazi/tokyonight_storm.toml"
+# refresh every 4 weeks
+refreshPeriod = "672h"
