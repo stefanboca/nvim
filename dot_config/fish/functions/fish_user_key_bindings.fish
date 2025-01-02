@@ -5,6 +5,6 @@ function fish_user_key_bindings
 
     # Disable fzf history - use builtin pager
     if functions -q fzf_configure_bindings
-        fzf_configure_bindings --history=
+        fzf_configure_bindings --history=\e\cr
     end
 end
