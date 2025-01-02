@@ -1,5 +1,7 @@
 #!/bin/env fish
 
+set -U fish_greeting
+
 echo y | fish_config theme save tokyonight_storm
 
 # install fisher plugins
