@@ -1,13 +1,4 @@
 return {
-  -- screen saver
-  {
-    "folke/drop.nvim",
-    cond = not vim.g.transparent,
-    opts = {
-      filetype = { "snacks_dashboard" },
-    },
-  },
-
   -- colorscheme transparency and styles
   {
     "catppuccin",
