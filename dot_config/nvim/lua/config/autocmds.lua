@@ -20,6 +20,17 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- set fish indent width to 4 to match fish_indent
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("fish"),
+  pattern = { "fish" },
+  callback = function(event)
+    local bufnr = event.buf
+    vim.bo[bufnr].shiftwidth = 4
+    vim.bo[bufnr].tabstop = 4
+  end,
+})
+
 -- autoclose on write for interactuve vcs tasks
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("vcs_delete"),
