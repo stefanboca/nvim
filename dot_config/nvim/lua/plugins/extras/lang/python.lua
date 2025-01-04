@@ -1,12 +1,12 @@
 return {
   {
-    "akthe-at/venv-selector.nvim",
-    branch = "regexp",
+    "venv-selector.nvim",
+    dev = true,
     enabled = true,
     opts = {
       settings = {
         options = {
-          picker = "fzf-lua",
+          picker = "auto",
         },
       },
     },
