@@ -17,4 +17,15 @@ return {
     cmd = "KeyAnalyzer",
     opts = {},
   },
+
+  {
+    "snacks.nvim",
+    opts = function()
+      -- set these again, even though they are set in lazy.lua, in order for
+      -- backtrace to be correct
+      _G.dd = Snacks.debug.inspect
+      _G.bt = Snacks.debug.backtrace
+      vim.print = Snacks.debug.inspect
+    end,
+  },
 }
