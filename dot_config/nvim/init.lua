@@ -5,7 +5,7 @@ end
 _G.dd = function(...)
   require("snacks.debug").inspect(...)
 end
-_G.bt = function(...)
+_G.bt = function()
   require("snacks.debug").backtrace()
 end
 _G.p = function(...)
@@ -15,6 +15,7 @@ vim.print = _G.dd
 
 if vim.env.PROF then
   vim.opt.rtp:append(vim.fn.stdpath("data") .. "lazy/snacks.nvim/")
+  --- @diagnostic disable-next-line:missing-fields
   require("snacks.profiler").startup({
     startup = {
       -- event = "UIEnter",

@@ -25,6 +25,7 @@ return {
       -- backtrace to be correct
       _G.dd = Snacks.debug.inspect
       _G.bt = Snacks.debug.backtrace
+      _G.p = Snacks.debug.profile
       vim.print = Snacks.debug.inspect
     end,
   },
