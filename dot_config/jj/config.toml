@@ -42,6 +42,12 @@ edit-args = ["-c", "DiffEditor $left $right"]
 merge-tool-edits-conflict-markers = true
 conflict-marker-style = "snapshot"
 
+[merge-tools.mergiraf]
+program = "mergiraf"
+merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "--fast"]
+merge-conflict-exit-codes = [1]
+conflict-marker-style = "git"
+
 [signing]
 sign-all = true
 backend = "ssh"
