@@ -6,17 +6,20 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("custom_" .. name, { clear = true })
 end
 
--- add autopairs for typst equations
+-- add autopairs for typst and enable spelling
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("typst"),
   pattern = { "typst" },
   callback = function(event)
     local bufnr = event.buf
     vim.bo[bufnr].textwidth = 80
+    vim.opt_local.spell = true
 
     local pairs = require("mini.pairs")
     pairs.map_buf(bufnr, "i", " ", { action = "open", pair = "  ", neigh_pattern = "%$%$" })
     pairs.map_buf(bufnr, "i", "$", { action = "closeopen", pair = "$$" })
+    pairs.map_buf(bufnr, "i", "`", { action = "closeopen", pair = "``" })
+    -- * and _ are not autopaired because they can be used in math equations
   end,
 })
 
