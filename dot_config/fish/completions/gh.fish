@@ -1,0 +1,1 @@
+gh completions --fish | source
