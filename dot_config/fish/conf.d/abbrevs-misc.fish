@@ -8,7 +8,7 @@ abbr nv neovide
 
 abbr o open
 abbr s eza
-abbr sl eza
+abbr sl eza -l
 abbr sa eza -la
 
 abbr sc sudo systemctl --system
