@@ -14,6 +14,7 @@ rb = ["rebase"]
 d = ["diff"]
 dt = ["diff", "--tool=difft"]
 s = ["show", "-s"]
+sdt = ["show", "--tool=difft"]
 
 g = ["git"]
 gp = ["git", "push"]
