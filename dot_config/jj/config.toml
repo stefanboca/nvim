@@ -56,7 +56,7 @@ backends.ssh.allowed-signers = "/home/doctorwho/.config/git/allowed_signers"
 
 [git]
 push-bookmark-prefix = "sb/push-"
-private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
+private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')"
 
 [core]
 core.fsmonitor = "none"
