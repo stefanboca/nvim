@@ -61,3 +61,9 @@ private-commits = "description(glob:'wip:*') | description(glob:'private:*') | d
 [core]
 core.fsmonitor = "none"
 watchman.register_snapshot_trigger = true
+
+[colors]
+description = "cyan"
+conflict = "red"
+divergent = "magenta"
+hidden = "yellow"
