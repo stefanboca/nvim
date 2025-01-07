@@ -7,7 +7,7 @@ function _tide_item_jj
     set -q tide_jj_hidden_color && set hidden_color (set_color $tide_jj_hidden_color | string escape)
 
     _tide_print_item jj $tide_jj_icon' ' (
-        jj log -r@ --ignore-working-copy --no-graph --color always -T "
+        jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T "
         separate(' ',
             change_id.shortest(8),
             commit_id.shortest(8),

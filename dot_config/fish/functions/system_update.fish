@@ -14,8 +14,8 @@ function __system_update_run
         else
             $cmd
         end
-        and echo (set_color --bold green)"Done running `$cmd`."
-        or echo (set_color --bold red)"Error running `$cmd`."
+        and echo -e (set_color --bold green)"Done running `$cmd`.\n"
+        or echo -e (set_color --bold red)"Error running `$cmd`.\n"
         set_color normal
     end
 end
