@@ -60,12 +60,12 @@ return {
       sources = {
         cmdline = function()
           local type = vim.fn.getcmdtype()
-          -- Search forward and backward
+          -- search forward and backward
           if type == "/" or type == "?" then
             return { "buffer" }
           end
-          -- Commands
-          if type == ":" then
+          -- commands
+          if type == ":" or type == "@" then
             return { "cmdline" }
           end
           return {}
