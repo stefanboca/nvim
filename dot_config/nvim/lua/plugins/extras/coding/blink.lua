@@ -16,6 +16,11 @@ return {
       },
 
       completion = {
+        list = {
+          selection = {
+            preselect = false,
+          },
+        },
         accept = {
           auto_brackets = {
             enabled = true,
@@ -72,6 +77,13 @@ return {
         end,
 
         providers = {
+          snippets = {
+            opts = {
+              filter_snippets = function(ft, file)
+                return not (string.match(file, "friendly.snippets") and string.match(file, "framework"))
+              end,
+            },
+          },
           buffer = {
             -- Keep first letter capitalization
             transform_items = function(a, items)
@@ -108,9 +120,8 @@ return {
         },
       },
     },
-    spec = {
-      -- disable noice signature auto-show, because blink handles it
-      { "noice.nvim", opts = { lsp = { signature = { auto_open = { enabled = false } } } } },
-    },
   },
+
+  -- disable noice signature auto-show, because blink handles it
+  { "noice.nvim", opts = { lsp = { signature = { auto_open = { enabled = false } } } } },
 }
