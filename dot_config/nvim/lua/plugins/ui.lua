@@ -120,7 +120,7 @@ return {
       }):map("<leader>ud")
       require("tiny-inline-diagnostic").setup(opts)
     end,
-    spec = { { "neovim/nvim-lspconfig", opts = { virtual_text = false } } },
+    specs = { { "neovim/nvim-lspconfig", opts = { diagnostics = { virtual_text = false } } } },
   },
   -- rounded float diagnostics
   {
