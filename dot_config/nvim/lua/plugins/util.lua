@@ -28,5 +28,14 @@ return {
       _G.p = Snacks.debug.profile
       vim.print = Snacks.debug.inspect
     end,
+    keys = {
+      {
+        "<leader>sZ",
+        function()
+          Snacks.picker.zoxide()
+        end,
+        desc = "Open a project from zoxide",
+      },
+    },
   },
 }
