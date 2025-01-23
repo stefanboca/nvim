@@ -1,10 +1,12 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
 [user]
 name = "Stefan Boca"
 email = "stefan.r.boca@gmail.com"
 
 [ui]
-default-command = ["log"]
-editor = ["nvim", "-c", "lua vim.g.desc_quit_on_write = true"]
+default-command = "log"
+editor = ["nvim", "-c", "let g:desc_quit_on_write=1"]
 log-word-wrap = true
 paginate = "auto"
 conflict-marker-style = "snapshot"

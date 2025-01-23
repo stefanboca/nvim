@@ -7,7 +7,7 @@ local function wk_desc(buf)
   })
 end
 
-local saved_terminal = nil
+local saved_terminals = {}
 
 return {
   -- Un-nest neovim instances
@@ -27,20 +27,26 @@ return {
       nest_if_no_args = true,
       hooks = {
         pre_open = function()
-          saved_terminal, _ = Snacks.terminal.get(nil, { cwd = LazyVim.root(), create = false })
+          for _, terminal in ipairs(Snacks.terminal.list()) do
+            if terminal:valid() then
+              saved_terminals[#saved_terminals + 1] = terminal
+            end
+          end
         end,
         post_open = function(opts)
-          if opts.is_blocking and saved_terminal then
-            saved_terminal:hide()
+          if opts.is_blocking then
+            for _, terminal in ipairs(saved_terminals) do
+              terminal:hide()
+            end
           else
             vim.api.nvim_set_current_win(opts.winnr)
           end
         end,
         block_end = vim.schedule_wrap(function()
-          if saved_terminal then
-            saved_terminal:show()
+          for _, terminal in ipairs(saved_terminals) do
+            terminal:show()
           end
-          saved_terminal = nil
+          saved_terminals = {}
         end),
       },
     },
