@@ -2,20 +2,28 @@ return {
   -- async library
   { "gregorias/coop.nvim", version = false, lazy = true },
 
-  -- image library
-  { "leafo/magick", lazy = true },
-  {
-    "3rd/image.nvim",
-    event = "VeryLazy",
-    opts = {},
-    cond = not vim.g.neovide,
-  },
-
   -- show available keys
   {
     "meznaric/key-analyzer.nvim",
     cmd = "KeyAnalyzer",
     opts = {},
+  },
+  {
+    "snacks.nvim",
+    opts = {
+      image = {
+        enabled = true,
+      },
+    },
+    keys = {
+      {
+        "<leader>sZ",
+        function()
+          Snacks.picker.zoxide()
+        end,
+        desc = "Open a project from zoxide",
+      },
+    },
   },
 
   {
@@ -28,14 +36,5 @@ return {
       _G.p = Snacks.debug.profile
       vim.print = Snacks.debug.inspect
     end,
-    keys = {
-      {
-        "<leader>sZ",
-        function()
-          Snacks.picker.zoxide()
-        end,
-        desc = "Open a project from zoxide",
-      },
-    },
   },
 }
