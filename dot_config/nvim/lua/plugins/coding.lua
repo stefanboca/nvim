@@ -6,16 +6,4 @@ return {
       skip_next = [=[[%w%%%'%[%"%.%`]]=],
     },
   },
-
-  -- wezterm type definitions for lua config
-  { "gonstoll/wezterm-types", lazy = true },
-  {
-    "folke/lazydev.nvim",
-    opts_extend = { "library" },
-    opts = {
-      library = {
-        { path = "wezterm-types", mods = { "wezterm" } },
-      },
-    },
-  },
 }
