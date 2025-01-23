@@ -43,7 +43,8 @@
     "plugins.extras.lang.markdown",
     "plugins.extras.lang.neorg",
     "plugins.extras.lang.python",
-    "plugins.extras.lang.typst"
+    "plugins.extras.lang.typst",
+    "plugins.extras.ui.markview"
   ],
   "news": {
     "NEWS.md": "10960",
