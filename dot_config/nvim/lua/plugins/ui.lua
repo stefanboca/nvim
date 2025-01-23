@@ -80,23 +80,6 @@ return {
     end,
   },
 
-  -- window picker for neo-tree
-  {
-    "s1n7ax/nvim-window-picker",
-    lazy = true,
-    opts = {
-      hint = "floating-big-letter",
-      show_prompt = false,
-      filter_rules = {
-        bo = {
-          -- stylua: ignore
-          filetype = { "Trouble", "alpha", "dashboard", "edgy", "fzf", "help", "lazy", "lazyterm", "mason", "neo-tree", "noice", "notify", "snacks_dashboard", "snacks_notif", "snacks_terminal", "snacks_win", "toggleterm", "trouble", },
-          buftype = { "Outline", "Trouble", "nofile", "qf", "terminal", "trouble" },
-        },
-      },
-    },
-  },
-
   -- pretty inline diagnostics
   {
     "rachartier/tiny-inline-diagnostic.nvim",

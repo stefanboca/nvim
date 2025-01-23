@@ -10,19 +10,6 @@ end
 local saved_terminal = nil
 
 return {
-  -- Ignore .jj as well
-  {
-    "ibhagwan/fzf-lua",
-    optional = true,
-    opts = {
-      files = {
-        find_opts = [[-type f -not -path '*/\(\.git|\.jj\)/*' -printf '%P\n']],
-        rg_opts = [[--color=never --files --hidden --follow -g "!.git" -g "!.jj"]],
-        fd_opts = [[--color=never --type f --hidden --follow --exclude .git --exclude .jj]],
-      },
-    },
-  },
-
   -- Un-nest neovim instances
   {
     "willothy/flatten.nvim",
@@ -83,21 +70,5 @@ return {
   {
     "avm99963/vim-jjdescription",
     ft = { "jj", "jjdescription" },
-  },
-
-  {
-    "Cretezy/neo-tree-jj.nvim",
-    enabled = false,
-    dependencies = {
-      {
-        "nvim-neo-tree/neo-tree.nvim",
-        opts = function(_, opts)
-          if require("neo-tree.sources.jj.utils").get_repository_root() then
-            -- Register the source
-            table.insert(opts.sources, "jj")
-          end
-        end,
-      },
-    },
   },
 }
