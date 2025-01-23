@@ -26,9 +26,6 @@ return {
             enabled = true,
           },
         },
-        trigger = {
-          prefetch_on_insert = true,
-        },
         menu = {
           winblend = vim.o.pumblend,
           direction_priority = { "n", "s" },
@@ -123,5 +120,9 @@ return {
   },
 
   -- disable noice signature auto-show, because blink handles it
-  { "noice.nvim", opts = { lsp = { signature = { auto_open = { enabled = false } } } } },
+  {
+    "noice.nvim",
+    optional = true,
+    opts = { lsp = { signature = { auto_open = { enabled = false } } } },
+  },
 }
