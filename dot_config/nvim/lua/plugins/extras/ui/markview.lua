@@ -24,6 +24,7 @@ return {
           tables = presets.tables.rounded,
         },
         typst = {
+          headings = presets.headings.marker,
           code_blocks = {
             style = "simple",
             pad_amount = 0,
