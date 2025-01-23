@@ -38,6 +38,7 @@
     "lazyvim.plugins.extras.util.octo",
     "lazyvim.plugins.extras.util.rest",
     "plugins.extras.coding.blink",
+    "plugins.extras.dap.view",
     "plugins.extras.editor.jujutsu",
     "plugins.extras.lang.markdown",
     "plugins.extras.lang.neorg",
