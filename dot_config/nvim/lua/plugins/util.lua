@@ -6,7 +6,7 @@ return {
   { "leafo/magick", lazy = true },
   {
     "3rd/image.nvim",
-    lazy = true,
+    event = "VeryLazy",
     opts = {},
     cond = not vim.g.neovide,
   },
