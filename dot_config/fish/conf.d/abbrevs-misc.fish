@@ -11,6 +11,7 @@ abbr o open
 abbr s eza
 abbr sl eza -l
 abbr sa eza -la
+abbr se sudoedit
 
 abbr sc sudo systemctl --system
 abbr scu systemctl --user
