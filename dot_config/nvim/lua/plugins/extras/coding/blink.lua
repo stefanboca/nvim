@@ -14,8 +14,6 @@ return {
       cmdline = {
         enabled = true,
         keymap = {
-          preset = "default",
-          ["<Tab>"] = { "accept" },
           ["<C-Space>"] = { "show_and_insert" },
         },
         completion = {
@@ -55,7 +53,10 @@ return {
         ghost_text = { enabled = true },
       },
 
-      fuzzy = { prebuilt_binaries = { download = false } },
+      fuzzy = {
+        implementation = "prefer_rust",
+        prebuilt_binaries = { download = false },
+      },
 
       signature = {
         enabled = true,
