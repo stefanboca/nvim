@@ -17,6 +17,8 @@ font-feature = ss03
 window-inherit-working-directory = true
 shell-integration-features = true
 auto-update = off
+# 512 MB
+image-storage-limit = 536870912
 
 keybind = alt+t=toggle_tab_overview
 keybind = ctrl+shift+k=clear_screen
