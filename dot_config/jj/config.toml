@@ -36,11 +36,6 @@ all = ["log", "-r", "all()"]
 "current_branch()" = "ancestors(immutable_heads()..@, 2)"
 "closest_bookmark(to)" = "heads(::to & bookmarks())"
 
-[merge-tools.difft]
-program = "difft"
-diff-args = ["--color=always", "$left", "$right"]
-# diff-args = ["--color=always", "--display=inline", "$left", "$right"]
-
 [merge-tools.nvim]
 program = "nvim"
 diff-args = ["-c", "DiffEditor $left $right"]
@@ -55,10 +50,10 @@ merge-conflict-exit-codes = [1]
 conflict-marker-style = "git"
 
 [signing]
-sign-all = true
+behavior = "own"
 backend = "ssh"
-key = "/home/doctorwho/.ssh/id_ed25519.pub"
-backends.ssh.allowed-signers = "/home/doctorwho/.config/git/allowed_signers"
+key = "~/.ssh/id_ed25519.pub"
+backends.ssh.allowed-signers = "~/.config/git/allowed_signers"
 
 [git]
 push-bookmark-prefix = "sb/push-"
