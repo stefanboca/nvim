@@ -6,20 +6,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- add LazyVim and import its plugins
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin",
-      news = {
-        lazyvim = true,
-        neovim = false,
+  spec = {
+    -- add LazyVim and import its plugins
+    {
+      "LazyVim/LazyVim",
+      opts = {
+        colorscheme = "catppuccin",
+        news = {
+          lazyvim = true,
+          neovim = false,
+        },
       },
+      import = "lazyvim.plugins",
     },
-    import = "lazyvim.plugins",
+    { import = "plugins" },
   },
-  { import = "plugins" },
-}, {
   defaults = {
     lazy = false,
     version = false, -- always use the latest git commit
