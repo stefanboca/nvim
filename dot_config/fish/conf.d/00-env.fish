@@ -21,5 +21,5 @@ set -gx PIXI_HOME $XDG_DATA_HOME/pixi
 
 fish_add_path -g ~/.local/bin $CARGO_HOME/bin $GOPATH/bin $PIXI_HOME/bin $ELAN_HOME/bin
 
-set -gx EDITOR nvim
+set -gx EDITOR ~/.local/bin/nvim
 set -gx LESS -FRXS
