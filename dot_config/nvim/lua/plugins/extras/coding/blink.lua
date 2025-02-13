@@ -13,9 +13,6 @@ return {
 
       cmdline = {
         enabled = true,
-        keymap = {
-          ["<C-Space>"] = { "show_and_insert" },
-        },
         completion = {
           menu = {
             draw = {
@@ -54,7 +51,7 @@ return {
       },
 
       fuzzy = {
-        implementation = "prefer_rust",
+        implementation = "prefer_rust_with_warning",
         prebuilt_binaries = { download = false },
       },
 
@@ -92,7 +89,7 @@ return {
               local out = {}
               for _, item in ipairs(items) do
                 local raw = item.insertText
-                if raw:match(correct) then
+                if raw and raw:match(correct) then
                   local text = case(raw:sub(1, 1)) .. raw:sub(2)
                   item.insertText = text
                   item.label = text
