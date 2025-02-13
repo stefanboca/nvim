@@ -9,7 +9,6 @@ require("lazy").setup({
   -- add LazyVim and import its plugins
   {
     "LazyVim/LazyVim",
-    dev = true,
     opts = {
       colorscheme = "catppuccin",
       news = {
