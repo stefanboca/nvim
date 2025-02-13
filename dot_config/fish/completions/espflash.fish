@@ -1,0 +1,1 @@
+espflash completions fish | source
