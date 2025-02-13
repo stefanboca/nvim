@@ -37,4 +37,14 @@ return {
       },
     },
   },
+
+  {
+    "xzbdmw/clasp.nvim",
+    opts = {
+      pairs = { ["{"] = "}", ['"'] = '"', ["'"] = "'", ["("] = ")", ["["] = "]" },
+    },
+    keys = {
+      { "<C-p>", function() require("clasp").wrap("next") end, desc = "Cycle pairs", mode = "n" },
+    },
+  },
 }
