@@ -17,6 +17,13 @@ return {
           ["<Tab>"] = { "select_next", "fallback" },
           ["<S-Tab>"] = { "select_prev", "fallback" },
         },
+        completion = {
+          menu = {
+            draw = {
+              columns = { { "label", "label_description", gap = 1 } },
+            },
+          },
+        },
       },
 
       completion = {
