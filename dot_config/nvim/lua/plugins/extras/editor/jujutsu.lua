@@ -28,9 +28,7 @@ return {
       hooks = {
         pre_open = function()
           for _, terminal in ipairs(Snacks.terminal.list()) do
-            if terminal:valid() then
-              saved_terminals[#saved_terminals + 1] = terminal
-            end
+            if terminal:valid() then saved_terminals[#saved_terminals + 1] = terminal end
           end
         end,
         post_open = function(opts)
@@ -63,12 +61,8 @@ return {
         },
       },
       hooks = {
-        on_tree_mount = function(context)
-          wk_desc(context.buf)
-        end,
-        on_diff_mount = function(context)
-          wk_desc(context.buf)
-        end,
+        on_tree_mount = function(context) wk_desc(context.buf) end,
+        on_diff_mount = function(context) wk_desc(context.buf) end,
       },
     },
   },

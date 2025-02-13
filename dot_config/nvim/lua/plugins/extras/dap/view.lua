@@ -11,16 +11,12 @@ return {
     keys = {
       {
         "<leader>du",
-        function()
-          require("dap-view").toggle()
-        end,
+        function() require("dap-view").toggle() end,
         desc = "Toggle nvim-dap-view",
       },
       {
         "<leader>de",
-        function()
-          require("dap-view").add_expr()
-        end,
+        function() require("dap-view").add_expr() end,
         desc = "Watch Expression",
         mode = { "n", "v" },
       },
@@ -30,15 +26,9 @@ return {
       local dap = require("dap")
       local dap_view = require("dap-view")
       dap_view.setup(opts)
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dap_view.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dap_view.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dap_view.close()
-      end
+      dap.listeners.after.event_initialized["dapui_config"] = function() dap_view.open() end
+      dap.listeners.before.event_terminated["dapui_config"] = function() dap_view.close() end
+      dap.listeners.before.event_exited["dapui_config"] = function() dap_view.close() end
     end,
   },
 }

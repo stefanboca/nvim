@@ -46,9 +46,7 @@ return {
       require("markview").setup(opts)
       Snacks.toggle({
         name = "Markview",
-        get = function()
-          return require("markview").state.enable
-        end,
+        get = function() return require("markview").state.enable end,
         set = function(enabled)
           local commands = require("markview").commands
           if enabled then

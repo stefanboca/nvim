@@ -18,9 +18,7 @@ return {
     keys = {
       {
         "<leader>sZ",
-        function()
-          Snacks.picker.zoxide()
-        end,
+        function() Snacks.picker.zoxide() end,
         desc = "Open a project from zoxide",
       },
     },
