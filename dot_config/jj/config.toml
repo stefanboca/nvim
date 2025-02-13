@@ -12,6 +12,8 @@ paginate = "auto"
 conflict-marker-style = "snapshot"
 
 [aliases]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+
 rb = ["rebase"]
 d = ["diff"]
 dt = ["diff", "--tool=difft"]
@@ -32,6 +34,7 @@ all = ["log", "-r", "all()"]
 
 [revset-aliases]
 "current_branch()" = "ancestors(immutable_heads()..@, 2)"
+"closest_bookmark(to)" = "heads(::to & bookmarks())"
 
 [merge-tools.difft]
 program = "difft"
