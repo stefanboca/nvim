@@ -30,4 +30,15 @@ return {
     ft = "markdown",
     opts = {},
   },
+
+  {
+    "render-markdown.nvim",
+    opts = {
+      completions = {
+        lsp = {
+          enabled = true,
+        },
+      },
+    },
+  },
 }
