@@ -18,6 +18,7 @@ set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx ELAN_HOME $XDG_DATA_HOME/elan
 set -gx PIXI_HOME $XDG_DATA_HOME/pixi
+set -gx ESPUP_EXPORT_FILE $XDG_DATA_HOME/export-esp.sh
 
 fish_add_path -g ~/.local/bin $CARGO_HOME/bin $GOPATH/bin $PIXI_HOME/bin $ELAN_HOME/bin
 

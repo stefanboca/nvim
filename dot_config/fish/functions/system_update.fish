@@ -31,6 +31,7 @@ function system_update --description "Update all the things"
     __system_update_run -- uv tool upgrade --all
     __system_update_run rustup self update
     __system_update_run rustup update
+    __system_update_run espup update
     __system_update_run -t cargo-install-update -- cargo install-update -a
     __system_update_run -- tldr --update
 end
