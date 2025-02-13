@@ -1,10 +1,11 @@
 return {
-  { "saghen/blink.compat", dev = true, lazy = true },
+  { "saghen/blink.compat", optional = true, dev = true, lazy = true },
   {
     "saghen/blink.cmp",
-    dev = true,
     event = { "InsertEnter", "CmdlineEnter" },
     build = { "RUSTFLAGS=-Ctarget-cpu=native cargo build --release" },
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       keymap = {
         preset = "enter",
@@ -14,14 +15,17 @@ return {
         enabled = true,
         keymap = {
           preset = "default",
-          ["<Tab>"] = { "select_next", "fallback" },
-          ["<S-Tab>"] = { "select_prev", "fallback" },
+          ["<Tab>"] = { "accept" },
+          ["<C-Space>"] = { "show_and_insert" },
         },
         completion = {
           menu = {
             draw = {
               columns = { { "label", "label_description", gap = 1 } },
             },
+          },
+          ghost_text = {
+            enabled = true,
           },
         },
       },
