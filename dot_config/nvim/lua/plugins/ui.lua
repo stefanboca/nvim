@@ -56,7 +56,7 @@ return {
     },
   },
 
-  -- lyaline style
+  -- lualine style
   {
     "nvim-lualine/lualine.nvim",
     opts = {
