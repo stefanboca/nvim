@@ -17,11 +17,14 @@ function __system_update_run
         and echo -e (set_color --bold green)"Done running `$cmd`.\n"
         or echo -e (set_color --bold red)"Error running `$cmd`.\n"
         set_color normal
+    else
+        echo -e (set_color --bold magenta)"Command `$_flag_test_cmd` not found, so not running `$cmd`.\n"
+        set_color normal
     end
 end
 
 function system_update --description "Update all the things"
-    __system_update_run -t dnf -- sudo dnf upgrade --refresh
+    __system_update_run -t dnf5 -- sudo dnf5 upgrade --refresh
     __system_update_run flatpak update
     __system_update_run -q -- fisher update
     __system_update_run uv self update
