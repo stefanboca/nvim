@@ -70,9 +70,14 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        multilines = true,
-        enable_on_insert = true,
-        enable_on_select = true,
+        set_arrow_to_diag_color = true,
+        multilines = {
+          enabled = true,
+          always_show = true,
+        },
+        show_all_diags_on_cursorline = true,
+        enable_on_insert = false,
+        enable_on_select = false,
       },
     },
   },
@@ -80,13 +85,10 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
-        -- rounded float diagnostics
+        -- rounded floating diagnostic popups
         float = { border = "rounded" },
-        -- disable virtual text, enable virtual lines
+        -- disable virtual text
         virtual_text = false,
-        virtual_lines = {
-          current_line = true,
-        },
       },
     },
   },
