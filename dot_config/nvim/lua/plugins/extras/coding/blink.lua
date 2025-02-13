@@ -4,11 +4,15 @@ return {
     "saghen/blink.cmp",
     dev = true,
     event = { "InsertEnter", "CmdlineEnter" },
-    optional = true,
+    build = { "RUSTFLAGS=-Ctarget-cpu=native cargo build --release" },
     opts = {
       keymap = {
         preset = "enter",
-        cmdline = {
+      },
+
+      cmdline = {
+        enabled = true,
+        keymap = {
           preset = "default",
           ["<Tab>"] = { "select_next", "fallback" },
           ["<S-Tab>"] = { "select_prev", "fallback" },
@@ -29,21 +33,9 @@ return {
         menu = {
           winblend = vim.o.pumblend,
           direction_priority = { "n", "s" },
-          draw = {
-            columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "fill", "kind" } },
-            components = {
-              fill = {
-                width = { fill = true },
-                text = function()
-                  return ""
-                end,
-              },
-            },
-          },
         },
 
         documentation = {
-          auto_show = true,
           window = {
             winblend = vim.o.pumblend,
           },
@@ -60,19 +52,6 @@ return {
       },
 
       sources = {
-        cmdline = function()
-          local type = vim.fn.getcmdtype()
-          -- search forward and backward
-          if type == "/" or type == "?" then
-            return { "buffer" }
-          end
-          -- commands
-          if type == ":" or type == "@" then
-            return { "cmdline" }
-          end
-          return {}
-        end,
-
         providers = {
           snippets = {
             opts = {
