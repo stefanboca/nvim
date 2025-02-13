@@ -1,0 +1,10 @@
+[build]
+# enable multiple threads for parallel frontend
+rustflags = ["-Z", "threads=8"]
+
+[unstable]
+codegen-backend = true
+
+[profile.dev]
+split-debuginfo = "unpacked"
+codegen-backend = "cranelift"
