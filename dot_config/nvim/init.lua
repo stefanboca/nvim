@@ -24,4 +24,7 @@ if vim.env.PROF then
   })
 end
 
+-- Disable LSP logging
+vim.lsp.set_log_level(vim.log.levels.OFF)
+
 require("config.lazy")
