@@ -32,11 +32,12 @@ return {
         if filename == "" then return end
         local dirname = vim.fn.fnamemodify(buf_path, ":~:.:h")
 
-        local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+        local ft_icon, ft_hl, is_default = require("mini.icons").get("file", filename)
+        if is_default then ft_icon = nil end
         local modified = vim.bo[props.buf].modified
         return {
-          ft_icon and { " ", ft_icon, " ", guifg = ft_color } or "",
-          modified and { " ● ", group = "BufferCurrentMod" } or " ",
+          ft_icon and { " ", ft_icon, " ", group = ft_hl } or "",
+          modified and { " ● ", group = "BufferLineModified" } or " ",
           dirname ~= "." and { dirname, "/", group = "Comment" } or "",
           { filename, gui = "bold" },
           " ",
