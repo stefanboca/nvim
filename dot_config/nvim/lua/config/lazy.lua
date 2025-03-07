@@ -4,6 +4,8 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.deprecate = function() end
+
 require("config.profiler")
 require("config.options")
 require("config.autocmds")
