@@ -27,7 +27,7 @@ return {
           -- rust-analyzer language server configuration
           ["rust-analyzer"] = {
             files = {
-              excludeDirs = {
+              exclude = {
                 ".direnv",
                 ".git",
                 ".github",
