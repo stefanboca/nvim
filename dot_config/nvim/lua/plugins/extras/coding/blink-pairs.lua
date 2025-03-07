@@ -13,6 +13,9 @@ return {
     opts = {
       mappings = {
         enabled = true,
+        pairs = {
+          ["$"] = { "$", filetypes = { "typst" } },
+        },
       },
       highlights = {
         enabled = true,
