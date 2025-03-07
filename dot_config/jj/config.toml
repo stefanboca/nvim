@@ -13,6 +13,14 @@ conflict-marker-style = "snapshot"
 
 [aliases]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+update = [
+  "util",
+  "exec",
+  "--",
+  "fish",
+  "-c",
+  "jj git fetch && jj log -r '@..trunk()' && jj new 'trunk()'",
+]
 
 rb = ["rebase"]
 d = ["diff"]
