@@ -66,6 +66,7 @@ key = "~/.ssh/id_ed25519.pub"
 backends.ssh.allowed-signers = "~/.config/git/allowed_signers"
 
 [git]
+sign-on-push = true
 push-bookmark-prefix = "sb/push-"
 private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')"
 
