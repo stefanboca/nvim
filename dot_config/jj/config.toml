@@ -29,6 +29,7 @@ s = ["show", "-s"]
 sdt = ["show", "--tool=difft"]
 
 g = ["git"]
+gc = ["git", "clone", "--colocate"]
 gp = ["git", "push"]
 gf = ["git", "fetch"]
 gfar = ["git", "fetch", "--all-remotes"]
@@ -72,7 +73,7 @@ private-commits = "description(glob:'wip:*') | description(glob:'private:*') | d
 
 [core]
 core.fsmonitor = "none"
-watchman.register_snapshot_trigger = true
+watchman.register-snapshot-trigger = true
 
 [colors]
 description = "cyan"
