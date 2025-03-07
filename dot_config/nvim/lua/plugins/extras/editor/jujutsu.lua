@@ -7,49 +7,7 @@ local function wk_desc(buf)
   })
 end
 
-local saved_terminals = {}
-
 return {
-  -- Un-nest neovim instances
-  {
-    "willothy/flatten.nvim",
-    -- Ensure that it runs first to minimize delay when opening file from terminal
-    lazy = false,
-    priority = 50001,
-    opts = {
-      window = {
-        open = "alternate",
-      },
-      block_for = {
-        jj = true,
-        jjdescription = true,
-      },
-      nest_if_no_args = true,
-      hooks = {
-        pre_open = function()
-          for _, terminal in ipairs(Snacks.terminal.list()) do
-            if terminal:valid() then saved_terminals[#saved_terminals + 1] = terminal end
-          end
-        end,
-        post_open = function(opts)
-          if opts.is_blocking then
-            for _, terminal in ipairs(saved_terminals) do
-              terminal:hide()
-            end
-          else
-            vim.api.nvim_set_current_win(opts.winnr)
-          end
-        end,
-        block_end = vim.schedule_wrap(function()
-          for _, terminal in ipairs(saved_terminals) do
-            terminal:show()
-          end
-          saved_terminals = {}
-        end),
-      },
-    },
-  },
-
   {
     "julienvincent/hunk.nvim",
     cmd = { "DiffEditor" },
