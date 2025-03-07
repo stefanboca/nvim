@@ -22,8 +22,6 @@ return {
         offsets = {
           { filetype = "snacks_layout_box" },
         },
-        ---@param element bufferline.IconFetcherOpts
-        get_element_icon = function(element) return require("mini.icons").get("filetype", element.filetype) end,
       },
     },
   },
@@ -78,6 +76,7 @@ return {
           theme = "auto",
           component_separators = "|",
           section_separators = "",
+          globalstatus = true,
           disabled_filetypes = { statusline = { "snacks_dashboard" } },
         },
         sections = {
@@ -129,7 +128,6 @@ return {
             function() return " " .. os.date("%R") end,
           },
         },
-        extensions = { "lazy" },
       }
     end,
   },

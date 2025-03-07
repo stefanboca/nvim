@@ -1,3 +1,5 @@
+vim.lsp.enable("bashls")
+
 local chezmoi_pattern = os.getenv("HOME") .. "/.local/share/chezmoi/*"
 
 return {
@@ -9,7 +11,7 @@ return {
   },
   {
     "mason.nvim",
-    opts = { ensure_installed = { "shellcheck", "bash-language-server" } },
+    opts = { ensure_installed = { "bash-language-server" } },
   },
 
   -- highlighting for chezmoi files template files

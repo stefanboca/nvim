@@ -1,4 +1,4 @@
-vim.lsp.enable("luals")
+vim.lsp.enable("lua_ls")
 
 return {
   {

@@ -1,3 +1,5 @@
+vim.lsp.enable("taplo")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

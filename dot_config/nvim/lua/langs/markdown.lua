@@ -1,3 +1,5 @@
+vim.lsp.enable("marksman")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -70,7 +72,11 @@ return {
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
     opts = {
+      latex = { enabled = false },
+      checkbox = { enabled = false },
+      highlight = { enabled = true },
       completions = {
         lsp = { enabled = true },
       },
@@ -83,11 +89,7 @@ return {
         sign = false,
         icons = {},
       },
-      checkbox = {
-        enabled = false,
-      },
     },
-    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
     config = function(_, opts)
       require("render-markdown").setup(opts)
       Snacks.toggle({

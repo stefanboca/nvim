@@ -1,3 +1,5 @@
+vim.lsp.enable({ "basedpyright", "ruff" })
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -34,6 +36,7 @@ return {
 
   {
     "joshzcold/python.nvim",
+    ft = { "python" },
     ---@module 'python'
     ---@type python.Config
     dependencies = {
@@ -43,7 +46,7 @@ return {
     },
     opts = {},
     keys = {
-      { "<leader>cv", function() require("python.venv").pick_venv() end, ft = "python" },
+      { "<leader>cv", function() require("python.venv").pick_venv() end, ft = "python", desc = "Select Venv" },
     },
     -- TODO: lualine
   },

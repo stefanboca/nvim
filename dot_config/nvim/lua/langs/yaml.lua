@@ -1,3 +1,5 @@
+vim.lsp.enable("yamlls")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -7,4 +9,6 @@ return {
     "mason.nvim",
     opts = { ensure_installed = { "yaml-language-server" } },
   },
+
+  { "b0o/SchemaStore.nvim", lazy = true },
 }

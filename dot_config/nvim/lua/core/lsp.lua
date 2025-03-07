@@ -72,12 +72,6 @@ vim.lsp.config("*", {
 
 vim.lsp.set_log_level(vim.log.levels.OFF)
 
-local lsps = {}
-for _, file in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-  table.insert(lsps, vim.fn.fnamemodify(file, ":t:r"))
-end
-vim.lsp.enable(lsps)
-
 vim.lsp.inlay_hint.enable()
 
 -- vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
@@ -120,10 +114,5 @@ return {
     keys = {
       { "cr", function() require("live-rename").rename() end, desc = "Rename" },
     },
-  },
-
-  {
-    "b0o/SchemaStore.nvim",
-    lazy = true,
   },
 }

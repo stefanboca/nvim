@@ -1,15 +1,14 @@
-local has_schemastore, schemastore = pcall(require, "schemastore")
-local schemas = has_schemastore and schemastore.json.schemas() or {}
-
 ---@type vim.lsp.Config
 return {
+  cmd = { "vscode-json-language-server", "--stdio" },
+  filetypes = { "json", "jsonc" },
   settings = {
     json = {
       format = {
         enable = true,
       },
-      schemas = schemas,
       validate = { enable = true },
     },
   },
+  before_init = function(_, config) config.settings.json.schemas = require("schemastore").json.schemas() end,
 }

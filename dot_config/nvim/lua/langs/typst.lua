@@ -1,7 +1,9 @@
+vim.lsp.enable("taplo")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "tyspt" } },
+    opts = { ensure_installed = { "typst" } },
   },
   {
     "mason.nvim",

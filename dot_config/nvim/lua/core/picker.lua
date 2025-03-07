@@ -1,6 +1,9 @@
 return {
   {
     "folke/snacks.nvim",
+    opts = {
+      picker = { win = { preview = { wo = { wrap = true } } } },
+    },
     -- stylua: ignore
     keys = {
       { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },

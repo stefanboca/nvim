@@ -1,6 +1,3 @@
-local has_schemastore, schemastore = pcall(require, "schemastore")
-local schemas = has_schemastore and schemastore.yaml.schemas() or {}
-
 ---@type vim.lsp.Config
 return {
   cmd = { "yaml-language-server", "--stdio" },
@@ -13,7 +10,6 @@ return {
         enable = true,
       },
       validate = true,
-      schemas = schemas,
       schemaStore = {
         -- Must disable built-in schemaStore support to use
         -- schemas from SchemaStore.nvim plugin
@@ -23,4 +19,5 @@ return {
       },
     },
   },
+  before_init = function(_, config) config.settings.yaml.schemas = require("schemastore").yaml.schemas() end,
 }

@@ -1,7 +1,9 @@
+vim.lsp.enable({ "biome", "vtsls", "svelte", "tailwindcss" })
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "typescript", "tsx", "javascript", "purescript", "jsdoc", "css", "scss", "html" } },
+    opts = { ensure_installed = { "typescript", "tsx", "javascript", "jsdoc", "css", "scss", "html" } },
   },
   {
     "mason.nvim",
