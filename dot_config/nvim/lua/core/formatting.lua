@@ -34,10 +34,6 @@ return {
         quiet = false,
         lsp_format = "fallback",
       },
-      formatters_by_ft = {
-        fish = { "fish_indent" },
-        sh = { "shfmt" },
-      },
     },
     init = function() vim.o.formatexpr = "v:lua.require'conform'.formatexpr()" end,
   },

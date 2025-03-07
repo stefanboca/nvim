@@ -83,18 +83,16 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
--- stylua: ignore start
-
 -- toggle options
 Snacks.toggle({
   name = "Auto Format (Buffer)",
   get = function() return vim.b.autoformat ~= false end,
-  set = function(state) vim.b.autoformat = not state end,
+  set = function(state) vim.b.autoformat = state end,
 }):map("<leader>uf")
 Snacks.toggle({
   name = "Auto Format (Global)",
   get = function() return vim.g.autoformat ~= false end,
-  set = function(state) vim.g.autoformat = not state end,
+  set = function(state) vim.g.autoformat = state end,
 }):map("<leader>uF")
 
 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
@@ -102,10 +100,14 @@ Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
 Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
 Snacks.toggle.diagnostics():map("<leader>ud")
 Snacks.toggle.line_number():map("<leader>ul")
-Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" }):map("<leader>uc")
-Snacks.toggle.option("showtabline", { off = 0, on = vim.o.showtabline > 0 and vim.o.showtabline or 2, name = "Tabline" }):map("<leader>uA")
+Snacks.toggle
+  .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" })
+  :map("<leader>uc")
+Snacks.toggle
+  .option("showtabline", { off = 0, on = vim.o.showtabline > 0 and vim.o.showtabline or 2, name = "Tabline" })
+  :map("<leader>uA")
 Snacks.toggle.treesitter():map("<leader>uT")
-Snacks.toggle.option("background", { off = "light", on = "dark" , name = "Dark Background" }):map("<leader>ub")
+Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
 Snacks.toggle.dim():map("<leader>uD")
 Snacks.toggle.indent():map("<leader>ug")
 Snacks.toggle.profiler():map("<leader>dpp")
@@ -117,10 +119,13 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
-map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
+map("n", "<leader>uI", function()
+  vim.treesitter.inspect_tree()
+  vim.api.nvim_input("I")
+end, { desc = "Inspect Tree" })
 
 -- terminal
-map("n", "<c-/>",      function() Snacks.terminal() end, { desc = "Terminal" })
+map("n", "<c-/>", function() Snacks.terminal() end, { desc = "Terminal" })
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 -- windows
@@ -140,5 +145,5 @@ map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- remap macro recording to Q
-map("n",  "q", "<nop>", { desc = "which_key_ignore"})
+map("n", "q", "<nop>", { desc = "which_key_ignore" })
 map("n", "Q", "q", { desc = "Record macro", noremap = true })

@@ -7,7 +7,7 @@ return {
   },
   {
     "mason.nvim",
-    opts = { ensure_isntalled = { "basedpyright", "ruff" } },
+    opts = { ensure_isntalled = { "basedpyright", "ruff", "debugpy" } },
   },
 
   {
@@ -48,6 +48,5 @@ return {
     keys = {
       { "<leader>cv", function() require("python.venv").pick_venv() end, ft = "python", desc = "Select Venv" },
     },
-    -- TODO: lualine
   },
 }

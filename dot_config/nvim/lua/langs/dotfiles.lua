@@ -11,7 +11,17 @@ return {
   },
   {
     "mason.nvim",
-    opts = { ensure_installed = { "bash-language-server" } },
+    opts = { ensure_installed = { "bash-language-server", "shfmt" } },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        fish = { "fish_indent" },
+        sh = { "shfmt" },
+      },
+    },
   },
 
   -- highlighting for chezmoi files template files
