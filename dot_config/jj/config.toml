@@ -32,6 +32,8 @@ g = ["git"]
 gp = ["git", "push"]
 gf = ["git", "fetch"]
 gfar = ["git", "fetch", "--all-remotes"]
+gr = ["git", "remote"]
+grl = ["git", "remote", "list"]
 
 # log aliases
 l = ["log"]
