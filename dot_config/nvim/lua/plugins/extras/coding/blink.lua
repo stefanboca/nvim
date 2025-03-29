@@ -2,7 +2,7 @@ return {
   { "saghen/blink.compat", optional = true, dev = true, lazy = true },
   {
     "saghen/blink.cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = "VeryLazy",
     build = { "RUSTFLAGS=-Ctarget-cpu=native cargo build --release" },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
