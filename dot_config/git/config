@@ -1,35 +1,16 @@
 # vim: ft=gitconfig
 
 [user]
-	name = Stefan Boca
-	email = stefan.r.boca@gmail.com
+  name = Stefan Boca
+  email = stefan.r.boca@gmail.com
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC9wCJxy/++oRXAekKU/R6byETPBBOOfHpaoYje3r+Ci doctorwho@pc-doctorwho-ux8402
 [gpg]
-	format = ssh
+  format = ssh
 [gpg "ssh"]
-	allowedSignersFile = ~/.config/git/allowed_signers
+  allowedSignersFile = ~/.config/git/allowed_signers
 [tag]
-	gpgsign = true
+  gpgsign = true
 [commit]
-	gpgsign = true
-[core]
-	editor = nvim
-	autocrlf = input
+  gpgsign = true
 [init]
-	defaultBranch = main
-
-[alias]
-  dft = difftool
-
-[diff]
-  tool = difftastic
-[difftool]
-  prompt = false
-[difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
-[pager]
-  difftool = true
-[pull]
-	rebase = false
-[status]
-	submoduleSummary = true
+  defaultBranch = main
