@@ -1,4 +1,4 @@
-vim.lsp.enable("taplo")
+vim.lsp.enable("tinymist")
 
 return {
   {
