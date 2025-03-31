@@ -71,6 +71,26 @@ return {
     end,
   },
 
+  -- Un-nest neovim instances
+  {
+    "willothy/flatten.nvim",
+    lazy = false,
+    priority = 1001,
+    opts = {
+      window = { open = "alternate" },
+      block_for = {
+        jjdescription = true,
+      },
+      nest_if_no_args = true,
+      hooks = {
+        should_nest = function(host)
+          if vim.env.HEADLESS_OSV then return true end
+          return require("flatten").hooks.should_nest(host)
+        end,
+      },
+    },
+  },
+
   -- libraries used by other plugins
   { "nvim-lua/plenary.nvim", lazy = true },
   { "gregorias/coop.nvim", lazy = true },
