@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = augroup("last_loc"),
   callback = function(event)
-    local exclude = { "gitcommit", "jj", "jjdescription" }
+    local exclude = { "gitcommit", "jjdescription" }
     local buf = event.buf
     if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].last_loc then return end
     vim.b[buf].last_loc = true
@@ -62,13 +62,27 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo[event.buf].buflisted = false
     vim.schedule(function()
       vim.keymap.set("n", "q", function()
-        vim.cmd("close")
+        vim.cmd.close()
         pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      end, {
-        buffer = event.buf,
-        silent = true,
-        desc = "Quit buffer",
-      })
+      end, { buffer = event.buf, silent = true, desc = "Quit buffer" })
+    end)
+  end,
+})
+
+-- quit on write for some filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("quit_with_q"),
+  pattern = { "gitcommit", "gitrebase", "jjdescription" },
+  callback = function(event)
+    vim.schedule(function()
+      vim.keymap.set("n", "q", function()
+        vim.cmd.write()
+        Snacks.bufdelete({ buf = event.buf, wipe = true })
+        if vim.g.quit_on_write then
+          require("persistence").stop()
+          vim.cmd.quit()
+        end
+      end, { buffer = event.buf, silent = true, desc = "Quit" })
     end)
   end,
 })
@@ -83,7 +97,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("wrap_spell"),
-  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown", "jj", "jjdescription" },
+  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown", "jjdescription" },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
@@ -104,28 +118,5 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     if event.match:match("^%w%w+:[\\/][\\/]") then return end
     local file = vim.uv.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-  end,
-})
-
--- autoclose on write for interactuve vcs tasks
--- TODO: save in "close with `q`" instead
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("vcs_delete"),
-  pattern = { "gitcommit", "gitrebase", "jj", "jjdescription" },
-  callback = function(event)
-    vim.opt_local.spell = true
-
-    vim.api.nvim_create_autocmd("BufWritePost", {
-      group = augroup("vcs_delete_buf_" .. event.buf),
-      buffer = event.buf,
-      once = true,
-      callback = vim.schedule_wrap(function()
-        Snacks.bufdelete({ buf = event.buf, wipe = true })
-        if vim.g.desc_quit_on_write then
-          require("persistence").stop()
-          vim.cmd([[quit]])
-        end
-      end),
-    })
   end,
 })
