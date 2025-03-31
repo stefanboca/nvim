@@ -40,8 +40,6 @@ return {
         if filename == "" then return end
         local dirname = vim.fn.fnamemodify(buf_path, ":~:.:h")
 
-        -- TODO: diagnostics
-
         local ft_icon, ft_hl, is_default = require("mini.icons").get("file", filename)
         if is_default then ft_icon = nil end
         local modified = vim.bo[props.buf].modified
@@ -81,7 +79,7 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "diagnostics" },
+          lualine_b = { { "diagnostics", symbols = { error = " ", warn = " ", hint = " ", info = " " } } },
           lualine_c = {
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             { symbols and symbols.get, cond = symbols.has },
