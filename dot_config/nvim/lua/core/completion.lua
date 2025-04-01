@@ -10,7 +10,7 @@ return {
     "saghen/blink.cmp",
     build = "cargo build --release",
     opts_extend = { "sources.default" },
-    event = "VeryLazy",
+    event = { "VeryLazy", "BufReadPre" },
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config

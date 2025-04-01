@@ -53,7 +53,6 @@ return {
 
   {
     "folke/todo-comments.nvim",
-    optional = true,
     keys = {
       { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo" },
     },
@@ -66,7 +65,9 @@ return {
       opts = function(_, opts)
         return vim.tbl_deep_extend("force", opts or {}, {
           picker = {
-            actions = require("trouble.sources.snacks").actions,
+            actions = {
+              trouble_open = function(picker) return require("trouble.sources.snacks").actions.trouble_open(picker) end,
+            },
             win = {
               input = { keys = { ["<a-t>"] = { "trouble_open", mode = { "n", "i" } } } },
             },

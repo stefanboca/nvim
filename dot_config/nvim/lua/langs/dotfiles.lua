@@ -27,6 +27,7 @@ return {
   -- highlighting for chezmoi files template files
   {
     "alker0/chezmoi.vim",
+    event = { "BufRead " .. chezmoi_pattern, "BufNewFile " .. chezmoi_pattern },
     init = function() vim.g["chezmoi#use_tmp_buffer"] = true end,
   },
   {

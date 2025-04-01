@@ -15,6 +15,7 @@ return {
   -- Automatically add closing tags for HTML and JSX
   {
     "windwp/nvim-ts-autotag",
+    lazy = true,
     fs = { "handlebars", "html", "javascript", "markdown", "svelte", "typescript", "xml" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},

@@ -29,6 +29,7 @@ return {
   -- buffer paths in top right of window
   {
     "b0o/incline.nvim",
+    event = "VeryLazy",
     opts = {
       window = {
         padding = 0,
@@ -59,16 +60,6 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function()
-      local trouble = require("trouble")
-      local symbols = trouble.statusline({
-        mode = "symbols",
-        groups = {},
-        title = false,
-        filter = { range = true },
-        format = "{kind_icon}{symbol.name:Normal}",
-        hl_group = "lualine_c_normal",
-      })
-
       return {
         options = {
           theme = "auto",
@@ -80,10 +71,7 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { { "diagnostics", symbols = { error = " ", warn = " ", hint = " ", info = " " } } },
-          lualine_c = {
-            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { symbols and symbols.get, cond = symbols.has },
-          },
+          lualine_c = { { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } } },
           lualine_x = {
             Snacks.profiler.status(),
             -- stylua: ignore

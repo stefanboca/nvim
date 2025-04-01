@@ -12,7 +12,6 @@ return {
 
   {
     "mfussenegger/nvim-dap",
-    optional = true,
     dependencies = {
       "mfussenegger/nvim-dap-python",
       -- stylua: ignore
@@ -26,7 +25,6 @@ return {
   -- Don't mess up DAP adapters provided by nvim-dap-python
   {
     "jay-babu/mason-nvim-dap.nvim",
-    optional = true,
     opts = {
       handlers = {
         python = function() end,
