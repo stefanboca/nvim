@@ -1,10 +1,5 @@
-[build]
-# enable multiple threads for parallel frontend
-rustflags = ["-Z", "threads=8"]
+# HACK: include is an unstable feature so only avaliable on nightly
+include = "nightly.toml"
 
 [unstable]
-codegen-backend = true
-
-[profile.dev]
-split-debuginfo = "unpacked"
-codegen-backend = "cranelift"
+config-include = true
