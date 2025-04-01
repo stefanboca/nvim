@@ -10,7 +10,7 @@ local function on_attach(bufnr, client_id)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 
-  map("n", "<leader>cl", "<cmd>checkhealth vim.lsp<CR>", { desc = "Lsp Info" })
+  map("n", "<leader>cl", function() Snacks.picker.lsp_config() end, { desc = "Lsp Info" })
   map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
   map("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
   map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto Type Definition" })
@@ -114,5 +114,103 @@ return {
     keys = {
       { "cr", function() require("live-rename").rename() end, desc = "Rename" },
     },
+  },
+
+  -- patch snacks lsp_config picker for vim.lsp.config instead of nvim_lspconfig
+  {
+    "snacks.nvim",
+    opts = function()
+      ---@param opts snacks.picker.lsp.config.Config
+      ---@type snacks.picker.finder
+      Snacks.picker.sources.lsp_config.finder = function(opts, ctx)
+        local main_buf = vim.api.nvim_win_get_buf(ctx.picker.main)
+
+        local items = {} ---@type table<string, snacks.picker.lsp.config.Item>
+        for _, client in ipairs(vim.lsp.get_clients()) do
+          items[client.name] = items[client.name]
+            or {
+              name = client.name,
+              buffers = {},
+              config = client.config,
+              attached = true,
+              enabled = true,
+              cmd = client.config.cmd,
+            }
+          for buf in pairs(client.attached_buffers) do
+            items[client.name].buffers[buf] = true
+          end
+          items[client.name].attached_buf = items[client.name].buffers[main_buf]
+        end
+
+        for name, config in pairs(vim.lsp._enabled_configs) do
+          items[name] = items[name]
+            or {
+              name = name,
+              buffers = {},
+              enabled = true,
+              config = config.resolved_config,
+            }
+        end
+
+        for _, f in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+          local name = vim.fn.fnamemodify(f, ":t:r")
+          if name and name ~= "" and items[name] == nil then
+            items[name] = items[name]
+              or {
+                name = name,
+                buffers = {},
+                config = vim.lsp.config[name],
+                enabled = false,
+              }
+          end
+        end
+
+        ---@param cb async fun(item: snacks.picker.finder.Item)
+        return function(cb)
+          local bins = Snacks.picker.util.get_bins()
+          for name, item in pairs(items) do
+            local config = item.config or {}
+            config = vim.deepcopy(config)
+            local cmd = item.cmd or type(config.cmd) == "table" and config.cmd or nil
+            local bin ---@type string?
+            local installed = false
+            if type(cmd) == "table" and #cmd > 0 then
+              ---@type string[]
+              cmd = vim.deepcopy(cmd)
+              cmd[1] = svim.fs.normalize(cmd[1])
+              if cmd[1]:find("/") then
+                installed = vim.fn.filereadable(cmd[1]) == 1
+                bin = cmd[1]
+              else
+                bin = bins[cmd[1]] or cmd[1]
+                installed = bins[cmd[1]] ~= nil
+              end
+              cmd[1] = vim.fs.basename(cmd[1])
+            end
+            local want = (not opts.installed or installed) and (not opts.configured or item.enabled)
+            if opts.attached == true and not item.attached then
+              want = false
+            elseif type(opts.attached) == "number" then
+              local buf = opts.attached == 0 and main_buf or opts.attached
+              if not item.buffers[buf] then want = false end
+            end
+            if want then
+              cb({
+                name = name,
+                cmd = cmd,
+                bin = bin,
+                installed = installed,
+                enabled = item.enabled or false,
+                buffers = item.buffers,
+                attached = item.attached or false,
+                attached_buf = item.attached_buf or false,
+                text = name .. " " .. table.concat(config.filetypes or {}, " "),
+                config = config,
+              })
+            end
+          end
+        end
+      end
+    end,
   },
 }
