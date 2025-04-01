@@ -209,32 +209,29 @@ return {
       },
       windows = {
         preview = true,
+        width_preview = 30,
       },
     },
     keys = {
       {
         "<leader>fe",
         function()
-          if not MiniFiles.close() then MiniFiles.open() end
+          local file = vim.api.nvim_buf_get_name(0)
+          if not vim.uv.fs_stat(file) then file = nil end
+          MiniFiles.open(file, true)
         end,
         desc = "File Explorer",
       },
-      {
-        "<leader>fE",
-        function()
-          if not MiniFiles.close() then MiniFiles.open(vim.api.nvim_buf_get_name(0)) end
-        end,
-        desc = "File Explorer (Current File)",
-      },
       { "<leader>e", "<leader>fe", remap = true, desc = "File Explorer" },
-      { "<leader>E", "<leader>fE", remap = true, desc = "File Explorer (Current File)" },
     },
     config = function(_, opts)
-      require("mini.files").setup(opts)
-
-      local show_dotfiles = true
+      local show_dotfiles = false
       local filter_show = function() return true end
       local filter_hide = function(fs_entry) return not vim.startswith(fs_entry.name, ".") end
+
+      opts.content = opts.content or {}
+      opts.content.filter = filter_hide
+      require("mini.files").setup(opts)
 
       local toggle_dotfiles = function()
         show_dotfiles = not show_dotfiles
