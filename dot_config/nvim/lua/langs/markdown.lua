@@ -48,7 +48,6 @@ return {
     build = "deno task --quiet build:fast",
     keys = {
       {
-        -- TODO: show toggle
         "<leader>cp",
         function()
           local peek = require("peek")

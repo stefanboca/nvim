@@ -81,7 +81,7 @@ return {
     "xzbdmw/clasp.nvim",
     opts = {},
     keys = {
-      { "<C-p>", function() require("clasp").wrap("next") end, desc = "Cycle pairs", mode = "n" },
+      { "<C-;>", function() require("clasp").wrap("next") end, mode = { "n", "i" }, desc = "Cycle pairs" },
     },
   },
 }
