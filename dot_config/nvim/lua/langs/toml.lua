@@ -9,4 +9,13 @@ return {
     "mason.nvim",
     opts = { ensure_installed = { "taplo" } },
   },
+
+  {
+    "conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        toml = { "taplo" },
+      },
+    },
+  },
 }
