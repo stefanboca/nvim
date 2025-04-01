@@ -73,7 +73,16 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { { "diagnostics", symbols = { error = " ", warn = " ", hint = " ", info = " " } } },
-          lualine_c = { { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } } },
+          lualine_c = {
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+            {
+              function()
+                local venv = require("python.venv").current_venv()
+                if venv then return venv.name end
+              end,
+              cond = function() return package.loaded["python"] and require("python.venv").current_venv ~= nil end,
+            },
+          },
           lualine_x = {
             Snacks.profiler.status(),
             -- stylua: ignore
