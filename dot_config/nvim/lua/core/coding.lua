@@ -59,6 +59,35 @@ return {
         enabled = true,
         pairs = {
           ["$"] = { "$", filetypes = { "typst" } },
+          ["'"] = {
+            {
+              "'''",
+              "'''",
+              when = function()
+                local cursor = vim.api.nvim_win_get_cursor(0)
+                local line = vim.api.nvim_get_current_line()
+                return line:sub(cursor[2] - 1, cursor[2]) == "''"
+              end,
+              space = false,
+              filetypes = { "python" },
+            },
+            { "'", space = false },
+          },
+          ['"'] = {
+            { 'r#"', '"#', filetypes = { "rust" }, space = false, priority = 100 },
+            {
+              '"""',
+              '"""',
+              when = function()
+                local cursor = vim.api.nvim_win_get_cursor(0)
+                local line = vim.api.nvim_get_current_line()
+                return line:sub(cursor[2] - 1, cursor[2]) == '""'
+              end,
+              space = false,
+              filetypes = { "python", "elixir", "julia", "kotlin", "scala", "sbt" },
+            },
+            { '"', enter = false, space = false },
+          },
         },
       },
       highlights = {
