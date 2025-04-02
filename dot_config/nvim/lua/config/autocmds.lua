@@ -120,3 +120,53 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- Sets the current line's color based on the current mode
+-- Equivalent to modicator but fast
+local mode_hl_groups = {
+  ["n"] = "lualine_b_normal",
+  ["no"] = "lualine_b_normal",
+  ["nov"] = "lualine_b_normal",
+  ["noV"] = "lualine_b_normal",
+  ["no\22"] = "lualine_b_normal",
+  ["niI"] = "lualine_b_normal",
+  ["niR"] = "lualine_b_normal",
+  ["niV"] = "lualine_b_normal",
+  ["nt"] = "lualine_b_normal",
+  ["ntT"] = "lualine_b_normal",
+  ["v"] = "lualine_b_visual",
+  ["vs"] = "lualine_b_visual",
+  ["V"] = "lualine_b_visual",
+  ["Vs"] = "lualine_b_visual",
+  ["\22"] = "lualine_b_visual",
+  ["\22s"] = "lualine_b_visual",
+  ["s"] = "lualine_b_visual",
+  ["S"] = "lualine_b_visual",
+  ["\19"] = "lualine_b_visual",
+  ["i"] = "lualine_b_insert",
+  ["ic"] = "lualine_b_insert",
+  ["ix"] = "lualine_b_insert",
+  ["R"] = "lualine_b_replace",
+  ["Rc"] = "lualine_b_replace",
+  ["Rx"] = "lualine_b_replace",
+  ["Rv"] = "lualine_b_replace",
+  ["Rvc"] = "lualine_b_replace",
+  ["Rvx"] = "lualine_b_replace",
+  ["c"] = "lualine_b_command",
+  ["cv"] = "lualine_b_command",
+  ["ce"] = "lualine_b_command",
+  ["r"] = "lualine_b_replace",
+  ["rm"] = "lualine_b_command",
+  ["r?"] = "lualine_b_command",
+  ["t"] = "lualine_b_terminal",
+}
+vim.api.nvim_create_autocmd({ "BufEnter", "ModeChanged" }, {
+  callback = function()
+    local mode = vim.api.nvim_get_mode().mode
+    local mode_hl_group = mode_hl_groups[mode] or "lualine_b_normal"
+    local hl = vim.api.nvim_get_hl(0, { name = mode_hl_group, link = false, create = false })
+    hl = vim.tbl_extend("force", { bold = true }, hl)
+    vim.api.nvim_set_hl(0, "CursorLineNr", hl)
+    if hl.bg then vim.api.nvim_set_hl(0, "CursorLine", { bg = hl.bg }) end
+  end,
+})
