@@ -95,4 +95,9 @@ return {
       },
     },
   },
+  before_init = function(_, config)
+    config.settings = config.settings or {}
+    config.settings.editor = config.settings.editor or {}
+    config.settings.editor.tabSize = config.settings.editor.tabSize or vim.lsp.util.get_effective_tabstop(0)
+  end,
 }

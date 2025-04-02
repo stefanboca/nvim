@@ -17,4 +17,5 @@ return {
     "vue",
   },
   root_markers = { "biome.json", "biome.jsonc", "package.json" },
+  workspace_required = true,
 }
