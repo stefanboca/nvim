@@ -52,6 +52,9 @@ local function on_attach(bufnr, client_id)
   end
 end
 
+vim.lsp.set_log_level(vim.log.levels.OFF)
+
+local register_handler = vim.lsp.handlers["client/registerCapability"]
 vim.lsp.config("*", {
   capabilities = {
     textDocument = {
@@ -68,9 +71,15 @@ vim.lsp.config("*", {
     },
   },
   root_markers = { ".git", ".jj" },
+  handlers = {
+    ["client/registerCapability"] = function(err, res, ctx)
+      for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
+        on_attach(bufnr, ctx.client_id)
+      end
+      return register_handler(err, res, ctx)
+    end,
+  },
 })
-
-vim.lsp.set_log_level(vim.log.levels.OFF)
 
 vim.lsp.inlay_hint.enable()
 
@@ -81,13 +90,6 @@ vim.lsp.inlay_hint.enable()
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev) on_attach(ev.buf, ev.data.client_id) end,
 })
-local register_handler = vim.lsp.handlers["client/registerCapability"]
-vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
-  for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
-    on_attach(bufnr, ctx.client_id)
-  end
-  return register_handler(err, res, ctx)
-end
 
 return {
   -- cmdline tools and lsp servers
