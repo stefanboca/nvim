@@ -10,10 +10,16 @@ return {
     lazy = false,
     name = "catppuccin",
     priority = 1000,
+    ---@type CatppuccinOptions
     opts = {
       background = {
         dark = "macchiato",
       },
+      custom_highlights = function(colors)
+        return {
+          MatchParen = { fg = "NONE", bg = colors.surface1, style = { "bold" } },
+        }
+      end,
       integrations = {
         blink_cmp = true,
         flash = true,
