@@ -151,7 +151,10 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      lsp = { signature = { enabled = false } },
+      lsp = {
+        signature = { enabled = false },
+        hover = { silent = true },
+      },
       presets = {
         bottom_search = true,
         command_palette = true,
