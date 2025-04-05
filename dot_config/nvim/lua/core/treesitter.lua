@@ -17,15 +17,6 @@ return {
       indent = { enable = true },
       auto_install = true,
       ensure_installed = { "diff", "printf", "regex", "rust", "vim", "vimdoc" },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-Space>",
-          node_incremental = "<C-Space>",
-          scope_incremental = false,
-          node_decremental = "<BS>",
-        },
-      },
     },
     config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
