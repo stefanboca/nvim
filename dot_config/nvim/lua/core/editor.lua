@@ -163,35 +163,44 @@ return {
 
   {
     "monaqa/dial.nvim",
-    keys = {
-      { "<C-a>", function() require("dial.map").manipulate("increment", "normal") end, mode = "n", desc = "Increment" },
-      {
-        "g<C-a>",
-        function() require("dial.map").manipulate("increment", "gnormal") end,
-        mode = "n",
-        desc = "Increment",
-      },
-      { "<C-x>", function() require("dial.map").manipulate("decrement", "normal") end, mode = "n", desc = "Decrement" },
-      {
-        "g<C-x>",
-        function() require("dial.map").manipulate("decrement", "gnormal") end,
-        mode = "n",
-        desc = "Decrement",
-      },
-      { "<C-a>", function() require("dial.map").manipulate("increment", "visual") end, mode = "v", desc = "Increment" },
-      {
-        "g<C-a>",
-        function() require("dial.map").manipulate("increment", "gvisual") end,
-        mode = "v",
-        desc = "Increment",
-      },
-      { "<C-x>", function() require("dial.map").manipulate("decrement", "visual") end, mode = "v", desc = "Decrement" },
-      {
-        "g<C-x>",
-        function() require("dial.map").manipulate("decrement", "gvisual") end,
-        mode = "v",
-        desc = "Decrement",
-      },
-    },
+    keys = function()
+      local keys = {
+        { "<C-a>", dir = "increment", mode = "normal" },
+        { "g<C-a>", dir = "increment", mode = "gnormal" },
+        { "<C-a>", dir = "increment", mode = "visual" },
+        { "g<C-a>", dir = "increment", mode = "gvisual" },
+        { "<C-x>", dir = "decrement", mode = "normal" },
+        { "g<C-x>", dir = "decrement", mode = "gnormal" },
+        { "<C-x>", dir = "decrement", mode = "visual" },
+        { "g<C-x>", dir = "decrement", mode = "gvisual" },
+      }
+
+      return vim.tbl_map(function(key)
+        return {
+          key[1],
+          function() require("dial.map").manipulate(key.dir, key.mode) end,
+          mode = key.mode:find("normal") and "n" or "v",
+          desc = key.mode:gsub("^%l", string.upper),
+        }
+      end, keys)
+    end,
+
+    config = function()
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        default = {
+          augend.integer.alias.decimal_int,
+          augend.integer.alias.hex,
+          augend.semver.alias.semver,
+          augend.constant.alias.bool,
+          augend.constant.new({ elements = { "True", "False" } }),
+          augend.constant.new({ elements = { "and", "or" } }),
+          augend.constant.new({ elements = { "&&", "||" }, word = false }),
+          augend.constant.new({ elements = { "&", "|" }, word = false }),
+          augend.constant.alias.alpha,
+          augend.constant.alias.Alpha,
+        },
+      })
+    end,
   },
 }
