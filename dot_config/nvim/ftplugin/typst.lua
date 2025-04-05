@@ -1,1 +1,1 @@
-vim.b.textwidth = 100
+vim.bo.textwidth = 100
