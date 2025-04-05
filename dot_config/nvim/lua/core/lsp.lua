@@ -87,15 +87,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 return {
-  -- cmdline tools and lsp servers
-  {
-
-    "williamboman/mason.nvim",
-    event = { "VeryLazy", "BufReadPre" },
-    build = ":MasonUpdate",
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-  },
-
   {
     "neovim/nvim-lspconfig",
     config = false,
