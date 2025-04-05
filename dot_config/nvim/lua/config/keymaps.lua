@@ -146,3 +146,53 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- remap macro recording to Q
 map("n", "q", "<nop>", { desc = "which_key_ignore" })
 map("n", "Q", "q", { desc = "Record macro", noremap = true })
+
+-- clipboard
+map("v", "<leader>p", '"+p', { desc = "Paste from clipboard" })
+map("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
+map("v", "<leader>P", '"+P', { desc = "Paste from clipboard" })
+map("n", "<leader>P", '"+P', { desc = "Paste from clipboard" })
+map("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
+map("v", "<leader>Y", function()
+  local curl = require("plenary.curl")
+  local strings = require("plenary.strings")
+  local filetype_to_extensions = {
+    typescript = "ts",
+    javascript = "js",
+    typescriptreact = "tsx",
+    javascriptreact = "jsx",
+    markdown = "md",
+    rust = "rs",
+    ruby = "rb",
+    ocaml = "ml",
+    haskell = "hs",
+    clojure = "clj",
+    elixir = "ex",
+    erlang = "erl",
+    purescript = "purs",
+    reason = "re",
+    crystal = "cr",
+    julia = "jl",
+    racket = "rkt",
+    scheme = "scm",
+    fennel = "fnl",
+    moonscript = "moon",
+  }
+
+  vim.cmd.normal({ '"zy', bang = true })
+  local selected_text = strings.dedent(vim.fn.getreg("z"))
+
+  local response = curl.post("https://paste.super.fish/", {
+    method = "POST",
+    body = selected_text,
+  })
+
+  local redirect_url = response.body
+  local extension = filetype_to_extensions[vim.bo.filetype] or vim.bo.filetype
+  if redirect_url then
+    vim.fn.setreg("+", "https://paste.super.fish" .. redirect_url .. "." .. extension)
+    vim.notify("Copied to clipboard and system clipboard")
+  else
+    vim.notify("Failed to upload to pastebin")
+  end
+end, { desc = "Upload selection to paste bin" })
