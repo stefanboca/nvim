@@ -24,6 +24,10 @@ return {
         offsets = {
           { filetype = "snacks_layout_box" },
         },
+        custom_filter = function(bufnr, _)
+          if vim.bo[bufnr].filetype == "dap-view-term" then return false end
+          return true
+        end,
       },
     },
   },
