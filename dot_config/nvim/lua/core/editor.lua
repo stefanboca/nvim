@@ -196,7 +196,7 @@ return {
           augend.constant.new({ elements = { "True", "False" } }),
           augend.constant.new({ elements = { "and", "or" } }),
           augend.constant.new({ elements = { "&&", "||" }, word = false }),
-          augend.constant.new({ elements = { "&", "|" }, word = false }),
+          augend.constant.new({ elements = { "+", "-" }, word = false }),
           augend.constant.alias.alpha,
           augend.constant.alias.Alpha,
         },

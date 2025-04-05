@@ -165,6 +165,7 @@ map("v", "<leader>Y", function()
     moonscript = "moon",
     ocaml = "ml",
     purescript = "purs",
+    python = "py",
     racket = "rkt",
     reason = "re",
     ruby = "rb",

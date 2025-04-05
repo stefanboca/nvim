@@ -1,14 +1,27 @@
 return {
   {
     "folke/tokyonight.nvim",
-    opts = { style = "storm" },
+    cond = vim.g.colorscheme == "tokyonight",
+    lazy = false,
+    priority = 1000,
+    ---@module 'tokyonight'
+    ---@type tokyonight.Config
+    opts = {
+      style = "moon",
+      plugins = {
+        rainbow = true,
+      },
+    },
+    config = function(_, opts) require("tokyonight").load(opts) end,
   },
 
   {
     "catppuccin/nvim",
-    lazy = false,
+    cond = vim.g.colorscheme == "catppuccin",
     name = "catppuccin",
+    lazy = false,
     priority = 1000,
+    ---@module 'catppuccin.types'
     ---@type CatppuccinOptions
     opts = {
       background = {
@@ -26,7 +39,6 @@ return {
         gitsigns = true,
         leap = true,
         lsp_trouble = true,
-        mason = true,
         markdown = true,
         mini = true,
         native_lsp = {
@@ -57,7 +69,7 @@ return {
       {
         "akinsho/bufferline.nvim",
         opts = function(_, opts)
-          if (vim.g.colors_name or ""):find("catppuccin") then
+          if vim.g.colorscheme == "catppuccin" then
             opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
           end
         end,

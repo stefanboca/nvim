@@ -71,15 +71,15 @@ opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 g.markdown_recommended_style = 0
 
 if g.neovide then
-  g.neovide_floating_blur_amount_x = 8.0
-  g.neovide_floating_blur_amount_y = 8.0
+  g.neovide_floating_blur_amount_x = 1.0
+  g.neovide_floating_blur_amount_y = 1.0
 
   g.neovide_floating_shadow = true
   g.neovide_floating_z_height = 10
   g.neovide_light_angle_degrees = 45
   g.neovide_light_radius = 5
 
-  g.neovide_floating_corner_radius = 0.25
+  g.neovide_floating_corner_radius = 0.5
 
   g.neovide_cursor_vfx_mode = "railgun"
 end

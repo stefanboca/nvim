@@ -1,6 +1,6 @@
 vim.lsp.enable("bashls")
 
-local chezmoi_pattern = os.getenv("HOME") .. "/.local/share/chezmoi/*"
+local chezmoi_pattern = vim.env.HOME .. "/.local/share/chezmoi/*"
 
 return {
   {

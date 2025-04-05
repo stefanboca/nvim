@@ -7,6 +7,8 @@ vim.opt.rtp:prepend(lazypath)
 ---@diagnostic disable-next-line:duplicate-set-field
 vim.deprecate = function() end
 
+vim.g.colorscheme = "tokyonight"
+
 require("config.profiler")
 require("config.options")
 require("config.autocmds")
@@ -22,10 +24,12 @@ require("lazy").setup({
   dev = {
     path = "~/data/plugins",
   },
-  install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
+  install = { colorscheme = { vim.g.colorscheme } },
   checker = { enabled = false },
   performance = {
     rtp = {
+      -- allows nix to add plugins (eg for ghostty syntax files)
+      reset = false,
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
