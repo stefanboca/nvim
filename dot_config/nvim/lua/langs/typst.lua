@@ -18,21 +18,6 @@ return {
   },
 
   {
-    "tinymist.nvim",
-    dev = true,
-    opts = {},
-    cmd = { "TinymistStartPreview", "TinymistStopPreview" },
-    keys = {
-      {
-        "<leader>cp",
-        ft = "typst",
-        "<cmd>TinymistStartPreview<cr>",
-        desc = "Start TinyMist Preview",
-      },
-    },
-  },
-
-  {
     "folke/ts-comments.nvim",
     opts = {
       lang = {
