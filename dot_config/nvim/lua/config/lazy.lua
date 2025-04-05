@@ -21,7 +21,6 @@ require("lazy").setup({
   dev = {
     path = "~/data/plugins",
   },
-  pkg = { enabled = false }, -- don't install from lazy.lua etc.
   install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
   checker = { enabled = false },
   performance = {

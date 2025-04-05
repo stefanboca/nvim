@@ -20,20 +20,6 @@ return {
     },
   },
 
-  {
-    "joshzcold/python.nvim",
-    ft = { "python" },
-    ---@type python.Config
-    opts = {
-      keymaps = {
-        mappings = {},
-      },
-    },
-    keys = {
-      { "<leader>cv", function() require("python.venv").pick_venv() end, ft = "python", desc = "Select Venv" },
-    },
-  },
-
   { "nvim-neotest/neotest-python" },
   {
     "nvim-neotest/neotest",
