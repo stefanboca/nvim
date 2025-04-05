@@ -59,6 +59,63 @@ return {
         enabled = true,
         pairs = {
           ["$"] = { "$", filetypes = { "typst" } },
+          ["<"] = {
+            "<",
+            ">",
+            when = function()
+              local cursor = vim.api.nvim_win_get_cursor(0)
+              local row, col = cursor[1], cursor[2]
+              local line = vim.api.nvim_get_current_line()
+
+              if line:sub(col - 1, col) == "::" or line:sub(col + 1, col + 1) == ">" then return true end
+
+              if cursor[2] == 0 then return false end
+              local captures = vim.treesitter.get_captures_at_pos(0, row - 1, col - 1)
+              for _, capture in ipairs(captures) do
+                local c = capture.capture
+                if c == "type" or c == "function" then return true end
+              end
+
+              return false
+            end,
+            filetypes = { "rust" },
+          },
+          ["'"] = {
+            {
+              "'''",
+              when = function()
+                local cursor = vim.api.nvim_win_get_cursor(0)
+                local line = vim.api.nvim_get_current_line()
+                return line:sub(cursor[2] - 1, cursor[2]) == "''"
+              end,
+              filetypes = { "python" },
+            },
+            {
+              "'",
+              enter = false,
+              space = false,
+              when = function()
+                local cursor = vim.api.nvim_win_get_cursor(0)
+                local col = cursor[2]
+                local line = vim.api.nvim_get_current_line()
+
+                -- TODO: only in string or plaintext
+                if line:sub(col, col):match("%w") and not (line:sub(col + 1, col + 1) == "'") then return false end
+
+                if vim.bo.filetype ~= "rust" then return true end
+
+                if line:sub(col, col) == "&" or line:sub(col, col) == "<" then return false end
+
+                local node = vim.treesitter.get_node()
+                while node ~= nil do
+                  if node:type() == "type_parameters" or node:type() == "type_arguments" then return false end
+                  node = node:parent()
+                end
+
+                return true
+              end,
+            },
+          },
         },
       },
       highlights = {
