@@ -14,13 +14,18 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      keymap = {
-        preset = "enter",
-        ["<C-y>"] = { "select_and_accept" },
-      },
+      keymap = { preset = "enter" },
 
       cmdline = {
         completion = {
+          list = {
+            selection = {
+              preselect = false,
+            },
+          },
+          menu = {
+            auto_show = true,
+          },
           ghost_text = {
             enabled = true,
           },
@@ -28,11 +33,6 @@ return {
       },
 
       completion = {
-        list = {
-          selection = {
-            preselect = false,
-          },
-        },
         menu = {
           direction_priority = { "n", "s" },
           draw = {
