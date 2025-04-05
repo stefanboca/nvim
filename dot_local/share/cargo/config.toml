@@ -1,5 +1,0 @@
-# HACK: include is an unstable feature so only avaliable on nightly
-include = "nightly.toml"
-
-[unstable]
-config-include = true

@@ -86,12 +86,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev) on_attach(ev.buf, ev.data.client_id) end,
 })
 
+-- vim.lsp.enable("harper_ls")
+
 return {
   {
     "neovim/nvim-lspconfig",
     config = false,
     init = function()
-      -- prepend to allow custom settings to override
+      -- prepend to load first and allow custom settings to override
       vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/nvim-lspconfig")
     end,
   },

@@ -3,3 +3,15 @@ type = "file"
 url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/heads/main/extras/fish_themes/tokyonight_storm.theme"
 # refresh every 4 weeks
 refreshPeriod = "672h"
+
+["themes/tokyonight_moon.theme"]
+type = "file"
+url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/heads/main/extras/fish_themes/tokyonight_moon.theme"
+# refresh every 4 weeks
+refreshPeriod = "672h"
+
+["themes/tokyonight_night.theme"]
+type = "file"
+url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/heads/main/extras/fish_themes/tokyonight_night.theme"
+# refresh every 4 weeks
+refreshPeriod = "672h"

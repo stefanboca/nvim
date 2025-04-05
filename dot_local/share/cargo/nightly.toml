@@ -1,9 +1,0 @@
-[build]
-# enable multiple threads for parallel frontend
-rustflags = ["-Zthreads=8"]
-
-[unstable]
-codegen-backend = true
-
-[profile.dev]
-codegen-backend = "cranelift"

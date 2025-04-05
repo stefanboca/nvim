@@ -1,8 +1,10 @@
 return {
   {
     "saghen/blink.compat",
+    -- lazy = false,
     optional = true,
-    opts = {},
+    dev = true,
+    opts = { debug = true },
   },
 
   {
@@ -58,6 +60,7 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
         providers = {
           buffer = {
+            -- TODO: transform completions lowercase -> uppercase and not uppercase -> lowercase
             transform_items = function(a, items)
               local keyword = a.get_keyword()
               local correct, case
