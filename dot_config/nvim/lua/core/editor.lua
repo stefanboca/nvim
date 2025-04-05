@@ -25,7 +25,6 @@ return {
 
   {
     "folke/flash.nvim",
-    lazy = true,
     ---@type Flash.Config
     opts = {
       exclude = {

@@ -15,7 +15,7 @@ require("lazy").setup({
   { import = "langs" },
 }, {
   defaults = {
-    lazy = false,
+    lazy = true,
     version = false, -- use the latest git commit by default
   },
   dev = {

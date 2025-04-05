@@ -96,8 +96,7 @@ return {
   {
 
     "williamboman/mason.nvim",
-    lazy = vim.fn.argc(-1) == 0,
-    event = { "VeryLazy" },
+    event = { "VeryLazy", "BufReadPre" },
     build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
