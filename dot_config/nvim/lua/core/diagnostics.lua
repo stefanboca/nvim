@@ -41,7 +41,10 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        show_source = true,
+        show_source = {
+          enabled = true,
+          if_many = true,
+        },
         set_arrow_to_diag_color = true,
         multilines = {
           enabled = true,

@@ -27,9 +27,17 @@ return {
     ft = { "rust" },
     dependencies = { "blink.cmp" }, -- load blink lsp capabilities
     opts = {},
-    config = function(_, opts)
-      ---@type rustaceanvim.Config
-      vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts)
-    end,
+    config = function(_, opts) vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts) end,
+  },
+
+  {
+    "nvim-neotest/neotest",
+    opts = {
+      adapters = {
+        setmetatable({}, {
+          __index = function(_, key) return require("rustaceanvim.neotest")[key] end,
+        }),
+      },
+    },
   },
 }

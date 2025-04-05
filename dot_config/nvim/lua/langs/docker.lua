@@ -6,10 +6,6 @@ return {
     opts = { ensure_installed = { "dockerfile" } },
   },
   {
-    "mason.nvim",
-    opts = { ensure_installed = { "hadolint", "dockerfile-language-server", "docker-compose-language-service" } },
-  },
-  {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {

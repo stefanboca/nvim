@@ -5,10 +5,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "typst" } },
   },
-  {
-    "mason.nvim",
-    opts = { ensure_installed = { "tinymist" } },
-  },
 
   {
     "stevearc/conform.nvim",

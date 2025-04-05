@@ -78,8 +78,12 @@ return {
   -- Un-nest neovim instances
   {
     "willothy/flatten.nvim",
+    -- NOTE: disabled for now, because causes neotest to hang
+    -- see https://github.com/willothy/flatten.nvim/issues/106
+    enabled = false,
     lazy = false,
     priority = 1001,
+    ---@type Flatten.PartialConfig
     opts = {
       window = { open = "alternate" },
       block_for = {
@@ -96,7 +100,8 @@ return {
   },
 
   -- libraries used by other plugins
-  { "nvim-lua/plenary.nvim", lazy = true },
-  { "gregorias/coop.nvim", lazy = true },
-  { "MunifTanjim/nui.nvim", lazy = true },
+  { "nvim-lua/plenary.nvim" },
+  { "gregorias/coop.nvim" },
+  { "MunifTanjim/nui.nvim" },
+  { "nvim-neotest/nvim-nio" },
 }

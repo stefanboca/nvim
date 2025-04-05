@@ -2,7 +2,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
-      { "mason-nvim-dap.nvim" },
+      { "nvim-dap-view" },
       -- virtual text for the debugger
       { "theHamsta/nvim-dap-virtual-text", opts = {} },
       {
@@ -24,7 +24,17 @@ return {
         end,
       },
     },
-
+    config = function()
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = "󰁕 ", texthl = "DiagnosticWarn", linehl = "DapStoppedLine", numhl = "DapStoppedLine" }
+      )
+      vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "DiagnosticInfo", priority = 1000 })
+      vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "DiagnosticInfo", priority = 1000 })
+      vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "DiagnosticError", priority = 1000 })
+      vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "DiagnosticInfo" })
+    end,
     keys = {
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
       { "<leader>dc", function() require("dap").continue() end, desc = "Run/Continue" },
@@ -45,14 +55,6 @@ return {
         function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
         desc = "Breakpoint Condition",
       },
-      {
-        "<leader>dS",
-        function()
-          local widgets = require("dap.ui.widgets")
-          widgets.centered_float(widgets.scopes, { border = "rounded" })
-        end,
-        desc = "View Scopes",
-      },
     },
   },
 
@@ -64,7 +66,7 @@ return {
     },
     opts = {
       winbar = {
-        sections = { "watches", "exceptions", "breakpoints", "threads", "repl", "console" },
+        sections = { "watches", "exceptions", "breakpoints", "scopes", "threads", "repl", "console" },
       },
     },
     config = function(_, opts)
@@ -76,17 +78,5 @@ return {
       dap.listeners.before.event_terminated["dap-view-config"] = function() dap_view.close() end
       dap.listeners.before.event_exited["dap-view-config"] = function() dap_view.close() end
     end,
-  },
-
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    lazy = true,
-    dependencies = "mason.nvim",
-    cmd = { "DapInstall", "DapUninstall" },
-    opts = {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
-      automatic_installation = true,
-    },
   },
 }

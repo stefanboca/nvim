@@ -5,17 +5,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "typescript", "tsx", "javascript", "jsdoc", "css", "scss", "html" } },
   },
-  {
-    "mason.nvim",
-    opts = {
-      ensure_installed = { "biome", "prettier", "vtsls", "svelte-language-server", "tailwindcss-language-server" },
-    },
-  },
 
   -- Automatically add closing tags for HTML and JSX
   {
     "windwp/nvim-ts-autotag",
-    lazy = true,
     fs = { "handlebars", "html", "javascript", "markdown", "svelte", "typescript", "xml" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},

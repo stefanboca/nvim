@@ -25,7 +25,11 @@ return {
           { filetype = "snacks_layout_box" },
         },
         custom_filter = function(bufnr, _)
-          if vim.bo[bufnr].filetype == "dap-view-term" then return false end
+          if
+            vim.bo[bufnr].filetype == "dap-view-term" or vim.api.nvim_buf_get_name(bufnr):find("%[dap%-terminal%]")
+          then
+            return false
+          end
           return true
         end,
       },
@@ -151,6 +155,34 @@ return {
       presets = {
         bottom_search = true,
         command_palette = true,
+      },
+    },
+    keys = {
+      {
+        "<S-Enter>",
+        function() require("noice").redirect(vim.fn.getcmdline()) end,
+        mode = "c",
+        desc = "Redirect Cmdline",
+      },
+      {
+        "<c-f>",
+        function()
+          if not require("noice.lsp").scroll(4) then return "<c-f>" end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll Forward",
+        mode = { "i", "n", "s" },
+      },
+      {
+        "<c-b>",
+        function()
+          if not require("noice.lsp").scroll(-4) then return "<c-b>" end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll Backward",
+        mode = { "i", "n", "s" },
       },
     },
   },

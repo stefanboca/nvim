@@ -5,10 +5,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "markdown", "markdown_inline" } },
   },
-  {
-    "mason.nvim",
-    opts = { ensure_installed = { "markdownlint-cli2", "markdown-toc" } },
-  },
 
   {
     "stevearc/conform.nvim",
