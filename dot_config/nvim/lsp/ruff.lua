@@ -1,6 +1,13 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { "ruff", "server" },
-  filetypes = { "python" },
-  root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml" },
+  on_attach = function(_, bufnr)
+    vim.keymap.set(
+      "n",
+      "<leader>co",
+      function()
+        vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" }, diagnostics = {} } })
+      end,
+      { desc = "Organize Imports", buffer = bufnr }
+    )
+  end,
 }

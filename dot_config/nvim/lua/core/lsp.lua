@@ -10,7 +10,6 @@ local function on_attach(bufnr, client_id)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 
-  map("n", "<leader>cl", function() Snacks.picker.lsp_config() end, { desc = "Lsp Info" })
   map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
   map("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
   map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto Type Definition" })
@@ -70,7 +69,7 @@ vim.lsp.config("*", {
       },
     },
   },
-  root_markers = { ".git", ".jj" },
+  root_markers = { ".jj" },
   handlers = {
     ["client/registerCapability"] = function(err, res, ctx)
       for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
@@ -82,10 +81,6 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.inlay_hint.enable()
-
--- vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
---   callback = function(ev) vim.lsp.codelens.refresh({ bufnr = ev.buf }) end,
--- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev) on_attach(ev.buf, ev.data.client_id) end,
@@ -101,6 +96,15 @@ return {
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
   },
 
+  {
+    "neovim/nvim-lspconfig",
+    config = false,
+    init = function()
+      -- prepend to allow custom settings to override
+      vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/nvim-lspconfig")
+    end,
+  },
+
   -- rename in-place with the LSP and live feedback
   {
     "saecki/live-rename.nvim",
@@ -109,9 +113,12 @@ return {
     },
   },
 
-  -- patch snacks lsp_config picker for vim.lsp.config instead of nvim_lspconfig
+  -- patch snacks lsp_config picker for vim.lsp.config instead of the old nvim_lspconfig api
   {
     "snacks.nvim",
+    keys = {
+      { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" },
+    },
     opts = function()
       ---@param opts snacks.picker.lsp.config.Config
       ---@type snacks.picker.finder
