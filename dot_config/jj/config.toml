@@ -13,14 +13,6 @@ conflict-marker-style = "snapshot"
 
 [aliases]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
-update = [
-  "util",
-  "exec",
-  "--",
-  "fish",
-  "-c",
-  "jj git fetch && jj log -r '@..trunk()' && jj new 'trunk()'",
-]
 
 rb = ["rebase"]
 d = ["diff"]
@@ -36,12 +28,8 @@ gfar = ["git", "fetch", "--all-remotes"]
 gr = ["git", "remote"]
 grl = ["git", "remote", "list"]
 
-# log aliases
-l = ["log"]
 c = ["log", "-r", "current_branch()"]
-current = ["log", "-r", "current_branch()"]
 a = ["log", "-r", "all()"]
-all = ["log", "-r", "all()"]
 
 [revset-aliases]
 "current_branch()" = "ancestors(immutable_heads()..@, 2)"
@@ -77,6 +65,25 @@ watchman.register-snapshot-trigger = true
 
 [colors]
 description = "cyan"
-conflict = "red"
 divergent = "magenta"
 hidden = "yellow"
+"diff files len" = "yellow"
+"diff stat total_added" = "green"
+"diff stat total_removed" = "red"
+
+[template-aliases]
+shell_prompt = """
+separate(" ",
+  change_id.shortest(),
+  commit_id.shortest(),
+  bookmarks.map(|x| truncate_end(10, x, label("bookmark", "…"))).join(" "),
+  tags.map(|x| truncate_end(10, x, label("tag", "…"))).join(" "),
+  truncate_end(24, description.first_line(), label("description", "…")),
+  if(diff.files().len() > 0, diff.files().len() ++ label("diff files len", "m")),
+  if(diff.stat().total_added() > 0, label("diff stat total_added", "+") ++ diff.stat().total_added()),
+  if(diff.stat().total_removed() > 0, label("diff stat total_removed", "-") ++ diff.stat().total_removed()),
+  label("conflict", if(conflict, "conflict")),
+  label("divergent", if(divergent, "divergent")),
+  label("hidden", if(hidden, "hidden")),
+)
+"""
