@@ -1,9 +1,4 @@
 return {
-  {
-    "mason.nvim",
-    opts = { ensure_isntalled = { "codelldb" } },
-  },
-
   -- LSP for Cargo.toml
   {
     "Saecki/crates.nvim",
@@ -26,6 +21,7 @@ return {
     "mrcjkb/rustaceanvim",
     ft = { "rust" },
     dependencies = { "blink.cmp" }, -- load blink lsp capabilities
+    ---@type rustaceanvim.Opts
     opts = {},
     config = function(_, opts) vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts) end,
   },
