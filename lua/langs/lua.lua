@@ -1,3 +1,4 @@
+-- vim.lsp.enable("emmylua_ls")
 vim.lsp.enable("lua_ls")
 
 return {
@@ -16,6 +17,13 @@ return {
         { path = "snacks.nvim", words = { "Snacks" } },
       },
     },
+    config = function(_, opts)
+      -- FIXME: remove on merge of https://github.com/folke/lazydev.nvim/pull/96
+      require("lazydev.lsp").supports = function(client)
+        return client and vim.tbl_contains({ "lua_ls", "emmylua_ls" }, client.name)
+      end
+      require("lazydev").setup(opts)
+    end,
   },
 
   {
