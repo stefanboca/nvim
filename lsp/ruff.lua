@@ -1,3 +1,5 @@
+local lspconfig = require("utils.lsp").lspconfig("ruff")
+
 ---@type vim.lsp.Config
 return {
   on_attach = {
@@ -11,6 +13,6 @@ return {
         { desc = "Organize Imports", buffer = bufnr }
       )
     end,
-    require("utils.lsp").lspconfig("ruff").on_attach,
+    lspconfig and lspconfig.on_attach,
   },
 }

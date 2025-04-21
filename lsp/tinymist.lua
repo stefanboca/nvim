@@ -1,3 +1,6 @@
+local lspconfig = require("utils.lsp").lspconfig("ruff")
+
+---@type boolean
 local scroll_enabled = true
 local open_previews = {}
 
@@ -86,15 +89,12 @@ return {
   },
   on_attach = {
     function(client, bufnr)
-      local lspconfig = assert(loadfile(vim.fn.stdpath("data") .. "/lazy/nvim-lspconfig/lsp/tinymist.lua"))()
-      lspconfig.on_attach(client, bufnr)
-
       local group = vim.api.nvim_create_augroup("tinymist_preview." .. tostring(bufnr), { clear = true })
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
         group = group,
         buffer = bufnr,
         callback = function()
-          if not client.attached_buffers[bufnr] or client:is_stopped() then return true end
+          if client.attached_buffers[bufnr] or client:is_stopped() then return true end
           if not open_previews[bufnr] or not scroll_enabled then return end
 
           local cursor = vim.api.nvim_win_get_cursor(0)
@@ -142,7 +142,7 @@ return {
         scroll_enabled = not scroll_enabled
       end, { buffer = bufnr, desc = "Toggle Autoscroll" })
     end,
-    require("utils.lsp").lspconfig("tinymist").on_attach,
+    lspconfig and lspconfig.on_attach,
   },
   on_exit = function(_, _, client_id)
     for bufnr, data in pairs(open_previews) do
