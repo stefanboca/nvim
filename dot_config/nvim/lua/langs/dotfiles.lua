@@ -1,6 +1,4 @@
-vim.lsp.enable("bashls")
-
-local chezmoi_pattern = vim.env.HOME .. "/.local/share/chezmoi/*"
+vim.lsp.enable({ "bashls", "fish-lsp" })
 
 return {
   {
@@ -18,29 +16,5 @@ return {
         sh = { "shfmt" },
       },
     },
-  },
-
-  -- highlighting for chezmoi files template files
-  {
-    "alker0/chezmoi.vim",
-    event = { "BufRead " .. chezmoi_pattern, "BufNewFile " .. chezmoi_pattern },
-    init = function() vim.g["chezmoi#use_tmp_buffer"] = true end,
-  },
-  {
-    "xvzc/chezmoi.nvim",
-    cmd = { "ChezmoiEdit" },
-    event = { "BufRead " .. chezmoi_pattern, "BufNewFile " .. chezmoi_pattern },
-    opts = {
-      notifications = { on_watch = true },
-    },
-    init = function()
-      -- run chezmoi edit on file enter
-      vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-        pattern = { chezmoi_pattern },
-        callback = function(ev)
-          vim.schedule(function() require("chezmoi.commands.__edit").watch(ev.buf) end)
-        end,
-      })
-    end,
   },
 }
