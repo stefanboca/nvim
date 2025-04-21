@@ -18,9 +18,9 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        handlebars = { "prettier" },
-        less = { "prettier" },
-        scss = { "prettier" },
+        handlebars = { "prettierd" },
+        less = { "prettierd" },
+        scss = { "prettierd" },
 
         astro = { "biome" },
         css = { "biome" },
@@ -37,10 +37,10 @@ return {
         -- html = { "biome" },
         -- markdown = { "biome" },
         -- yaml = { "biome" },
-        -- use prettier for now:
-        html = { "prettier" },
-        markdown = { "prettier" },
-        yaml = { "prettier" },
+        -- use prettierd for now:
+        html = { "prettierd" },
+        markdown = { "prettierd" },
+        yaml = { "prettierd" },
       },
     },
   },
