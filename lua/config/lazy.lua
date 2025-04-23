@@ -7,8 +7,6 @@ vim.opt.rtp:prepend(lazypath)
 ---@diagnostic disable-next-line:duplicate-set-field
 vim.deprecate = function() end
 
-vim.g.colorscheme = "tokyonight"
-
 require("config.profiler")
 require("config.options")
 require("config.autocmds")

@@ -1,8 +1,7 @@
 return {
   {
     "folke/tokyonight.nvim",
-    cond = vim.g.colorscheme == "tokyonight",
-    lazy = false,
+    lazy = vim.g.colorscheme ~= "tokyonight",
     priority = 1000,
     ---@module 'tokyonight'
     ---@type tokyonight.Config
@@ -12,14 +11,18 @@ return {
         rainbow = true,
       },
     },
-    config = function(_, opts) require("tokyonight").load(opts) end,
+    config = function(_, opts)
+      if vim.g.colorscheme == "tokyonight" then
+        opts = vim.tbl_deep_extend("force", opts, { style = vim.g.colorscheme_style })
+      end
+      require("tokyonight").load(opts)
+    end,
   },
 
   {
     "catppuccin/nvim",
-    cond = vim.g.colorscheme == "catppuccin",
     name = "catppuccin",
-    lazy = false,
+    lazy = vim.g.colorscheme ~= "catppuccin",
     priority = 1000,
     ---@module 'catppuccin.types'
     ---@type CatppuccinOptions
@@ -62,18 +65,17 @@ return {
       },
     },
     config = function(_, opts)
-      require("catppuccin").setup(opts)
-      require("catppuccin").load()
+      if vim.g.colorscheme == "catppuccin" then
+        opts = vim.tbl_deep_extend("force", opts, { background = { dark = vim.g.colorscheme_style } })
+        require("catppuccin").setup(opts)
+        require("catppuccin").load()
+      else
+        require("catppuccin").setup(opts)
+      end
     end,
-    specs = {
-      {
-        "akinsho/bufferline.nvim",
-        opts = function(_, opts)
-          if vim.g.colorscheme == "catppuccin" then
-            opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
-          end
-        end,
-      },
-    },
+    specs = vim.g.colorscheme == "catppuccin" and {
+      "akinsho/bufferline.nvim",
+      opts = function(_, opts) opts.highlights = require("catppuccin.groups.integrations.bufferline").get() end,
+    } or nil,
   },
 }
