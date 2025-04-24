@@ -5,6 +5,7 @@ local function on_attach(bufnr, client_id)
   local function has(method) return client:supports_method(method, bufnr) end
 
   local function map(mode, lhs, rhs, opts)
+    opts.noremap = opts.noremap ~= false
     opts.silent = opts.silent ~= false
     opts.buffer = bufnr
     vim.keymap.set(mode, lhs, rhs, opts)
@@ -34,7 +35,7 @@ local function on_attach(bufnr, client_id)
   end
 
   if has("textDocument/codeAction") then
-    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+    map({ "n", "v" }, "<leader>ca", function() require("tiny-code-action").code_action() end, { desc = "Code Action" })
   end
   if has("textDocument/codeLens") then
     map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
@@ -103,6 +104,17 @@ return {
     "saecki/live-rename.nvim",
     keys = {
       { "cr", function() require("live-rename").rename() end, desc = "Rename" },
+    },
+  },
+
+  {
+    "rachartier/tiny-code-action.nvim",
+    opts = {
+      backend = "difftastic",
+      picker = {
+        "snacks",
+        opts = { layout = "dropdown" },
+      },
     },
   },
 
