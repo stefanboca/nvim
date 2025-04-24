@@ -5,13 +5,9 @@ return {
     opts = {
       ---@type string[]
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
-      ---@type table<string, string[]>
-      linters_by_ft = {
-        fish = { "fish" },
-      },
     },
     config = function(_, opts)
-      require("lint").linters_by_ft = opts.linters_by_ft
+      require("lint").linters_by_ft = opts.linters_by_ft or {}
 
       local function debounce(ms, fn)
         local timer = assert(vim.uv.new_timer())
