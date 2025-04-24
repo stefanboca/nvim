@@ -265,12 +265,12 @@ return {
       { "<leader>e", "<leader>fe", remap = true, desc = "File Explorer" },
     },
     config = function(_, opts)
-      local show_dotfiles = false
+      local show_dotfiles = true
       local filter_show = function() return true end
       local filter_hide = function(fs_entry) return not vim.startswith(fs_entry.name, ".") end
 
       opts.content = opts.content or {}
-      opts.content.filter = filter_hide
+      opts.content.filter = filter_show
       require("mini.files").setup(opts)
 
       local toggle_dotfiles = function()
