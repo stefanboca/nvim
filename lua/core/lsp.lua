@@ -35,7 +35,12 @@ local function on_attach(bufnr, client_id)
   end
 
   if has("textDocument/codeAction") then
-    map({ "n", "v" }, "<leader>ca", function() require("tiny-code-action").code_action() end, { desc = "Code Action" })
+    map(
+      { "n", "v" },
+      "<leader>ca",
+      function() require("tiny-code-action").code_action({}) end,
+      { desc = "Code Action" }
+    )
   end
   if has("textDocument/codeLens") then
     map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
@@ -45,6 +50,8 @@ local function on_attach(bufnr, client_id)
     map("n", "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference" })
     map("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference" })
   end
+
+  if has("textDocument/documentColor") then vim.lsp.document_color.enable(true, bufnr, { style = "virtual" }) end
 
   if has("textDocument/foldingRange") then
     local win = vim.api.nvim_get_current_win()
