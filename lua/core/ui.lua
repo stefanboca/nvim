@@ -39,13 +39,13 @@ return {
   -- buffer paths in top right of window
   {
     "b0o/incline.nvim",
-    event = "VeryLazy",
+    event = "BufReadPre",
     opts = {
       hide = {
         cursorline = true,
       },
       window = {
-        padding = 0,
+        padding = 1,
         margin = { horizontal = 0, vertical = 0 },
       },
       render = function(props)
@@ -58,11 +58,9 @@ return {
         if is_default then ft_icon = nil end
         local modified = vim.bo[props.buf].modified
         return {
-          ft_icon and { " ", ft_icon, " ", group = ft_hl } or "",
-          modified and { " ● ", group = "BufferLineModified" } or " ",
+          ft_icon and { ft_icon, " ", group = ft_hl } or nil,
           dirname ~= "." and { dirname, "/", group = "Comment" } or "",
-          { filename, gui = "bold" },
-          " ",
+          { filename, gui = modified and "bold" or nil },
         }
       end,
     },
