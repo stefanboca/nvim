@@ -57,7 +57,10 @@ return {
     opts_extend = { "spec" },
     opts = {
       preset = "helix",
-      defaults = {},
+      plugins = {
+        -- disabled because it makes yank to clipboard really slow for some reason
+        registers = false,
+      },
       spec = {
         {
           mode = { "n", "v" },
