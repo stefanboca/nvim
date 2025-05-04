@@ -11,6 +11,11 @@ return {
     ---@module 'conform'
     ---@type conform.setupOpts
     opts = {
+      formatters = {
+        typstyle = {
+          prepend_args = { "--wrap-text", "--column", "100" },
+        },
+      },
       formatters_by_ft = {
         typst = { "typstyle" },
       },

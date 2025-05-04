@@ -1,4 +1,4 @@
-vim.lsp.enable({ "bashls", "fish-lsp" })
+vim.lsp.enable({ "bashls", "fish_lsp" })
 
 return {
   {

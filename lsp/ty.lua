@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { vim.env.HOME .. "/data/software/utils/ruff/target/release/red_knot", "server" },
+  cmd = { vim.env.HOME .. "/data/software/utils/ruff/target/release/ty", "server" },
   filetypes = { "python" },
   root_marksrs = {
     "pyproject.toml",
