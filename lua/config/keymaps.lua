@@ -192,3 +192,12 @@ map("v", "<leader>Y", function()
     vim.notify("Failed to upload to pastebin")
   end
 end, { desc = "Upload selection to paste bin" })
+
+-- quit on write
+if vim.g.quit_on_write ~= nil then
+  vim.keymap.set("n", "q", function()
+    vim.cmd.wall()
+    require("persistence").stop()
+    vim.cmd.quitall()
+  end)
+end

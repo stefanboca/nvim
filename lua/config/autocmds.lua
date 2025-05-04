@@ -69,23 +69,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- quit on write for some filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("quit_with_q"),
-  pattern = { "gitcommit", "gitrebase", "jjdescription" },
-  callback = function(event)
-    vim.schedule(function()
-      vim.keymap.set("n", "q", function()
-        vim.cmd.write()
-        Snacks.bufdelete({ buf = event.buf, wipe = true })
-        if vim.g.quit_on_write then
-          require("persistence").stop()
-          vim.cmd.quit()
-        end
-      end, { buffer = event.buf, silent = true, desc = "Quit" })
-    end)
-  end,
-})
+if vim.g.quit_on_write ~= nil then
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    group = augroup("quit_on_write"),
+    callback = function()
+      require("persistence").stop()
+      vim.cmd.quitall()
+    end,
+  })
+end
 
 -- make it easier to close man-files when opened inline
 vim.api.nvim_create_autocmd("FileType", {
