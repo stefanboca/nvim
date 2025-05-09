@@ -1,9 +1,12 @@
-vim.lsp.enable({ "biome", "vtsls", "svelte", "tailwindcss" })
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "typescript", "tsx", "javascript", "jsdoc", "css", "scss", "html" } },
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "biome", "vtsls", "svelte", "tailwindcss" } },
   },
 
   -- Automatically add closing tags for HTML and JSX

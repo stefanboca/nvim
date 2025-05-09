@@ -89,7 +89,7 @@ function M.lsp_config_find(opts, ctx)
           attached = item.attached or false,
           attached_buf = item.buffers[main_buf] or false,
           config = config,
-          text = nil,
+          text = name .. " " .. table.concat(config.filetypes or {}, " "),
         })
       end
     end

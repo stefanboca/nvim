@@ -1,5 +1,3 @@
-vim.lsp.enable("neocmake")
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -7,11 +5,14 @@ return {
   },
 
   {
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "neocmake" } },
+  },
+
+  {
     "mfussenegger/nvim-lint",
     opts = {
-      linters_by_ft = {
-        cmake = { "cmakelint" },
-      },
+      linters_by_ft = { cmake = { "cmakelint" } },
     },
   },
 }

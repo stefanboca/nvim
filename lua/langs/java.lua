@@ -1,3 +1,6 @@
-vim.lsp.enable("jdtls")
-
-return {}
+return {
+  {
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "jdtls" } },
+  },
+}

@@ -30,6 +30,7 @@ return {
     "nvim-neotest/neotest",
     opts = {
       adapters = {
+        -- defer loading of rustaceanvim until needed
         setmetatable({}, {
           __index = function(_, key) return require("rustaceanvim.neotest")[key] end,
         }),

@@ -1,3 +1,5 @@
+---@param bufnr integer
+---@param client_id integer
 local function on_attach(bufnr, client_id)
   local client = vim.lsp.get_client_by_id(client_id)
   if not client then return end
@@ -59,7 +61,7 @@ local function on_attach(bufnr, client_id)
   end
 end
 
-vim.lsp.set_log_level(vim.log.levels.OFF)
+vim.lsp.set_log_level(vim.env.NVIM_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
 
 local register_handler = vim.lsp.handlers["client/registerCapability"]
 vim.lsp.config("*", {
@@ -77,7 +79,6 @@ vim.lsp.config("*", {
       },
     },
   },
-  root_markers = { ".jj" },
   handlers = {
     ["client/registerCapability"] = function(err, res, ctx)
       for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
@@ -94,12 +95,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev) on_attach(ev.buf, ev.data.client_id) end,
 })
 
--- vim.lsp.enable("harper_ls")
-
 return {
   {
     "neovim/nvim-lspconfig",
     lazy = false,
+    opts_extend = { "enabled" },
+    -- opts = { enabled = { "harper_ls" } },
+    config = function(_, opts) vim.lsp.enable(opts.enabled or {}) end,
   },
 
   -- rename in-place with the LSP and live feedback

@@ -1,9 +1,12 @@
-vim.lsp.enable("marksman")
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "markdown", "markdown_inline" } },
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "marksman" } },
   },
 
   {
@@ -33,9 +36,7 @@ return {
   {
     "mfussenegger/nvim-lint",
     opts = {
-      linters_by_ft = {
-        markdown = { "markdownlint-cli2" },
-      },
+      linters_by_ft = { markdown = { "markdownlint-cli2" } },
     },
   },
 

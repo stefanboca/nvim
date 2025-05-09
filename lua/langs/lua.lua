@@ -1,10 +1,12 @@
--- vim.lsp.enable("emmylua_ls")
-vim.lsp.enable("lua_ls")
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "lua", "luadoc", "luap" } },
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "lua_ls" } },
   },
 
   {
