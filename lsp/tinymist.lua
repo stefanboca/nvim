@@ -1,4 +1,4 @@
-local lspconfig = require("utils.lsp").lspconfig("ruff")
+local lspconfig = require("utils.lsp").lspconfig("tinymist")
 
 ---@type boolean
 local scroll_enabled = true
@@ -59,9 +59,12 @@ local function preview_scrollSource(err, result, ctx)
   }, client.offset_encoding, { reuse_win = true })
 end
 
-local function preview_stop(client, bufnr)
+---@param client vim.lsp.Client
+---@param bufnr integer
+---@param notify_not_started boolean
+local function preview_stop(client, bufnr, notify_not_started)
   if not open_previews[bufnr] then
-    vim.notify("Preview not started", vim.log.levels.ERROR)
+    if notify_not_started then vim.notify("Preview not started", vim.log.levels.ERROR) end
     return
   end
 
@@ -94,29 +97,29 @@ return {
         group = group,
         buffer = bufnr,
         callback = function()
-          if client.attached_buffers[bufnr] or client:is_stopped() then return true end
           if not open_previews[bufnr] or not scroll_enabled then return end
+          if not client.attached_buffers[bufnr] or client:is_stopped() then return true end
 
           local cursor = vim.api.nvim_win_get_cursor(0)
-          client:exec_cmd({
-            command = "tinymist.scrollPreview",
-            title = "Scroll Preview",
-            arguments = {
-              tostring(bufnr),
-              {
-                event = "panelScrollTo",
-                filepath = vim.api.nvim_buf_get_name(bufnr),
-                line = cursor[1] - 1,
-                character = cursor[2],
-              },
-            },
-          }, { bufnr = bufnr })
+          local filepath = vim.api.nvim_buf_get_name(bufnr)
+          vim.schedule(
+            function()
+              client:exec_cmd({
+                command = "tinymist.scrollPreview",
+                title = "Scroll Preview",
+                arguments = {
+                  tostring(bufnr),
+                  { event = "panelScrollTo", filepath = filepath, line = cursor[1] - 1, character = cursor[2] },
+                },
+              }, { bufnr = bufnr })
+            end
+          )
         end,
       })
       vim.api.nvim_create_autocmd("BufDelete", {
         group = group,
         buffer = bufnr,
-        callback = function() preview_stop(client, bufnr) end,
+        callback = function() preview_stop(client, bufnr, false) end,
       })
 
       vim.keymap.set(
@@ -129,17 +132,17 @@ return {
       vim.keymap.set(
         "n",
         "<localleader>s",
-        function() preview_stop(client, bufnr) end,
+        function() preview_stop(client, bufnr, true) end,
         { buffer = bufnr, desc = "Stop Typst Preview" }
       )
 
       vim.keymap.set("n", "<localleader>S", function()
+        scroll_enabled = not scroll_enabled
         if scroll_enabled then
           vim.notify("Autoscroll enabled", vim.log.levels.INFO)
         else
           vim.notify("Autoscroll disabled", vim.log.levels.INFO)
         end
-        scroll_enabled = not scroll_enabled
       end, { buffer = bufnr, desc = "Toggle Autoscroll" })
     end,
     lspconfig and lspconfig.on_attach,
