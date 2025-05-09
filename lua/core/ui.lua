@@ -148,6 +148,7 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    ---@type NoiceConfig
     opts = {
       lsp = {
         signature = { enabled = false },

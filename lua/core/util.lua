@@ -63,7 +63,7 @@ return {
   },
 
   -- find available keys
-  { "meznaric/key-analyzer.nvim", cmd = "KeyAnalyzer", opts = {} },
+  { "meznaric/key-analyzer.nvim", cmd = "KeyAnalyzer", opts = { promotion = false } },
 
   {
     "snacks.nvim",
