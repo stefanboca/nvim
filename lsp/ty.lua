@@ -10,4 +10,11 @@ return {
     "Pipfile",
     "pyrightconfig.json",
   },
+  settings = {
+    experimental = {
+      completions = {
+        enable = true,
+      },
+    },
+  },
 }
