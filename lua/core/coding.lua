@@ -50,7 +50,6 @@ return {
     "saghen/blink.pairs",
     event = { "BufReadPre", "BufNewFile" },
     build = "cargo build --release",
-    dev = true,
 
     --- @module 'blink.pairs'
     --- @type blink.pairs.Config

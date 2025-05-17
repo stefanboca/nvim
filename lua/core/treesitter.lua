@@ -16,7 +16,7 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
       auto_install = true,
-      ensure_installed = { "diff", "printf", "regex", "rust", "vim", "vimdoc" },
+      ensure_installed = { "diff", "printf", "regex", "rust", "vim", "vimdoc", "bash", "latex", "norg" },
     },
     config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
