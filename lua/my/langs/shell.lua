@@ -1,12 +1,5 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "git_config" },
-    },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "bashls", "fish_lsp" } },
   },

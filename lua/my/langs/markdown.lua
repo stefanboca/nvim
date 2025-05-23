@@ -1,10 +1,5 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "markdown", "markdown_inline" } },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "marksman" } },
   },
