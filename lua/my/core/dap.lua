@@ -66,6 +66,7 @@ return {
     },
     opts = {
       winbar = {
+        controls = { enabled = true },
         sections = { "watches", "exceptions", "breakpoints", "scopes", "threads", "repl", "console" },
       },
     },
