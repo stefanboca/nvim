@@ -123,8 +123,8 @@ return {
     "snacks.nvim",
     keys = { { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" } },
     opts = function()
-      Snacks.picker.sources.lsp_config.finder = require("utils.lsp").lsp_config_find
-      Snacks.picker.sources.lsp_config.preview = require("utils.lsp").lsp_config_preview
+      Snacks.picker.sources.lsp_config.finder = require("my.utils.lsp").lsp_config_find
+      Snacks.picker.sources.lsp_config.preview = require("my.utils.lsp").lsp_config_preview
     end,
   },
 }

@@ -1,4 +1,4 @@
-local lspconfig = require("utils.lsp").lspconfig("ruff")
+local lspconfig = require("my.utils.lsp").lspconfig("ruff")
 
 ---@type vim.lsp.Config
 return {

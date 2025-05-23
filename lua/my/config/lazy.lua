@@ -7,13 +7,13 @@ vim.opt.rtp:prepend(lazypath)
 ---@diagnostic disable-next-line:duplicate-set-field
 vim.deprecate = function() end
 
-require("config.profiler")
-require("config.options")
-require("config.autocmds")
+require("my.config.profiler")
+require("my.config.options")
+require("my.config.autocmds")
 
 require("lazy").setup({
-  { import = "core" },
-  { import = "langs" },
+  { import = "my.core" },
+  { import = "my.langs" },
 }, {
   defaults = {
     lazy = true,
@@ -44,4 +44,4 @@ require("lazy").setup({
   },
 })
 
-require("config.keymaps")
+require("my.config.keymaps")

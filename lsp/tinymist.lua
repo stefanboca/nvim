@@ -1,4 +1,4 @@
-local lspconfig = require("utils.lsp").lspconfig("tinymist")
+local lspconfig = require("my.utils.lsp").lspconfig("tinymist")
 
 ---@type boolean
 local scroll_enabled = true
