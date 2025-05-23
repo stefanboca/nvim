@@ -5,23 +5,20 @@ return {
     branch = "main",
     build = ":TSUpdate",
     opts_extend = { "ensure_installed" },
-    opts = { ensure_installed = { "comment", "diff", "printf", "regex", "bash" } },
+    opts = { ensure_installed = { "comment", "diff", "printf", "regex", "bash", "vim", "vimdoc" } },
     config = function(_, opts)
       require("nvim-treesitter").install(opts.ensure_installed or {})
 
       local available = require("nvim-treesitter.config").get_available()
 
       local installed_cache = {}
-      for _, parser in ipairs(vim.api.nvim_get_runtime_file("parser/*", true)) do
-        installed_cache[vim.fn.fnamemodify(parser, ":t:r")] = true
-      end
       for _, parser in ipairs(require("nvim-treesitter.config").installed_parsers()) do
         installed_cache[parser] = true
       end
 
       local function attach(bufnr, winnr)
         vim.treesitter.start(bufnr)
-        -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         vim.wo[winnr][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
       end
 

@@ -55,6 +55,7 @@ return {
 
   {
     "saghen/blink.pairs",
+    dev = true,
     event = { "BufReadPre", "BufNewFile" },
     build = "cargo build --release",
 

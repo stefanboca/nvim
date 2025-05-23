@@ -52,13 +52,6 @@ return {
   },
 
   {
-    "folke/todo-comments.nvim",
-    keys = {
-      { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo" },
-    },
-  },
-
-  {
     "folke/trouble.nvim",
     specs = {
       "folke/snacks.nvim",
