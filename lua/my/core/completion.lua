@@ -1,13 +1,5 @@
 return {
   {
-    "saghen/blink.compat",
-    -- lazy = false,
-    optional = true,
-    dev = true,
-    opts = { debug = true },
-  },
-
-  {
     "saghen/blink.cmp",
     build = "cargo build --release",
     opts_extend = { "sources.default" },
@@ -20,41 +12,25 @@ return {
 
       cmdline = {
         completion = {
-          list = {
-            selection = {
-              preselect = false,
-            },
-          },
-          menu = {
-            auto_show = true,
-          },
-          ghost_text = {
-            enabled = true,
-          },
+          list = { selection = { preselect = false } },
+          menu = { auto_show = true },
         },
       },
 
       completion = {
         menu = {
           direction_priority = { "n", "s" },
-          draw = {
-            treesitter = { "lsp" },
-          },
+          draw = { treesitter = { "lsp" } },
         },
         documentation = { auto_show = true },
         ghost_text = { enabled = true },
       },
 
-      fuzzy = {
-        implementation = "prefer_rust_with_warning",
-        prebuilt_binaries = { download = false },
-      },
+      fuzzy = { prebuilt_binaries = { download = false } },
 
       signature = { enabled = true },
 
-      snippets = {
-        preset = "luasnip",
-      },
+      snippets = { preset = "luasnip" },
 
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
