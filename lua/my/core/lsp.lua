@@ -54,46 +54,7 @@ local function on_attach(bufnr, client_id)
   end
 
   if has("textDocument/documentColor") then vim.lsp.document_color.enable(true, bufnr, { style = "virtual" }) end
-
-  if has("textDocument/foldingRange") then
-    local win = vim.api.nvim_get_current_win()
-    vim.wo[win][0].foldexpr = 'v"lua.vim.lsp.foldexpr()"'
-  end
 end
-
-vim.lsp.set_log_level(vim.env.NVIM_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
-
-local register_handler = vim.lsp.handlers["client/registerCapability"]
-vim.lsp.config("*", {
-  capabilities = {
-    textDocument = {
-      foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      },
-    },
-    workspace = {
-      fileOperations = {
-        didRename = true,
-        willRename = true,
-      },
-    },
-  },
-  handlers = {
-    ["client/registerCapability"] = function(err, res, ctx)
-      for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
-        on_attach(bufnr, ctx.client_id)
-      end
-      return register_handler(err, res, ctx)
-    end,
-  },
-})
-
-vim.lsp.inlay_hint.enable()
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev) on_attach(ev.buf, ev.data.client_id) end,
-})
 
 return {
   {
@@ -101,7 +62,31 @@ return {
     lazy = false,
     opts_extend = { "enabled" },
     -- opts = { enabled = { "harper_ls" } },
-    config = function(_, opts) vim.lsp.enable(opts.enabled or {}) end,
+    config = function(_, opts)
+      local register_handler = vim.lsp.handlers["client/registerCapability"]
+      vim.lsp.config("*", {
+        capabilities = {
+          textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
+          workspace = { fileOperations = { didRename = true, willRename = true } },
+        },
+        handlers = {
+          ["client/registerCapability"] = function(err, res, ctx)
+            for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
+              on_attach(bufnr, ctx.client_id)
+            end
+            return register_handler(err, res, ctx)
+          end,
+        },
+      })
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(ev) on_attach(ev.buf, ev.data.client_id) end,
+      })
+
+      vim.lsp.set_log_level(vim.env.NVIM_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
+      vim.lsp.enable(opts.enabled or {})
+      vim.lsp.inlay_hint.enable()
+    end,
   },
 
   -- rename in-place with the LSP and live feedback

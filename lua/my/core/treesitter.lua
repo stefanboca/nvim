@@ -7,7 +7,7 @@ return {
     opts_extend = { "ensure_installed" },
     opts = { ensure_installed = { "comment", "diff", "printf", "regex", "bash" } },
     config = function(_, opts)
-      require("nvim-treesitter").install(opts.ensure_installed)
+      require("nvim-treesitter").install(opts.ensure_installed or {})
 
       local available = require("nvim-treesitter.config").get_available()
 
@@ -19,10 +19,17 @@ return {
         installed_cache[parser] = true
       end
 
+      local function attach(bufnr, winnr)
+        vim.treesitter.start(bufnr)
+        -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        vim.wo[winnr][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      end
+
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter", { clear = true }),
         callback = function(ev)
           local bufnr, ft = ev.buf, ev.match
+          local winnr = vim.api.nvim_get_current_win()
 
           if installed_cache[ft] == nil then
             if not vim.tbl_contains(available, ft) then
@@ -32,10 +39,10 @@ return {
 
             require("nvim-treesitter").install(ft):await(function()
               installed_cache[ft] = true
-              vim.treesitter.start(bufnr)
+              attach(bufnr, winnr)
             end)
           elseif installed_cache[ft] then
-            vim.treesitter.start(bufnr)
+            attach(bufnr, winnr)
           end
         end,
       })

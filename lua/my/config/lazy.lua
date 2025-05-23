@@ -26,8 +26,6 @@ require("lazy").setup({
   checker = { enabled = false },
   performance = {
     rtp = {
-      -- allows nix to add plugins (eg for ghostty syntax files)
-      reset = false,
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
