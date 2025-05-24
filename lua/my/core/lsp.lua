@@ -1,9 +1,6 @@
+---@param client vim.lsp.Client
 ---@param bufnr integer
----@param client_id integer
-local function on_attach(bufnr, client_id)
-  local client = vim.lsp.get_client_by_id(client_id)
-  if not client then return end
-
+local function on_attach(client, bufnr)
   local function has(method) return client:supports_method(method, bufnr) end
 
   local function map(mode, lhs, rhs, opts)
@@ -61,7 +58,7 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     opts_extend = { "enabled" },
-    -- opts = { enabled = { "harper_ls" } },
+    opts = { enabled = { "harper_ls" } },
     config = function(_, opts)
       local register_handler = vim.lsp.handlers["client/registerCapability"]
       vim.lsp.config("*", {
@@ -71,8 +68,10 @@ return {
         },
         handlers = {
           ["client/registerCapability"] = function(err, res, ctx)
-            for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
-              on_attach(bufnr, ctx.client_id)
+            local client = vim.lsp.get_client_by_id(ctx.client_id)
+            if not client then return end
+            for bufnr, _ in pairs(client.attached_buffers) do
+              on_attach(client, bufnr)
             end
             return register_handler(err, res, ctx)
           end,
@@ -80,7 +79,15 @@ return {
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(ev) on_attach(ev.buf, ev.data.client_id) end,
+        callback = function(ev)
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if not client then return end
+
+          for server, server_on_attach in pairs(opts.on_attach or {}) do
+            if server == client.name then server_on_attach(client, ev.buf) end
+          end
+          on_attach(client, ev.buf)
+        end,
       })
 
       vim.lsp.set_log_level(vim.env.NVIM_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
@@ -89,7 +96,7 @@ return {
     end,
   },
 
-  -- rename in-place with the LSP and live feedback
+  -- Rename in-place with the LSP and live feedback
   {
     "saecki/live-rename.nvim",
     keys = { { "cr", function() require("live-rename").rename() end, desc = "Rename" } },
@@ -103,7 +110,7 @@ return {
     },
   },
 
-  -- patch snacks lsp_config picker for vim.lsp.config instead of the old nvim_lspconfig api
+  -- Patch snacks lsp_config picker for vim.lsp.config instead of the old nvim_lspconfig API
   {
     "snacks.nvim",
     keys = { { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" } },
