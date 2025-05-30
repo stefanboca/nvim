@@ -6,6 +6,8 @@ g.maplocalleader = "\\"
 
 g.snacks_animate = false
 
+if vim.env.IN_NIX_SHELL then vim.opt.shell = "fish" end
+
 opt.autowrite = true
 opt.clipboard = "unnamed" -- Sync with system clipboard
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
