@@ -26,6 +26,9 @@ return {
           timeout_ms = 500,
         }
       end,
+      formatters_by_ft = {
+        query = { "format-queries" },
+      },
       default_format_opts = {
         timeout_ms = 3000,
         async = false,

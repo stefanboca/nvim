@@ -1,4 +1,9 @@
 return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "re2c" } },
+  },
+
   -- LSP for Cargo.toml
   {
     "Saecki/crates.nvim",
