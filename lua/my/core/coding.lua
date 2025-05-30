@@ -7,6 +7,8 @@ return {
       local spec_treesitter = require("mini.ai").gen_spec.treesitter
       return {
         custom_textobjects = {
+          B = spec_treesitter({ a = "@block.outer", i = "@block.inner" }),
+          C = spec_treesitter({ a = "@class.outer", i = "@class.inner" }),
           F = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
         },
       }
