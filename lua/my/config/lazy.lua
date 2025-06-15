@@ -20,7 +20,7 @@ require("lazy").setup({
     version = false, -- use the latest git commit by default
   },
   dev = {
-    path = "~/data/plugins",
+    path = "~/src/nvim-plugins",
   },
   install = { colorscheme = { vim.g.colorscheme } },
   checker = { enabled = false },
