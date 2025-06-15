@@ -259,9 +259,15 @@ return {
           if not vim.uv.fs_stat(file) then file = nil end
           MiniFiles.open(file, true)
         end,
+        desc = "File Explorer (current file)",
+      },
+      {
+        "<leader>fE",
+        function() MiniFiles.open(nil, true) end,
         desc = "File Explorer",
       },
-      { "<leader>e", "<leader>fe", remap = true, desc = "File Explorer" },
+      { "<leader>e", "<leader>fe", remap = true, desc = "File Explorer (current file)" },
+      { "<leader>E", "<leader>fE", remap = true, desc = "File Explorer" },
     },
     config = function(_, opts)
       local show_dotfiles = true
