@@ -4,6 +4,15 @@ return {
     opts = { ensure_installed = { "re2c" } },
   },
 
+  {
+    "conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        rust = { "rustfmt" },
+      },
+    },
+  },
+
   -- LSP for Cargo.toml
   {
     "Saecki/crates.nvim",
