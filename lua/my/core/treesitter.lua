@@ -5,7 +5,9 @@ return {
     branch = "main",
     build = ":TSUpdate",
     opts_extend = { "ensure_installed" },
-    opts = { ensure_installed = { "comment", "diff", "printf", "regex", "bash", "vim", "vimdoc" } },
+    opts = {
+      ensure_installed = { "bash", "c", "comment", "diff", "lua", "printf", "query", "regex", "vim", "vimdoc" },
+    },
     config = function(_, opts)
       require("nvim-treesitter").install(opts.ensure_installed or {})
 

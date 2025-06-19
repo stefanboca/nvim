@@ -4,7 +4,7 @@
 ; local code = "def main(): ..."
 ((comment
   content: (_) @injection.language
-  (#gsub! @injection.language "^[-][%s]*@language[%s]+(%S+)" "%1"))
+  (#gsub! @injection.language "[-][%s]*@language[%s]+(%S+)[%s]*" "%1"))
   .
   (variable_declaration
     (assignment_statement
