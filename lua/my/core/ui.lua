@@ -141,6 +141,7 @@ return {
   -- scrollbar minimap
   {
     "lewis6991/satellite.nvim",
+    enabled = false, -- TODO: investivate why perf sucks
     event = "VeryLazy",
     opts = {},
   },
