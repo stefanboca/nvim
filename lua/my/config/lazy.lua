@@ -22,7 +22,7 @@ require("lazy").setup({
   dev = {
     path = "~/src/nvim-plugins",
   },
-  install = { colorscheme = { vim.g.colorscheme } },
+  install = { colorscheme = { "catppuccin-mocha" } },
   checker = { enabled = false },
   performance = {
     rtp = {
