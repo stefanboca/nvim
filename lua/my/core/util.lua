@@ -76,28 +76,10 @@ return {
     end,
   },
 
-  -- Un-nest neovim instances
   {
-    "willothy/flatten.nvim",
-    -- NOTE: disabled for now, because causes neotest to hang
-    -- see https://github.com/willothy/flatten.nvim/issues/106
-    enabled = false,
+    "brianhuster/unnest.nvim",
     lazy = false,
     priority = 1001,
-    ---@type Flatten.PartialConfig
-    opts = {
-      window = { open = "alternate" },
-      block_for = {
-        jjdescription = true,
-      },
-      nest_if_no_args = true,
-      hooks = {
-        should_nest = function(host)
-          if vim.env.HEADLESS_OSV then return true end
-          return require("flatten").hooks.should_nest(host)
-        end,
-      },
-    },
   },
 
   -- libraries used by other plugins
