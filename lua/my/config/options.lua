@@ -84,3 +84,8 @@ if g.neovide then
 
   g.neovide_cursor_vfx_mode = "railgun"
 end
+
+if vim.env.NVIM_DEV ~= nil then
+  opt.swapfile = false
+  opt.shada = ""
+end
