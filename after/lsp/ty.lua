@@ -1,4 +1,4 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { "~/src/3rd/ruff/target/release/ty", "server" },
+  cmd = { vim.env.HOME .. "/src/3rd/ruff/target/release/ty", "server" },
 }
