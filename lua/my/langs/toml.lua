@@ -1,14 +1,14 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = { enabled = { "taplo" } },
+    opts = { enabled = { "tombi" } },
   },
 
   {
     "conform.nvim",
     opts = {
       formatters_by_ft = {
-        toml = { "taplo" },
+        toml = { "tombi" },
       },
     },
   },
