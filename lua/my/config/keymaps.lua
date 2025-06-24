@@ -168,7 +168,7 @@ map("x", "<leader>Y", function()
   })
 
   local redirect_url = response.body
-  local extension = filetype_to_extensions[vim.bo.filetype] or vim.bo.filetype
+  local extension = filetype_to_extensions[vim.bo.filetype] or (vim.bo.filetype == "" and "txt" or vim.bo.filetype)
   if redirect_url then
     vim.fn.setreg("+", "https://paste.super.fish" .. redirect_url .. "." .. extension)
     vim.notify("Copied to clipboard and system clipboard")
