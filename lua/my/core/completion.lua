@@ -2,7 +2,7 @@ return {
   {
     "saghen/blink.cmp",
     lazy = false,
-    dev = vim.env.NVIM_DEV ~= nil,
+    dev = vim.env.NVIM_DEV == "cmp",
     build = "cargo build --release",
     -- dependencies = { "rafamadriz/friendly-snippets" },
     opts_extend = { "sources.default" },

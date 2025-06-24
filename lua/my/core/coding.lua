@@ -50,7 +50,7 @@ return {
 
   {
     "saghen/blink.pairs",
-    dev = vim.env.NVIM_DEV ~= nil,
+    dev = vim.env.NVIM_DEV == "pairs",
     event = { "BufReadPre", "BufNewFile" },
     build = "cargo build --release",
 
