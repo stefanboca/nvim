@@ -88,6 +88,10 @@ return {
     },
     config = function(_, opts)
       require("render-markdown").setup(opts)
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TinyCodeActionWindowEnterMain",
+        callback = function(ev) require("render-markdown.state").get(ev.data.buf).win_options.conceallevel = nil end,
+      })
       Snacks.toggle({
         name = "Render Markdown",
         get = function() return require("render-markdown.state").enabled end,
