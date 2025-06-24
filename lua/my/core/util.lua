@@ -102,7 +102,6 @@ return {
 
   -- libraries used by other plugins
   { "nvim-lua/plenary.nvim" },
-  { "gregorias/coop.nvim" },
   { "MunifTanjim/nui.nvim" },
   { "nvim-neotest/nvim-nio" },
 }
