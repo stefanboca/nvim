@@ -1,14 +1,18 @@
 return {
   {
     "saghen/blink.cmp",
+    lazy = false,
+    dev = vim.env.NVIM_DEV ~= nil,
     build = "cargo build --release",
+    -- dependencies = { "rafamadriz/friendly-snippets" },
     opts_extend = { "sources.default" },
-    event = { "VeryLazy", "BufReadPre" },
-
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      keymap = { preset = "enter" },
+      keymap = {
+        preset = "enter",
+        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      },
 
       cmdline = {
         completion = {
@@ -28,9 +32,15 @@ return {
 
       fuzzy = { prebuilt_binaries = { download = false } },
 
-      signature = { enabled = true },
-
-      snippets = { preset = "luasnip" },
+      signature = {
+        enabled = true,
+        trigger = { show_on_insert = true },
+        window = {
+          border = "rounded",
+          direction_priority = { "s", "n" },
+          show_documentation = true,
+        },
+      },
 
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
@@ -71,20 +81,5 @@ return {
         },
       },
     },
-  },
-
-  {
-    "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp",
-    dependencies = {
-      {
-        "rafamadriz/friendly-snippets",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load()
-          require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
-        end,
-      },
-    },
-    opts = {},
   },
 }
