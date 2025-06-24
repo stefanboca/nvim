@@ -91,6 +91,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown", "jjdescription" },
   callback = function()
+    if vim.bo.buftype ~= "" then return end
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
   end,
