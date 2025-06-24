@@ -7,7 +7,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      enabled = { "basedpyright", "ruff" },
+      enabled = { "basedpyright", "ty", "ruff" },
       on_attach = {
         ruff = function(_, bufnr)
           vim.keymap.set(
