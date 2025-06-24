@@ -107,6 +107,7 @@ return {
           hotkeys = true,
           hotkeys_mode = "text_based",
           auto_preview = true,
+          auto_accept = true,
         },
       },
     },
