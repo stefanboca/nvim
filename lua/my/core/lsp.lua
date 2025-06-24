@@ -102,13 +102,7 @@ return {
     opts = {
       backend = "difftastic",
       picker = {
-        "buffer",
-        opts = {
-          hotkeys = true,
-          hotkeys_mode = "text_based",
-          auto_preview = true,
-          auto_accept = true,
-        },
+        "snacks",
       },
     },
   },
