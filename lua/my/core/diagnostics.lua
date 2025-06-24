@@ -51,7 +51,7 @@ return {
           always_show = true,
         },
         show_all_diags_on_cursorline = true,
-        enable_on_insert = false,
+        enable_on_insert = true,
         enable_on_select = false,
       },
     },
