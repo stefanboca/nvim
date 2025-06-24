@@ -35,15 +35,15 @@ local function on_attach(client, bufnr)
 
   if has("textDocument/codeAction") then
     map(
-      { "n", "v" },
+      { "n", "x" },
       "<leader>ca",
       function() require("tiny-code-action").code_action({}) end,
       { desc = "Code Action" }
     )
   end
   if has("textDocument/codeLens") then
-    map({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
-    map({ "n", "v" }, "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh Codelens" })
+    map({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
+    map({ "n", "x" }, "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh Codelens" })
   end
   if has("textDocument/documentHighlight") then
     map("n", "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference" })

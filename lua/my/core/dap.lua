@@ -62,7 +62,7 @@ return {
     "igorlfs/nvim-dap-view",
     keys = {
       { "<leader>du", function() require("dap-view").toggle() end, desc = "Toggle nvim-dap-view" },
-      { "<leader>de", function() require("dap-view").add_expr() end, desc = "Watch Expression", mode = { "n", "v" } },
+      { "<leader>de", function() require("dap-view").add_expr() end, desc = "Watch Expression", mode = { "n", "x" } },
     },
     opts = {
       winbar = {

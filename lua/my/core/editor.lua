@@ -17,7 +17,7 @@ return {
             },
           })
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Search and Replace",
       },
     },
@@ -67,7 +67,7 @@ return {
       },
       spec = {
         {
-          mode = { "n", "v" },
+          mode = { "n", "x" },
           { "<leader><tab>", group = "tabs" },
           { "<leader>c", group = "code" },
           { "<leader>d", group = "debug" },
@@ -136,7 +136,7 @@ return {
 
         map("n", "]h", function() gs.nav_hunk("next") end, "Next Hunk")
         map("n", "[h", function() gs.nav_hunk("prev") end, "Prev Hunk")
-        map({ "n", "v" }, "<leader>ghr", function() gs.reset_hunk() end, "Reset Hunk")
+        map({ "n", "x" }, "<leader>ghr", function() gs.reset_hunk() end, "Reset Hunk")
         map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
       end,
     },
@@ -160,7 +160,7 @@ return {
         return {
           key[1],
           function() require("dial.map").manipulate(key.dir, key.mode) end,
-          mode = key.mode:find("normal") and "n" or "v",
+          mode = key.mode:find("normal") and "n" or "x",
           desc = key.mode:gsub("^%l", string.upper),
         }
       end, keys)

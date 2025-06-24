@@ -7,13 +7,13 @@ return {
       {
         "<leader>cf",
         function() require("conform").format() end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Format",
       },
       {
         "<leader>cF",
         function() require("conform").format({ formatters = { "injected" } }) end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Format Injected Langs",
       },
     },

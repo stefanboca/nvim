@@ -18,10 +18,10 @@ return {
   {
     "echasnovski/mini.move",
     keys = {
-      { "<M-h>", mode = { "n", "v" } },
-      { "<M-j>", mode = { "n", "v" } },
-      { "<M-k>", mode = { "n", "v" } },
-      { "<M-l>", mode = { "n", "v" } },
+      { "<M-h>", mode = { "n", "x" } },
+      { "<M-j>", mode = { "n", "x" } },
+      { "<M-k>", mode = { "n", "x" } },
+      { "<M-l>", mode = { "n", "x" } },
     },
     opts = {},
   },
@@ -29,7 +29,7 @@ return {
   {
     "echasnovski/mini.surround",
     keys = {
-      { "gsa", desc = "Add Surrounding", mode = { "n", "v" } },
+      { "gsa", desc = "Add Surrounding", mode = { "n", "x" } },
       { "gsd", desc = "Delete Surrounding" },
       { "gsf", desc = "Find Right Surrounding" },
       { "gsF", desc = "Find Left Surrounding" },

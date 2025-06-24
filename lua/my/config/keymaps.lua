@@ -56,8 +56,8 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("x", "<", "<gv")
+map("x", ">", ">gv")
 
 -- commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
@@ -148,7 +148,7 @@ map("n", "q", "<nop>", { desc = "which_key_ignore" })
 map("n", "Q", "q", { desc = "Record macro", noremap = true })
 
 -- clipboard
-map("v", "<leader>Y", function()
+map("x", "<leader>Y", function()
   local curl = require("plenary.curl")
   local strings = require("plenary.strings")
   local filetype_to_extensions = {
