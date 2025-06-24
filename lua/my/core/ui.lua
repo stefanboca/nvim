@@ -148,13 +148,16 @@ return {
 
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
+    -- load early for notifications
+    priority = 1000,
+    lazy = false,
     ---@type NoiceConfig
     opts = {
       lsp = {
         signature = { enabled = false },
-        hover = { silent = true },
+        hover = { enabled = false },
       },
+      notify = { enabled = false },
       presets = {
         bottom_search = true,
         command_palette = true,
@@ -166,26 +169,6 @@ return {
         function() require("noice").redirect(vim.fn.getcmdline()) end,
         mode = "c",
         desc = "Redirect Cmdline",
-      },
-      {
-        "<c-f>",
-        function()
-          if not require("noice.lsp").scroll(4) then return "<c-f>" end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll Forward",
-        mode = { "i", "n", "s" },
-      },
-      {
-        "<c-b>",
-        function()
-          if not require("noice.lsp").scroll(-4) then return "<c-b>" end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll Backward",
-        mode = { "i", "n", "s" },
       },
     },
   },
@@ -211,7 +194,6 @@ return {
       input = { enabled = true },
       image = { enabled = true },
       notifier = { enabled = true },
-      scope = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
     },

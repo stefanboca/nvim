@@ -14,7 +14,7 @@ local function on_attach(client, bufnr)
   map("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
   map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto Type Definition" })
   map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-  map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+  map("n", "K", function() vim.lsp.buf.hover({ border = "rounded", anchor_bias = "below" }) end, { desc = "Hover" })
   map("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
 
   if has("textDocument/definition") then
@@ -26,11 +26,6 @@ local function on_attach(client, bufnr)
   end
   if has("workspace/symbols") then
     map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "LSP Workspace Symbols" })
-  end
-
-  if has("textDocument/signatureHelp") then
-    map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
-    map("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Help" })
   end
 
   if has("textDocument/codeAction") then
