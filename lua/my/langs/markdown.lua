@@ -68,7 +68,7 @@ return {
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
+    ft = { "markdown" },
     opts = {
       latex = { enabled = false },
       checkbox = { enabled = false },
