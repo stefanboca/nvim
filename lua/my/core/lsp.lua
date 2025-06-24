@@ -101,7 +101,14 @@ return {
     "rachartier/tiny-code-action.nvim",
     opts = {
       backend = "difftastic",
-      picker = { "snacks", opts = { layout = "dropdown" } },
+      picker = {
+        "buffer",
+        opts = {
+          hotkeys = true,
+          hotkeys_mode = "text_based",
+          auto_preview = true,
+        },
+      },
     },
   },
 
