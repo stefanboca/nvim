@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "pydoc" } },
+    opts = { enable = { "python", "pydoc" } },
   },
 
   {

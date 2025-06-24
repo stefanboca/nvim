@@ -5,6 +5,11 @@ return {
   },
 
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enable = { "nix" } },
+  },
+
+  {
     "conform.nvim",
     opts = {
       formatters_by_ft = {

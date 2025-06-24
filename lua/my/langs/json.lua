@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "jsonc", "json5" } },
+    opts = { enable = { "json", "jsonc", "json5" } },
   },
 
   {

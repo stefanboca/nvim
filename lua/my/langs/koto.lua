@@ -2,6 +2,11 @@ vim.filetype.add({ extension = { koto = "koto" } })
 
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enable = { "koto" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "koto" } },
   },

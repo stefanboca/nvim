@@ -1,5 +1,10 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enable = { "just" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "just" } },
   },

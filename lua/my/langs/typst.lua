@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-treesitter",
-    opts = { ensure_installed = { "dot" } },
+    opts = { enable = { "typst", "dot" } },
   },
 
   {

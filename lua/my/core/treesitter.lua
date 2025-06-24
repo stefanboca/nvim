@@ -4,36 +4,25 @@ return {
     lazy = false,
     branch = "main",
     build = ":TSUpdate",
-    opts_extend = { "ensure_installed" },
+    opts_extend = { "enable" },
     opts = {
-      ensure_installed = { "bash", "c", "comment", "diff", "lua", "printf", "query", "regex", "vim", "vimdoc" },
+      enable = { "bash", "c", "comment", "diff", "lua", "printf", "query", "regex", "vim", "vimdoc" },
     },
     config = function(_, opts)
-      require("nvim-treesitter").install(opts.ensure_installed or {})
+      opts.enable = opts.enable or {}
+      require("nvim-treesitter").install(opts.enable or {})
 
-      local function attach(bufnr, winnr)
-        vim.treesitter.start(bufnr)
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        vim.wo[winnr][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      end
-
-      -- NOTE: injected language parsers are not auto-installed
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter", { clear = true }),
+        pattern = vim.list.unique(
+          vim.iter(opts.enable):map(vim.treesitter.language.get_filetypes):flatten(1):totable()
+        ),
         callback = function(ev)
-          local bufnr, ft = ev.buf, ev.match
           local winnr = vim.api.nvim_get_current_win()
 
-          local ok = pcall(attach, bufnr, winnr)
-          if not ok then
-            local lang = vim.treesitter.language.get_lang(ft) or ft
-            if lang == "" or not vim.tbl_contains(require("nvim-treesitter.config").get_available(), lang) then
-              return
-            end
-            require("nvim-treesitter").install(lang):await(function(_, did_install)
-              if did_install then attach(bufnr, winnr) end
-            end)
-          end
+          vim.treesitter.start(ev.buf)
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          vim.wo[winnr][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
       })
     end,

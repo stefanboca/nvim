@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "re2c" } },
+    opts = { enable = { "rust", "re2c" } },
   },
 
   {

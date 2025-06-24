@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "jsdoc" } },
+    opts = { enable = { "html", "html_tags", "css", "scss", "svelte", "javascript", "typescript", "jsdoc" } },
   },
 
   {

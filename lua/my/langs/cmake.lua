@@ -1,5 +1,10 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enable = { "cmake" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "neocmake" } },
   },

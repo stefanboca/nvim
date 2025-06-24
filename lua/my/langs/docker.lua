@@ -1,5 +1,10 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enable = { "dockerfile" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "docker-language-server" } },
   },

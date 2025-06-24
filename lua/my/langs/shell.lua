@@ -5,6 +5,11 @@ return {
   },
 
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enable = { "fish" } },
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {

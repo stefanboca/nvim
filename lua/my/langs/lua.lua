@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "luadoc", "luap" } },
+    opts = { enable = { "lua", "luadoc", "luap" } },
   },
 
   {
