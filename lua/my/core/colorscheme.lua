@@ -19,10 +19,29 @@ return {
       background = {
         dark = vim.g.catppuccin_flavor,
       },
-      custom_highlights = function(colors)
-        return {
-          MatchParen = { fg = "NONE", bg = colors.surface1, style = { "bold" } },
+      float = {
+        transparent = false,
+        solid = false,
+      },
+      custom_highlights = function(c)
+        local hls = {
+          MatchParen = { fg = "NONE", bg = c.surface1, style = { "bold" } },
         }
+
+        local function pairs_hl(color, fg)
+          hls["BlinkPairs" .. color] = { fg = fg }
+          hls["BlinkIndentUnderline" .. color] = { default = true, sp = fg, underline = true }
+        end
+
+        pairs_hl("Red", c.red)
+        pairs_hl("Orange", c.peach)
+        pairs_hl("Yellow", c.yellow)
+        pairs_hl("Green", c.green)
+        pairs_hl("Cyan", c.teal)
+        pairs_hl("Blue", c.blue)
+        pairs_hl("Violet", c.mauve)
+
+        return hls
       end,
       integrations = {
         blink_cmp = true,
@@ -44,7 +63,6 @@ return {
         },
         noice = true,
         notify = true,
-        rainbow_delimiters = true, -- used by blink.pairs
         semantic_tokens = true,
         snacks = true,
         telescope = true,

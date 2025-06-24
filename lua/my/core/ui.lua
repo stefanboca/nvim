@@ -185,12 +185,41 @@ return {
   },
 
   {
+    "saghen/blink.indent",
+    lazy = false,
+    opts = {
+      scope = {
+        highlights = {
+          "BlinkPairsRed",
+          "BlinkPairsOrange",
+          "BlinkPairsYellow",
+          "BlinkPairsGreen",
+          "BlinkPairsCyan",
+          "BlinkPairsBlue",
+          "BlinkPairsViolet",
+        },
+        underline = {
+          enabled = true,
+          highlights = {
+            "BlinkIndentUnderlineRed",
+            "BlinkIndentUnderlineOrange",
+            "BlinkIndentUnderlineYellow",
+            "BlinkIndentUnderlineGreen",
+            "BlinkIndentUnderlineCyan",
+            "BlinkIndentUnderlineBlue",
+            "BlinkIndentUnderlineViolet",
+          },
+        },
+      },
+    },
+  },
+
+  {
     "snacks.nvim",
     keys = {
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
     },
     opts = {
-      indent = { enabled = true },
       input = { enabled = true },
       image = { enabled = true },
       notifier = { enabled = true },

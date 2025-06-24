@@ -57,19 +57,16 @@ return {
     --- @module 'blink.pairs'
     --- @type blink.pairs.Config
     opts = {
-      mappings = {
-        enabled = true,
-      },
       highlights = {
         enabled = true,
         groups = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterCyan",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterViolet",
+          "BlinkPairsRed",
+          "BlinkPairsOrange",
+          "BlinkPairsYellow",
+          "BlinkPairsGreen",
+          "BlinkPairsCyan",
+          "BlinkPairsBlue",
+          "BlinkPairsViolet",
         },
       },
     },
