@@ -5,6 +5,7 @@ return {
     ty = {
       experimental = {
         rename = true,
+        autoImport = true,
       },
     },
   },
