@@ -43,15 +43,8 @@ return {
 
         return hls
       end,
+      auto_integrations = true,
       integrations = {
-        blink_cmp = true,
-        flash = true,
-        grug_far = true,
-        gitsigns = true,
-        leap = true,
-        lsp_trouble = true,
-        markdown = true,
-        mini = true,
         native_lsp = {
           enabled = true,
           underlines = {
@@ -61,14 +54,6 @@ return {
             information = { "undercurl" },
           },
         },
-        noice = true,
-        notify = true,
-        semantic_tokens = true,
-        snacks = true,
-        telescope = true,
-        treesitter = true,
-        treesitter_context = true,
-        which_key = true,
       },
     },
     config = function(_, opts)
