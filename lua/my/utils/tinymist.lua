@@ -86,6 +86,7 @@ function M.preview_start(client, bufnr)
     arguments = {
       {
         "--partial-rendering",
+        "true",
         "--data-plane-host",
         "127.0.0.1:0",
         "--control-plane-host",
@@ -100,7 +101,7 @@ function M.preview_start(client, bufnr)
     },
   }, { bufnr = bufnr }, function(err, result)
     if err then
-      vim.notify("Failed to start preview: " .. err, vim.log.levels.ERROR)
+      vim.notify("Failed to start preview: " .. err.message or err, vim.log.levels.ERROR)
       return
     end
 
