@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "glsl" } },
+    opts = { enabled = { "glsl" } },
   },
 
   {

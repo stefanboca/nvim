@@ -91,6 +91,8 @@ return {
     end,
   },
 
+  { "b0o/SchemaStore.nvim" },
+
   -- Rename in-place with the LSP and live feedback
   {
     "saecki/live-rename.nvim",

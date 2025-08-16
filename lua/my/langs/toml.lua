@@ -1,16 +1,16 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enabled = { "toml" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "tombi" } },
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "toml" } },
-  },
-
-  {
-    "conform.nvim",
+    "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
         toml = { "tombi" },

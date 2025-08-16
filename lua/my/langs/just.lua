@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "just" } },
+    opts = { enabled = { "just" } },
   },
 
   {

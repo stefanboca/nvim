@@ -1,12 +1,12 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    opts = { enabled = { "nil_ls" } },
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enabled = { "nix" } },
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "nix" } },
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "nil_ls" } },
   },
 
   {

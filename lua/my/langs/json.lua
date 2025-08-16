@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "json", "jsonc", "json5" } },
+    opts = { enabled = { "json", "jsonc", "json5" } },
   },
 
   {
@@ -9,5 +9,14 @@ return {
     opts = { enabled = { "jsonls" } },
   },
 
-  { "b0o/SchemaStore.nvim" },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        json = { "biome" },
+        jsonc = { "biome" },
+        json5 = { "biome" },
+      },
+    },
+  },
 }

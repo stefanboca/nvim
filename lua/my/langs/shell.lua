@@ -1,12 +1,12 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    opts = { enabled = { "bashls", "fish_lsp" } },
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enabled = { "fish" } },
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "fish" } },
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "bashls", "fish_lsp" } },
   },
 
   {

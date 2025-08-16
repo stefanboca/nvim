@@ -1,15 +1,13 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "rust", "re2c" } },
+    opts = { enabled = { "rust", "re2c" } },
   },
 
   {
     "conform.nvim",
     opts = {
-      formatters_by_ft = {
-        rust = { "rustfmt" },
-      },
+      formatters_by_ft = { rust = { "rustfmt" } },
     },
   },
 

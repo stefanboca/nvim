@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "java" } },
+    opts = { enabled = { "java" } },
   },
 
   {

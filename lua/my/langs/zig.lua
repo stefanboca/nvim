@@ -1,11 +1,11 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    opts = { enabled = { "zls" } },
+    "nvim-treesitter/nvim-treesitter",
+    opts = { enabled = { "zig" } },
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "zig" } },
+    "neovim/nvim-lspconfig",
+    opts = { enabled = { "zls" } },
   },
 }

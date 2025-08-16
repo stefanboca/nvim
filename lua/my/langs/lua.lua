@@ -1,12 +1,21 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { enable = { "lua", "luadoc", "luap" } },
+    opts = { enabled = { "lua", "luadoc", "luap" } },
   },
 
   {
     "neovim/nvim-lspconfig",
     opts = { enabled = { "lua_ls" } },
+  },
+
+  {
+    "conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+      },
+    },
   },
 
   {
@@ -40,15 +49,6 @@ return {
             score_offset = 10, -- show at a higher priority than lsp
           },
         },
-      },
-    },
-  },
-
-  {
-    "conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
       },
     },
   },

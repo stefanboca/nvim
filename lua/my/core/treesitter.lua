@@ -4,25 +4,23 @@ return {
     lazy = false,
     branch = "main",
     build = ":TSUpdate",
-    opts_extend = { "enable" },
+    opts_extend = { "enabled" },
     opts = {
-      enable = { "bash", "c", "comment", "diff", "lua", "printf", "query", "regex", "vim", "vimdoc" },
+      enabled = { "bash", "c", "comment", "diff", "lua", "printf", "query", "regex", "vim", "vimdoc" },
     },
     config = function(_, opts)
-      opts.enable = opts.enable or {}
-      require("nvim-treesitter").install(opts.enable or {})
+      opts.enabled = opts.enabled or {}
+      require("nvim-treesitter").install(opts.enabled or {})
 
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter", { clear = true }),
         pattern = vim.list.unique(
-          vim.iter(opts.enable):map(vim.treesitter.language.get_filetypes):flatten(1):totable()
+          vim.iter(opts.enabled):map(vim.treesitter.language.get_filetypes):flatten(1):totable()
         ),
         callback = function(ev)
-          local winnr = vim.api.nvim_get_current_win()
-
           vim.treesitter.start(ev.buf)
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          vim.wo[winnr][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
       })
     end,

@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-treesitter",
-    opts = { enable = { "typst", "dot" } },
+    opts = { enabled = { "typst", "dot" } },
   },
 
   {
