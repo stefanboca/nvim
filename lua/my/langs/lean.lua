@@ -1,5 +1,6 @@
 vim.api.nvim_create_autocmd("User", {
   pattern = "TSUpdate",
+  group = vim.api.nvim_create_augroup("lean.ts_update", { clear = true }),
   callback = function()
     ---@diagnostic disable-next-line: missing-fields
     require("nvim-treesitter.parsers").lean = {
