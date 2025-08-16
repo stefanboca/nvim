@@ -1,7 +1,7 @@
 return {
   -- Better text-objects
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     event = "VeryLazy",
     opts = function()
       local spec_treesitter = require("mini.ai").gen_spec.treesitter
@@ -16,7 +16,7 @@ return {
   },
 
   {
-    "echasnovski/mini.move",
+    "nvim-mini/mini.move",
     keys = {
       { "<M-h>", mode = { "n", "x" } },
       { "<M-j>", mode = { "n", "x" } },
@@ -27,7 +27,7 @@ return {
   },
 
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     keys = {
       { "gsa", desc = "Add Surrounding", mode = { "n", "x" } },
       { "gsd", desc = "Delete Surrounding" },

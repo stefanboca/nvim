@@ -52,7 +52,7 @@ return {
   },
 
   {
-    "echasnovski/mini.hipatterns",
+    "nvim-mini/mini.hipatterns",
     event = "VeryLazy",
     opts = function()
       return {

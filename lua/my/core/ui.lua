@@ -174,7 +174,7 @@ return {
   },
 
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     opts = {},
     init = function()
       package.preload["nvim-web-devicons"] = function()
@@ -252,7 +252,7 @@ return {
   },
 
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     lazy = vim.fn.argc(-1) == 0, -- load early when opening a directory from cmdline
     opts = {
       options = {
