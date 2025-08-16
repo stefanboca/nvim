@@ -49,9 +49,7 @@ return {
           enabled = true,
           underlines = {
             errors = { "undercurl" },
-            hints = { "undercurl" },
             warnings = { "undercurl" },
-            information = { "undercurl" },
           },
         },
       },
