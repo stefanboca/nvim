@@ -17,17 +17,19 @@ return {
       cmdline = {
         completion = {
           list = { selection = { preselect = false } },
-          menu = { auto_show = true },
+          menu = {
+            auto_show = true,
+            draw = {
+              columns = { { "label", "label_description", gap = 1 } },
+            },
+          },
         },
       },
 
       completion = {
         menu = {
           direction_priority = { "n", "s" },
-          draw = {
-            columns = { { "label", "label_description", gap = 1 } },
-            treesitter = { "lsp" },
-          },
+          draw = { treesitter = { "lsp" } },
         },
         documentation = { auto_show = true },
         ghost_text = { enabled = true },
