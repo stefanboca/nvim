@@ -44,8 +44,6 @@ local function on_attach(client, bufnr)
     map("n", "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference" })
     map("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference" })
   end
-
-  if has("textDocument/documentColor") then vim.lsp.document_color.enable(true, bufnr, { style = "virtual" }) end
 end
 
 return {
