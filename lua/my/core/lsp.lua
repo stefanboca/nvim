@@ -107,13 +107,8 @@ return {
     },
   },
 
-  -- Patch snacks lsp_config picker for vim.lsp.config instead of the old nvim_lspconfig API
   {
     "snacks.nvim",
     keys = { { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info" } },
-    opts = function()
-      Snacks.picker.sources.lsp_config.finder = require("my.utils.lsp").lsp_config_find
-      Snacks.picker.sources.lsp_config.preview = require("my.utils.lsp").lsp_config_preview
-    end,
   },
 }
