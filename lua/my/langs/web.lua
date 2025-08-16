@@ -5,11 +5,13 @@ return {
       enabled = {
         "astro",
         "css",
+        "ecma",
         "graphql",
         "html",
         "html_tags",
         "javascript",
         "jsdoc",
+        "jsx",
         "scss",
         "svelte",
         "typescript",
