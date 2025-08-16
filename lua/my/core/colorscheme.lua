@@ -61,7 +61,7 @@ return {
     end,
     specs = {
       "akinsho/bufferline.nvim",
-      opts = function(_, opts) opts.highlights = require("catppuccin.groups.integrations.bufferline").get() end,
+      opts = function(_, opts) opts.highlights = require("catppuccin.groups.integrations.bufferline").get_theme() end,
     },
   },
 }
