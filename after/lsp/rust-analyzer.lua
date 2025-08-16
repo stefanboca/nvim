@@ -8,6 +8,11 @@ return {
         targetDir = true,
         features = "all",
       },
+      diagnostics = {
+        experimental = {
+          enable = true,
+        },
+      },
     },
   },
   on_attach = function(_, bufnr)
