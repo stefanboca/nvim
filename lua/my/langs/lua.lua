@@ -35,6 +35,9 @@ return {
     opts = {
       sources = {
         default = { "lazydev" },
+        per_filetype = {
+          lua = { inherit_defaults = true, "lazydev" },
+        },
         providers = {
           lazydev = {
             name = "LazyDev",
