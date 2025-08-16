@@ -55,7 +55,6 @@ return {
     opts = {
       latex = { enabled = false },
       checkbox = { enabled = false },
-      highlight = { enabled = true },
       completions = {
         lsp = { enabled = true },
       },
