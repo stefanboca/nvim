@@ -2,7 +2,20 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = true,
   float = { border = "rounded", source = "if_many" },
-  virtual_text = false,
+  virtual_text = function(ns, bufnr)
+    ---@diagnostic disable-next-line:return-type-mismatch
+    if vim.bo[bufnr].filetype ~= "lean" then return false end
+    return {
+      severity = { max = vim.diagnostic.severity.WARN },
+      prefix = " ●",
+      suffix = " ",
+    }
+  end,
+  virtual_lines = function(ns, bufnr)
+    ---@diagnostic disable-next-line:return-type-mismatch
+    if vim.bo[bufnr].filetype ~= "lean" then return false end
+    return { severity = vim.diagnostic.severity.ERROR }
+  end,
   severity_sort = true,
   signs = {
     text = {
@@ -54,6 +67,7 @@ return {
         enable_on_insert = true,
         enable_on_select = false,
       },
+      disabled_ft = { "lean" },
     },
   },
 }
