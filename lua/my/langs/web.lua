@@ -13,6 +13,7 @@ return {
         "scss",
         "svelte",
         "typescript",
+        "vue",
       },
     },
   },
