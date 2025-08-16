@@ -16,13 +16,10 @@ return {
     priority = 1000,
     ---@type CatppuccinOptions
     opts = {
-      background = {
-        dark = vim.g.catppuccin_flavor,
-      },
-      float = {
-        transparent = false,
-        solid = false,
-      },
+      background = { dark = vim.g.catppuccin_flavor },
+      dim_inactive = { enabled = true },
+      lsp_styles = { enabled = true },
+      auto_integrations = true,
       custom_highlights = function(c)
         local hls = {
           MatchParen = { fg = "NONE", bg = c.surface1, style = { "bold" } },
@@ -43,14 +40,6 @@ return {
 
         return hls
       end,
-      auto_integrations = true,
-      lsp_styles = {
-        enabled = true,
-        underlines = {
-          errors = { "undercurl" },
-          warnings = { "undercurl" },
-        },
-      },
     },
     config = function(_, opts)
       local catppuccin = require("catppuccin")
