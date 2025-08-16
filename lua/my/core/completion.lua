@@ -24,7 +24,10 @@ return {
       completion = {
         menu = {
           direction_priority = { "n", "s" },
-          draw = { treesitter = { "lsp" } },
+          draw = {
+            columns = { { "label", "label_description", gap = 1 } },
+            treesitter = { "lsp" },
+          },
         },
         documentation = { auto_show = true },
         ghost_text = { enabled = true },
