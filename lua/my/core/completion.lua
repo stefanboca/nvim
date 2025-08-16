@@ -27,6 +27,7 @@ return {
       },
 
       completion = {
+        list = { selection = { preselect = false } },
         menu = {
           direction_priority = { "n", "s" },
           draw = { treesitter = { "lsp" } },
