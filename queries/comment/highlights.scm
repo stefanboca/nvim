@@ -17,11 +17,12 @@
     (user) @constant
     ")" @punctuation.bracket)?
   ":" @punctuation.delimiter)
-  (#any-of? @comment.note "NOTE" "XXX" "INFO" "DOCS" "PERF" "TEST")
+  (#any-of? @comment.note "NOTE" "XXX" "INFO" "DOCS" "PERF" "TEST" "SAFETY" "INVARIANT")
   (#set! "priority" 150))
 
 ("text" @comment.note @nospell
-  (#any-of? @comment.note "NOTE" "XXX" "INFO" "DOCS" "PERF" "TEST")
+  (#any-of? @comment.note
+    "NOTE" "XXX" "INFO" "DOCS" "PERF" "TEST" "SAFETY" "INVARIANT" "Safety" "Invariant")
   (#set! "priority" 150))
 
 ((tag
@@ -48,19 +49,6 @@
 
 ("text" @comment.error @nospell
   (#any-of? @comment.error "FIXME" "BUG" "ERROR")
-  (#set! "priority" 150))
-
-((tag
-  (name) @comment.info @nospell
-  ("(" @punctuation.bracket
-    (user) @constant
-    ")" @punctuation.bracket)?
-  ":" @punctuation.delimiter)
-  (#any-of? @comment.info "SAFETY" "INVARIANT")
-  (#set! "priority" 150))
-
-("text" @comment.info @nospell
-  (#any-of? @comment.info "SAFETY" "INVARIANT" "Safety" "Invariant")
   (#set! "priority" 150))
 
 ; Issue number (#123)
