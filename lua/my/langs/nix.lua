@@ -13,7 +13,7 @@ return {
     "conform.nvim",
     opts = {
       formatters_by_ft = {
-        nix = { "nixfmt" },
+        nix = { "alejandra" },
       },
     },
   },
@@ -21,7 +21,7 @@ return {
   {
     "mfussenegger/nvim-lint",
     opts = {
-      linters_by_ft = { nix = { "statix" } },
+      linters_by_ft = { nix = { "deadnix", "statix" } },
     },
   },
 }
