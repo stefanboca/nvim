@@ -44,13 +44,11 @@ return {
         return hls
       end,
       auto_integrations = true,
-      integrations = {
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors = { "undercurl" },
-            warnings = { "undercurl" },
-          },
+      lsp_styles = {
+        enabled = true,
+        underlines = {
+          errors = { "undercurl" },
+          warnings = { "undercurl" },
         },
       },
     },
@@ -61,7 +59,7 @@ return {
     end,
     specs = {
       "akinsho/bufferline.nvim",
-      opts = function(_, opts) opts.highlights = require("catppuccin.groups.integrations.bufferline").get_theme() end,
+      opts = function(_, opts) opts.highlights = require("catppuccin.special..bufferline").get_theme() end,
     },
   },
 }
