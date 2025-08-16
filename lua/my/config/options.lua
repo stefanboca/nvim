@@ -65,8 +65,6 @@ opt.cmdheight = 0
 
 opt.smoothscroll = true
 opt.foldtext = ""
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Fix markdown indentation settings
 g.markdown_recommended_style = 0
