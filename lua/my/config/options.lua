@@ -3,13 +3,13 @@ local opt = vim.opt
 
 g.mapleader = " "
 g.maplocalleader = "\\"
+g.clipboard = "osc52"
 
 g.snacks_animate = false
 
 if vim.env.IN_NIX_SHELL then vim.opt.shell = "fish" end
 
 opt.autowrite = true
-opt.clipboard = "unnamed" -- Sync with system clipboard
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Enable highlighting of the current line
