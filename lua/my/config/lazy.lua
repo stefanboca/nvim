@@ -19,6 +19,7 @@ require("lazy").setup({
     lazy = true,
     version = false, -- use the latest git commit by default
   },
+  rocks = { enabled = false },
   dev = {
     path = "~/src/nvim-plugins",
   },
