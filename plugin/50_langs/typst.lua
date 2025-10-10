@@ -1,39 +1,20 @@
-local M = {}
-
+_G.Tinymist = {}
 local open_previews = {}
 
-local function map_start(client, bufnr)
-  vim.keymap.set(
-    "n",
-    "<localleader>p",
-    function() M.preview_start(client, bufnr) end,
-    { buffer = bufnr, desc = "Start Typst Preview" }
-  )
+local function map(suffix, cb, bufnr, desc)
+  vim.keymap.set("n", "<LocalLeader>" .. suffix, cb, { buffer = bufnr, desc = desc })
 end
+local function unmap(suffix, bufnr) vim.keymap.del("n", "<LocalLeader>" .. suffix, { buffer = bufnr }) end
 
+local function map_start(client, bufnr)
+  map("p", function() _G.Tinymist.preview_start(client, bufnr) end, bufnr, "Typst start preview")
+end
 local function on_start(client, bufnr, result)
-  vim.keymap.del("n", "<localleader>p", { buffer = bufnr })
+  unmap("p", bufnr)
 
-  vim.keymap.set(
-    "n",
-    "<localleader>p",
-    function() M.preview_open(bufnr) end,
-    { buffer = bufnr, desc = "Open Typst Preview" }
-  )
-  vim.keymap.set(
-    "n",
-    "<localleader>S",
-    function() M.preview_stop(client, bufnr) end,
-    { buffer = bufnr, desc = "Stop Typst Preview" }
-  )
-  vim.keymap.set("n", "<localleader>s", function()
-    open_previews[bufnr].scroll_enabled = not open_previews[bufnr].scroll_enabled
-    if open_previews[bufnr].scroll_enabled then
-      vim.notify("Autoscroll enabled", vim.log.levels.INFO)
-    else
-      vim.notify("Autoscroll disabled", vim.log.levels.INFO)
-    end
-  end, { buffer = bufnr, desc = "Toggle Autoscroll" })
+  map("p", function() _G.Tinymist.preview_open(bufnr) end, bufnr, "Typst open preview")
+  map("S", function() _G.Tinymist.preview_stop(client, bufnr) end, bufnr, "Typst stop preview")
+  map("s", function() _G.Tinymist.toggle_autoscroll(bufnr) end, bufnr, "Autoscroll toggle")
 
   local group = vim.api.nvim_create_augroup("tinymist_preview." .. tostring(bufnr), { clear = true })
   vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
@@ -63,7 +44,7 @@ local function on_start(client, bufnr, result)
   vim.api.nvim_create_autocmd("BufDelete", {
     group = group,
     buffer = bufnr,
-    callback = function() M.preview_stop(client, bufnr) end,
+    callback = function() _G.Tinymist.preview_stop(client, bufnr) end,
   })
 
   local uri = "http://" .. result.staticServerAddr
@@ -74,8 +55,7 @@ local function on_start(client, bufnr, result)
     client_id = client.id,
   }
 end
-
-function M.preview_start(client, bufnr)
+function _G.Tinymist.preview_start(client, bufnr)
   if open_previews[bufnr] then return end
 
   local file = vim.api.nvim_buf_get_name(bufnr)
@@ -108,14 +88,12 @@ function M.preview_start(client, bufnr)
     on_start(client, bufnr, result)
   end)
 end
-
-function M.preview_open(bufnr)
+function _G.Tinymist.preview_open(bufnr)
   if not open_previews[bufnr] then return end
 
   vim.notify("Opening preview", vim.log.levels.INFO)
   vim.ui.open(open_previews[bufnr].uri)
 end
-
 local function on_stop(client, bufnr)
   if not open_previews[bufnr] then return end
   open_previews[bufnr] = nil
@@ -123,16 +101,16 @@ local function on_stop(client, bufnr)
   vim.notify("Stopped preview " .. tostring(bufnr))
 
   vim.api.nvim_del_augroup_by_name("tinymist_preview." .. tostring(bufnr))
-  vim.keymap.del("n", "<localleader>p", { buffer = bufnr })
-  vim.keymap.del("n", "<localleader>s", { buffer = bufnr })
-  vim.keymap.del("n", "<localleader>S", { buffer = bufnr })
+  unmap("p", bufnr)
+  unmap("s", bufnr)
+  unmap("S", bufnr)
 
   if client then map_start(client, bufnr) end
 end
 
 ---@param client vim.lsp.Client
 ---@param bufnr integer
-function M.preview_stop(client, bufnr)
+function _G.Tinymist.preview_stop(client, bufnr)
   if not open_previews[bufnr] then return end
 
   client:exec_cmd({
@@ -143,20 +121,42 @@ function M.preview_stop(client, bufnr)
 
   on_stop(client, bufnr)
 end
-
-function M.preview_dispose(err, result, ctx)
+function _G.Tinymist.preview_dispose(err, result, ctx)
   if err then return end
   local bufnr = tonumber(result.taskId)
   if bufnr then on_stop(vim.lsp.get_client_by_id(ctx.client_id), bufnr) end
 end
-
-function M.on_attach(client, bufnr) map_start(client, bufnr) end
-
-function M.on_exit(_, _, client_id)
-  local client = vim.lsp.get_client_by_id(client_id)
+function _G.Tinymist.toggle_autoscroll(bufnr)
+  open_previews[bufnr].scroll_enabled = not open_previews[bufnr].scroll_enabled
+  if open_previews[bufnr].scroll_enabled then
+    print("  autoscroll")
+  else
+    print("noautoscroll")
+  end
+end
+function _G.Tinymist.on_attach(client, bufnr) map_start(client, bufnr) end
+function _G.Tinymist.on_exit(client)
   for bufnr, data in pairs(open_previews) do
-    if data.client_id == client_id then on_stop(client, bufnr) end
+    if data.client_id == client.client_id then on_stop(client, bufnr) end
   end
 end
 
-return M
+_G.Config.now_if_args(function()
+  _G.Config.new_autocmd("LspAttach", nil, function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client or client.name ~= "tinymist" then return end
+    _G.Tinymist.on_attach(client, ev.buf)
+  end)
+  _G.Config.new_autocmd("LspDetach", nil, function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client or client.name ~= "tinymist" then return end
+    _G.Tinymist.on_exit(client)
+  end)
+
+  vim.lsp.config("tinymist", {
+    handlers = {
+      ["tinymist/preview/scrollSource"] = _G.Tinymist.preview_scrollSource,
+      ["tinymist/preview/dispose"] = _G.Tinymist.preview_dispose,
+    },
+  })
+end)
