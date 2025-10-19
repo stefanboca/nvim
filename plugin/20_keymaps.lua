@@ -87,7 +87,6 @@ _G.Config.leader_group_clues = {
   { mode = "n", keys = "<Leader><Tab>", desc = "+Tab" },
   { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
   { mode = "n", keys = "<Leader>d", desc = "+Debug" },
-  { mode = "n", keys = "<Leader>dP", desc = "+Python" },
   { mode = "n", keys = "<Leader>e", desc = "+Explore/Edit" },
   { mode = "n", keys = "<Leader>f", desc = "+Find" },
   { mode = "n", keys = "<Leader>g", desc = "+Git" },
@@ -301,9 +300,6 @@ nmap_leader("ds", '<Cmd>lua require("dap").session()<CR>', "Session")
 nmap_leader("dt", '<Cmd>lua require("dap").terminate()<CR>', "Terminate")
 nmap_leader("du", '<Cmd>lua require("dap-view").toggle()<CR>', "nvim-dap-view toggle")
 nmap_leader("dw", '<Cmd>lua require("dap.ui.widgets").hover()<CR>', "Hover")
--- TODO: map only if ft=python (ftplugin?)
-nmap_leader("dPc", '<Cmd>lua require("dap-python").test_class()<CR>', "Debug Class")
-nmap_leader("dPt", '<Cmd>lua require("dap-python").test_method()<CR>', "Debug Method")
 
 xmap_leader("de", '<Cmd>lua require("dap-view").add_expr()<CR>', "Expression watch")
 
