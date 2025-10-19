@@ -165,6 +165,7 @@ _G.Config.new_autocmd("FileType", {
   "neotest-output-panel",
   "neotest-summary",
   "nvim-undotree",
+  "qf",
 }, function(event)
   vim.bo[event.buf].buflisted = false
   vim.schedule(function()

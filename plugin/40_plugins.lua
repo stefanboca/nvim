@@ -47,7 +47,6 @@ now(function()
   catppuccin.load()
 end)
 
-now_if_args(function() vim.cmd.packadd("nvim.difftool") end)
 later(function() vim.cmd.packadd("nvim.undotree") end)
 
 now_if_args(function()

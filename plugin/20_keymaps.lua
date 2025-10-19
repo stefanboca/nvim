@@ -130,7 +130,6 @@ nmap_leader("<Tab>f", "<Cmd>tabfirst<CR>", "Tab first")
 nmap_leader("<Tab><Tab>", "<Cmd>tabnew<CR>", "Tab new")
 nmap_leader("<Tab>]", "<Cmd>tabnext<CR>", "Tab next")
 nmap_leader("<Tab>d", "<Cmd>tabclose<CR>", "Tab close")
-nmap_leader("<Tab>D", "<Cmd>bdelete<CR><Cmd>tabclose<CR>", "Buffer delete and Tab close")
 nmap_leader("<Tab>[", "<Cmd>tabprevious<CR>", "Tab backward")
 
 local explore_at_file = "<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>"
