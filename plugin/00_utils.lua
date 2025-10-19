@@ -24,3 +24,17 @@ function _G.Config.debounce(ms, f)
     end)
   end
 end
+
+function _G.Config.create_quit_on_write()
+  local buffer = vim.api.nvim_get_current_buf()
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    group = vim.api.nvim_create_augroup("quit_on_write." .. buffer, { clear = true }),
+    once = true,
+    buffer = buffer,
+    callback = function()
+      vim.cmd.bdelete()
+      vim.cmd.quit()
+    end,
+    desc = "Quit on write",
+  })
+end
