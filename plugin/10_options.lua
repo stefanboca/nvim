@@ -145,6 +145,7 @@ _G.Config.new_autocmd(
 )
 
 -- Native terminal lsp progress
+-- TODO: remove once LspProgress is deprecated
 _G.Config.new_autocmd("LspProgress", nil, function(ev)
   local value = ev.data.params.value
   if value.kind == "begin" then

@@ -149,14 +149,6 @@ now_if_args(function()
   add("neovim/nvim-lspconfig")
   add("b0o/SchemaStore.nvim")
 
-  vim.lsp.config("*", {
-    capabilities = {
-      -- TODO: why is this here?
-      -- textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
-      -- workspace = { fileOperations = { didRename = true, willRename = true } },
-    },
-  })
-
   vim.lsp.log.set_level(vim.env.NVIM_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
   vim.lsp.inlay_hint.enable()
 
