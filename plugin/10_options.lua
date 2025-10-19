@@ -163,6 +163,7 @@ _G.Config.new_autocmd("FileType", {
   "help",
   "lspinfo",
   "neotest-output-panel",
+  "neotest-summary",
   "nvim-undotree",
 }, function(event)
   vim.bo[event.buf].buflisted = false

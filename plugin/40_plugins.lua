@@ -14,7 +14,7 @@ now(function()
 
   local catppuccin = require("catppuccin")
   catppuccin.setup({
-    background = { dark = vim.g.catppuccin_flavor },
+    background = { dark = "mocha" },
     dim_inactive = { enabled = true },
     lsp_styles = { enabled = true },
     auto_integrations = true,
@@ -136,14 +136,10 @@ now_if_args(function()
     max_lines = 3,
   })
 
+  -- NOTE: lean TS parser is installed but not enabled
   _G.Config.new_autocmd("User", "TSUpdate", function()
     ---@diagnostic disable-next-line: missing-fields
-    require("nvim-treesitter.parsers").lean = {
-      ---@diagnostic disable-next-line: missing-fields
-      install_info = {
-        url = "https://github.com/Julian/tree-sitter-lean",
-      },
-    }
+    require("nvim-treesitter.parsers").lean = { install_info = { url = "https://github.com/Julian/tree-sitter-lean" } }
   end, "Install tree-sitter lean")
 
   vim.filetype.add({ extension = { koto = "koto" } })
@@ -179,7 +175,6 @@ now_if_args(function()
     "jsonls",
     "just",
     "koto",
-    "lean",
     "lua_ls",
     "marksman",
     "neocmake",
