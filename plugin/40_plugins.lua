@@ -58,7 +58,7 @@ now_if_args(function()
   add({ source = "nvim-treesitter/nvim-treesitter-textobjects", checkout = "main" })
   add({ source = "nvim-treesitter/nvim-treesitter-context" })
 
-  local ensure_languages = {
+  local languages = {
     "astro",
     "bash",
     "c",
@@ -110,10 +110,9 @@ now_if_args(function()
     "zig",
   }
 
-  require("nvim-treesitter").install(ensure_languages)
+  require("nvim-treesitter").install(languages)
 
-  local filetypes =
-    vim.list.unique(vim.iter(ensure_languages):map(vim.treesitter.language.get_filetypes):flatten(1):totable())
+  local filetypes = vim.list.unique(vim.iter(languages):map(vim.treesitter.language.get_filetypes):flatten(1):totable())
 
   local ts_start = function(ev)
     vim.treesitter.start(ev.buf)
