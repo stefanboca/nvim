@@ -5,7 +5,6 @@ return {
   default_settings = {
     ["rust-analyzer"] = {
       cargo = {
-        targetDir = true,
         features = "all",
       },
       diagnostics = {
