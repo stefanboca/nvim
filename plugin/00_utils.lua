@@ -6,6 +6,10 @@ _G.bt = function() print(debug.traceback()) end
 
 _G.Config = {}
 
+function _G.Config.nmapb_leader(suffix, rhs, desc)
+  vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc, buffer = 0 })
+end
+
 _G.Config.augroup = vim.api.nvim_create_augroup("custom-config", { clear = true })
 function _G.Config.new_autocmd(event, pattern, callback, desc)
   local opts = { group = _G.Config.augroup, pattern = pattern, callback = callback, desc = desc }

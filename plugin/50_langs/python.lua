@@ -8,6 +8,6 @@ _G.Config.now_if_args(function()
         context = { only = { "source.organizeImports" }, diagnostics = {} },
       })
     end
-    vim.keymap.set("n", "<Leader>lo", organize, { buffer = ev.buf, desc = "Organize Imports" })
+    _G.Config.nmapb_leader("lo", organize, "Imports organize")
   end)
 end)
