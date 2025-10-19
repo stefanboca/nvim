@@ -47,7 +47,7 @@ now_if_args(function()
   require("blink.cmp").setup({
     keymap = {
       preset = "enter",
-      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<C-k>"] = false, -- conflicts with digraphs
     },
 
     cmdline = {
@@ -116,4 +116,3 @@ later(function()
     },
   })
 end)
-
