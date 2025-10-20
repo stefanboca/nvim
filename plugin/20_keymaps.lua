@@ -67,7 +67,7 @@ xmap_leader("Y", function()
 end, "Upload selection to paste bin")
 
 -- Cycle pairs
-local cycle_pairs = '<Cmd>lua require("clasp").wrap("next")'
+local cycle_pairs = '<Cmd>lua require("clasp").wrap("next")<CR>'
 imap("<C-;>", cycle_pairs, "Cycle pairs")
 nmap("<C-;>", cycle_pairs, "Cycle pairs")
 
