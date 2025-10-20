@@ -417,7 +417,7 @@ end)
 later(function()
   add("folke/trouble.nvim")
 
-  require("trouble").setup({ focus = true, preview = { type = "float" } })
+  require("trouble").setup({ focus = true, auto_preview = false, preview = { type = "float" } })
 end)
 
 later(function()

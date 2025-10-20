@@ -139,6 +139,7 @@ nmap_leader("en", "<Cmd>lua MiniNotify.show_history()<CR>", "Notifications")
 nmap_leader("eq", "<Cmd>Trouble qflist toggle<CR>", "Quickfix")
 nmap_leader("es", "<Cmd>Trouble symbols toggle<CR>", "Symbols")
 nmap_leader("eS", "<Cmd>Trouble lsp toggle<CR>", "LSP")
+nmap_leader("er", "<Cmd>Trouble lsp_references<CR>", "References (lsp)")
 nmap_leader("ex", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Diagnostics (buf)")
 nmap_leader("eX", "<Cmd>Trouble diagnostics toggle<CR>", "Diagnostics")
 
