@@ -15,6 +15,18 @@ function _G.Config.new_autocmd(event, pattern, callback, desc)
   local opts = { group = _G.Config.augroup, pattern = pattern, callback = callback, desc = desc }
   vim.api.nvim_create_autocmd(event, opts)
 end
+function _G.Config.new_autocmd_lsp_attach(client_name, callback, desc)
+  local opts = {
+    group = _G.Config.augroup,
+    callback = function(ev)
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      if not client or client.name ~= client_name then return end
+      callback(ev)
+    end,
+    desc = desc,
+  }
+  vim.api.nvim_create_autocmd("LspAttach", opts)
+end
 
 _G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
 

@@ -141,22 +141,20 @@ function _G.Tinymist.on_exit(client)
   end
 end
 
-_G.Config.now_if_args(function()
-  _G.Config.new_autocmd("LspAttach", nil, function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client or client.name ~= "tinymist" then return end
-    _G.Tinymist.on_attach(client, ev.buf)
-  end)
-  _G.Config.new_autocmd("LspDetach", nil, function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client or client.name ~= "tinymist" then return end
-    _G.Tinymist.on_exit(client)
-  end)
-
-  vim.lsp.config("tinymist", {
-    handlers = {
-      ["tinymist/preview/scrollSource"] = _G.Tinymist.preview_scrollSource,
-      ["tinymist/preview/dispose"] = _G.Tinymist.preview_dispose,
-    },
-  })
+_G.Config.new_autocmd("LspAttach", nil, function(ev)
+  local client = vim.lsp.get_client_by_id(ev.data.client_id)
+  if not client or client.name ~= "tinymist" then return end
+  _G.Tinymist.on_attach(client, ev.buf)
 end)
+_G.Config.new_autocmd("LspDetach", nil, function(ev)
+  local client = vim.lsp.get_client_by_id(ev.data.client_id)
+  if not client or client.name ~= "tinymist" then return end
+  _G.Tinymist.on_exit(client)
+end)
+
+vim.lsp.config("tinymist", {
+  handlers = {
+    ["tinymist/preview/scrollSource"] = _G.Tinymist.preview_scrollSource,
+    ["tinymist/preview/dispose"] = _G.Tinymist.preview_dispose,
+  },
+})
