@@ -182,7 +182,9 @@ nmap_leader("gl", "<Cmd>" .. git_log_cmd .. "<CR>", "Log")
 nmap_leader("gL", "<Cmd>" .. git_log_buf_cmd .. "<CR>", "Log buffer")
 nmap_leader("go", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle overlay")
 nmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "Show at cursor")
+nmap_leader("gS", "<Cmd>lua MiniGit.show_diff_source()<CR>", "Show diff source")
 xmap_leader("gs", "<Cmd>lua MiniGit.show_at_cursor()<CR>", "Show at selection")
+xmap_leader("gS", "<Cmd>lua MiniGit.show_range_history()<CR>", "Show range")
 
 local formatting_cmd = '<Cmd>lua require("conform").format()<CR>'
 local formatting_injected_cmd = '<Cmd>lua require("conform").format({formatters={"injected"}})<CR>'
