@@ -132,15 +132,15 @@ nmap_leader("<Tab>d", "<Cmd>tabclose<CR>", "Tab close")
 nmap_leader("<Tab>[", "<Cmd>tabprevious<CR>", "Tab backward")
 
 local explore_at_file = "<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>"
-nmap_leader("eS", "<Cmd>Trouble lsp toggle<CR>", "LSP")
-nmap_leader("eX", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Diagnostics (buf)")
 nmap_leader("ed", "<Cmd>lua MiniFiles.open()<CR>", "Directory")
 nmap_leader("ef", explore_at_file, "File directory")
 nmap_leader("el", "<Cmd>Trouble loclist toggle<CR>", "Locations")
 nmap_leader("en", "<Cmd>lua MiniNotify.show_history()<CR>", "Notifications")
 nmap_leader("eq", "<Cmd>Trouble qflist toggle<CR>", "Quickfix")
 nmap_leader("es", "<Cmd>Trouble symbols toggle<CR>", "Symbols")
-nmap_leader("ex", "<Cmd>Trouble diagnostics toggle<CR>", "Diagnostics")
+nmap_leader("eS", "<Cmd>Trouble lsp toggle<CR>", "LSP")
+nmap_leader("ex", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Diagnostics (buf)")
+nmap_leader("eX", "<Cmd>Trouble diagnostics toggle<CR>", "Diagnostics")
 
 nmap_leader(" ", "<Cmd>Pick files<CR>", "Files")
 nmap_leader(".", "<Cmd>Pick buffers<CR>", "Buffers")
