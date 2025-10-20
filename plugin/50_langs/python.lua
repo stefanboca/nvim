@@ -8,6 +8,6 @@ _G.Config.now_if_args(function()
         context = { only = { "source.organizeImports" }, diagnostics = {} },
       })
     end
-    _G.Config.nmapb_leader("lo", organize, "Imports organize")
+    _G.Config.nmapb_lleader("o", organize, "Imports organize")
   end)
 end)
