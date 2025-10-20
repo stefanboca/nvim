@@ -144,7 +144,7 @@ nmap_leader("ex", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Diagnosti
 nmap_leader("eX", "<Cmd>Trouble diagnostics toggle<CR>", "Diagnostics")
 
 nmap_leader(" ", "<Cmd>Pick files<CR>", "Files")
-nmap_leader(".", "<Cmd>Pick buffers<CR>", "Buffers")
+nmap_leader(",", "<Cmd>Pick buffers<CR>", "Buffers")
 nmap_leader("/", "<Cmd>Pick grep_live<CR>", "Grep live")
 nmap_leader("f/", '<Cmd>Pick history scope="/"<CR>', '"/" history')
 nmap_leader("f:", '<Cmd>Pick history scope=":"<CR>', '":" history')
