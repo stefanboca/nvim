@@ -156,7 +156,7 @@ now_if_args(function()
     "bashls",
     "biome",
     "clangd",
-    "docker_langauge_server",
+    "docker_language_server",
     "fish_lsp",
     "glsl_analyzer",
     "harper_ls",
