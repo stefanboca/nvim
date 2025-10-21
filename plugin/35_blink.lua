@@ -42,7 +42,8 @@ now_if_args(function()
 end)
 
 now_if_args(function()
-  add({ source = "Saghen/blink.cmp", hooks = { post_install = cargo_build_hook, post_checkout = cargo_build_hook } })
+  local function build() vim.cmd.BlinkCmp("build") end
+  add({ source = "Saghen/blink.cmp", hooks = { post_install = build, post_checkout = build } })
 
   require("blink.cmp").setup({
     keymap = {
