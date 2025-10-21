@@ -218,14 +218,7 @@ later(function()
   add("rachartier/tiny-code-action.nvim")
   require("tiny-code-action").setup({
     backend = "difftastic",
-    picker = {
-      "buffer",
-      opts = {
-        hotkeys = true,
-        hotkeys_mode = "sequential",
-        auto_preview = true,
-      },
-    },
+    picker = { "snacks" },
   })
 end)
 
