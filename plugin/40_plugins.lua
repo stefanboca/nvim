@@ -248,7 +248,12 @@ later(function()
     },
     formatters = {
       koto = { command = "koto", args = { "--format" } },
-      typstyle = { prepend_args = { "--wrap-text", "--column", "100" } }, -- TODO: make `columns` dynamic, based on textwidth
+      typstyle = {
+        prepend_args = function(_, ctx)
+          local tw = vim.bo[ctx.buf].textwidth
+          return tw > 0 and { "--wrap-text", "--column", tw } or {}
+        end,
+      },
     },
     formatters_by_ft = {
       astro = { "biome" },
