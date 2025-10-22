@@ -399,7 +399,7 @@ end)
 later(function()
   add("danymat/neogen")
 
-  require("neogen").setup()
+  require("neogen").setup({})
 end)
 
 later(function() add("xzbdmw/clasp.nvim") end)
