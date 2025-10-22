@@ -161,6 +161,7 @@ end, "Lsp Progress")
 -- Close some filetypes with <q>
 _G.Config.new_autocmd("FileType", {
   "checkhealth",
+  "dap-float",
   "grug-far",
   "help",
   "lspinfo",

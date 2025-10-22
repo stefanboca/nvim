@@ -301,7 +301,6 @@ nmap_leader("dL", '<Cmd>lua require("osv").launch({port=8086})<CR>', "OSV launch
 nmap_leader("do", '<Cmd>lua require("dap").step_out()<CR>', "Step out")
 nmap_leader("dO", '<Cmd>lua require("dap").step_over()<CR>', "Step over")
 nmap_leader("dp", '<Cmd>lua require("dap").pause()<CR>', "Pause")
-nmap_leader("ds", '<Cmd>lua require("dap").session()<CR>', "Session")
 nmap_leader("dt", '<Cmd>lua require("dap").terminate()<CR>', "Terminate")
 nmap_leader("du", '<Cmd>lua require("dap-view").toggle()<CR>', "nvim-dap-view toggle")
 nmap_leader("dw", '<Cmd>lua require("dap.ui.widgets").hover()<CR>', "Hover")
