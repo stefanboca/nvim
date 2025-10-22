@@ -426,3 +426,5 @@ later(function()
     words = { enabled = true },
   })
 end)
+
+later(function() add("Saghen/filler-begone.nvim") end)
