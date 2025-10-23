@@ -25,7 +25,7 @@ end)
 now_if_args(function()
   require("mini.misc").setup()
 
-  MiniMisc.setup_auto_root({ ".git", ".jj" })
+  MiniMisc.setup_auto_root({ ".git", ".jj", ".root" })
   MiniMisc.setup_restore_cursor()
 end)
 
