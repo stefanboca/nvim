@@ -15,9 +15,6 @@ vim.cmd("filetype plugin indent on")
 if vim.fn.exists("syntax_on") ~= 1 then vim.cmd("syntax enable") end
 
 -- UI =========================================================================
--- vim.o.cmdheight = 0
--- vim.o.conceallevel = 2
--- vim.o.laststatus = 3 -- Global statusline
 vim.o.breakindent = true -- Indent wrapped lines to match line start
 vim.o.breakindentopt = "list:-1" -- Add padding for lists (if 'wrap' is set)
 vim.o.colorcolumn = "+1" -- Draw column on the right of maximum width
