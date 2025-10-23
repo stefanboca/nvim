@@ -25,18 +25,6 @@ now_if_args(function()
         "BlinkPairsBlue",
         "BlinkPairsViolet",
       },
-      underline = {
-        enabled = true,
-        highlights = {
-          "BlinkIndentUnderlineRed",
-          "BlinkIndentUnderlineOrange",
-          "BlinkIndentUnderlineYellow",
-          "BlinkIndentUnderlineGreen",
-          "BlinkIndentUnderlineCyan",
-          "BlinkIndentUnderlineBlue",
-          "BlinkIndentUnderlineViolet",
-        },
-      },
     },
   })
 end)
