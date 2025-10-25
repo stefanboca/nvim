@@ -173,6 +173,7 @@ now_if_args(function()
     "tailwindcss",
     "tinymist",
     "tombi",
+    "ts_query_ls",
     "ty",
     "vstls",
     "yamlls",
