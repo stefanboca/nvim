@@ -98,6 +98,7 @@ now_if_args(function()
     "scss",
     "svelte",
     "toml",
+    "tsx",
     "typescript",
     "typst",
     "vim",
@@ -259,7 +260,7 @@ later(function()
       fish = { "fish_indent" },
       graphql = { "biome" },
       handlebars = { "prettierd" },
-      html = { "prettierd" },
+      html = { "biome" },
       javascript = { "biome" },
       javascriptreact = { "biome" },
       json = { "biome" },
@@ -284,8 +285,6 @@ later(function()
       yaml = { "prettierd" },
     },
   })
-
-  -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 end)
 
 later(function()
