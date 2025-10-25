@@ -423,7 +423,7 @@ later(function()
   add("folke/snacks.nvim")
 
   require("snacks").setup({
-    picker = { enabled = true },
+    picker = { enabled = false, ui_select = false },
     words = { enabled = true },
   })
 end)
