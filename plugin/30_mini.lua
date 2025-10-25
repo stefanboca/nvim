@@ -34,7 +34,16 @@ end)
 
 now(function() require("mini.sessions").setup() end)
 
-now(function() require("mini.starter").setup() end)
+now(function()
+  local starter = require("mini.starter")
+  starter.setup({
+    items = {
+      starter.sections.sessions(),
+      starter.sections.recent_files(10, true, true),
+      starter.sections.builtin_actions(),
+    },
+  })
+end)
 
 now(function() require("mini.statusline").setup() end)
 
