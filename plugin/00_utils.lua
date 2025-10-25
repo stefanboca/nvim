@@ -29,6 +29,13 @@ function _G.Config.new_autocmd_lsp_attach(client_name, callback, desc)
 end
 
 _G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
+function _G.Config.now_if_args_and_ft(ft, ...)
+  if vim.bo.ft == ft then
+    MiniDeps.now(...)
+  else
+    _G.Config.now_if_args(...)
+  end
+end
 
 function _G.Config.debounce(ms, f)
   local timer = assert(vim.uv.new_timer())

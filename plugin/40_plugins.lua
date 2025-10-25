@@ -1,12 +1,11 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-local now_if_args = _G.Config.now_if_args
+local now_if_args, now_if_args_and_ft = _G.Config.now_if_args, _G.Config.now_if_args_and_ft
 
 now(function() add("brianhuster/unnest.nvim") end)
 
 now(function()
   add("nvim-lua/plenary.nvim")
   add("nvim-neotest/nvim-nio")
-  -- add("ManifTanjim/nui.nvim")
 end)
 
 now(function()
@@ -46,8 +45,6 @@ now(function()
   })
   catppuccin.load()
 end)
-
-later(function() vim.cmd.packadd("nvim.undotree") end)
 
 now_if_args(function()
   add({
@@ -143,8 +140,6 @@ now_if_args(function()
   vim.filetype.add({ extension = { koto = "koto" } })
 end)
 
-now_if_args(function() add("avm99963/vim-jjdescription") end)
-
 now_if_args(function()
   add("neovim/nvim-lspconfig")
   add("b0o/SchemaStore.nvim")
@@ -181,12 +176,14 @@ now_if_args(function()
   })
 end)
 
-now_if_args(function()
+now_if_args_and_ft("jjdescription", function() add("avm99963/vim-jjdescription") end)
+
+now_if_args_and_ft("lean", function()
   add("Julian/lean.nvim")
   require("lean").setup({ mappings = true })
 end)
 
-now_if_args(function()
+now_if_args_and_ft("lua", function()
   add("folke/lazydev.nvim")
   require("lazydev").setup({
     library = {
@@ -197,7 +194,7 @@ now_if_args(function()
   })
 end)
 
-now_if_args(function()
+now_if_args_and_ft("rust", function()
   add("Saecki/crates.nvim")
   add({ source = "mrcjkb/rustaceanvim" })
 
@@ -215,6 +212,10 @@ now_if_args(function()
   })
 end)
 
+later(function() vim.cmd.packadd("nvim.undotree") end)
+
+later(function() add("saecki/live-rename.nvim") end)
+
 later(function()
   add("rachartier/tiny-code-action.nvim")
   require("tiny-code-action").setup({
@@ -226,11 +227,6 @@ end)
 later(function()
   add("windwp/nvim-ts-autotag")
   require("nvim-ts-autotag").setup()
-end)
-
-later(function()
-  add("saecki/live-rename.nvim")
-  -- add("rachartier/tiny-code-action.nvim")
 end)
 
 later(function()

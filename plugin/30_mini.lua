@@ -22,13 +22,6 @@ now(function()
   -- later(MiniIcons.tweak_lsp_kind)
 end)
 
-now_if_args(function()
-  require("mini.misc").setup()
-
-  MiniMisc.setup_auto_root({ ".git", ".jj", ".root" })
-  MiniMisc.setup_restore_cursor()
-end)
-
 now(function()
   local function predicate(notif)
     if not (notif.data.source == "lsp_progress" and notif.data.client_name == "lua_ls") then return true end
@@ -46,6 +39,36 @@ now(function() require("mini.starter").setup() end)
 now(function() require("mini.statusline").setup() end)
 
 now(function() require("mini.tabline").setup() end)
+
+now_if_args(function()
+  require("mini.misc").setup()
+
+  MiniMisc.setup_auto_root({ ".git", ".jj", ".root" })
+  MiniMisc.setup_restore_cursor()
+end)
+
+now_if_args(function()
+  require("mini.files").setup({
+    options = {
+      use_as_default_explorer = true,
+    },
+    windows = {
+      preview = true,
+      width_preview = 30,
+    },
+  })
+
+  local function add_marks()
+    MiniFiles.set_bookmark("c", vim.fn.stdpath("config"), { desc = "Config" })
+    local minideps_plugins = vim.fn.stdpath("data") .. "/site/pack/deps/opt"
+    MiniFiles.set_bookmark("p", minideps_plugins, { desc = "Plugins" })
+    MiniFiles.set_bookmark("w", vim.fn.getcwd, { desc = "Working directory" })
+  end
+
+  local function rename(ev) Snacks.rename.on_rename_file(ev.data.from, ev.data.to) end
+  _G.Config.new_autocmd("User", "MiniFilesExplorerOpen", add_marks, "Add bookmarks")
+  _G.Config.new_autocmd("User", "MiniFilesActionRename", rename, "Rename file")
+end)
 
 later(function() require("mini.extra").setup() end)
 
@@ -113,29 +136,6 @@ end)
 later(function() require("mini.comment").setup() end)
 
 later(function() require("mini.diff").setup({ view = { style = "sign" } }) end)
-
-now_if_args(function()
-  require("mini.files").setup({
-    options = {
-      use_as_default_explorer = true,
-    },
-    windows = {
-      preview = true,
-      width_preview = 30,
-    },
-  })
-
-  local function add_marks()
-    MiniFiles.set_bookmark("c", vim.fn.stdpath("config"), { desc = "Config" })
-    local minideps_plugins = vim.fn.stdpath("data") .. "/site/pack/deps/opt"
-    MiniFiles.set_bookmark("p", minideps_plugins, { desc = "Plugins" })
-    MiniFiles.set_bookmark("w", vim.fn.getcwd, { desc = "Working directory" })
-  end
-
-  local function rename(ev) Snacks.rename.on_rename_file(ev.data.from, ev.data.to) end
-  _G.Config.new_autocmd("User", "MiniFilesExplorerOpen", add_marks, "Add bookmarks")
-  _G.Config.new_autocmd("User", "MiniFilesActionRename", rename, "Rename file")
-end)
 
 later(function() require("mini.git").setup() end)
 
