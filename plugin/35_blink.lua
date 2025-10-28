@@ -92,6 +92,9 @@ later(function()
 
   require("blink.pairs").setup({
     highlights = {
+      matchparen = {
+        include_surrounding = true,
+      },
       enabled = true,
       groups = {
         "BlinkPairsRed",
