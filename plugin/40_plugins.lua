@@ -6,6 +6,7 @@ now(function() add("brianhuster/unnest.nvim") end)
 now(function()
   add("nvim-lua/plenary.nvim")
   add("nvim-neotest/nvim-nio")
+  add("lewis6991/async.nvim")
 end)
 
 now(function()
