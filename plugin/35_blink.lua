@@ -88,7 +88,11 @@ now_if_args(function()
 end)
 
 later(function()
-  add({ source = "Saghen/blink.pairs", hooks = { post_install = cargo_build_hook, post_checkout = cargo_build_hook } })
+  if vim.env.NVIM_DEV ~= "blink.pairs" then
+    add({ source = "Saghen/blink.pairs", hooks = { post_install = cargo_build_hook, post_checkout = cargo_build_hook } })
+  else
+    vim.cmd.packadd("blink.pairs.dev")
+  end
 
   require("blink.pairs").setup({
     highlights = {
