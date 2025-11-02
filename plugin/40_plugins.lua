@@ -154,7 +154,7 @@ now_if_args(function()
     "tombi",
     "ts_query_ls",
     "ty",
-    "vstls",
+    "vtsls",
     "yamlls",
     "zls",
   })
