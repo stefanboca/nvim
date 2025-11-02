@@ -1,5 +1,4 @@
-local add, later = MiniDeps.add, MiniDeps.later
-local now_if_args = _G.Config.now_if_args
+local add = MiniDeps.add
 
 local function cargo_build_hook(params)
   vim.notify("Building " .. params.name, vim.log.levels.INFO)
@@ -11,7 +10,7 @@ local function cargo_build_hook(params)
   end
 end
 
-now_if_args(function()
+MiniDeps.now(function()
   add("Saghen/blink.indent")
 
   require("blink.indent").setup({
@@ -29,7 +28,7 @@ now_if_args(function()
   })
 end)
 
-now_if_args(function()
+_G.Config.now_if_args(function()
   local function build() vim.cmd.BlinkCmp("build") end
   add({ source = "Saghen/blink.cmp", hooks = { post_install = build, post_checkout = build } })
 
@@ -87,7 +86,7 @@ now_if_args(function()
   })
 end)
 
-later(function()
+MiniDeps.later(function()
   if vim.env.NVIM_DEV ~= "blink.pairs" then
     add({ source = "Saghen/blink.pairs", hooks = { post_install = cargo_build_hook, post_checkout = cargo_build_hook } })
   else

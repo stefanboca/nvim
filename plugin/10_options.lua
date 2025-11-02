@@ -193,17 +193,14 @@ local mode_hl_groups = {
   ["R"] = "MiniStatuslineModeReplace",
   ["c"] = "MiniStatuslineModeCommand",
 }
-vim.api.nvim_create_autocmd({ "BufEnter", "ModeChanged" }, {
-  callback = function()
-    local mode = vim.api.nvim_get_mode().mode
-    local mode_hl_group = mode_hl_groups[mode] or "MiniStatuslineModeOther"
-    local cursorline_hl = vim.api.nvim_get_hl(0, { name = "CursorLine", link = false, create = false })
-    local hl = vim.api.nvim_get_hl(0, { name = mode_hl_group, link = false, create = false })
-    hl = vim.tbl_extend("force", cursorline_hl, { fg = hl.bg, bold = true })
-    vim.api.nvim_set_hl(0, "CursorLineNr", hl)
-  end,
-})
-
+_G.Config.new_autocmd({ "BufEnter", "ModeChanged" }, nil, function()
+  local mode = vim.api.nvim_get_mode().mode
+  local mode_hl_group = mode_hl_groups[mode] or "MiniStatuslineModeOther"
+  local cursorline_hl = vim.api.nvim_get_hl(0, { name = "CursorLine", link = false, create = false })
+  local hl = vim.api.nvim_get_hl(0, { name = mode_hl_group, link = false, create = false })
+  hl = vim.tbl_extend("force", cursorline_hl, { fg = hl.bg, bold = true })
+  vim.api.nvim_set_hl(0, "CursorLineNr", hl)
+end, "Modicator")
 -- Diagnostics ================================================================
 local diagnostic_opts = {
   signs = {
