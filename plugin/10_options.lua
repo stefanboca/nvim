@@ -24,6 +24,7 @@ vim.o.linebreak = true -- Wrap lines at 'breakat' (if 'wrap' is set)
 vim.o.list = true -- Show helpful text indicators
 vim.o.number = true -- Show line numbers
 vim.o.pumheight = 10 -- Make popup menu smaller
+vim.o.relativenumber = true -- Show relative line numbers
 vim.o.ruler = false -- Don't show cursor coordinates
 vim.o.scrolloff = 4 -- Minimum number of lines above and below cursor
 vim.o.shortmess = "CFOSWaco" -- Disable some built-in completion messages
