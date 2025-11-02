@@ -1,8 +1,8 @@
-_G.dd = function(...)
+function _G.dd(...)
   vim.print(...)
   return ...
 end
-_G.bt = function() print(debug.traceback()) end
+function _G.bt() vim.print(debug.traceback()) end
 
 _G.Config = {}
 
