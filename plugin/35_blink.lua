@@ -18,7 +18,7 @@ MiniDeps.now(function()
   end
 end)
 
-MiniDeps.now(function()
+_G.Config.now_if_args(function()
   if vim.env.NVIM_DEV ~= "blink.indent" then
     add("Saghen/blink.indent")
   else
@@ -28,6 +28,32 @@ MiniDeps.now(function()
   require("blink.indent").setup({
     scope = {
       highlights = {
+        "BlinkPairsRed",
+        "BlinkPairsOrange",
+        "BlinkPairsYellow",
+        "BlinkPairsGreen",
+        "BlinkPairsCyan",
+        "BlinkPairsBlue",
+        "BlinkPairsViolet",
+      },
+    },
+  })
+end)
+
+_G.Config.now_if_args(function()
+  if vim.env.NVIM_DEV ~= "blink.pairs" then
+    add({ source = "Saghen/blink.pairs", hooks = { post_install = cargo_build_hook, post_checkout = cargo_build_hook } })
+  else
+    vim.cmd.packadd("blink.pairs.dev")
+  end
+
+  require("blink.pairs").setup({
+    highlights = {
+      matchparen = {
+        include_surrounding = true,
+      },
+      enabled = true,
+      groups = {
         "BlinkPairsRed",
         "BlinkPairsOrange",
         "BlinkPairsYellow",
@@ -97,32 +123,6 @@ _G.Config.now_if_args(function()
           module = "lazydev.integrations.blink",
           score_offset = 10, -- show at a higher priority than lsp
         },
-      },
-    },
-  })
-end)
-
-MiniDeps.later(function()
-  if vim.env.NVIM_DEV ~= "blink.pairs" then
-    add({ source = "Saghen/blink.pairs", hooks = { post_install = cargo_build_hook, post_checkout = cargo_build_hook } })
-  else
-    vim.cmd.packadd("blink.pairs.dev")
-  end
-
-  require("blink.pairs").setup({
-    highlights = {
-      matchparen = {
-        include_surrounding = true,
-      },
-      enabled = true,
-      groups = {
-        "BlinkPairsRed",
-        "BlinkPairsOrange",
-        "BlinkPairsYellow",
-        "BlinkPairsGreen",
-        "BlinkPairsCyan",
-        "BlinkPairsBlue",
-        "BlinkPairsViolet",
       },
     },
   })
