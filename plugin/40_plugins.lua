@@ -257,7 +257,7 @@ later(function()
       lua = { "stylua" },
       markdown = { "prettierd" },
       nix = { "alejandra" },
-      query = { "format-queries" },
+      query = { lsp_format = true },
       rust = { "rustfmt" },
       scss = { "prettierd" },
       sh = { "shfmt" },
@@ -409,3 +409,10 @@ later(function()
 end)
 
 later(function() add("Saghen/filler-begone.nvim") end)
+
+later(function()
+  add("sindrets/diffview.nvim")
+  add("NeogitOrg/neogit")
+
+  require("neogit").setup()
+end)
