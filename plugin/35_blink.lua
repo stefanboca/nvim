@@ -11,7 +11,19 @@ local function cargo_build_hook(params)
 end
 
 MiniDeps.now(function()
-  add("Saghen/blink.indent")
+  if vim.env.NVIM_DEV ~= "blink.lib" then
+    add("Saghen/blink.lib")
+  else
+    vim.cmd.packadd("blink.lib.dev")
+  end
+end)
+
+MiniDeps.now(function()
+  if vim.env.NVIM_DEV ~= "blink.indent" then
+    add("Saghen/blink.indent")
+  else
+    vim.cmd.packadd("blink.indent.dev")
+  end
 
   require("blink.indent").setup({
     scope = {
@@ -29,8 +41,12 @@ MiniDeps.now(function()
 end)
 
 _G.Config.now_if_args(function()
-  local function build() vim.cmd.BlinkCmp("build") end
-  add({ source = "Saghen/blink.cmp", hooks = { post_install = build, post_checkout = build } })
+  if vim.env.NVIM_DEV ~= "blink.cmp" then
+    local function build() vim.cmd.BlinkCmp("build") end
+    add({ source = "Saghen/blink.cmp", hooks = { post_install = build, post_checkout = build } })
+  else
+    vim.cmd.packadd("blink.cmp.dev")
+  end
 
   require("blink.cmp").setup({
     keymap = {

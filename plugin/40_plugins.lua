@@ -5,9 +5,29 @@ now(function() add("brianhuster/unnest.nvim") end)
 
 now(function()
   add("nvim-lua/plenary.nvim")
+  add("MunifTanjim/nui.nvim")
   add("nvim-neotest/nvim-nio")
   add("lewis6991/async.nvim")
 end)
+
+now(function()
+  add("julienvincent/hunk.nvim")
+
+  require("hunk").setup({
+    keys = {
+      global = {
+        accept = { "<LocalLeader><CR>" },
+        focus_tree = { "<LocalLeader>e" },
+      },
+      diff = {
+        prev_hunk = { "[h", "<C-p>" },
+        next_hunk = { "]h", "<C-n>" },
+      },
+    },
+  })
+end)
+
+now(function() add("rafikdraoui/jj-diffconflicts") end)
 
 now_if_args(function()
   add({
