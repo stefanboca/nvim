@@ -219,6 +219,8 @@ later(function()
     formatters_by_ft = {
       astro = { "biome" },
       css = { "biome" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
       docker = { "dockerfmt" },
       fish = { "fish_indent" },
       graphql = { "biome" },
