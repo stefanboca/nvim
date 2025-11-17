@@ -160,7 +160,15 @@ end)
 
 later(function() require("mini.jump").setup() end)
 
-later(function() require("mini.jump2d").setup() end)
+later(function()
+  local jump2d = require("mini.jump2d")
+  jump2d.setup({
+    spotter = jump2d.gen_spotter.pattern("[^%s%p]+"),
+    labels = "asdfghjkl;",
+    view = { dim = true, n_steps_ahead = 2 },
+  })
+  vim.keymap.set({ "n", "x", "o" }, "sj", function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end)
+end)
 
 later(function()
   local map = require("mini.map")
