@@ -257,7 +257,7 @@ later(function()
       lua = { "stylua" },
       markdown = { "prettierd" },
       nix = { "alejandra" },
-      query = { lsp_format = true },
+      query = { lsp_format = "prefer" },
       rust = { "rustfmt" },
       scss = { "prettierd" },
       sh = { "shfmt" },
