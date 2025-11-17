@@ -237,9 +237,9 @@ later(function()
     },
     formatters_by_ft = {
       astro = { "biome" },
-      css = { "biome" },
       c = { "clang-format" },
       cpp = { "clang-format" },
+      css = { "biome" },
       docker = { "dockerfmt" },
       fish = { "fish_indent" },
       graphql = { "biome" },
@@ -256,6 +256,7 @@ later(function()
       lua = { "stylua" },
       markdown = { "prettierd" },
       nix = { "alejandra" },
+      python = { "ruff_format", "ruff_organize_imports" },
       query = { lsp_format = "prefer" },
       rust = { "rustfmt" },
       scss = { "prettierd" },
