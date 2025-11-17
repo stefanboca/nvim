@@ -138,7 +138,6 @@ now_if_args(function()
     "docker_language_server",
     "fish_lsp",
     "glsl_analyzer",
-    "harper_ls",
     "jdtls",
     "jsonls",
     "just",
