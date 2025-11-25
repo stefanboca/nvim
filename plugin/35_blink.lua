@@ -28,13 +28,13 @@ _G.Config.now_if_args(function()
   require("blink.indent").setup({
     scope = {
       highlights = {
-        "BlinkPairsRed",
-        "BlinkPairsOrange",
-        "BlinkPairsYellow",
-        "BlinkPairsGreen",
-        "BlinkPairsCyan",
-        "BlinkPairsBlue",
-        "BlinkPairsViolet",
+        "BlinkIndentViolet",
+        "BlinkIndentBlue",
+        "BlinkIndentCyan",
+        "BlinkIndentGreen",
+        "BlinkIndentYellow",
+        "BlinkIndentOrange",
+        "BlinkIndentRed",
       },
     },
   })
@@ -54,13 +54,13 @@ _G.Config.now_if_args(function()
       },
       enabled = true,
       groups = {
-        "BlinkPairsRed",
-        "BlinkPairsOrange",
-        "BlinkPairsYellow",
-        "BlinkPairsGreen",
-        "BlinkPairsCyan",
-        "BlinkPairsBlue",
         "BlinkPairsViolet",
+        "BlinkPairsBlue",
+        "BlinkPairsCyan",
+        "BlinkPairsGreen",
+        "BlinkPairsYellow",
+        "BlinkPairsOrange",
+        "BlinkPairsRed",
       },
     },
   })

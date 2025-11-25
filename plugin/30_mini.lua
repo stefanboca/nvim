@@ -16,9 +16,6 @@ end)
 now(function()
   require("mini.icons").setup()
   later(MiniIcons.mock_nvim_web_devicons)
-
-  -- Add LSP kind icons. Useful for 'mini.completion'.
-  -- later(MiniIcons.tweak_lsp_kind)
 end)
 
 now(function()
@@ -46,7 +43,11 @@ end)
 
 now(function() require("mini.statusline").setup() end)
 
-now(function() require("mini.tabline").setup() end)
+now(function()
+  require("mini.tabline").setup({
+    tabpage_section = "right",
+  })
+end)
 
 now_if_args(function()
   require("mini.misc").setup()

@@ -7,28 +7,37 @@ MiniDeps.now(function()
     dim_inactive = { enabled = true },
     lsp_styles = { enabled = true },
     auto_integrations = true,
-    custom_highlights = function(c)
+    custom_highlights = function(C)
       local hls = {
-        MatchParen = { fg = "NONE", bg = c.surface1, style = { "bold" } },
-        ["@comment.error"] = { fg = c.red, bg = "NONE" },
-        ["@comment.warning"] = { fg = c.yellow, bg = "NONE" },
-        ["@comment.hint"] = { fg = c.blue, bg = "NONE" },
-        ["@comment.todo"] = { fg = c.flamingo, bg = "NONE" },
-        ["@comment.note"] = { fg = c.rosewater, bg = "NONE" },
+        MatchParen = { fg = "NONE", bg = C.surface1, style = { "bold" } },
+
+        -- Use fg insted of bg
+        ["@comment.error"] = { fg = C.red, bg = "NONE" },
+        ["@comment.warning"] = { fg = C.yellow, bg = "NONE" },
+        ["@comment.hint"] = { fg = C.blue, bg = "NONE" },
+        ["@comment.todo"] = { fg = C.flamingo, bg = "NONE" },
+        ["@comment.note"] = { fg = C.rosewater, bg = "NONE" },
+
+        -- Remove italic, make underline blue
+        MiniTablineCurrent = { fg = C.text, bg = C.base, sp = C.blue, style = { "bold", "underline" } },
+        -- Remove italic, add blue underline
+        MiniTablineModifiedCurrent = { fg = C.red, bg = C.none, sp = C.blue, style = { "bold", "underline" } },
+        -- Make it more readable
+        MiniTablineTabpagesection = { fg = C.text, bg = C.mantle },
       }
 
-      local function pairs_hl(color, fg)
+      local function blink_hl(color, fg)
         hls["BlinkPairs" .. color] = { fg = fg }
-        hls["BlinkIndentUnderline" .. color] = { default = true, sp = fg, underline = true }
+        hls["BlinkIndent" .. color] = { fg = fg }
       end
 
-      pairs_hl("Red", c.red)
-      pairs_hl("Orange", c.peach)
-      pairs_hl("Yellow", c.yellow)
-      pairs_hl("Green", c.green)
-      pairs_hl("Cyan", c.teal)
-      pairs_hl("Blue", c.blue)
-      pairs_hl("Violet", c.mauve)
+      blink_hl("Red", C.red)
+      blink_hl("Orange", C.peach)
+      blink_hl("Yellow", C.yellow)
+      blink_hl("Green", C.green)
+      blink_hl("Cyan", C.teal)
+      blink_hl("Blue", C.blue)
+      blink_hl("Violet", C.mauve)
 
       return hls
     end,
