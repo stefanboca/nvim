@@ -39,6 +39,7 @@ now_if_args(function()
   add({ source = "nvim-treesitter/nvim-treesitter-context" })
 
   local languages = {
+    -- keep-sorted start
     "astro",
     "bash",
     "c",
@@ -89,6 +90,7 @@ now_if_args(function()
     "vue",
     "yaml",
     "zig",
+    -- keep-sorted end
   }
 
   require("nvim-treesitter").install(languages)
@@ -132,6 +134,7 @@ now_if_args(function()
   vim.lsp.inlay_hint.enable()
 
   vim.lsp.enable({
+    -- keep-sorted start
     "bashls",
     "biome",
     "clangd",
@@ -156,6 +159,7 @@ now_if_args(function()
     "vtsls",
     "yamlls",
     "zls",
+    -- keep-sorted end
   })
 end)
 
@@ -227,6 +231,11 @@ later(function()
       lsp_format = "fallback",
     },
     formatters = {
+      ["keep-sorted"] = {
+        condition = function(_, ctx)
+          return vim.api.nvim_buf_call(ctx.buf, function() return vim.fn.search("keep-sorted", "nw") ~= 0 end)
+        end,
+      },
       koto = { command = "koto", args = { "--format" } },
       typstyle = {
         prepend_args = function(_, ctx)
@@ -236,6 +245,8 @@ later(function()
       },
     },
     formatters_by_ft = {
+      ["*"] = { "keep-sorted" },
+      -- keep-sorted start
       astro = { "biome" },
       c = { "clang-format" },
       cpp = { "clang-format" },
@@ -268,6 +279,7 @@ later(function()
       typst = { "typstyle" },
       vue = { "biome" },
       yaml = { "prettierd" },
+      -- keep-sorted end
     },
   })
 end)
