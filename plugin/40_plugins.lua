@@ -426,5 +426,5 @@ later(function()
   add("sindrets/diffview.nvim")
   add("NeogitOrg/neogit")
 
-  require("neogit").setup()
+  require("neogit").setup({})
 end)
