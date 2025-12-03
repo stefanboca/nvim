@@ -1,17 +1,13 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local now, later = MiniDeps.now, MiniDeps.later
 local now_if_args, now_if_args_and_ft = _G.Config.now_if_args, _G.Config.now_if_args_and_ft
+local packadd = vim.cmd.packadd
 
-now(function() add("brianhuster/unnest.nvim") end)
-
-now(function()
-  add("nvim-lua/plenary.nvim")
-  add("MunifTanjim/nui.nvim")
-  add("nvim-neotest/nvim-nio")
-  add("lewis6991/async.nvim")
-end)
+-- now(function()
+--   add("lewis6991/async.nvim")
+-- end)
 
 now(function()
-  add("julienvincent/hunk.nvim")
+  packadd("hunk.nvim")
 
   require("hunk").setup({
     keys = {
@@ -27,82 +23,23 @@ now(function()
   })
 end)
 
-now(function() add("rafikdraoui/jj-diffconflicts") end)
+now(function() packadd("jj-diffconflicts") end)
 
 now_if_args(function()
-  add({
-    source = "nvim-treesitter/nvim-treesitter",
-    checkout = "main",
-    hooks = { post_checkout = function() vim.cmd("TSUpdate") end },
-  })
-  add({ source = "nvim-treesitter/nvim-treesitter-textobjects", checkout = "main" })
-  add({ source = "nvim-treesitter/nvim-treesitter-context" })
+  packadd("nvim-treesitter-textobjects")
+  packadd("nvim-treesitter-context")
 
-  local languages = {
-    -- keep-sorted start
-    "astro",
-    "bash",
-    "c",
-    "cmake",
-    "comment",
-    "cpp",
-    "css",
-    "diff",
-    "dockerfile",
-    "dot",
-    "ecma",
-    "fish",
-    "glsl",
-    "graphql",
-    "html",
-    "html_tags",
-    "java",
-    "javascript",
-    "jsdoc",
-    "json",
-    "json5",
-    "jsonc",
-    "jsx",
-    "just",
-    "kdl",
-    "koto",
-    "lua",
-    "luadoc",
-    "luap",
-    "markdown",
-    "markdown_inline",
-    "nix",
-    "printf",
-    "pydoc",
-    "python",
-    "query",
-    "re2c",
-    "regex",
-    "rust",
-    "scss",
-    "ssh_config",
-    "svelte",
-    "toml",
-    "tsx",
-    "typescript",
-    "typst",
-    "vim",
-    "vimdoc",
-    "vue",
-    "yaml",
-    "zig",
-    -- keep-sorted end
-  }
+  local treesitter = require("nvim-treesitter")
 
-  require("nvim-treesitter").install(languages)
-
-  local filetypes = vim.list.unique(vim.iter(languages):map(vim.treesitter.language.get_filetypes):flatten(1):totable())
+  local filetypes = vim.list.unique(
+    vim.iter(treesitter.get_available()):map(vim.treesitter.language.get_filetypes):flatten(1):totable()
+  )
 
   local ts_start = function(ev)
-    vim.treesitter.start(ev.buf)
-
     local lang = vim.treesitter.language.get_lang(ev.match)
     if not lang then return end
+    vim.treesitter.start(ev.buf)
+
     if vim.treesitter.query.get(lang, "indents") ~= nil then
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end
@@ -118,18 +55,11 @@ now_if_args(function()
     max_lines = 3,
   })
 
-  -- NOTE: lean TS parser is installed but not enabled
-  _G.Config.new_autocmd("User", "TSUpdate", function()
-    ---@diagnostic disable-next-line: missing-fields
-    require("nvim-treesitter.parsers").lean = { install_info = { url = "https://github.com/Julian/tree-sitter-lean" } }
-  end, "Install tree-sitter lean")
-
   vim.filetype.add({ extension = { koto = "koto" } })
 end)
 
 now_if_args(function()
-  add("neovim/nvim-lspconfig")
-  add("b0o/SchemaStore.nvim")
+  packadd("nvim-lspconfig")
 
   vim.lsp.log.set_level(vim.env.NVIM_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
   vim.lsp.inlay_hint.enable()
@@ -164,15 +94,13 @@ now_if_args(function()
   })
 end)
 
-now_if_args_and_ft("jjdescription", function() add("avm99963/vim-jjdescription") end)
-
 now_if_args_and_ft("lean", function()
-  add("Julian/lean.nvim")
+  packadd("lean.nvim")
   require("lean").setup({ mappings = true })
 end)
 
 now_if_args_and_ft("lua", function()
-  add("folke/lazydev.nvim")
+  packadd("lazydev.nvim")
   require("lazydev").setup({
     library = {
       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
@@ -183,8 +111,8 @@ now_if_args_and_ft("lua", function()
 end)
 
 now_if_args_and_ft("rust", function()
-  add("Saecki/crates.nvim")
-  add({ source = "mrcjkb/rustaceanvim" })
+  packadd("crates.nvim")
+  packadd("rustaceanvim")
 
   require("crates").setup({
     completion = {
@@ -200,25 +128,25 @@ now_if_args_and_ft("rust", function()
   })
 end)
 
-later(function() vim.cmd.packadd("nvim.undotree") end)
+later(function() packadd("nvim.undotree") end)
 
-later(function() add("saecki/live-rename.nvim") end)
+later(function() packadd("live-rename.nvim") end)
+
+-- later(function()
+--   add("rachartier/tiny-code-action.nvim")
+--   require("tiny-code-action").setup({
+--     backend = "difftastic",
+--     picker = { "snacks" },
+--   })
+-- end)
 
 later(function()
-  add("rachartier/tiny-code-action.nvim")
-  require("tiny-code-action").setup({
-    backend = "difftastic",
-    picker = { "snacks" },
-  })
-end)
-
-later(function()
-  add("windwp/nvim-ts-autotag")
+  packadd("nvim-ts-autotag")
   require("nvim-ts-autotag").setup()
 end)
 
 later(function()
-  add("stevearc/conform.nvim")
+  packadd("conform.nvim")
 
   require("conform").setup({
     format_on_save = function(bufnr)
@@ -286,7 +214,7 @@ later(function()
 end)
 
 later(function()
-  add("mfussenegger/nvim-lint")
+  packadd("nvim-lint")
 
   require("lint").linters_by_ft = {
     cmake = { "cmakelint" },
@@ -305,11 +233,11 @@ later(function()
 end)
 
 later(function()
-  add("mfussenegger/nvim-dap")
-  add("igorlfs/nvim-dap-view")
-  add("theHamsta/nvim-dap-virtual-text")
-  add("jbyuki/one-small-step-for-vimkind")
-  add("mfussenegger/nvim-dap-python")
+  packadd("nvim-dap")
+  packadd("nvim-dap-view")
+  packadd("nvim-dap-virtual-text")
+  packadd("one-small-step-for-vimkind")
+  packadd("nvim-dap-python")
 
   require("nvim-dap-virtual-text").setup({})
   vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
@@ -350,8 +278,8 @@ later(function()
 end)
 
 later(function()
-  add("nvim-neotest/neotest")
-  add("nvim-neotest/neotest-python")
+  packadd("neotest")
+  packadd("neotest-python")
 
   ---@diagnostic disable-next-line: missing-fields
   require("neotest").setup({
@@ -368,10 +296,10 @@ later(function()
   })
 end)
 
-later(function() add("MagicDuck/grug-far.nvim") end)
+later(function() packadd("grug-far.nvim") end)
 
 later(function()
-  add("monaqa/dial.nvim")
+  packadd("dial.nvim")
 
   local augend = require("dial.augend")
   require("dial.config").augends:register_group({
@@ -391,15 +319,14 @@ later(function()
 end)
 
 later(function()
-  add("danymat/neogen")
-
+  packadd("neogen")
   require("neogen").setup({})
 end)
 
-later(function() add("xzbdmw/clasp.nvim") end)
+later(function() packadd("clasp.nvim") end)
 
 later(function()
-  add("akinsho/toggleterm.nvim")
+  packadd("toggleterm.nvim")
   require("toggleterm").setup({
     size = function() return vim.o.lines / 3 end,
     open_mapping = "<C-/>",
@@ -407,25 +334,23 @@ later(function()
 end)
 
 later(function()
-  add("folke/trouble.nvim")
-
+  packadd("trouble.nvim")
   require("trouble").setup({ focus = true, auto_preview = false, preview = { type = "float" } })
 end)
 
 later(function()
-  add("folke/snacks.nvim")
-
+  packadd("snacks.nvim")
   require("snacks").setup({
     picker = { enabled = false, ui_select = false },
     words = { enabled = true },
   })
 end)
 
-later(function() add("Saghen/filler-begone.nvim") end)
+later(function() packadd("filler-begone.nvim") end)
 
 later(function()
-  add("sindrets/diffview.nvim")
-  add("NeogitOrg/neogit")
+  packadd("diffview.nvim")
+  packadd("neogit")
 
   require("neogit").setup({})
 end)

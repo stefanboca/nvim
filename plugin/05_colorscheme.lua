@@ -1,6 +1,4 @@
 MiniDeps.now(function()
-  MiniDeps.add({ name = "catppuccin", source = "catppuccin/nvim" })
-
   local catppuccin = require("catppuccin")
   catppuccin.setup({
     background = { dark = "mocha" },

@@ -1,28 +1,19 @@
-local add = MiniDeps.add
-
-local function cargo_build_hook(params)
-  vim.notify("Building " .. params.name, vim.log.levels.INFO)
-  local obj = vim.system({ "cargo", "build", "--release" }, { cwd = params.path, timeout = 300 * 1000 }):wait()
-  if obj.code == 0 then
-    vim.notify("Building " .. params.name .. " done", vim.log.levels.INFO)
-  else
-    vim.notify("Building " .. params.name .. " failed", vim.log.levels.ERROR)
-  end
-end
+local now_if_args = _G.Config.now_if_args
+local packadd = vim.cmd.packadd
 
 MiniDeps.now(function()
   if vim.env.NVIM_DEV ~= "blink.lib" then
-    add("Saghen/blink.lib")
+    packadd("blink.lib")
   else
-    vim.cmd.packadd("blink.lib.dev")
+    packadd("blink.lib.dev")
   end
 end)
 
-_G.Config.now_if_args(function()
+now_if_args(function()
   if vim.env.NVIM_DEV ~= "blink.indent" then
-    add("Saghen/blink.indent")
+    packadd("blink.indent")
   else
-    vim.cmd.packadd("blink.indent.dev")
+    packadd("blink.indent.dev")
   end
 
   require("blink.indent").setup({
@@ -40,11 +31,11 @@ _G.Config.now_if_args(function()
   })
 end)
 
-_G.Config.now_if_args(function()
+now_if_args(function()
   if vim.env.NVIM_DEV ~= "blink.pairs" then
-    add({ source = "Saghen/blink.pairs", hooks = { post_install = cargo_build_hook, post_checkout = cargo_build_hook } })
+    packadd("blink.pairs")
   else
-    vim.cmd.packadd("blink.pairs.dev")
+    packadd("blink.pairs.dev")
   end
 
   require("blink.pairs").setup({
@@ -66,12 +57,11 @@ _G.Config.now_if_args(function()
   })
 end)
 
-_G.Config.now_if_args(function()
+now_if_args(function()
   if vim.env.NVIM_DEV ~= "blink.cmp" then
-    local function build() vim.cmd.BlinkCmp("build") end
-    add({ source = "Saghen/blink.cmp", hooks = { post_install = build, post_checkout = build } })
+    packadd("blink.cmp")
   else
-    vim.cmd.packadd("blink.cmp.dev")
+    packadd("blink.cmp.dev")
   end
 
   require("blink.cmp").setup({
@@ -103,7 +93,10 @@ _G.Config.now_if_args(function()
       ghost_text = { enabled = true },
     },
 
-    fuzzy = { prebuilt_binaries = { download = false } },
+    fuzzy = {
+      implementation = "rust",
+      prebuilt_binaries = { download = false },
+    },
 
     signature = {
       enabled = true,
