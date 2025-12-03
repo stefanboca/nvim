@@ -80,6 +80,7 @@ now_if_args(function()
     "regex",
     "rust",
     "scss",
+    "ssh_config",
     "svelte",
     "toml",
     "tsx",
