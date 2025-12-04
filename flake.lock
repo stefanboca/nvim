@@ -285,6 +285,7 @@
         "nvim-treesitter": "nvim-treesitter",
         "nvim-treesitter-main": "nvim-treesitter-main",
         "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
+        "tiny-code-action-nvim": "tiny-code-action-nvim",
         "unnest-nvim": "unnest-nvim",
         "vim-jjdescription": "vim-jjdescription"
       }
@@ -303,6 +304,22 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "tiny-code-action-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764435744,
+        "narHash": "sha256-wmaYyOPYsmaYdGDe18wNL4ErNxuUvBVjM8wwy4Fk3Wc=",
+        "owner": "rachartier",
+        "repo": "tiny-code-action.nvim",
+        "rev": "188122ee2ea278eb74f55c6d39b5f6b5f8eefe8c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rachartier",
+        "repo": "tiny-code-action.nvim",
         "type": "github"
       }
     },
