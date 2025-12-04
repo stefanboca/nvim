@@ -21,6 +21,7 @@
   keep-sorted,
   koto-ls,
   lean4,
+  lspmux,
   lua-language-server,
   markdownlint-cli2,
   marksman,
@@ -147,6 +148,7 @@
     keep-sorted
     koto-ls
     lean4
+    lspmux
     lua-language-server
     markdownlint-cli2
     marksman # markdown
