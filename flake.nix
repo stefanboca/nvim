@@ -157,8 +157,8 @@
     in
       {default = packages.snv;} // packages // (mkVimPlugins pkgs));
 
-    overlays.default = _final: prev: let
-      inherit (prev.stdenv.hostPlatform) system;
+    overlays.default = final: prev: let
+      inherit (final.stdenv.hostPlatform) system;
     in
       {
         neovim-nightly-unwrapped = neovim-nightly-overlay.packages.${system}.neovim;
