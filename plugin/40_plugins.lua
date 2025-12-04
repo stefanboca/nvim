@@ -61,7 +61,7 @@ end)
 now_if_args(function()
   packadd("nvim-lspconfig")
 
-  vim.lsp.log.set_level(vim.env.NVIM_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
+  vim.lsp.log.set_level(vim.env.SNV_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
   vim.lsp.inlay_hint.enable()
 
   vim.lsp.enable({

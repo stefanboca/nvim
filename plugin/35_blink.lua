@@ -2,7 +2,7 @@ local now_if_args = _G.Config.now_if_args
 local packadd = vim.cmd.packadd
 
 MiniDeps.now(function()
-  if vim.env.NVIM_DEV ~= "blink.lib" then
+  if vim.env.SNV_DEV ~= "blink.lib" then
     packadd("blink.lib")
   else
     packadd("blink.lib.dev")
@@ -10,7 +10,7 @@ MiniDeps.now(function()
 end)
 
 now_if_args(function()
-  if vim.env.NVIM_DEV ~= "blink.indent" then
+  if vim.env.SNV_DEV ~= "blink.indent" then
     packadd("blink.indent")
   else
     packadd("blink.indent.dev")
@@ -32,7 +32,7 @@ now_if_args(function()
 end)
 
 now_if_args(function()
-  if vim.env.NVIM_DEV ~= "blink.pairs" then
+  if vim.env.SNV_DEV ~= "blink.pairs" then
     packadd("blink.pairs")
   else
     packadd("blink.pairs.dev")
@@ -58,7 +58,7 @@ now_if_args(function()
 end)
 
 now_if_args(function()
-  if vim.env.NVIM_DEV ~= "blink.cmp" then
+  if vim.env.SNV_DEV ~= "blink.cmp" then
     packadd("blink.cmp")
   else
     packadd("blink.cmp.dev")
