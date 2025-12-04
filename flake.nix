@@ -35,6 +35,9 @@
     filler-begone-nvim.url = "github:Saghen/filler-begone.nvim";
     filler-begone-nvim.flake = false;
 
+    jj-diffconflicts.url = "github:rafikdraoui/jj-diffconflicts";
+    jj-diffconflicts.flake = false;
+
     nvim-treesitter-main.url = "github:iofq/nvim-treesitter-main";
     nvim-treesitter-main.inputs = {
       nixpkgs.follows = "nixpkgs";
@@ -42,8 +45,8 @@
       nvim-treesitter-textobjects.follows = "nvim-treesitter-textobjects";
     };
 
-    jj-diffconflicts.url = "github:rafikdraoui/jj-diffconflicts";
-    jj-diffconflicts.flake = false;
+    tiny-code-action-nvim.url = "github:rachartier/tiny-code-action.nvim";
+    tiny-code-action-nvim.flake = false;
 
     unnest-nvim.url = "github:brianhuster/unnest.nvim";
     unnest-nvim.flake = false;
@@ -114,6 +117,12 @@
         pname = "jj-diffconflicts";
         version = inputs.jj-diffconflicts.rev;
         src = inputs.jj-diffconflicts;
+      };
+
+      tiny-code-action-nvim = pkgs.vimUtils.buildVimPlugin {
+        name = "tiny-code-action.nvim";
+        version = inputs.tiny-code-action-nvim.rev;
+        src = inputs.tiny-code-action-nvim;
       };
 
       unnest-nvim = pkgs.vimUtils.buildVimPlugin {

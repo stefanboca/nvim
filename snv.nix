@@ -110,6 +110,7 @@
     one-small-step-for-vimkind
     rustaceanvim
     snacks-nvim
+    tiny-code-action-nvim
     toggleterm-nvim
     trouble-nvim
     # keep-sorted end
