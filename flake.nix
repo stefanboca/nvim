@@ -120,7 +120,7 @@
       };
 
       tiny-code-action-nvim = pkgs.vimUtils.buildVimPlugin {
-        name = "tiny-code-action.nvim";
+        pname = "tiny-code-action.nvim";
         version = inputs.tiny-code-action-nvim.rev;
         src = inputs.tiny-code-action-nvim;
         nvimSkipModules = [
