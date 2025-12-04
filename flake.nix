@@ -123,6 +123,12 @@
         name = "tiny-code-action.nvim";
         version = inputs.tiny-code-action-nvim.rev;
         src = inputs.tiny-code-action-nvim;
+        nvimSkipModules = [
+          "tiny-code-action.backend.delta"
+          "tiny-code-action.backend.diffsofancy"
+          "tiny-code-action.backend.difftastic"
+          "tiny-code-action.previewers.snacks"
+        ];
       };
 
       unnest-nvim = pkgs.vimUtils.buildVimPlugin {
