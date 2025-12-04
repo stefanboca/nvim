@@ -131,7 +131,15 @@
     };
 
     mkPackages = pkgs: {
-      snv = pkgs.callPackage ./snv.nix {inherit self;};
+      snv = pkgs.callPackage ./snv.nix {src = self;};
+      snv-dev = pkgs.callPackage ./snv.nix {
+        src = self;
+        dev = true;
+      };
+      snv-profile = pkgs.callPackage ./snv.nix {
+        src = self;
+        profile = true;
+      };
     };
   in {
     packages = forAllSystems (pkgs: let

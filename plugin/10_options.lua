@@ -90,11 +90,6 @@ vim.o.completeopt = "menuone,noselect,fuzzy,nosort" -- Use custom behavior
 
 if vim.env.IN_NIX_SHELL then vim.o.shell = "fish" end
 
-if vim.env.NVIM_DEV ~= nil then
-  vim.o.swapfile = false
-  vim.o.shada = ""
-end
-
 if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_x = 1.0
   vim.g.neovide_floating_blur_amount_y = 1.0

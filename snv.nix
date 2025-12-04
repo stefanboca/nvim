@@ -21,21 +21,15 @@
   keep-sorted,
   koto-ls,
   lean4,
-  lib,
-  linkFarm,
   lua-language-server,
-  makeWrapper,
   markdownlint-cli2,
   marksman,
   neocmakelsp,
-  neovim-unwrapped,
   nil,
   prettierd,
   python313Packages,
   ruff,
-  runCommandWith,
   rust-analyzer-nightly,
-  self,
   shfmt,
   sqlite,
   statix,
@@ -47,7 +41,6 @@
   tombi,
   ts_query_ls,
   typstyle,
-  vimPlugins,
   vscode-extensions,
   vscode-langservers-extracted,
   vtsls,
@@ -55,10 +48,20 @@
   yaml-language-server,
   zls,
   # keep-sorted end
+  lib,
+  linkFarm,
+  makeWrapper,
+  neovim-unwrapped,
+  runCommandWith,
+  vimPlugins,
+  writeTextFile,
+  src,
+  dev ? false,
+  profile ? false,
   ...
 }: let
   inherit (lib.meta) getExe;
-  inherit (lib.strings) concatStringsSep getName makeBinPath makeLibraryPath;
+  inherit (lib.strings) concatStringsSep getName makeBinPath makeLibraryPath optionalString;
 
   startPlugins = with vimPlugins; [
     # keep-sorted start
@@ -175,31 +178,57 @@
 
   libs = [sqlite];
 
-  cmds = [
-    "set packpath=$VIMRUNTIME,${plugins}"
-    "set runtimepath=${self},$VIMRUNTIME,${self}/after"
-    "let g:loaded_node_provider=0"
-    "let g:loaded_perl_provider=0"
-    "let g:loaded_python_provider=0"
-    "let g:loaded_python3_provider=0"
-    "let g:loaded_ruby_provider=0"
-  ];
+  name = "snv" + (optionalString dev "-dev") + (optionalString profile "-profile");
+
+  cmds =
+    (
+      if dev
+      then ["set packpath+=${plugins}"]
+      else [
+        "set packpath=${plugins},$VIMRUNTIME"
+        "set runtimepath=${src},$VIMRUNTIME,${src}/after"
+      ]
+    )
+    ++ [
+      "let g:loaded_node_provider=0"
+      "let g:loaded_perl_provider=0"
+      "let g:loaded_python_provider=0"
+      "let g:loaded_python3_provider=0"
+      "let g:loaded_ruby_provider=0"
+    ];
+
+  initLua = writeTextFile {
+    name = "${name}-init.lua";
+    destination = "/init.lua";
+    text =
+      # lua
+      ''
+        vim.loader.enable()
+
+        ${optionalString profile
+          # lua
+          ''
+            vim.opt.rtp:append("${vimPlugins.snacks-nvim}")
+            require("snacks.profiler").startup()
+          ''}
+      '';
+  };
 in
   runCommandWith {
-    name = "snv";
+    inherit name;
     stdenv = stdenvNoCC;
     runLocal = true;
     derivationArgs = {nativeBuildInputs = [makeWrapper];};
   }
   ''
-    makeWrapper ${getExe neovim-unwrapped} $out/bin/snv \
-      --argv0 snv \
-      --set NVIM_APPNAME snv \
+    makeWrapper ${getExe neovim-unwrapped} $out/bin/${name} \
+      --argv0 ${name} \
+      --set NVIM_APPNAME ${name} \
       --suffix LD_LIBRARY_PATH : ${makeLibraryPath libs} \
       --suffix PATH : ${makeBinPath packages} \
       --suffix PATH : ${concatStringsSep ":" extraPaths} \
-      --add-flags --clean \
-      --add-flags '-u ${self}/init.lua' \
+      ${optionalString (!dev) "--add-flags --clean"} \
+      --add-flags '-u ${initLua}/init.lua' \
       --add-flags --cmd \
       --add-flag '${concatStringsSep " | " cmds}'
   ''
