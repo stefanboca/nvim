@@ -51,7 +51,7 @@
   lib,
   linkFarm,
   makeWrapper,
-  neovim-unwrapped,
+  neovim,
   runCommandWith,
   vimPlugins,
   writeTextFile,
@@ -221,7 +221,7 @@ in
     derivationArgs = {nativeBuildInputs = [makeWrapper];};
   }
   ''
-    makeWrapper ${getExe neovim-unwrapped} $out/bin/${name} \
+    makeWrapper ${getExe neovim} $out/bin/${name} \
       --argv0 ${name} \
       --set NVIM_APPNAME ${name} \
       --suffix LD_LIBRARY_PATH : ${makeLibraryPath libs} \

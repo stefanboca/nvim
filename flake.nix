@@ -78,7 +78,6 @@
         inherit system;
         overlays = [
           fenix.overlays.default
-          neovim-nightly-overlay.overlays.default
           nvim-treesitter-main.overlays.default
           self.overlays.default
         ];
@@ -131,12 +130,17 @@
     };
 
     mkPackages = pkgs: {
-      snv = pkgs.callPackage ./snv.nix {src = self;};
+      snv = pkgs.callPackage ./snv.nix {
+        inherit (neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}) neovim;
+        src = self;
+      };
       snv-dev = pkgs.callPackage ./snv.nix {
+        inherit (neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}) neovim;
         src = self;
         dev = true;
       };
       snv-profile = pkgs.callPackage ./snv.nix {
+        inherit (neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}) neovim;
         src = self;
         profile = true;
       };
