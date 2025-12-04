@@ -133,7 +133,7 @@ later(function() packadd("nvim.undotree") end)
 later(function() packadd("live-rename.nvim") end)
 
 later(function()
-  packadd("rachartier/tiny-code-action.nvim")
+  packadd("tiny-code-action.nvim")
   require("tiny-code-action").setup({
     backend = "difftastic",
     picker = { "snacks" },

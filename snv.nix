@@ -51,7 +51,7 @@
   lib,
   linkFarm,
   makeWrapper,
-  neovim,
+  neovim-nightly-unwrapped,
   runCommandWith,
   vimPlugins,
   writeTextFile,
@@ -70,7 +70,7 @@
     mini-nvim
     nui-nvim
     nvim-nio
-    nvim-treesitter.withAllGrammars
+    nvim-treesitter
     plenary-nvim
     unnest-nvim
     vim-jjdescription
@@ -222,7 +222,7 @@ in
     derivationArgs = {nativeBuildInputs = [makeWrapper];};
   }
   ''
-    makeWrapper ${getExe neovim} $out/bin/${name} \
+    makeWrapper ${getExe neovim-nightly-unwrapped} $out/bin/${name} \
       --argv0 ${name} \
       --set NVIM_APPNAME ${name} \
       --suffix LD_LIBRARY_PATH : ${makeLibraryPath libs} \

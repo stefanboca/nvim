@@ -79,11 +79,7 @@
     mkPkgs = system:
       import nixpkgs {
         inherit system;
-        overlays = [
-          fenix.overlays.default
-          nvim-treesitter-main.overlays.default
-          self.overlays.default
-        ];
+        overlays = [self.overlays.default];
       };
 
     systems = ["x86_64-linux" "aarch64-linux"];
@@ -145,17 +141,12 @@
     };
 
     mkPackages = pkgs: {
-      snv = pkgs.callPackage ./snv.nix {
-        inherit (neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}) neovim;
-        src = self;
-      };
+      snv = pkgs.callPackage ./snv.nix {src = self;};
       snv-dev = pkgs.callPackage ./snv.nix {
-        inherit (neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}) neovim;
         src = self;
         dev = true;
       };
       snv-profile = pkgs.callPackage ./snv.nix {
-        inherit (neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}) neovim;
         src = self;
         profile = true;
       };
@@ -166,7 +157,23 @@
     in
       {default = packages.snv;} // packages // (mkVimPlugins pkgs));
 
-    overlays.default = _final: prev:
-      (mkPackages prev) // {vimPlugins = prev.vimPlugins // (mkVimPlugins prev);};
+    overlays.default = _final: prev: let
+      inherit (prev.stdenv.hostPlatform) system;
+    in
+      {
+        neovim-nightly-unwrapped = neovim-nightly-overlay.packages.${system}.neovim;
+        rust-analyzer-nightly = fenix.packages.${system}.rust-analyzer;
+        vimPlugins =
+          prev.vimPlugins.extend (
+            f: _p: {
+              nvim-treesitter = nvim-treesitter-main.packages.${system}.nvim-treesitter.withAllGrammars;
+              nvim-treesitter-textobjects = nvim-treesitter-main.packages.${system}.nvim-treesitter-textobjects.overrideAttrs {
+                dependencies = [f.nvim-treesitter];
+              };
+            }
+          )
+          // mkVimPlugins prev;
+      }
+      // (mkPackages prev);
   };
 }
