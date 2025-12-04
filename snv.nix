@@ -228,7 +228,6 @@ in
       --suffix LD_LIBRARY_PATH : ${makeLibraryPath libs} \
       --suffix PATH : ${makeBinPath packages} \
       --suffix PATH : ${concatStringsSep ":" extraPaths} \
-      ${optionalString (!dev) "--add-flags --clean"} \
       --add-flags '-u ${initLua}/init.lua' \
       --add-flags --cmd \
       --add-flag '${concatStringsSep " | " cmds}'
