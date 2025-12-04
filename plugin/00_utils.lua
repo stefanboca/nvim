@@ -4,6 +4,9 @@ function _G.dd(...)
 end
 function _G.bt() vim.print(debug.traceback()) end
 
+-- Pull in mini.deps without modifying packpath, for MiniDeps.now, MiniDeps.later, etc
+_G.MiniDeps = require("mini.deps")
+
 _G.Config = {}
 
 function _G.Config.nmapb_lleader(suffix, rhs, desc)

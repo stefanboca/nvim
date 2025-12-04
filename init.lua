@@ -8,5 +8,3 @@ if vim.env.NVIM_PROFILE ~= nil then
     startup = { event = "UIEnter" },
   })
 end
-
-require("mini.deps").setup()
