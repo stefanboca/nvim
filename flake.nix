@@ -140,16 +140,15 @@
       };
     };
 
-    mkPackages = pkgs: {
-      snv = pkgs.callPackage ./snv.nix {src = self;};
-      snv-dev = pkgs.callPackage ./snv.nix {
+    mkPackages = pkgs: let
+      snv = pkgs.callPackage ./snv.nix {
         src = self;
-        dev = true;
+        version = self.rev;
       };
-      snv-profile = pkgs.callPackage ./snv.nix {
-        src = self;
-        profile = true;
-      };
+      snv-dev = snv.override {dev = true;};
+      snv-profile = snv.override {profile = true;};
+    in {
+      inherit snv snv-dev snv-profile;
     };
   in {
     packages = forAllSystems (pkgs: let
