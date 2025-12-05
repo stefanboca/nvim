@@ -104,7 +104,6 @@ now_if_args_and_ft("lua", function()
   require("lazydev").setup({
     library = {
       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      { path = vim.fn.stdpath("data") .. "/site/pack/deps/start/mini.nvim", words = { "Mini%u%l*" } },
       { path = "snacks.nvim", words = { "Snacks" } },
     },
   })
