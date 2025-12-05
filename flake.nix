@@ -143,7 +143,7 @@
     mkPackages = pkgs: let
       snv = pkgs.callPackage ./snv.nix {
         src = self;
-        version = self.rev;
+        version = self.rev or self.dirtyRev or "HEAD";
       };
       snv-dev = snv.override {dev = true;};
       snv-profile = snv.override {profile = true;};

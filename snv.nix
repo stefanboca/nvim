@@ -53,10 +53,10 @@
   linkFarm,
   makeWrapper,
   neovim-nightly-unwrapped,
-  runCommandWith,
   vimPlugins,
   writeTextFile,
   src,
+  version,
   dev ? false,
   profile ? false,
   ...
@@ -181,7 +181,7 @@
 
   libs = [sqlite];
 
-  name = "snv" + (optionalString dev "-dev") + (optionalString profile "-profile");
+  pname = "snv" + (optionalString dev "-dev") + (optionalString profile "-profile");
 
   cmds =
     (
@@ -201,7 +201,7 @@
     ];
 
   initLua = writeTextFile {
-    name = "${name}-init.lua";
+    name = "${pname}-init.lua";
     destination = "/init.lua";
     text =
       # lua
@@ -217,20 +217,22 @@
       '';
   };
 in
-  runCommandWith {
-    inherit name;
-    stdenv = stdenvNoCC;
-    runLocal = true;
-    derivationArgs = {nativeBuildInputs = [makeWrapper];};
+  stdenvNoCC.mkDerivation {
+    inherit pname version;
+    preferLocalBuild = true;
+
+    nativeBuildInputs = [makeWrapper];
+
+    passAsFile = ["buildCommand"];
+    buildCommand = ''
+      makeWrapper ${getExe neovim-nightly-unwrapped} $out/bin/${pname} \
+        --argv0 ${pname} \
+        --set NVIM_APPNAME ${pname} \
+        --suffix LD_LIBRARY_PATH : ${makeLibraryPath libs} \
+        --suffix PATH : ${makeBinPath packages} \
+        --suffix PATH : ${concatStringsSep ":" extraPaths} \
+        --add-flags '-u ${initLua}/init.lua' \
+        --add-flags --cmd \
+        --add-flag '${concatStringsSep " | " cmds}'
+    '';
   }
-  ''
-    makeWrapper ${getExe neovim-nightly-unwrapped} $out/bin/${name} \
-      --argv0 ${name} \
-      --set NVIM_APPNAME ${name} \
-      --suffix LD_LIBRARY_PATH : ${makeLibraryPath libs} \
-      --suffix PATH : ${makeBinPath packages} \
-      --suffix PATH : ${concatStringsSep ":" extraPaths} \
-      --add-flags '-u ${initLua}/init.lua' \
-      --add-flags --cmd \
-      --add-flag '${concatStringsSep " | " cmds}'
-  ''
