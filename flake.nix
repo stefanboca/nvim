@@ -12,27 +12,27 @@
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
     # plugins
-    blink-cmp.url = "github:Saghen/blink.cmp";
+    blink-cmp.url = "github:saghen/blink.cmp";
     blink-cmp.inputs = {
       nixpkgs.follows = "nixpkgs";
       fenix.follows = "fenix";
       flake-parts.follows = "flake-parts";
     };
 
-    blink-pairs.url = "github:Saghen/blink.pairs";
+    blink-pairs.url = "github:saghen/blink.pairs";
     blink-pairs.inputs = {
       nixpkgs.follows = "nixpkgs";
       fenix.follows = "fenix";
       flake-parts.follows = "flake-parts";
     };
 
-    blink-lib.url = "github:Saghen/blink.lib";
+    blink-lib.url = "github:saghen/blink.lib";
     blink-lib.flake = false;
 
     clasp-nvim.url = "github:xzbdmw/clasp.nvim";
     clasp-nvim.flake = false;
 
-    filler-begone-nvim.url = "github:Saghen/filler-begone.nvim";
+    filler-begone-nvim.url = "github:saghen/filler-begone.nvim";
     filler-begone-nvim.flake = false;
 
     jj-diffconflicts.url = "github:rafikdraoui/jj-diffconflicts";
