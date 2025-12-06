@@ -39,11 +39,7 @@
     jj-diffconflicts.flake = false;
 
     nvim-treesitter-main.url = "github:iofq/nvim-treesitter-main";
-    nvim-treesitter-main.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      nvim-treesitter.follows = "nvim-treesitter";
-      nvim-treesitter-textobjects.follows = "nvim-treesitter-textobjects";
-    };
+    nvim-treesitter-main.inputs.nixpkgs.follows = "nixpkgs";
 
     tiny-code-action-nvim.url = "github:rachartier/tiny-code-action.nvim";
     tiny-code-action-nvim.flake = false;
@@ -57,12 +53,6 @@
     # used for input follows
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-
-    nvim-treesitter.url = "github:nvim-treesitter/nvim-treesitter/main";
-    nvim-treesitter.flake = false;
-
-    nvim-treesitter-textobjects.url = "github:nvim-treesitter/nvim-treesitter-textobjects/main";
-    nvim-treesitter-textobjects.flake = false;
   };
 
   outputs = {
