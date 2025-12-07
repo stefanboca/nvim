@@ -76,77 +76,79 @@
       inherit (pkgs) snv;
     });
 
-    overlays.default = final: prev: let
-      inherit (final.stdenv.hostPlatform) system;
-      inherit (prev.vimUtils) buildVimPlugin;
+    overlays.default = _: prev: let
+      vimPluginsOverlay = final': prev': let
+        inherit (final'.stdenv.hostPlatform) system;
+        inherit (prev'.vimUtils) buildVimPlugin;
+      in {
+        vimPlugins = prev'.vimPlugins.extend (
+          f: p: {
+            nvim-treesitter = p.nvim-treesitter.withAllGrammars;
+            nvim-treesitter-textobjects = p.nvim-treesitter-textobjects.overrideAttrs {dependencies = [f.nvim-treesitter];};
+
+            inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
+            inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
+
+            blink-lib = buildVimPlugin {
+              pname = "blink.lib";
+              version = inputs.blink-lib.shortRev;
+              src = inputs.blink-lib;
+            };
+
+            clasp-nvim = buildVimPlugin {
+              pname = "clasp.nvim";
+              version = inputs.clasp-nvim.shortRev;
+              src = inputs.clasp-nvim;
+            };
+
+            filler-begone-nvim = buildVimPlugin {
+              pname = "filler-begone.nvim";
+              version = inputs.filler-begone-nvim.shortRev;
+              src = inputs.filler-begone-nvim;
+            };
+
+            jj-diffconflicts = buildVimPlugin {
+              pname = "jj-diffconflicts";
+              version = inputs.jj-diffconflicts.shortRev;
+              src = inputs.jj-diffconflicts;
+            };
+
+            tiny-code-action-nvim = buildVimPlugin {
+              pname = "tiny-code-action.nvim";
+              version = inputs.tiny-code-action-nvim.shortRev;
+              src = inputs.tiny-code-action-nvim;
+              nvimSkipModules = [
+                "tiny-code-action.backend.delta"
+                "tiny-code-action.backend.diffsofancy"
+                "tiny-code-action.backend.difftastic"
+                "tiny-code-action.previewers.snacks"
+              ];
+            };
+
+            unnest-nvim = buildVimPlugin {
+              pname = "unnest.nvim";
+              version = inputs.unnest-nvim.shortRev;
+              src = inputs.unnest-nvim;
+            };
+
+            vim-jjdescription = buildVimPlugin {
+              pname = "vim-jjdescription";
+              version = inputs.vim-jjdescription.shortRev;
+              src = inputs.vim-jjdescription;
+            };
+          }
+        );
+      };
 
       pkgs = prev.appendOverlays [
         inputs.fenix.overlays.default
         inputs.neovim-nightly-overlay.overlays.default
         inputs.nvim-treesitter-main.overlays.default
+        vimPluginsOverlay
       ];
-
-      vimPlugins = pkgs.vimPlugins.extend (
-        final': prev': {
-          nvim-treesitter = prev'.nvim-treesitter.withAllGrammars;
-          nvim-treesitter-textobjects = prev'.nvim-treesitter-textobjects.overrideAttrs {dependencies = [final'.nvim-treesitter];};
-
-          inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
-          inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
-
-          blink-lib = buildVimPlugin {
-            pname = "blink.lib";
-            version = inputs.blink-lib.shortRev;
-            src = inputs.blink-lib;
-          };
-
-          clasp-nvim = buildVimPlugin {
-            pname = "clasp.nvim";
-            version = inputs.clasp-nvim.shortRev;
-            src = inputs.clasp-nvim;
-          };
-
-          filler-begone-nvim = buildVimPlugin {
-            pname = "filler-begone.nvim";
-            version = inputs.filler-begone-nvim.shortRev;
-            src = inputs.filler-begone-nvim;
-          };
-
-          jj-diffconflicts = buildVimPlugin {
-            pname = "jj-diffconflicts";
-            version = inputs.jj-diffconflicts.shortRev;
-            src = inputs.jj-diffconflicts;
-          };
-
-          tiny-code-action-nvim = buildVimPlugin {
-            pname = "tiny-code-action.nvim";
-            version = inputs.tiny-code-action-nvim.shortRev;
-            src = inputs.tiny-code-action-nvim;
-            nvimSkipModules = [
-              "tiny-code-action.backend.delta"
-              "tiny-code-action.backend.diffsofancy"
-              "tiny-code-action.backend.difftastic"
-              "tiny-code-action.previewers.snacks"
-            ];
-          };
-
-          unnest-nvim = buildVimPlugin {
-            pname = "unnest.nvim";
-            version = inputs.unnest-nvim.shortRev;
-            src = inputs.unnest-nvim;
-          };
-
-          vim-jjdescription = buildVimPlugin {
-            pname = "vim-jjdescription";
-            version = inputs.vim-jjdescription.shortRev;
-            src = inputs.vim-jjdescription;
-          };
-        }
-      );
     in {
       snv = pkgs.callPackage ./default.nix {
         version = self.shortRev or self.dirtyShortRev;
-        inherit vimPlugins;
       };
     };
   };
