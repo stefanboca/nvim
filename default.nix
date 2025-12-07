@@ -10,6 +10,7 @@
   docker-language-server,
   dockerfmt,
   emmylua-ls,
+  fd,
   fish-lsp,
   glsl_analyzer,
   graphviz,
@@ -30,6 +31,7 @@
   nil,
   prettierd,
   python313Packages,
+  rg,
   ruff,
   rust-analyzer-nightly,
   shfmt,
@@ -133,6 +135,7 @@
     docker-language-server
     dockerfmt
     emmylua-ls # lua
+    fd
     fish-lsp
     glsl_analyzer
     graphviz # for crate graph visualtization
@@ -153,6 +156,7 @@
     nil # nix
     prettierd
     python313Packages.debugpy
+    rg
     ruff # python
     rust-analyzer-nightly
     shfmt
