@@ -144,7 +144,7 @@
         }
       );
     in {
-      snv = pkgs.callPackage ./snv.nix {
+      snv = pkgs.callPackage ./default.nix {
         version = self.shortRev or self.dirtyShortRev;
         inherit vimPlugins;
       };
