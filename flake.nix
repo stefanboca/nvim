@@ -73,7 +73,7 @@
   in {
     packages = forAllSystems (pkgs: {
       default = pkgs.snv;
-      inherit (pkgs) snv snv-dev snv-profile;
+      inherit (pkgs) snv;
     });
 
     overlays.default = final: prev: let
@@ -143,16 +143,11 @@
           };
         }
       );
-
+    in {
       snv = pkgs.callPackage ./snv.nix {
-        src = self;
         version = self.shortRev or self.dirtyShortRev;
         inherit vimPlugins;
       };
-      snv-dev = snv.override {dev = true;};
-      snv-profile = snv.override {profile = true;};
-    in {
-      inherit snv snv-dev snv-profile;
     };
   };
 }
