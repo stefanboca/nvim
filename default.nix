@@ -238,7 +238,7 @@ in
           end
         end
 
-        vim.opt.packpath:append("${plugins}")
+        vim.opt.packpath:prepend("${plugins}")
         if not vim.g.snv_dev then
           vim.opt.runtimepath:prepend("@out@/share/snv/site")
           vim.opt.runtimepath:append("@out@/share/snv/site/after")
