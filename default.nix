@@ -18,6 +18,7 @@
   inotify-tools,
   jdt-language-server,
   just-lsp,
+  kdlfmt,
   keep-sorted,
   koto-ls,
   lean4,
@@ -140,6 +141,7 @@
     inotify-tools
     jdt-language-server # java
     just-lsp
+    kdlfmt
     keep-sorted
     koto-ls
     lean4

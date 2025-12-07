@@ -190,6 +190,7 @@ later(function()
       json5 = { "biome" },
       jsonc = { "biome" },
       just = { "just" },
+      kdl = { "kdlfmt" },
       koto = { "koto" },
       less = { "prettierd" },
       lua = { "stylua" },
