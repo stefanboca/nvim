@@ -15,13 +15,13 @@
       "locked": {
         "lastModified": 1764827643,
         "narHash": "sha256-JKUigAKdEJzWD6FL31p0i2rnu/MRpcRMSuSlES+810I=",
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "blink.cmp",
         "rev": "57d900e6982f63c7cde689aa06d8af76c8da083e",
         "type": "github"
       },
       "original": {
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "blink.cmp",
         "type": "github"
       }
@@ -31,13 +31,13 @@
       "locked": {
         "lastModified": 1755526317,
         "narHash": "sha256-sHhDLznOpWjbAURqcfLo4qE3PAoLyG9i9Cu0iWuSzCc=",
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "blink.lib",
         "rev": "86361b98f3c8317904a08e3bd12cf3cdcbe3e925",
         "type": "github"
       },
       "original": {
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "blink.lib",
         "type": "github"
       }
@@ -57,13 +57,13 @@
       "locked": {
         "lastModified": 1764827507,
         "narHash": "sha256-w4NnrkrN8jWqfN2nDCTH/S8WxIBb9XK9RQRTjL/YqUE=",
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "blink.pairs",
         "rev": "22ded8a73e15ed936471ebf7a77a065570fc627b",
         "type": "github"
       },
       "original": {
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "blink.pairs",
         "type": "github"
       }
@@ -110,13 +110,13 @@
       "locked": {
         "lastModified": 1761853294,
         "narHash": "sha256-5Sanxi84V8jc7Ol+Q8K4FAECKevZBoJ29rSgN9Yz7VM=",
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "filler-begone.nvim",
         "rev": "122018c0f54519b9ee16fb0e31b96989a7682e1c",
         "type": "github"
       },
       "original": {
-        "owner": "Saghen",
+        "owner": "saghen",
         "repo": "filler-begone.nvim",
         "type": "github"
       }
@@ -168,11 +168,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764979571,
-        "narHash": "sha256-xOGEM8dZ6WtOnf+fkTthtiUbE47ZCEvuZTVsOrdTEZU=",
+        "lastModified": 1765066394,
+        "narHash": "sha256-08cJUfVwCyG4maboXVeY+TG22/gWiboRCXK8/aHie40=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "a70eaf7ca72ae845d53e2b2aa6106eebb00a4ed0",
+        "rev": "513b3de408734b66a549cea800f67a5a0004cdf8",
         "type": "github"
       },
       "original": {
@@ -184,11 +184,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1764968664,
-        "narHash": "sha256-aueNP7DLGEqX+eUlkMz0X7h0X3c4IxLLxhMBG7MTPpg=",
+        "lastModified": 1765065307,
+        "narHash": "sha256-+if1i/PGoz8EdTS3KTR8prrc0MTKdInr7D4NcGmMBlw=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "d6bee7e407442112ee9008ea35d6fe73dbb3eaaf",
+        "rev": "0f3e3c87b738f1c81fa22b6e5f2a9a847d59ebd3",
         "type": "github"
       },
       "original": {
