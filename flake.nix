@@ -56,113 +56,103 @@
   };
 
   outputs = {
-    fenix,
-    neovim-nightly-overlay,
     nixpkgs,
-    nvim-treesitter-main,
     self,
     ...
   } @ inputs: let
     inherit (nixpkgs) lib;
     inherit (lib.attrsets) genAttrs;
 
+    systems = ["x86_64-linux" "aarch64-linux"];
     mkPkgs = system:
       import nixpkgs {
         inherit system;
         overlays = [self.overlays.default];
       };
-
-    systems = ["x86_64-linux" "aarch64-linux"];
     forAllSystems = f: genAttrs systems (system: f (mkPkgs system));
+  in {
+    packages = forAllSystems (pkgs: {
+      default = pkgs.snv;
+      inherit (pkgs) snv snv-dev snv-profile;
+    });
 
-    mkVimPlugins = pkgs: let
-      inherit (pkgs.stdenv.hostPlatform) system;
-    in {
-      inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
-      blink-pairs = inputs.blink-pairs.packages.${system}.blink-pairs // {pname = "blink.pairs";};
+    overlays.default = final: prev: let
+      inherit (final.stdenv.hostPlatform) system;
+      inherit (prev.vimUtils) buildVimPlugin;
 
-      blink-lib = pkgs.vimUtils.buildVimPlugin {
-        pname = "blink.lib";
-        version = inputs.blink-lib.rev;
-        src = inputs.blink-lib;
-      };
+      pkgs = prev.appendOverlays [
+        inputs.fenix.overlays.default
+        inputs.neovim-nightly-overlay.overlays.default
+        inputs.nvim-treesitter-main.overlays.default
+      ];
 
-      clasp-nvim = pkgs.vimUtils.buildVimPlugin {
-        pname = "clasp.nvim";
-        version = inputs.clasp-nvim.rev;
-        src = inputs.clasp-nvim;
-      };
+      vimPlugins = pkgs.vimPlugins.extend (
+        final': prev': {
+          nvim-treesitter = prev'.nvim-treesitter.withAllGrammars;
+          nvim-treesitter-textobjects = prev'.nvim-treesitter-textobjects.overrideAttrs {dependencies = [final'.nvim-treesitter];};
 
-      filler-begone-nvim = pkgs.vimUtils.buildVimPlugin {
-        pname = "filler-begone.nvim";
-        version = inputs.filler-begone-nvim.rev;
-        src = inputs.filler-begone-nvim;
-      };
+          inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
+          inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
 
-      jj-diffconflicts = pkgs.vimUtils.buildVimPlugin {
-        pname = "jj-diffconflicts";
-        version = inputs.jj-diffconflicts.rev;
-        src = inputs.jj-diffconflicts;
-      };
+          blink-lib = buildVimPlugin {
+            pname = "blink.lib";
+            version = inputs.blink-lib.shortRev;
+            src = inputs.blink-lib;
+          };
 
-      tiny-code-action-nvim = pkgs.vimUtils.buildVimPlugin {
-        pname = "tiny-code-action.nvim";
-        version = inputs.tiny-code-action-nvim.rev;
-        src = inputs.tiny-code-action-nvim;
-        nvimSkipModules = [
-          "tiny-code-action.backend.delta"
-          "tiny-code-action.backend.diffsofancy"
-          "tiny-code-action.backend.difftastic"
-          "tiny-code-action.previewers.snacks"
-        ];
-      };
+          clasp-nvim = buildVimPlugin {
+            pname = "clasp.nvim";
+            version = inputs.clasp-nvim.shortRev;
+            src = inputs.clasp-nvim;
+          };
 
-      unnest-nvim = pkgs.vimUtils.buildVimPlugin {
-        pname = "unnest.nvim";
-        version = inputs.unnest-nvim.rev;
-        src = inputs.unnest-nvim;
-      };
+          filler-begone-nvim = buildVimPlugin {
+            pname = "filler-begone.nvim";
+            version = inputs.filler-begone-nvim.shortRev;
+            src = inputs.filler-begone-nvim;
+          };
 
-      vim-jjdescription = pkgs.vimUtils.buildVimPlugin {
-        pname = "vim-jjdescription";
-        version = inputs.vim-jjdescription.rev;
-        src = inputs.vim-jjdescription;
-      };
-    };
+          jj-diffconflicts = buildVimPlugin {
+            pname = "jj-diffconflicts";
+            version = inputs.jj-diffconflicts.shortRev;
+            src = inputs.jj-diffconflicts;
+          };
 
-    mkPackages = pkgs: let
+          tiny-code-action-nvim = buildVimPlugin {
+            pname = "tiny-code-action.nvim";
+            version = inputs.tiny-code-action-nvim.shortRev;
+            src = inputs.tiny-code-action-nvim;
+            nvimSkipModules = [
+              "tiny-code-action.backend.delta"
+              "tiny-code-action.backend.diffsofancy"
+              "tiny-code-action.backend.difftastic"
+              "tiny-code-action.previewers.snacks"
+            ];
+          };
+
+          unnest-nvim = buildVimPlugin {
+            pname = "unnest.nvim";
+            version = inputs.unnest-nvim.shortRev;
+            src = inputs.unnest-nvim;
+          };
+
+          vim-jjdescription = buildVimPlugin {
+            pname = "vim-jjdescription";
+            version = inputs.vim-jjdescription.shortRev;
+            src = inputs.vim-jjdescription;
+          };
+        }
+      );
+
       snv = pkgs.callPackage ./snv.nix {
         src = self;
-        version = self.shortRev or self.dirtyShortRev or "HEAD";
+        version = self.shortRev or self.dirtyShortRev;
+        inherit vimPlugins;
       };
       snv-dev = snv.override {dev = true;};
       snv-profile = snv.override {profile = true;};
     in {
       inherit snv snv-dev snv-profile;
     };
-  in {
-    packages = forAllSystems (pkgs: let
-      packages = mkPackages pkgs;
-    in
-      {default = packages.snv;} // packages // (mkVimPlugins pkgs));
-
-    overlays.default = final: prev: let
-      inherit (final.stdenv.hostPlatform) system;
-    in
-      {
-        neovim-nightly-unwrapped = neovim-nightly-overlay.packages.${system}.neovim;
-        rust-analyzer-nightly = fenix.packages.${system}.rust-analyzer;
-        vimPlugins =
-          prev.vimPlugins.extend (
-            f: _p: {
-              nvim-treesitter = nvim-treesitter-main.packages.${system}.nvim-treesitter.withAllGrammars;
-              nvim-treesitter-textobjects = nvim-treesitter-main.packages.${system}.nvim-treesitter-textobjects.overrideAttrs {
-                dependencies = [f.nvim-treesitter];
-              };
-            }
-          )
-          // mkVimPlugins prev;
-      }
-      // (mkPackages prev);
   };
 }

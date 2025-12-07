@@ -52,7 +52,7 @@
   lib,
   linkFarm,
   makeWrapper,
-  neovim-nightly-unwrapped,
+  neovim-unwrapped,
   vimPlugins,
   writeTextFile,
   src,
@@ -63,7 +63,6 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.strings) concatStringsSep getName makeBinPath makeLibraryPath optionalString;
-
   startPlugins = with vimPlugins; [
     # keep-sorted start
     SchemaStore-nvim
@@ -225,7 +224,7 @@ in
 
     passAsFile = ["buildCommand"];
     buildCommand = ''
-      makeWrapper ${getExe neovim-nightly-unwrapped} $out/bin/${pname} \
+      makeWrapper ${getExe neovim-unwrapped} $out/bin/${pname} \
         --argv0 ${pname} \
         --set NVIM_APPNAME ${pname} \
         --suffix LD_LIBRARY_PATH : ${makeLibraryPath libs} \
