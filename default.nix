@@ -31,7 +31,7 @@
   nil,
   prettierd,
   python313Packages,
-  rg,
+  ripgrep,
   ruff,
   rust-analyzer-nightly,
   shfmt,
@@ -156,7 +156,7 @@
     nil # nix
     prettierd
     python313Packages.debugpy
-    rg
+    ripgrep
     ruff # python
     rust-analyzer-nightly
     shfmt
