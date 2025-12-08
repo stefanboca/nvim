@@ -148,7 +148,7 @@
       ];
     in {
       snv = pkgs.callPackage ./default.nix {
-        version = self.shortRev or self.dirtyShortRev;
+        version = "0.0.0+rev=${self.shortRev or self.dirtyShortRev}";
       };
     };
   };
