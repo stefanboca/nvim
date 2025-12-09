@@ -189,7 +189,7 @@
 
   wrapperArgs = concatStringsSep " " [
     "--suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs}"
-    "--suffix PATH : ${(makeBinPath packages) + ":" + (concatStringsSep ":" allPathDirs)}"
+    "--suffix PATH : ${(makeBinPath packages)}:${(concatStringsSep ":" allPathDirs)}"
     ''--add-flags "-u $out/share/snv/init.lua"''
   ];
 in
