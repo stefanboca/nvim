@@ -22,7 +22,6 @@
   kdlfmt,
   keep-sorted,
   koto-ls,
-  lean4,
   lspmux,
   lua-language-server,
   markdownlint-cli2,
@@ -147,7 +146,6 @@
     kdlfmt
     keep-sorted
     koto-ls
-    lean4
     lspmux
     lua-language-server
     markdownlint-cli2
