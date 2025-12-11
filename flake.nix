@@ -79,7 +79,11 @@
     overlays.default = _: prev: let
       vimPluginsOverlay = final': prev': let
         inherit (final'.stdenv.hostPlatform) system;
-        inherit (prev'.vimUtils) buildVimPlugin;
+
+        buildVimPlugin = attrs:
+          prev'.vimUtils.buildVimPlugin (
+            {version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs
+          );
       in {
         vimPlugins = prev'.vimPlugins.extend (
           f: p: {
@@ -91,31 +95,26 @@
 
             blink-lib = buildVimPlugin {
               pname = "blink.lib";
-              version = inputs.blink-lib.shortRev;
               src = inputs.blink-lib;
             };
 
             clasp-nvim = buildVimPlugin {
               pname = "clasp.nvim";
-              version = inputs.clasp-nvim.shortRev;
               src = inputs.clasp-nvim;
             };
 
             filler-begone-nvim = buildVimPlugin {
               pname = "filler-begone.nvim";
-              version = inputs.filler-begone-nvim.shortRev;
               src = inputs.filler-begone-nvim;
             };
 
             jj-diffconflicts = buildVimPlugin {
               pname = "jj-diffconflicts";
-              version = inputs.jj-diffconflicts.shortRev;
               src = inputs.jj-diffconflicts;
             };
 
             tiny-code-action-nvim = buildVimPlugin {
               pname = "tiny-code-action.nvim";
-              version = inputs.tiny-code-action-nvim.shortRev;
               src = inputs.tiny-code-action-nvim;
               nvimSkipModules = [
                 "tiny-code-action.backend.delta"
@@ -127,13 +126,11 @@
 
             unnest-nvim = buildVimPlugin {
               pname = "unnest.nvim";
-              version = inputs.unnest-nvim.shortRev;
               src = inputs.unnest-nvim;
             };
 
             vim-jjdescription = buildVimPlugin {
               pname = "vim-jjdescription";
-              version = inputs.vim-jjdescription.shortRev;
               src = inputs.vim-jjdescription;
             };
           }
