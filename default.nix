@@ -60,7 +60,8 @@
   extraStartPlugins ? [],
   extraOptPlugins ? [],
   extraLibs ? [],
-  extraPathDirs ? [],
+  extraPackages ? [],
+  extraSearchPaths ? [],
   ...
 }: let
   inherit (lib.fileset) fileFilter toSource unions;
@@ -71,6 +72,7 @@
     # keep-sorted start
     SchemaStore-nvim
     catppuccin-nvim
+    jj-diffconflicts
     mini-nvim
     nui-nvim
     nvim-nio
@@ -94,7 +96,6 @@
     filler-begone-nvim
     grug-far-nvim
     hunk-nvim
-    jj-diffconflicts
     lazydev-nvim
     lean-nvim
     live-rename-nvim
@@ -174,10 +175,15 @@
     # keep-sorted end
   ];
 
+  searchPaths = [
+    "${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"
+  ];
+
   allStartPlugins = startPlugins ++ extraStartPlugins;
   allOptPlugins = optPlugins ++ extraOptPlugins;
   allLibs = libs ++ extraLibs;
-  allPathDirs = ["${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"] ++ extraPathDirs;
+  allPackages = packages ++ extraPackages;
+  allSearchPaths = searchPaths ++ extraSearchPaths;
 
   mkPluginPaths = type:
     map (plugin: {
@@ -189,16 +195,15 @@
 
   wrapperArgs = concatStringsSep " " [
     "--suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs}"
-    "--suffix PATH : ${(makeBinPath packages)}:${(concatStringsSep ":" allPathDirs)}"
+    "--suffix PATH : ${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}"
     ''--add-flags "-u $out/share/snv/init.lua"''
   ];
+
+  neovimExe = getExe neovim-unwrapped;
 in
   stdenvNoCC.mkDerivation {
     pname = "snv";
-    inherit version;
-    preferLocalBuild = true;
-    nativeBuildInputs = [makeWrapper];
-    passAsFile = ["buildCommand" "initLua"];
+    inherit version plugins;
 
     src = toSource {
       root = ./.;
@@ -208,55 +213,19 @@ in
       ];
     };
 
-    initLua =
-      # lua
-      ''
-        vim.g.loaded_node_provider = 0
-        vim.g.loaded_perl_provider = 0
-        vim.g.loaded_python_provider = 0
-        vim.g.loaded_python3_provider = 0
-        vim.g.loaded_ruby_provider = 0
-
-        vim.loader.enable()
-
-        local whitelist = {
-          "/run/current%-system/sw/share/",
-          "/etc/profiles/per%-user/[^/]+/share/",
-          "^/nix/store/",
-          "^" .. vim.pesc(vim.fn.stdpath("data")),
-        }
-        if vim.g.snv_dev then
-          table.insert(whitelist, "^" .. vim.pesc(vim.fn.stdpath("config")))
-        end
-
-        for _, opt in ipairs({ vim.opt.packpath, vim.opt.runtimepath }) do
-          for _, path in ipairs(opt:get()) do
-            local matches = vim.iter(whitelist):any(function(prefix) return string.find(path, prefix) ~= nil end)
-            if not (matches and vim.uv.fs_stat(path)) then opt:remove(path) end
-          end
-        end
-
-        vim.opt.packpath:prepend("${plugins}")
-        if not vim.g.snv_dev then
-          vim.opt.runtimepath:prepend("@out@/share/snv/site")
-          vim.opt.runtimepath:append("@out@/share/snv/site/after")
-        end
-
-        if vim.g.snv_profile then
-          vim.opt.runtimepath:append("${vimPlugins.snacks-nvim}")
-          require("snacks.profiler").startup()
-        end
-      '';
-
     phases = ["unpackPhase" "installPhase"];
+    preferLocalBuild = true;
+
+    nativeBuildInputs = [makeWrapper];
+
     installPhase = ''
       mkdir -p $out/share/snv
-      substitute $initLuaPath $out/share/snv/init.lua --subst-var out
+      substitute ${./init.lua.in} $out/share/snv/init.lua --subst-var out --subst-var plugins
       ln -s $src $out/share/snv/site
 
-      makeWrapper ${getExe neovim-unwrapped} $out/bin/snv --argv0 snv ${wrapperArgs}
-      makeWrapper ${getExe neovim-unwrapped} $out/bin/snv-dev --argv0 snv-dev ${wrapperArgs} --add-flags '--cmd "lua vim.g.snv_dev=true"'
-      makeWrapper ${getExe neovim-unwrapped} $out/bin/snv-profile --argv0 snv-profile ${wrapperArgs} --add-flags '--cmd "lua vim.g.snv_profile=true"'
+      makeWrapper ${neovimExe} $out/bin/snv --argv0 snv ${wrapperArgs}
+      makeWrapper ${neovimExe} $out/bin/snv-dev --argv0 snv-dev --add-flags '--cmd "lua vim.g.snv_dev=true"' ${wrapperArgs}
+      makeWrapper ${neovimExe} $out/bin/snv-profile --argv0 snv-profile --add-flags '--cmd "lua vim.g.snv_profile=true"' ${wrapperArgs}
     '';
 
     meta = {

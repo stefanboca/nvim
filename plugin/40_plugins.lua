@@ -1,4 +1,4 @@
-local now, later = MiniDeps.now, MiniDeps.later
+local later = MiniDeps.later
 local now_if_args, now_if_args_and_ft = _G.Config.now_if_args, _G.Config.now_if_args_and_ft
 local packadd = vim.cmd.packadd
 
@@ -6,7 +6,7 @@ local packadd = vim.cmd.packadd
 --   add("lewis6991/async.nvim")
 -- end)
 
-now(function()
+now_if_args(function()
   packadd("hunk.nvim")
 
   require("hunk").setup({
@@ -22,8 +22,6 @@ now(function()
     },
   })
 end)
-
-now(function() packadd("jj-diffconflicts") end)
 
 now_if_args(function()
   packadd("nvim-treesitter-textobjects")

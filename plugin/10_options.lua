@@ -141,6 +141,8 @@ _G.Config.new_autocmd(
 
 -- Native terminal lsp progress
 -- TODO: remove once LspProgress is deprecated
+-- The Progress autocmd already has a handler for TUI progress bars
+-- see https://github.com/neovim/neovim/pull/35973
 _G.Config.new_autocmd("LspProgress", nil, function(ev)
   local value = ev.data.params.value
   if value.kind == "begin" then

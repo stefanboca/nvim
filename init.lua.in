@@ -1,0 +1,46 @@
+-- vim:ft=lua
+
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+vim.loader.enable()
+
+local whitelist = {
+  "^/run/current%-system/sw/share/",
+  "^/etc/profiles/per%-user/[^/]+/share/",
+  "^/nix/store/",
+  "^" .. vim.pesc(vim.fn.stdpath("data")),
+}
+if vim.g.snv_dev then table.insert(whitelist, "^" .. vim.pesc(vim.fn.stdpath("config"))) end
+
+local function keep_path(path)
+  local matches_whitelist = vim.iter(whitelist):any(function(pattern) return string.find(path, pattern) ~= nil end)
+  return matches_whitelist and vim.uv.fs_stat(path) ~= nil
+end
+local function clean(paths) return vim.iter(paths):filter(keep_path):totable() end
+
+local pp = clean(vim.opt.packpath:get())
+local rtp = clean(vim.opt.runtimepath:get())
+
+table.insert(pp, 1, "@plugins@")
+
+-- Insert treesitter queries to runtimepath before $VIMRUNTIME, but after config
+-- This prioritizes nvim-treesitter above $VIMRUNTIME (parsers and queries), but below custom queries in this repo
+local idx = vim.iter(rtp):enumerate():find(function(_, path) return string.find(path, "share/nvim/runtime$") ~= nil end)
+table.insert(rtp, idx or 1, "@plugins@/pack/plugins/start/nvim-treesitter")
+
+if not vim.g.snv_dev then
+  table.insert(rtp, 1, "@out@/share/snv/site")
+  table.insert(rtp, "@out@/share/snv/site/after")
+end
+
+vim.opt.packpath = pp
+vim.opt.runtimepath = rtp
+
+if vim.g.snv_profile then
+  vim.opt.runtimepath:prepend("@plugins@/pack/plugins/opt/snacks.nvim")
+  require("snacks.profiler").startup({ event = "User", pattern = "MiniDepsComplete" })
+end

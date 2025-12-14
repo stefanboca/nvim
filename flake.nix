@@ -80,10 +80,7 @@
       vimPluginsOverlay = final': prev': let
         inherit (final'.stdenv.hostPlatform) system;
 
-        buildVimPlugin = attrs:
-          prev'.vimUtils.buildVimPlugin (
-            {version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs
-          );
+        buildVimPlugin = attrs: prev'.vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
       in {
         vimPlugins = prev'.vimPlugins.extend (
           f: p: {
