@@ -1,4 +1,4 @@
-function _G.dd(...)
+function _G.dbg(...)
   vim.print(...)
   return ...
 end
