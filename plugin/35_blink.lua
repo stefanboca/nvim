@@ -45,7 +45,7 @@ now_if_args(function()
       },
       enabled = true,
       groups = {
-        "BlinkPairsViolet",
+        "BlinkPairsPurple",
         "BlinkPairsBlue",
         "BlinkPairsCyan",
         "BlinkPairsGreen",

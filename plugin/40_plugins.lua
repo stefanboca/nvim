@@ -240,15 +240,13 @@ later(function()
   packadd("nvim-dap-python")
 
   require("nvim-dap-virtual-text").setup({})
-  vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-  vim.fn.sign_define(
-    "DapStopped",
-    { text = "󰁕 ", texthl = "DiagnosticWarn", linehl = "DapStoppedLine", numhl = "DapStoppedLine" }
-  )
-  vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "DiagnosticInfo", priority = 1000 })
-  vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "DiagnosticInfo", priority = 1000 })
-  vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "DiagnosticError", priority = 1000 })
-  vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "DiagnosticInfo" })
+
+  local sign = vim.fn.sign_define
+  sign("DapStopped", { text = "󰁕 ", texthl = "DapStopped", priority = 1000 })
+  sign("DapBreakpoint", { text = " ", texthl = "DapBreakpoint", priority = 1000 })
+  sign("DapBreakpointCondition", { text = " ", texthl = "DapBreakpointCondition", priority = 1000 })
+  sign("DapBreakpointRejected", { text = " ", texthl = "DapBreakpointRejected", priority = 1000 })
+  sign("DapLogPoint", { text = ".>", texthl = "DapLogPoint", priority = 1000 })
 
   local dap_view = require("dap-view")
   dap_view.setup({

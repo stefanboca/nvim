@@ -138,7 +138,6 @@ _G.Config.new_autocmd(
   function(event) vim.bo[event.buf].buflisted = false end,
   "Delist man buffers"
 )
-
 -- Native terminal lsp progress
 -- TODO: remove once LspProgress is deprecated
 -- The Progress autocmd already has a handler for TUI progress bars
