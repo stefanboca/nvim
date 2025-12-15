@@ -7,20 +7,22 @@ local packadd = vim.cmd.packadd
 -- end)
 
 now_if_args(function()
-  packadd("hunk.nvim")
+  _G.Config.on_command("DiffEditor", function()
+    packadd("hunk.nvim")
 
-  require("hunk").setup({
-    keys = {
-      global = {
-        accept = { "<LocalLeader><CR>" },
-        focus_tree = { "<LocalLeader>e" },
+    require("hunk").setup({
+      keys = {
+        global = {
+          accept = { "<LocalLeader><CR>" },
+          focus_tree = { "<LocalLeader>e" },
+        },
+        diff = {
+          prev_hunk = { "[h", "<C-p>" },
+          next_hunk = { "]h", "<C-n>" },
+        },
       },
-      diff = {
-        prev_hunk = { "[h", "<C-p>" },
-        next_hunk = { "]h", "<C-n>" },
-      },
-    },
-  })
+    })
+  end)
 end)
 
 now_if_args(function()
