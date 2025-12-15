@@ -42,5 +42,8 @@ vim.opt.runtimepath = rtp
 
 if vim.g.snv_profile then
   vim.opt.runtimepath:prepend("@plugins@/pack/plugins/opt/snacks.nvim")
-  require("snacks.profiler").startup({ event = "User", pattern = "MiniDepsComplete" })
+  require("snacks.profiler").startup({
+    startup = { event = "User", pattern = "MiniDepsComplete" },
+    presets = { startup = { min_time = 0.1 } },
+  })
 end
