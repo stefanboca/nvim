@@ -1,29 +1,9 @@
-local later = MiniDeps.later
-local now_if_args, now_if_args_and_ft = _G.Config.now_if_args, _G.Config.now_if_args_and_ft
+local now_if_args, later = _G.Config.now_if_args, MiniDeps.later
 local packadd = vim.cmd.packadd
 
 -- now(function()
 --   add("lewis6991/async.nvim")
 -- end)
-
-now_if_args(function()
-  _G.Config.on_command("DiffEditor", function()
-    packadd("hunk.nvim")
-
-    require("hunk").setup({
-      keys = {
-        global = {
-          accept = { "<LocalLeader><CR>" },
-          focus_tree = { "<LocalLeader>e" },
-        },
-        diff = {
-          prev_hunk = { "[h", "<C-p>" },
-          next_hunk = { "]h", "<C-n>" },
-        },
-      },
-    })
-  end)
-end)
 
 now_if_args(function()
   packadd("nvim-treesitter-textobjects")
@@ -91,39 +71,6 @@ now_if_args(function()
     "yamlls",
     "zls",
     -- keep-sorted end
-  })
-end)
-
-now_if_args_and_ft("lean", function()
-  packadd("lean.nvim")
-  require("lean").setup({ mappings = true })
-end)
-
-now_if_args_and_ft("lua", function()
-  packadd("lazydev.nvim")
-  require("lazydev").setup({
-    library = {
-      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      { path = "snacks.nvim", words = { "Snacks" } },
-    },
-  })
-end)
-
-now_if_args_and_ft("rust", function()
-  packadd("crates.nvim")
-  packadd("rustaceanvim")
-
-  require("crates").setup({
-    completion = {
-      blink = { use_custom_kind = true },
-      crates = { enabled = true },
-    },
-    lsp = {
-      enabled = true,
-      actions = true,
-      completion = true,
-      hover = true,
-    },
   })
 end)
 
@@ -234,12 +181,8 @@ end)
 
 later(function()
   packadd("nvim-dap")
-  packadd("nvim-dap-view")
-  packadd("nvim-dap-virtual-text")
-  packadd("one-small-step-for-vimkind")
-  packadd("nvim-dap-python")
 
-  require("nvim-dap-virtual-text").setup({})
+  local dap = require("dap")
 
   local sign = vim.fn.sign_define
   sign("DapStopped", { text = "󰁕 ", texthl = "DapStopped", priority = 1000 })
@@ -248,19 +191,7 @@ later(function()
   sign("DapBreakpointRejected", { text = " ", texthl = "DapBreakpointRejected", priority = 1000 })
   sign("DapLogPoint", { text = ".>", texthl = "DapLogPoint", priority = 1000 })
 
-  local dap_view = require("dap-view")
-  dap_view.setup({
-    winbar = {
-      controls = { enabled = true },
-      sections = { "watches", "exceptions", "breakpoints", "scopes", "threads", "repl", "console" },
-    },
-  })
-
-  local dap = require("dap")
-  dap.listeners.after.event_initialized["dap-view-config"] = function() dap_view.open() end
-  dap.listeners.before.event_terminated["dap-view-config"] = function() dap_view.close() end
-  dap.listeners.before.event_exited["dap-view-config"] = function() dap_view.close() end
-
+  packadd("one-small-step-for-vimkind")
   dap.adapters.nlua = function(callback, config)
     callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
   end
@@ -272,12 +203,24 @@ later(function()
     },
   }
 
-  require("dap-python").setup("uv")
+  packadd("nvim-dap-virtual-text")
+  require("nvim-dap-virtual-text").setup({})
+
+  packadd("nvim-dap-view")
+  local dap_view = require("dap-view")
+  dap_view.setup({
+    winbar = {
+      controls = { enabled = true },
+      sections = { "watches", "exceptions", "breakpoints", "scopes", "threads", "repl", "console" },
+    },
+  })
+  dap.listeners.after.event_initialized["dap-view-config"] = function() dap_view.open() end
+  dap.listeners.before.event_terminated["dap-view-config"] = function() dap_view.close() end
+  dap.listeners.before.event_exited["dap-view-config"] = function() dap_view.close() end
 end)
 
 later(function()
   packadd("neotest")
-  packadd("neotest-python")
 
   ---@diagnostic disable-next-line: missing-fields
   require("neotest").setup({
@@ -287,14 +230,8 @@ later(function()
     output = { open_on_run = false },
     ---@diagnostic disable-next-line: missing-fields
     summary = { animated = false },
-    adapters = {
-      require("neotest-python"),
-      require("rustaceanvim.neotest"),
-    },
   })
 end)
-
-later(function() packadd("grug-far.nvim") end)
 
 later(function()
   packadd("dial.nvim")
@@ -321,7 +258,7 @@ later(function()
   require("neogen").setup({})
 end)
 
-later(function() packadd("clasp.nvim") end)
+later(function() require("clasp").setup({ pairs = { ["$"] = "$" } }) end)
 
 later(function()
   packadd("toggleterm.nvim")
@@ -344,11 +281,46 @@ later(function()
   })
 end)
 
-later(function() packadd("filler-begone.nvim") end)
-
 later(function()
-  packadd("diffview.nvim")
   packadd("neogit")
-
   require("neogit").setup({})
 end)
+
+_G.Config.on_cmd("DiffEditor", function()
+  packadd("hunk.nvim")
+
+  require("hunk").setup({
+    keys = {
+      global = {
+        accept = { "<LocalLeader><CR>" },
+        focus_tree = { "<LocalLeader>e" },
+      },
+      diff = {
+        prev_hunk = { "[h", "<C-p>" },
+        next_hunk = { "]h", "<C-n>" },
+      },
+    },
+  })
+end)
+
+_G.Config.new_autocmd("BufRead", "Cargo.toml", function()
+  packadd("crates.nvim")
+
+  require("crates").setup({
+    completion = {
+      blink = { use_custom_kind = true },
+      crates = { enabled = true },
+    },
+    lsp = {
+      enabled = true,
+      actions = true,
+      completion = true,
+      hover = true,
+    },
+  })
+
+  later(function()
+    ---@diagnostic disable-next-line: missing-fields
+    require("neotest").setup({ adapters = { require("rustaceanvim.neotest") } })
+  end)
+end, "load crates.nvim", true)

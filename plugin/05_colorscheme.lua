@@ -5,16 +5,20 @@ MiniDeps.now(function()
     dim_inactive = { enabled = true },
     lsp_styles = { enabled = true },
     integrations = {
+      -- keep-sorted start
       blink_cmp = { enabled = true, style = "bordered" },
       blink_indent = true,
       blink_pairs = true,
       dap = true,
       diffview = true,
+      grug_far = true,
       lsp_trouble = true,
       mini = { enabled = true },
       neogit = true,
+      neotest = true,
       snacks = { enabled = true },
       treesitter_context = true,
+      -- keep-sorted end
     },
     custom_highlights = function(C)
       return {

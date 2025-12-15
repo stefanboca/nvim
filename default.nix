@@ -72,12 +72,17 @@
     # keep-sorted start
     SchemaStore-nvim
     catppuccin-nvim
+    clasp-nvim
+    diffview-nvim
+    filler-begone-nvim
+    grug-far-nvim
     jj-diffconflicts
     mini-nvim
     nui-nvim
     nvim-nio
     nvim-treesitter
     plenary-nvim
+    rustaceanvim
     unnest-nvim
     vim-jjdescription
     # keep-sorted end
@@ -88,13 +93,9 @@
     blink-indent
     blink-lib
     blink-pairs
-    clasp-nvim
     conform-nvim
     crates-nvim
     dial-nvim
-    diffview-nvim
-    filler-begone-nvim
-    grug-far-nvim
     hunk-nvim
     lazydev-nvim
     lean-nvim
@@ -113,7 +114,6 @@
     nvim-treesitter-textobjects
     nvim-ts-autotag
     one-small-step-for-vimkind
-    rustaceanvim
     snacks-nvim
     tiny-code-action-nvim
     toggleterm-nvim

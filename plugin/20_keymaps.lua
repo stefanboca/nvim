@@ -4,6 +4,7 @@ local function nmap(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { desc = desc 
 local function xmap(lhs, rhs, desc) vim.keymap.set("x", lhs, rhs, { desc = desc }) end
 local function nmap_leader(suffix, rhs, desc) vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc }) end
 local function xmap_leader(suffix, rhs, desc) vim.keymap.set("x", "<Leader>" .. suffix, rhs, { desc = desc }) end
+local nmapb_lleader = _G.Config.nmapb_lleader
 
 -- Clear search
 vim.keymap.set({ "i", "n", "s" }, "<Esc>", function()
@@ -321,3 +322,22 @@ nmap("[r", "<Cmd>lua Snacks.words.jump(-vim.v.count1)<CR>", "Reference backward"
 nmap_leader("ps", "<Cmd>lua Snacks.profiler.scratch()<CR>", "Scratch")
 nmap_leader("pp", "<Cmd>lua Snacks.profiler.toggle()<CR>", "Profiler")
 nmap_leader("ph", "<Cmd>lua Snacks.profiler.ui.toggle()<CR>", "Profiler")
+
+_G.Config.new_autocmd("LspAttach", nil, function(ev)
+  local client = vim.lsp.get_client_by_id(ev.data.client_id)
+  if not client or client.name ~= "rust-analyzer" then return end
+  nmapb_lleader("e", "<cmd>RustLsp expandMacro<CR>", "Macro expand", ev.buf)
+  nmapb_lleader("o", "<cmd>RustLsp openDocs<CR>", "Docs open", ev.buf)
+  nmapb_lleader("O", "<cmd>RustLsp openCargo<CR>", "Cargo.toml open", ev.buf)
+  nmapb_lleader("p", "<cmd>RustLsp parentModule<CR>", "Parent Module open", ev.buf)
+  nmapb_lleader("R", "<cmd>RustLsp debuggables<CR>", "Debuggables", ev.buf)
+end)
+
+local function organize()
+  vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" }, diagnostics = {} } })
+end
+_G.Config.new_autocmd("LspAttach", nil, function(ev)
+  local client = vim.lsp.get_client_by_id(ev.data.client_id)
+  if not client or client.name ~= "ruff" then return end
+  nmapb_lleader("o", organize, "Imports organize", ev.buf)
+end)

@@ -58,7 +58,7 @@ vim.o.foldtext = "" -- Show text under fold with its highlighting
 -- Editing ====================================================================
 vim.o.autoindent = true -- Use auto indent
 vim.o.expandtab = true -- Convert tabs to spaces
-vim.o.formatoptions = "rqnl1j" -- Improve comment editing
+vim.o.formatoptions = "roqnl1j" -- Improve comment editing
 vim.o.ignorecase = true -- Ignore case during search
 vim.o.inccommand = "nosplit"
 vim.o.incsearch = true -- Show search matches while typing
@@ -109,7 +109,7 @@ require("vim._extui").enable({})
 -- Autocommands ===============================================================
 
 -- Don't auto-wrap comments and don't insert comment leader after hitting 'o'.
-local function f() vim.cmd("setlocal formatoptions-=c formatoptions-=o") end
+local function f() vim.cmd("setlocal formatoptions-=c") end
 _G.Config.new_autocmd("FileType", nil, f, "Proper 'formatoptions'")
 
 -- Check if we need to reload the file when it changed
@@ -132,12 +132,7 @@ _G.Config.new_autocmd("BufWritePre", nil, function(event)
 end, "Create dir on save")
 
 -- make it easier to close man-files when opened inline
-_G.Config.new_autocmd(
-  "FileType",
-  { "man" },
-  function(event) vim.bo[event.buf].buflisted = false end,
-  "Delist man buffers"
-)
+_G.Config.new_autocmd("FileType", "man", function(event) vim.bo[event.buf].buflisted = false end, "Delist man buffers")
 -- Native terminal lsp progress
 -- TODO: remove once LspProgress is deprecated
 -- The Progress autocmd already has a handler for TUI progress bars
