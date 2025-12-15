@@ -225,7 +225,7 @@ in
 
       makeWrapper ${neovimExe} $out/bin/snv --argv0 snv ${wrapperArgs}
       makeWrapper ${neovimExe} $out/bin/snv-dev --argv0 snv-dev --add-flags '--cmd "lua vim.g.snv_dev=true"' ${wrapperArgs}
-      makeWrapper ${neovimExe} $out/bin/snv-profile --argv0 snv-profile --add-flags '--cmd "lua vim.g.snv_profile=true"' ${wrapperArgs}
+      makeWrapper ${neovimExe} $out/bin/snv-profile --argv0 snv-profile --add-flags '--cmd "lua vim.g.snv_dev=true" --cmd "lua vim.g.snv_profile=true"' ${wrapperArgs}
     '';
 
     meta = {
