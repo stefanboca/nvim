@@ -47,9 +47,6 @@
     unnest-nvim.url = "github:brianhuster/unnest.nvim";
     unnest-nvim.flake = false;
 
-    vim-jjdescription.url = "github:avm99963/vim-jjdescription";
-    vim-jjdescription.flake = false;
-
     # used for input follows
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -124,11 +121,6 @@
             unnest-nvim = buildVimPlugin {
               pname = "unnest.nvim";
               src = inputs.unnest-nvim;
-            };
-
-            vim-jjdescription = buildVimPlugin {
-              pname = "vim-jjdescription";
-              src = inputs.vim-jjdescription;
             };
           }
         );

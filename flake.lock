@@ -280,8 +280,7 @@
         "nixpkgs": "nixpkgs",
         "nvim-treesitter-main": "nvim-treesitter-main",
         "tiny-code-action-nvim": "tiny-code-action-nvim",
-        "unnest-nvim": "unnest-nvim",
-        "vim-jjdescription": "vim-jjdescription"
+        "unnest-nvim": "unnest-nvim"
       }
     },
     "rust-analyzer-src": {
@@ -330,22 +329,6 @@
       "original": {
         "owner": "brianhuster",
         "repo": "unnest.nvim",
-        "type": "github"
-      }
-    },
-    "vim-jjdescription": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1746728970,
-        "narHash": "sha256-IIiBJlGmdYntwqizUy2xB8hhBJBGa1ASK9hmN8xZEvk=",
-        "owner": "avm99963",
-        "repo": "vim-jjdescription",
-        "rev": "c99bff42e7afff356514ae5b3f225665bf10b57c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "avm99963",
-        "repo": "vim-jjdescription",
         "type": "github"
       }
     }
