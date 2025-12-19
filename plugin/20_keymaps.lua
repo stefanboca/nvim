@@ -22,6 +22,8 @@ nmap("[p", '<Cmd>exe "put! " . v:register<CR>', "Paste Above")
 nmap("]p", '<Cmd>exe "put "  . v:register<CR>', "Paste Below")
 
 -- upload to pastebin
+nmap_leader("p", '"+p', "Paste from clipboard")
+xmap_leader("y", '"+y', "Yank to clipboard")
 xmap_leader("Y", function()
   local curl = require("plenary.curl")
   local strings = require("plenary.strings")
@@ -88,13 +90,13 @@ _G.Config.leader_group_clues = {
   { mode = "n", keys = "<Leader><Tab>", desc = "+Tab" },
   { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
   { mode = "n", keys = "<Leader>d", desc = "+Debug" },
+  { mode = "n", keys = "<Leader>dP", desc = "+Profile" },
   { mode = "n", keys = "<Leader>e", desc = "+Explore/Edit" },
   { mode = "n", keys = "<Leader>f", desc = "+Find" },
   { mode = "n", keys = "<Leader>g", desc = "+Git" },
   { mode = "n", keys = "<Leader>l", desc = "+Language" },
   { mode = "n", keys = "<Leader>m", desc = "+Map" },
   { mode = "n", keys = "<Leader>o", desc = "+Other" },
-  { mode = "n", keys = "<Leader>p", desc = "+Profile" },
   { mode = "n", keys = "<Leader>s", desc = "+Session" },
   { mode = "n", keys = "<Leader>t", desc = "+Test" },
   { mode = "n", keys = "<Leader>v", desc = "+Visits" },
@@ -319,9 +321,9 @@ nmap_leader("tS", '<Cmd>lua require("neotest").run.stop()<CR>', "Stop")
 nmap("]r", "<Cmd>lua Snacks.words.jump(vim.v.count1)<CR>", "Reference forward")
 nmap("[r", "<Cmd>lua Snacks.words.jump(-vim.v.count1)<CR>", "Reference backward")
 
-nmap_leader("ps", "<Cmd>lua Snacks.profiler.scratch()<CR>", "Scratch")
-nmap_leader("pp", "<Cmd>lua Snacks.profiler.toggle()<CR>", "Profiler")
-nmap_leader("ph", "<Cmd>lua Snacks.profiler.ui.toggle()<CR>", "Profiler")
+nmap_leader("dPs", "<Cmd>lua Snacks.profiler.scratch()<CR>", "Scratch")
+nmap_leader("dPp", "<Cmd>lua Snacks.profiler.toggle()<CR>", "Profiler toggle")
+nmap_leader("dPh", "<Cmd>lua Snacks.profiler.ui.toggle()<CR>", "Highlights toggle")
 
 _G.Config.new_autocmd("LspAttach", nil, function(ev)
   local client = vim.lsp.get_client_by_id(ev.data.client_id)
