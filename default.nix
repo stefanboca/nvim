@@ -80,7 +80,7 @@
     mini-nvim
     nui-nvim
     nvim-nio
-    nvim-treesitter
+    nvim-treesitter.withAllGrammars
     plenary-nvim
     rustaceanvim
     unnest-nvim

@@ -38,9 +38,6 @@
     jj-diffconflicts.url = "github:rafikdraoui/jj-diffconflicts";
     jj-diffconflicts.flake = false;
 
-    nvim-treesitter-main.url = "github:iofq/nvim-treesitter-main";
-    nvim-treesitter-main.inputs.nixpkgs.follows = "nixpkgs";
-
     tiny-code-action-nvim.url = "github:rachartier/tiny-code-action.nvim";
     tiny-code-action-nvim.flake = false;
 
@@ -80,10 +77,7 @@
         buildVimPlugin = attrs: prev'.vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
       in {
         vimPlugins = prev'.vimPlugins.extend (
-          f: p: {
-            nvim-treesitter = p.nvim-treesitter.withAllGrammars;
-            nvim-treesitter-textobjects = p.nvim-treesitter-textobjects.overrideAttrs {dependencies = [f.nvim-treesitter];};
-
+          _f: _p: {
             inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
             inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
 
@@ -129,7 +123,6 @@
       pkgs = prev.appendOverlays [
         inputs.fenix.overlays.default
         inputs.neovim-nightly-overlay.overlays.default
-        inputs.nvim-treesitter-main.overlays.default
         vimPluginsOverlay
       ];
     in {
