@@ -68,25 +68,29 @@
   inherit (lib.meta) getExe;
   inherit (lib.strings) concatStringsSep getName makeBinPath makeLibraryPath;
 
-  startPlugins = with vimPlugins; [
-    # keep-sorted start
-    SchemaStore-nvim
-    catppuccin-nvim
-    clasp-nvim
-    diffview-nvim
-    filler-begone-nvim
-    grug-far-nvim
-    jj-diffconflicts
-    mini-nvim
-    nui-nvim
-    nvim-nio
-    nvim-treesitter.withAllGrammars
-    plenary-nvim
-    rustaceanvim
-    unnest-nvim
-    vim-jjdescription
-    # keep-sorted end
-  ];
+  treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
+  startPlugins =
+    [treesitter]
+    ++ treesitter.dependencies
+    ++ (with vimPlugins; [
+      # keep-sorted start
+      SchemaStore-nvim
+      catppuccin-nvim
+      clasp-nvim
+      diffview-nvim
+      filler-begone-nvim
+      grug-far-nvim
+      jj-diffconflicts
+      mini-nvim
+      nui-nvim
+      nvim-nio
+      plenary-nvim
+      rustaceanvim
+      unnest-nvim
+      vim-jjdescription
+      # keep-sorted end
+    ]);
+
   optPlugins = with vimPlugins; [
     # keep-sorted start
     blink-cmp
