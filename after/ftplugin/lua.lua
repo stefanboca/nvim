@@ -1,4 +1,4 @@
-vim.cmd.packadd("lazydev.nvim")
+vim.cmd.packad("lazydev.nvim")
 
 require("lazydev").setup({
   library = {

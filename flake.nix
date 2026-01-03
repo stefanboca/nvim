@@ -77,9 +77,20 @@
         buildVimPlugin = attrs: prev'.vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
       in {
         vimPlugins = prev'.vimPlugins.extend (
-          _f: _p: {
+          _f: p: {
             inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
             inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
+
+            # FIXME: remove once https://github.com/NixOS/nixpkgs/pull/475611 is merged
+            nvim-treesitter-textobjects = p.nvim-treesitter-textobjects.overrideAttrs {
+              version = "0-unstable-2025-12-27";
+              src = pkgs.fetchFromGitHub {
+                owner = "nvim-treesitter";
+                repo = "nvim-treesitter-textobjects";
+                rev = "ecd03f5811eb5c66d2fa420b79121b866feecd82";
+                hash = "sha256-mMxCAkrGqTstEgaf/vwQMEF7D8swH3oyUJtaxuXzpcs=";
+              };
+            };
 
             blink-lib = buildVimPlugin {
               pname = "blink.lib";
