@@ -70,18 +70,17 @@
       inherit (pkgs) snv;
     });
 
-    overlays.default = _: prev: let
-      vimPluginsOverlay = final': prev': let
-        inherit (final'.stdenv.hostPlatform) system;
+    overlays.default = final: prev: let
+      inherit (final.stdenv.hostPlatform) system;
 
-        buildVimPlugin = attrs: prev'.vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
-      in {
+      buildVimPlugin = attrs: prev.vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
+      vimPluginsOverlay = _: prev': {
         vimPlugins = prev'.vimPlugins.extend (
-          _f: p: {
+          _: p: {
             inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
             inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
 
-            # FIXME: remove once https://github.com/NixOS/nixpkgs/pull/475611 is merged
+            # FIXME: remove once https://github.com/NixOS/nixpkgs/pull/475611 reaches nixos-unstable
             nvim-treesitter-textobjects = p.nvim-treesitter-textobjects.overrideAttrs {
               version = "0-unstable-2025-12-27";
               src = pkgs.fetchFromGitHub {
@@ -133,12 +132,12 @@
 
       pkgs = prev.appendOverlays [
         inputs.fenix.overlays.default
-        inputs.neovim-nightly-overlay.overlays.default
         vimPluginsOverlay
       ];
     in {
       snv = pkgs.callPackage ./default.nix {
         version = "0.0.0+rev=${self.shortRev or self.dirtyShortRev}";
+        neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
       };
     };
   };
