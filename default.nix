@@ -1,7 +1,6 @@
 {
   # keep-sorted start
   alejandra,
-  basedpyright,
   bash-language-server,
   biome,
   clang-tools,
@@ -43,6 +42,7 @@
   tinymist,
   tombi,
   ts_query_ls,
+  ty,
   typstyle,
   vscode-extensions,
   vscode-langservers-extracted,
@@ -130,7 +130,6 @@
   packages = [
     # keep-sorted start
     alejandra # nix
-    basedpyright # python
     bash-language-server
     biome
     clang-tools # c/cpp
@@ -170,6 +169,7 @@
     tinymist # typst
     tombi # toml
     ts_query_ls
+    ty # python
     typstyle # typst
     vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
     vtsls # typescript
