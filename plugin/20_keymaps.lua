@@ -176,10 +176,20 @@ nmap_leader("fu", "<Cmd>lua Snacks.picker.undo()<CR>", "Undo")
 nmap_leader("fV", "<Cmd>Pick visit_paths<CR>", "Visit paths (cwd)")
 nmap_leader("fv", '<Cmd>Pick visit_paths cwd=""<CR>', "Visit paths (all)")
 
+local jjui = nil
+local function jjui_toggle()
+  if jjui == nil then
+    local Terminal = require("toggleterm.terminal").Terminal
+    jjui = Terminal:new({ cmd = "jjui", hidden = true })
+  end
+  jjui:toggle(nil, "float")
+end
+
 local git_log_cmd = [[Git log --pretty=format:\%h\ \%as\ │\ \%s --topo-order]]
 local git_log_buf_cmd = git_log_cmd .. " --follow -- %"
 nmap_leader("ga", "<Cmd>Git diff --cached<CR>", "Added diff")
 nmap_leader("gA", "<Cmd>Git diff --cached -- %<CR>", "Added diff buffer")
+nmap_leader("gj", jjui_toggle, "JJUI Toggle")
 nmap_leader("gd", "<Cmd>Git diff<CR>", "Diff")
 nmap_leader("gD", "<Cmd>Git diff -- %<CR>", "Diff buffer")
 nmap_leader("gl", "<Cmd>" .. git_log_cmd .. "<CR>", "Log")
