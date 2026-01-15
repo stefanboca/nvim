@@ -1,0 +1,6 @@
+{
+  "for": {
+    "prefix": "for",
+    "body": ["for ${1:value} in ${2:iterable}:", "\t${3:pass}"]
+  }
+}
