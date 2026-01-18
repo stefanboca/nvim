@@ -92,11 +92,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1768632427,
-        "narHash": "sha256-Y6kP10exkn5UiK9ead2Gky8TFsFZSsyT4f69DMKm0Wo=",
+        "lastModified": 1768718851,
+        "narHash": "sha256-4IHUR+T/jScTlmw2mu5upRiPzJlv+LO7XGbvosumb0A=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "edd560269f0d9ad75bd3da292ce4d9d27efdd22a",
+        "rev": "80677971c9d17967b7d14649161f6f426b68e769",
         "type": "github"
       },
       "original": {
@@ -144,11 +144,11 @@
     "jj-diffconflicts": {
       "flake": false,
       "locked": {
-        "lastModified": 1767307759,
-        "narHash": "sha256-tyRTw3ENV7zlZF3Dp9zO4Huu02K5uyXb3brAJCW4w2M=",
+        "lastModified": 1768752277,
+        "narHash": "sha256-hvMXpslucywVYA9Sdxx6IcXQXYcYNWK8s9jr+KtStdI=",
         "owner": "rafikdraoui",
         "repo": "jj-diffconflicts",
-        "rev": "3fd00c8212ba3d7a933fbca270d8f0c8f0560789",
+        "rev": "6d9eedadf1fab87bccb0a4a7ceda829da8023efb",
         "type": "github"
       },
       "original": {
@@ -229,11 +229,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1768468158,
-        "narHash": "sha256-DfifO/Se9ogmp5rxe/OwmRIz20/w6BsbWC1s4kL1Bzc=",
+        "lastModified": 1768548564,
+        "narHash": "sha256-0gId4r35AoLF7OFFn3nVJbkYoOEcVQRXTi6lXwTppSs=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "adbff8baedae53f9955fe60c0d470ecd77b4f548",
+        "rev": "1cd5183e3136eccfa97a4559fd586381af75b77a",
         "type": "github"
       },
       "original": {
@@ -246,11 +246,11 @@
     "tiny-code-action-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1767994844,
-        "narHash": "sha256-f3U4hvp7PNKrgJHfmCEnHWJC9tbkzrKvuHo5WejYpys=",
+        "lastModified": 1768753513,
+        "narHash": "sha256-Y/kNuInKNZrpHntudzP1CLLwxf0UFA3aztzUXqyKAHo=",
         "owner": "rachartier",
         "repo": "tiny-code-action.nvim",
-        "rev": "f4a154569146d29fd4661ae289d83c4378135736",
+        "rev": "c4c08075b2d102ea7091dcc14e47d2548068a416",
         "type": "github"
       },
       "original": {
