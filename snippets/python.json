@@ -1,4 +1,23 @@
 {
+  "uv script": {
+    "prefix": "#!script",
+    "body": [
+      "#!/usr/bin/env -S uv run --script",
+      "",
+      "# /// script",
+      "# dependencies = [",
+      "# ]",
+      "# ///",
+      "",
+      "",
+      "def main():",
+      "    ${1:pass}",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ]
+  },
   "for": {
     "prefix": "for",
     "body": ["for ${1:value} in ${2:iterable}:", "\t${3:pass}"]
