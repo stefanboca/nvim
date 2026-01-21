@@ -76,7 +76,7 @@
       buildVimPlugin = attrs: prev.vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
       vimPluginsOverlay = _: prev': {
         vimPlugins = prev'.vimPlugins.extend (
-          _: p: {
+          _: _: {
             inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
             inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
 
@@ -124,7 +124,7 @@
         vimPluginsOverlay
       ];
     in {
-      snv = pkgs.callPackage ./default.nix {
+      snv = pkgs.callPackage ./package.nix {
         version = "0.0.0+rev=${self.shortRev or self.dirtyShortRev}";
         neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
       };
