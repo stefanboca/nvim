@@ -27,10 +27,10 @@ local rtp = clean(vim.opt.runtimepath:get())
 
 table.insert(pp, 1, "@plugins@")
 
--- Insert treesitter queries to runtimepath before $VIMRUNTIME, but after config
--- This prioritizes nvim-treesitter above $VIMRUNTIME (parsers and queries), but below custom queries in this repo
+-- Insert treesitter parsers and queries to runtimepath before $VIMRUNTIME, but after config
+-- This prioritizes nvim-treesitter above $VIMRUNTIME, but below custom queries in this repo
 local idx = vim.iter(rtp):enumerate():find(function(_, path) return string.find(path, "share/nvim/runtime$") ~= nil end)
-table.insert(rtp, idx, "@plugins@/pack/plugins/start/nvim-treesitter-grammars")
+table.insert(rtp, idx, "@plugins@/pack/plugins/opt/nvim-treesitter-runtime")
 
 if not vim.g.snv_dev then
   table.insert(rtp, 1, "@out@/share/snv/site")

@@ -55,6 +55,7 @@
   linkFarm,
   makeWrapper,
   neovim-unwrapped,
+  symlinkJoin,
   vimPlugins,
   version,
   extraStartPlugins ? [],
@@ -65,13 +66,25 @@
   ...
 }: let
   inherit (lib.fileset) fileFilter toSource unions;
+  inherit (lib.lists) concatMap unique;
   inherit (lib.meta) getExe;
   inherit (lib.strings) concatStringsSep getName makeBinPath makeLibraryPath;
 
-  treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
+  allDeps = plugins:
+    concatMap (p:
+      if p ? dependencies && p.dependencies != []
+      then [p] ++ allDeps p.dependencies
+      else [p])
+    plugins;
+
+  nvim-treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
+  nvim-treesitter-runtime = symlinkJoin {
+    name = "nvim-treesitter-runtime";
+    paths = unique (allDeps nvim-treesitter.dependencies);
+  };
+
   startPlugins =
-    [treesitter]
-    ++ treesitter.dependencies
+    [nvim-treesitter]
     ++ (with vimPlugins; [
       # keep-sorted start
       SchemaStore-nvim
@@ -91,39 +104,41 @@
       # keep-sorted end
     ]);
 
-  optPlugins = with vimPlugins; [
-    # keep-sorted start
-    blink-cmp
-    blink-indent
-    blink-lib
-    blink-pairs
-    conform-nvim
-    crates-nvim
-    dial-nvim
-    hunk-nvim
-    lazydev-nvim
-    lean-nvim
-    live-rename-nvim
-    neogen
-    neogit
-    neotest
-    neotest-python
-    nvim-dap
-    nvim-dap-python
-    nvim-dap-view
-    nvim-dap-virtual-text
-    nvim-lint
-    nvim-lspconfig
-    nvim-treesitter-context
-    nvim-treesitter-textobjects
-    nvim-ts-autotag
-    one-small-step-for-vimkind
-    snacks-nvim
-    tiny-code-action-nvim
-    toggleterm-nvim
-    trouble-nvim
-    # keep-sorted end
-  ];
+  optPlugins =
+    [nvim-treesitter-runtime] # manually added to rtp in init.lua
+    ++ (with vimPlugins; [
+      # keep-sorted start
+      blink-cmp
+      blink-indent
+      blink-lib
+      blink-pairs
+      conform-nvim
+      crates-nvim
+      dial-nvim
+      hunk-nvim
+      lazydev-nvim
+      lean-nvim
+      live-rename-nvim
+      neogen
+      neogit
+      neotest
+      neotest-python
+      nvim-dap
+      nvim-dap-python
+      nvim-dap-view
+      nvim-dap-virtual-text
+      nvim-lint
+      nvim-lspconfig
+      nvim-treesitter-context
+      nvim-treesitter-textobjects
+      nvim-ts-autotag
+      one-small-step-for-vimkind
+      snacks-nvim
+      tiny-code-action-nvim
+      toggleterm-nvim
+      trouble-nvim
+      # keep-sorted end
+    ]);
 
   libs = [sqlite];
 
