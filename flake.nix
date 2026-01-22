@@ -44,18 +44,22 @@
     unnest-nvim.url = "github:brianhuster/unnest.nvim";
     unnest-nvim.flake = false;
 
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     # used for input follows
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
   };
 
   outputs = {
-    nixpkgs,
     self,
+    nixpkgs,
+    treefmt-nix,
     ...
   } @ inputs: let
     inherit (nixpkgs) lib;
-    inherit (lib.attrsets) genAttrs;
+    inherit (lib.attrsets) genAttrs mapAttrs' nameValuePair;
 
     systems = ["x86_64-linux" "aarch64-linux"];
     mkPkgs = system:
@@ -64,6 +68,7 @@
         overlays = [self.overlays.default];
       };
     forAllSystems = f: genAttrs systems (system: f (mkPkgs system));
+    treefmt = forAllSystems (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
   in {
     packages = forAllSystems (pkgs: {
       default = pkgs.snv;
@@ -129,5 +134,15 @@
         neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
       };
     };
+
+    formatter = forAllSystems (pkgs: treefmt.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
+
+    checks = forAllSystems (pkgs: let
+      inherit (pkgs.stdenv.hostPlatform) system;
+
+      packages = mapAttrs' (n: nameValuePair "package-${n}") self.packages.${system};
+      formatting = {formatting = treefmt.${system}.config.build.check self;};
+    in
+      packages // formatting);
   };
 }
