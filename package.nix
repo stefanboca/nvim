@@ -218,7 +218,11 @@
     ''--add-flags "-u $out/share/snv/init.lua"''
   ];
 
-  neovimExe = getExe neovim-unwrapped;
+  neovim = neovim-unwrapped.overrideAttrs {
+    # the defaults are unused at runtime, because nvim-treesitter parsers take precedence.
+    treesitter-parsers = {};
+  };
+  neovimExe = getExe neovim;
 in
   stdenvNoCC.mkDerivation {
     pname = "snv";
