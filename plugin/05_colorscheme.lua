@@ -2,6 +2,7 @@ MiniDeps.now(function()
   local catppuccin = require("catppuccin")
   catppuccin.setup({
     background = { dark = "mocha" },
+    transparent_background = true,
     dim_inactive = { enabled = true },
     lsp_styles = { enabled = true },
     integrations = {
