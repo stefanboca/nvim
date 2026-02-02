@@ -144,7 +144,7 @@ end)
 _G.Config.new_autocmd("LspDetach", nil, function(ev)
   local client = vim.lsp.get_client_by_id(ev.data.client_id)
   if not client or client.name ~= "tinymist" then return end
-  _G.Tinymist.on_stop(client, ev.buf)
+  on_stop(client, ev.buf)
 end)
 
 vim.lsp.config("tinymist", {
