@@ -53,7 +53,7 @@
   # keep-sorted end
   lib,
   linkFarm,
-  makeBinaryWrapper,
+  makeWrapper,
   neovim-unwrapped,
   symlinkJoin,
   vimPlugins,
@@ -239,7 +239,7 @@ in
     phases = ["unpackPhase" "installPhase"];
     preferLocalBuild = true;
 
-    nativeBuildInputs = [makeBinaryWrapper];
+    nativeBuildInputs = [makeWrapper];
 
     installPhase = ''
       mkdir -p $out/share/snv
