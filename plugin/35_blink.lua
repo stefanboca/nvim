@@ -65,6 +65,10 @@ now_if_args(function()
   end
 
   require("blink.cmp").setup({
+    appearance = {
+      nerd_font_variant = "normal",
+    },
+
     keymap = {
       preset = "enter",
       ["<C-k>"] = false, -- conflicts with digraphs
