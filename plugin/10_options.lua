@@ -104,7 +104,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "railgun"
 end
 
-require("vim._extui").enable({})
+require("vim._core.ui2").enable({})
 
 -- Autocommands ===============================================================
 
