@@ -50,7 +50,10 @@ vim.o.fillchars = "eob: ,fold:╌,foldopen:,foldclose:,diff:╱"
 vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:> "
 
 -- Folds (see `:h fold-commands`, `:h zM`, `:h zR`, `:h zA`, `:h zj`)
-vim.o.foldlevel = 10 -- Fold nothing by default; set to 0 or 1 to fold
+vim.o.foldcolumn = "1"
+vim.o.foldenable = true
+vim.o.foldlevel = 99 -- Fold nothing by default; set to 0 or 1 to fold
+vim.o.foldlevelstart = 99
 vim.o.foldmethod = "indent" -- Fold based on indent level
 vim.o.foldnestmax = 10 -- Limit number of fold levels
 vim.o.foldtext = "" -- Show text under fold with its highlighting
