@@ -186,7 +186,10 @@ end)
 
 later(function() require("mini.comment").setup() end)
 
-later(function() require("mini.diff").setup({ view = { style = "sign" } }) end)
+later(function()
+  local diff = require("mini.diff")
+  diff.setup({ view = { style = "sign", signs = { add = "┃", change = "┃", delete = "┃" } } })
+end)
 
 later(function() require("mini.git").setup() end)
 

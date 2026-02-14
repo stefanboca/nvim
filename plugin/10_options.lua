@@ -36,6 +36,7 @@ vim.o.smoothscroll = true -- Scrolling works with screen lines
 vim.o.splitbelow = true -- Horizontal splits will be below
 vim.o.splitkeep = "screen" -- Reduce scroll during window split
 vim.o.splitright = true -- Vertical splits will be to the right
+vim.o.statuscolumn = "%=%l%s%C"
 vim.o.termguicolors = true
 vim.o.winborder = "rounded"
 vim.o.winborder = "single" -- Use border in floating windows
