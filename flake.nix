@@ -11,45 +11,69 @@
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    # plugins
-    blink-cmp.url = "github:saghen/blink.cmp";
-    blink-cmp.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      fenix.follows = "fenix";
-      flake-parts.follows = "flake-parts";
-    };
-
-    blink-pairs.url = "github:saghen/blink.pairs";
-    blink-pairs.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      fenix.follows = "fenix";
-      flake-parts.follows = "flake-parts";
-    };
-
-    blink-lib.url = "github:saghen/blink.lib";
-    blink-lib.flake = false;
-
-    clasp-nvim.url = "github:xzbdmw/clasp.nvim";
-    clasp-nvim.flake = false;
-
-    filler-begone-nvim.url = "github:saghen/filler-begone.nvim";
-    filler-begone-nvim.flake = false;
-
-    jj-diffconflicts.url = "github:rafikdraoui/jj-diffconflicts";
-    jj-diffconflicts.flake = false;
-
-    tiny-code-action-nvim.url = "github:rachartier/tiny-code-action.nvim";
-    tiny-code-action-nvim.flake = false;
-
-    unnest-nvim.url = "github:brianhuster/unnest.nvim";
-    unnest-nvim.flake = false;
-
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     # used for input follows
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    # keep-sorted start block=yes newline_separated=yes
+    blink-cmp = {
+      url = "github:saghen/blink.cmp";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        fenix.follows = "fenix";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    blink-lib = {
+      url = "github:saghen/blink.lib";
+      flake = false;
+    };
+
+    blink-pairs = {
+      url = "github:saghen/blink.pairs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        fenix.follows = "fenix";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    clasp-nvim = {
+      url = "github:xzbdmw/clasp.nvim";
+      flake = false;
+    };
+
+    filler-begone-nvim = {
+      url = "github:saghen/filler-begone.nvim";
+      flake = false;
+    };
+
+    jj-diffconflicts = {
+      url = "github:rafikdraoui/jj-diffconflicts";
+      flake = false;
+    };
+
+    sigil-nvim = {
+      url = "github:Prgebish/sigil.nvim";
+      flake = false;
+    };
+
+    tiny-code-action-nvim = {
+      url = "github:rachartier/tiny-code-action.nvim";
+      flake = false;
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    unnest-nvim = {
+      url = "github:brianhuster/unnest.nvim";
+      flake = false;
+    };
+    # keep-sorted end
   };
 
   outputs = {
@@ -85,6 +109,7 @@
             inherit (inputs.blink-cmp.packages.${system}) blink-cmp;
             inherit (inputs.blink-pairs.packages.${system}) blink-pairs;
 
+            # keep-sorted start block=yes newline_separated=yes
             blink-lib = buildVimPlugin {
               pname = "blink.lib";
               src = inputs.blink-lib;
@@ -105,6 +130,11 @@
               src = inputs.jj-diffconflicts;
             };
 
+            sigil-nvim = buildVimPlugin {
+              pname = "sigil.nvim";
+              src = inputs.sigil-nvim;
+            };
+
             tiny-code-action-nvim = buildVimPlugin {
               pname = "tiny-code-action.nvim";
               src = inputs.tiny-code-action-nvim;
@@ -120,6 +150,7 @@
               pname = "unnest.nvim";
               src = inputs.unnest-nvim;
             };
+            # keep-sorted end
           }
         );
       };
