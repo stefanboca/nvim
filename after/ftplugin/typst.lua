@@ -47,8 +47,8 @@ require("sigil").setup({
 
         -- custom symbols
         -- keep-sorted start
-        { pattern = "iff", replacement = "⟺  ", boundary = "both" },
-        { pattern = "impl", replacement = "⟹  ", boundary = "both" },
+        -- { pattern = "iff", replacement = "⟺  ", boundary = "both" },
+        -- { pattern = "impl", replacement = "⟹  ", boundary = "both" },
         { pattern = "mbar", replacement = "∣", boundary = "both" },
         -- keep-sorted end
 
@@ -73,7 +73,7 @@ require("sigil").setup({
         { pattern = "QQ", replacement = "ℚ" },
         { pattern = "RR", replacement = "ℝ" },
         { pattern = "SS", replacement = "𝕊" },
-        { pattern = "TT", replacement = "𝕋" },
+        -- { pattern = "TT", replacement = "𝕋" },
         { pattern = "UU", replacement = "𝕌" },
         { pattern = "VV", replacement = "𝕍" },
         { pattern = "WW", replacement = "𝕎" },
