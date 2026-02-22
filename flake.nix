@@ -54,11 +54,6 @@
       flake = false;
     };
 
-    sigil-nvim = {
-      url = "github:Prgebish/sigil.nvim";
-      flake = false;
-    };
-
     tiny-code-action-nvim = {
       url = "github:rachartier/tiny-code-action.nvim";
       flake = false;
@@ -128,11 +123,6 @@
             jj-diffconflicts = buildVimPlugin {
               pname = "jj-diffconflicts";
               src = inputs.jj-diffconflicts;
-            };
-
-            sigil-nvim = buildVimPlugin {
-              pname = "sigil.nvim";
-              src = inputs.sigil-nvim;
             };
 
             tiny-code-action-nvim = buildVimPlugin {

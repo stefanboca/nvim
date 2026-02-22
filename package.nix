@@ -133,7 +133,6 @@
       nvim-treesitter-textobjects
       nvim-ts-autotag
       one-small-step-for-vimkind
-      sigil-nvim
       snacks-nvim
       tiny-code-action-nvim
       toggleterm-nvim
