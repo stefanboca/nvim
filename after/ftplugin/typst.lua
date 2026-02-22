@@ -106,7 +106,7 @@ require("sigil").setup({
         { pattern = "phi", replacement = "φ", boundary = "left" },
         { pattern = "chi", replacement = "χ", boundary = "left" },
         { pattern = "psi", replacement = "ψ", boundary = "left" },
-        { pattern = "omega", replacement = "ϝ", boundary = "left" },
+        { pattern = "omega", replacement = "ω", boundary = "left" },
 
         -- upercase greek letters
         { pattern = "Alpha", replacement = "Α", boundary = "left" },
@@ -132,7 +132,7 @@ require("sigil").setup({
         { pattern = "Phi", replacement = "Φ", boundary = "left" },
         { pattern = "Chi", replacement = "Χ", boundary = "left" },
         { pattern = "Psi", replacement = "Ψ", boundary = "left" },
-        { pattern = "Omega", replacement = "Ϝ", boundary = "left" },
+        { pattern = "Omega", replacement = "Ω", boundary = "left" },
 
         -- disabled because visually the same as inter and union
         -- { pattern = "inter.big", replacement = "⋂", boundary = "left" },
