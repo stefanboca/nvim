@@ -222,7 +222,6 @@
         "jj-diffconflicts": "jj-diffconflicts",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs",
-        "sigil-nvim": "sigil-nvim",
         "tiny-code-action-nvim": "tiny-code-action-nvim",
         "treefmt-nix": "treefmt-nix",
         "unnest-nvim": "unnest-nvim"
@@ -242,22 +241,6 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
-        "type": "github"
-      }
-    },
-    "sigil-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1771138732,
-        "narHash": "sha256-mHbf8z3p46e7bfcc5gwXLZcfm7y3XkjCiwgGFckce2s=",
-        "owner": "Prgebish",
-        "repo": "sigil.nvim",
-        "rev": "62e305ec5cc9f59dcc15e4d5958199d0fd7689a8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Prgebish",
-        "repo": "sigil.nvim",
         "type": "github"
       }
     },
