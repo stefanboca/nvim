@@ -1,4 +1,4 @@
-{
+self: {
   # keep-sorted start
   alejandra,
   bash-language-server,
@@ -31,11 +31,9 @@
   python313Packages,
   ripgrep,
   ruff,
-  rust-analyzer-nightly,
   shfmt,
   sqlite,
   statix,
-  stdenvNoCC,
   stylua,
   svelte-language-server,
   tailwindcss-language-server,
@@ -54,10 +52,10 @@
   lib,
   linkFarm,
   makeWrapper,
-  neovim-unwrapped,
+  stdenvNoCC,
   symlinkJoin,
   vimPlugins,
-  version,
+  vimUtils,
   extraStartPlugins ? [],
   extraOptPlugins ? [],
   extraLibs ? [],
@@ -70,6 +68,8 @@
   inherit (lib.meta) getExe;
   inherit (lib.strings) concatStringsSep getName makeBinPath makeLibraryPath;
 
+  inherit (stdenvNoCC.hostPlatform) system;
+  buildVimPlugin = attrs: vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
   allDeps = plugins:
     concatMap (p:
       if p ? dependencies && p.dependencies != []
@@ -77,41 +77,85 @@
       else [p])
     plugins;
 
+  inherit (self.inputs.blink-cmp.packages.${system}) blink-cmp;
+  inherit (self.inputs.blink-pairs.packages.${system}) blink-pairs;
+  inherit (self.inputs.fenix.packages.${system}) rust-analyzer;
+  # keep-sorted start block=yes
+  blink-lib = buildVimPlugin {
+    pname = "blink.lib";
+    src = self.inputs.blink-lib;
+  };
+  clasp-nvim = buildVimPlugin {
+    pname = "clasp.nvim";
+    src = self.inputs.clasp-nvim;
+  };
+  filler-begone-nvim = buildVimPlugin {
+    pname = "filler-begone.nvim";
+    src = self.inputs.filler-begone-nvim;
+  };
+  jj-diffconflicts = buildVimPlugin {
+    pname = "jj-diffconflicts";
+    src = self.inputs.jj-diffconflicts;
+  };
   nvim-treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
   nvim-treesitter-runtime = symlinkJoin {
     name = "nvim-treesitter-runtime";
     paths = unique (allDeps nvim-treesitter.dependencies);
   };
+  tiny-code-action-nvim = buildVimPlugin {
+    pname = "tiny-code-action.nvim";
+    src = self.inputs.tiny-code-action-nvim;
+    nvimSkipModules = [
+      "tiny-code-action.backend.delta"
+      "tiny-code-action.backend.diffsofancy"
+      "tiny-code-action.backend.difftastic"
+      "tiny-code-action.previewers.snacks"
+    ];
+  };
+  unnest-nvim = buildVimPlugin {
+    pname = "unnest.nvim";
+    src = self.inputs.unnest-nvim;
+  };
+  # keep-sorted end
 
   startPlugins =
-    [nvim-treesitter]
+    [
+      # keep-sorted start
+      clasp-nvim
+      filler-begone-nvim
+      jj-diffconflicts
+      nvim-treesitter
+      unnest-nvim
+      # keep-sorted end
+    ]
     ++ (with vimPlugins; [
       # keep-sorted start
       SchemaStore-nvim
       catppuccin-nvim
-      clasp-nvim
       diffview-nvim
-      filler-begone-nvim
       grug-far-nvim
-      jj-diffconflicts
       mini-nvim
       nui-nvim
       nvim-nio
       plenary-nvim
       rustaceanvim
-      unnest-nvim
       vim-jjdescription
       # keep-sorted end
     ]);
 
   optPlugins =
-    [nvim-treesitter-runtime] # manually added to rtp in init.lua
-    ++ (with vimPlugins; [
+    [
       # keep-sorted start
       blink-cmp
-      blink-indent
       blink-lib
       blink-pairs
+      nvim-treesitter-runtime # manually added to rtp in init.lua
+      tiny-code-action-nvim
+      # keep-sorted end
+    ]
+    ++ (with vimPlugins; [
+      # keep-sorted start
+      blink-indent
       conform-nvim
       crates-nvim
       dial-nvim
@@ -134,7 +178,6 @@
       nvim-ts-autotag
       one-small-step-for-vimkind
       snacks-nvim
-      tiny-code-action-nvim
       toggleterm-nvim
       trouble-nvim
       # keep-sorted end
@@ -175,7 +218,7 @@
     python313Packages.debugpy
     ripgrep
     ruff # python
-    rust-analyzer-nightly
+    rust-analyzer
     shfmt
     statix # nix
     stylua # lua
@@ -218,7 +261,7 @@
     ''--add-flags "-u $out/share/snv/init.lua"''
   ];
 
-  neovim = neovim-unwrapped.overrideAttrs {
+  neovim = self.inputs.neovim-nightly-overlay.packages.${system}.neovim.overrideAttrs {
     # the defaults are unused at runtime, because nvim-treesitter parsers take precedence.
     treesitter-parsers = {};
   };
@@ -226,30 +269,44 @@
 in
   stdenvNoCC.mkDerivation {
     pname = "snv";
-    inherit version plugins;
+    version = "0.0.0+rev=${self.shortRev or self.dirtyShortRev}";
+
+    strictDeps = true;
+    preferLocalBuild = true;
 
     src = toSource {
       root = ./.;
       fileset = unions [
         (fileFilter (file: file.hasExt "lua") ./.)
         (fileFilter (file: file.hasExt "scm") ./.)
+        ./init.lua.in
       ];
     };
 
-    phases = ["unpackPhase" "installPhase"];
-    preferLocalBuild = true;
-
     nativeBuildInputs = [makeWrapper];
+
+    env = {
+      inherit plugins;
+    };
+
+    dontPatch = true;
+    dontConfigure = true;
+    dontBuild = true;
+    dontFixup = true;
 
     installPhase = ''
       mkdir -p $out/share/snv
-      substitute ${./init.lua.in} $out/share/snv/init.lua --subst-var out --subst-var plugins
+      substitute ./init.lua.in $out/share/snv/init.lua --subst-var out --subst-var plugins
       ln -s $src $out/share/snv/site
 
       makeWrapper ${neovimExe} $out/bin/snv --argv0 snv ${wrapperArgs}
       makeWrapper ${neovimExe} $out/bin/snv-dev --argv0 snv-dev --add-flags '--cmd "lua vim.g.snv_dev=true"' ${wrapperArgs}
       makeWrapper ${neovimExe} $out/bin/snv-profile --argv0 snv-profile --add-flags '--cmd "lua vim.g.snv_dev=true" --cmd "lua vim.g.snv_profile=true"' ${wrapperArgs}
     '';
+
+    passthru = {
+      inherit neovim;
+    };
 
     meta = {
       homepage = "https://github.com/stefanboca/nvim";
