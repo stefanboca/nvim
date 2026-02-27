@@ -8,6 +8,10 @@ vim.g.loaded_ruby_provider = 0
 
 vim.loader.enable()
 
+local argv0 = vim.v.argv[1]
+if string.match(argv0, "snv%-profile$") then vim.g.snv_profile = true end
+if vim.g.snv_profile or string.match(argv0, "snv%-dev$") then vim.g.snv_dev = true end
+
 local whitelist = {
   "^/run/current%-system/sw/share/",
   "^/etc/profiles/per%-user/[^/]+/share/",
@@ -43,7 +47,7 @@ vim.opt.packpath = pp
 vim.opt.runtimepath = rtp
 
 if vim.g.snv_profile then
-  vim.opt.runtimepath:prepend("@plugins@/pack/plugins/opt/snacks.nvim")
+  vim.cmd.packadd("snacks.nvim")
   require("snacks.profiler").startup({
     startup = { event = "User", pattern = "MiniDepsComplete" },
     presets = { startup = { min_time = 0.1 } },

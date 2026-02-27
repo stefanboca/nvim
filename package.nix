@@ -51,7 +51,7 @@ self: {
   # keep-sorted end
   lib,
   linkFarm,
-  makeWrapper,
+  makeBinaryWrapper,
   stdenvNoCC,
   symlinkJoin,
   vimPlugins,
@@ -255,17 +255,10 @@ self: {
   pluginPaths = (mkPluginPaths "start" allStartPlugins) ++ (mkPluginPaths "opt" allOptPlugins);
   plugins = linkFarm "snv-plugins" pluginPaths;
 
-  wrapperArgs = concatStringsSep " " [
-    "--suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs}"
-    "--suffix PATH : ${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}"
-    ''--add-flags "-u $out/share/snv/init.lua"''
-  ];
-
   neovim = self.inputs.neovim-nightly-overlay.packages.${system}.neovim.overrideAttrs {
     # the defaults are unused at runtime, because nvim-treesitter parsers take precedence.
     treesitter-parsers = {};
   };
-  neovimExe = getExe neovim;
 in
   stdenvNoCC.mkDerivation {
     pname = "snv";
@@ -283,25 +276,27 @@ in
       ];
     };
 
-    nativeBuildInputs = [makeWrapper];
+    nativeBuildInputs = [makeBinaryWrapper];
 
     env = {
       inherit plugins;
+      neovim = getExe neovim;
     };
 
-    dontPatch = true;
-    dontConfigure = true;
-    dontBuild = true;
-    dontFixup = true;
+    phases = ["unpackPhase installPhase"];
 
     installPhase = ''
       mkdir -p $out/share/snv
       substitute ./init.lua.in $out/share/snv/init.lua --subst-var out --subst-var plugins
       ln -s $src $out/share/snv/site
 
-      makeWrapper ${neovimExe} $out/bin/snv --argv0 snv ${wrapperArgs}
-      makeWrapper ${neovimExe} $out/bin/snv-dev --argv0 snv-dev --add-flags '--cmd "lua vim.g.snv_dev=true"' ${wrapperArgs}
-      makeWrapper ${neovimExe} $out/bin/snv-profile --argv0 snv-profile --add-flags '--cmd "lua vim.g.snv_dev=true" --cmd "lua vim.g.snv_profile=true"' ${wrapperArgs}
+      makeBinaryWrapper $neovim $out/bin/snv \
+        --inherit-argv0 \
+        --add-flag -u --add-flag $out/share/snv/init.lua \
+        --suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs} \
+        --suffix PATH : ${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}
+      ln -s $out/bin/snv $out/bin/snv-dev
+      ln -s $out/bin/snv $out/bin/snv-profile
     '';
 
     passthru = {
