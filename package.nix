@@ -237,15 +237,13 @@ self: {
     # keep-sorted end
   ];
 
-  searchPaths = [
-    "${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"
-  ];
+  searchPaths = ["${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"];
 
-  allStartPlugins = startPlugins ++ extraStartPlugins;
-  allOptPlugins = optPlugins ++ extraOptPlugins;
   allLibs = libs ++ extraLibs;
+  allOptPlugins = optPlugins ++ extraOptPlugins;
   allPackages = packages ++ extraPackages;
   allSearchPaths = searchPaths ++ extraSearchPaths;
+  allStartPlugins = startPlugins ++ extraStartPlugins;
 
   mkPluginPaths = type:
     map (plugin: {
@@ -256,8 +254,7 @@ self: {
   plugins = linkFarm "snv-plugins" pluginPaths;
 
   neovim = self.inputs.neovim-nightly-overlay.packages.${system}.neovim.overrideAttrs {
-    # the defaults are unused at runtime, because nvim-treesitter parsers take precedence.
-    treesitter-parsers = {};
+    treesitter-parsers = {}; # the defaults are unused at runtime, because nvim-treesitter parsers take precedence.
   };
 in
   stdenvNoCC.mkDerivation {
@@ -300,7 +297,9 @@ in
     '';
 
     passthru = {
-      inherit neovim;
+      inherit neovim rust-analyzer;
+      inherit allLibs allOptPlugins allPackages allSearchPaths allStartPlugins;
+      vimPlugins = {inherit blink-cmp blink-pairs blink-lib clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime tiny-code-action-nvim unnest-nvim;};
     };
 
     meta = {
