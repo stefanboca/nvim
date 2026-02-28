@@ -72,51 +72,6 @@ now_if_args(function()
 
   local function rename(ev) Snacks.rename.on_rename_file(ev.data.from, ev.data.to) end
   _G.Config.new_autocmd("User", "MiniFilesActionRename", rename, "Rename file")
-
-  local widths = { 50, 40, 30, 20 }
-  local heights = { 40, 36, 32, 28 }
-  local function reposition(ev)
-    local state = MiniFiles.get_explorer_state() or {}
-    local windows = state.windows or {}
-    local win_ids = vim.tbl_map(function(w) return w.win_id end, windows)
-
-    local function idx(win_id)
-      for i, id in ipairs(win_ids) do
-        if id == win_id then return i end
-      end
-    end
-
-    local this_win_idx = idx(ev.data.win_id)
-    local focused_win_idx = idx(vim.api.nvim_get_current_win())
-    if not (this_win_idx and focused_win_idx) then return end
-
-    local ret, err = vim.uv.fs_stat(windows[this_win_idx].path)
-    local is_preview = not err and ret and ret.type == "file"
-
-    local idx_offset = this_win_idx - focused_win_idx
-    local abs_idx_offset = math.abs(idx_offset)
-
-    local offset = 0
-    local shift = idx_offset < 0 and 1 or 0
-    for i = 1, abs_idx_offset do
-      local w = widths[i + shift] or widths[#widths]
-      offset = offset + w + 2
-    end
-    if idx_offset < 0 then offset = -offset end
-
-    local win_config = vim.api.nvim_win_get_config(ev.data.win_id)
-    win_config.col = math.floor(0.5 * (vim.o.columns - widths[1]) + offset)
-    if is_preview and idx_offset == 1 then
-      win_config.width = vim.o.columns - win_config.col - 2
-    else
-      win_config.width = widths[abs_idx_offset + 1] or widths[#widths]
-    end
-    win_config.height = heights[abs_idx_offset + 1] or heights[#heights]
-    win_config.row = math.floor(0.5 * (vim.o.lines - win_config.height))
-
-    vim.api.nvim_win_set_config(ev.data.win_id, win_config)
-  end
-  _G.Config.new_autocmd("User", "MiniFilesWindowUpdate", reposition, "Reposition mini.files to center")
 end)
 
 later(function() require("mini.extra").setup() end)
