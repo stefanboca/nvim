@@ -262,7 +262,7 @@ self: {
 in
   stdenvNoCC.mkDerivation {
     pname = "snv";
-    version = "0.0.0+rev=${self.shortRev or self.dirtyShortRev}";
+    version = "1.0.0";
 
     strictDeps = true;
     preferLocalBuild = true;
