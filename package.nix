@@ -45,7 +45,6 @@ self: {
   vscode-extensions,
   vscode-langservers-extracted,
   vtsls,
-  wl-clipboard,
   yaml-language-server,
   zls,
   # keep-sorted end
@@ -231,7 +230,6 @@ self: {
     typstyle # typst
     vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
     vtsls # typescript
-    wl-clipboard
     yaml-language-server
     zls # zig
     # keep-sorted end
