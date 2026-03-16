@@ -83,6 +83,10 @@ self: {
   blink-lib = buildVimPlugin {
     pname = "blink.lib";
     src = self.inputs.blink-lib;
+    nvimSkipModules = [
+      # TODO: remove once fixed
+      "blink.lib.build.init"
+    ];
   };
   clasp-nvim = buildVimPlugin {
     pname = "clasp.nvim";
