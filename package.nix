@@ -62,19 +62,28 @@ self: {
   extraSearchPaths ? [],
   ...
 }: let
+  inherit (builtins) catAttrs concatStringsSep genericClosure isList;
   inherit (lib.fileset) fileFilter toSource unions;
-  inherit (lib.lists) concatMap unique;
   inherit (lib.meta) getExe;
-  inherit (lib.strings) concatStringsSep getName makeBinPath makeLibraryPath;
+  inherit (lib.strings) getName makeBinPath makeLibraryPath;
 
   inherit (stdenvNoCC.hostPlatform) system;
   buildVimPlugin = attrs: vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
-  allDeps = plugins:
-    concatMap (p:
-      if p ? dependencies && p.dependencies != []
-      then [p] ++ allDeps p.dependencies
-      else [p])
-    plugins;
+
+  depsClosure = let
+    toItem = d: {
+      key = d.outPath;
+      value = d;
+    };
+  in
+    plugins:
+      catAttrs "value" (genericClosure {
+        startSet =
+          if isList plugins
+          then map toItem plugins
+          else [(toItem plugins)];
+        operator = item: map toItem (item.value.dependencies or []);
+      });
 
   inherit (self.inputs.blink-cmp.packages.${system}) blink-cmp;
   inherit (self.inputs.blink-pairs.packages.${system}) blink-pairs;
@@ -103,7 +112,7 @@ self: {
   nvim-treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
   nvim-treesitter-runtime = symlinkJoin {
     name = "nvim-treesitter-runtime";
-    paths = unique (allDeps nvim-treesitter.dependencies);
+    paths = depsClosure nvim-treesitter;
   };
   tiny-code-action-nvim = buildVimPlugin {
     pname = "tiny-code-action.nvim";
