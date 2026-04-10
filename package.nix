@@ -94,7 +94,7 @@ self: {
     src = self.inputs.blink-lib;
     nvimSkipModules = [
       # TODO: remove once fixed
-      "blink.lib.build.init"
+      "blink.lib.native.init"
     ];
   };
   clasp-nvim = buildVimPlugin {
