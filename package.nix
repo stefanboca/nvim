@@ -264,9 +264,7 @@ self: {
   pluginPaths = (mkPluginPaths "start" allStartPlugins) ++ (mkPluginPaths "opt" allOptPlugins);
   plugins = linkFarm "snv-plugins" pluginPaths;
 
-  neovim = self.inputs.neovim-nightly-overlay.packages.${system}.neovim.overrideAttrs {
-    treesitter-parsers = {}; # the defaults are unused at runtime, because nvim-treesitter parsers take precedence.
-  };
+  inherit (self.inputs.neovim-nightly-overlay.packages.${system}) neovim;
 in
   stdenvNoCC.mkDerivation {
     pname = "snv";
