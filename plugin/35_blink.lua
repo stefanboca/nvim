@@ -99,7 +99,6 @@ now_if_args(function()
 
     fuzzy = {
       implementation = "rust",
-      prebuilt_binaries = { download = false },
     },
 
     signature = {
