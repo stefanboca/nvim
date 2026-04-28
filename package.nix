@@ -297,6 +297,7 @@ in
       makeBinaryWrapper $neovim/bin/nvim $out/bin/snv \
         --inherit-argv0 \
         --add-flag -u --add-flag $out/share/snv/init.lua \
+        --set NVIM_APPNAME snv \
         --suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs} \
         --suffix PATH : ${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}
       ln -s $out/bin/snv $out/bin/snv-dev
