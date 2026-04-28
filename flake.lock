@@ -2,7 +2,9 @@
   "nodes": {
     "blink-cmp": {
       "inputs": {
-        "blink-lib": "blink-lib",
+        "blink-lib": [
+          "blink-lib"
+        ],
         "flake-parts": [
           "flake-parts"
         ],
@@ -27,30 +29,12 @@
     "blink-lib": {
       "inputs": {
         "flake-parts": [
-          "blink-cmp",
           "flake-parts"
         ],
         "nixpkgs": [
-          "blink-cmp",
           "nixpkgs"
         ]
       },
-      "locked": {
-        "lastModified": 1776816558,
-        "narHash": "sha256-JDIe7FqcIDhApKWE3o19vNe1OrEprtqnLPWUaeBoidU=",
-        "owner": "saghen",
-        "repo": "blink.lib",
-        "rev": "b7c3a6cd97c9dd83e774308891643ae6f7ea2de8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "saghen",
-        "repo": "blink.lib",
-        "type": "github"
-      }
-    },
-    "blink-lib_2": {
-      "flake": false,
       "locked": {
         "lastModified": 1777065460,
         "narHash": "sha256-Wr7r7445c2bjuG8tjrHR6kCBh7xsk/0hQ4HW2yW3YeA=",
@@ -236,7 +220,7 @@
     "root": {
       "inputs": {
         "blink-cmp": "blink-cmp",
-        "blink-lib": "blink-lib_2",
+        "blink-lib": "blink-lib",
         "blink-pairs": "blink-pairs",
         "clasp-nvim": "clasp-nvim",
         "fenix": "fenix",

@@ -21,12 +21,16 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        blink-lib.follows = "blink-lib";
       };
     };
 
     blink-lib = {
       url = "github:saghen/blink.lib";
-      flake = false;
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     blink-pairs = {

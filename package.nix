@@ -11,6 +11,7 @@ self: {
   emmylua-ls,
   fd,
   fish-lsp,
+  ghostty,
   glsl_analyzer,
   graphviz,
   hadolint,
@@ -86,17 +87,10 @@ self: {
       });
 
   inherit (self.inputs.blink-cmp.packages.${system}) blink-cmp;
+  inherit (self.inputs.blink-lib.packages.${system}) blink-lib;
   inherit (self.inputs.blink-pairs.packages.${system}) blink-pairs;
   inherit (self.inputs.fenix.packages.${system}) rust-analyzer;
   # keep-sorted start block=yes
-  blink-lib = buildVimPlugin {
-    pname = "blink.lib";
-    src = self.inputs.blink-lib;
-    nvimSkipModules = [
-      # TODO: remove once fixed
-      "blink.lib.native.init"
-    ];
-  };
   clasp-nvim = buildVimPlugin {
     pname = "clasp.nvim";
     src = self.inputs.clasp-nvim;
@@ -104,6 +98,10 @@ self: {
   filler-begone-nvim = buildVimPlugin {
     pname = "filler-begone.nvim";
     src = self.inputs.filler-begone-nvim;
+  };
+  ghostty' = vimUtils.buildVimPlugin {
+    inherit (ghostty) pname version;
+    src = ghostty.vim;
   };
   jj-diffconflicts = buildVimPlugin {
     pname = "jj-diffconflicts";
@@ -135,6 +133,7 @@ self: {
       # keep-sorted start
       clasp-nvim
       filler-begone-nvim
+      ghostty'
       jj-diffconflicts
       nvim-treesitter
       unnest-nvim
