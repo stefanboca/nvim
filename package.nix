@@ -284,8 +284,7 @@ in
     nativeBuildInputs = [makeBinaryWrapper];
 
     env = {
-      inherit plugins;
-      neovim = getExe neovim;
+      inherit plugins neovim;
     };
 
     phases = ["unpackPhase installPhase"];
@@ -295,7 +294,7 @@ in
       substitute ./init.lua.in $out/share/snv/init.lua --subst-var out --subst-var plugins
       ln -s $src $out/share/snv/site
 
-      makeBinaryWrapper $neovim $out/bin/snv \
+      makeBinaryWrapper $neovim/bin/nvim $out/bin/snv \
         --inherit-argv0 \
         --add-flag -u --add-flag $out/share/snv/init.lua \
         --suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs} \

@@ -12,39 +12,28 @@ local argv0 = vim.v.argv[1]
 if string.match(argv0, "snv%-profile$") then vim.g.snv_profile = true end
 if vim.g.snv_profile or string.match(argv0, "snv%-dev$") then vim.g.snv_dev = true end
 
-local whitelist = {
-  "^/run/current%-system/sw/share/",
-  "^/etc/profiles/per%-user/[^/]+/share/",
-  "^/nix/store/",
-  "^" .. vim.pesc(vim.fn.stdpath("data")),
-}
-if vim.g.snv_dev then table.insert(whitelist, "^" .. vim.pesc(vim.fn.stdpath("config"))) end
-
-local function keep_path(path)
-  local matches_whitelist = vim.iter(whitelist):any(function(pattern) return string.find(path, pattern) ~= nil end)
-  return matches_whitelist and vim.uv.fs_stat(path) ~= nil
-end
-local function clean(paths) return vim.iter(paths):filter(keep_path):totable() end
-
-local pp = clean(vim.opt.packpath:get())
-local rtp = clean(vim.opt.runtimepath:get())
-
-table.insert(pp, 1, "@plugins@")
-
--- Save this path in a global for use with ts_query_ls
+-- Save this for use with ts_query_ls
 vim.g.treesitter_runtime_dir = "@plugins@/pack/plugins/opt/nvim-treesitter-runtime"
--- Insert treesitter parsers and queries to runtimepath before $VIMRUNTIME, but after config
--- This prioritizes nvim-treesitter above $VIMRUNTIME, but below custom queries in this repo
-local idx = vim.iter(rtp):enumerate():find(function(_, path) return string.find(path, "share/nvim/runtime$") ~= nil end)
-table.insert(rtp, idx, vim.g.treesitter_runtime_dir)
 
-if not vim.g.snv_dev then
-  table.insert(rtp, 1, "@out@/share/snv/site")
-  table.insert(rtp, "@out@/share/snv/site/after")
-end
-
-vim.opt.packpath = pp
-vim.opt.runtimepath = rtp
+local site = vim.fn.stdpath("data") .. "/site"
+local config = vim.g.snv_dev and vim.fn.stdpath("config") or "@out@/share/snv/site"
+vim.opt.packpath = {
+  "@plugins@",
+  site,
+  vim.env.VIMRUNTIME,
+  vim.fs.normalize(vim.env.VIMRUNTIME .. "/../../../lib/nvim"),
+}
+vim.opt.runtimepath = {
+  config,
+  site,
+  -- treesitter needs to come before $VIMRUNTIME in order to be prioritized
+  -- above the builtin queries. otherwise, putting nvim-treesitter-runtime in
+  -- start would have been better.
+  vim.g.treesitter_runtime_dir,
+  vim.env.VIMRUNTIME,
+  site .. "/after",
+  config .. "/after",
+}
 
 if vim.g.snv_profile then
   vim.cmd.packadd("snacks.nvim")
