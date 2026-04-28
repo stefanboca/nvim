@@ -64,8 +64,7 @@ self: {
   ...
 }: let
   inherit (builtins) catAttrs concatStringsSep genericClosure isList;
-  inherit (lib.fileset) fileFilter toSource unions;
-  inherit (lib.meta) getExe;
+  inherit (lib.fileset) toSource unions;
   inherit (lib.strings) getName makeBinPath makeLibraryPath;
 
   inherit (stdenvNoCC.hostPlatform) system;
@@ -275,8 +274,10 @@ in
     src = toSource {
       root = ./.;
       fileset = unions [
-        (fileFilter (file: file.hasExt "lua") ./.)
-        (fileFilter (file: file.hasExt "scm") ./.)
+        ./after
+        ./plugin
+        ./queries
+        ./snippets
         ./init.lua.in
       ];
     };
