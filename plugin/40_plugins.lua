@@ -270,7 +270,7 @@ end)
 
 later(function()
   packadd("trouble.nvim")
-  require("trouble").setup({ focus = true, auto_preview = false, preview = { type = "float" } })
+  require("trouble").setup({ focus = true, preview = { type = "float" } })
 end)
 
 later(function()
