@@ -82,7 +82,7 @@ later(function()
   })
 end)
 
-later(function() require("mini.align").setup() end)
+later(function() require("mini.align").setup({ mappings = { start_with_preview = "" } }) end)
 
 later(function() require("mini.bracketed").setup() end)
 
