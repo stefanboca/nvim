@@ -20,17 +20,13 @@
       url = "github:saghen/blink.cmp";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
         blink-lib.follows = "blink-lib";
       };
     };
 
     blink-lib = {
-      url = "github:saghen/blink.lib";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
+      url = "github:stefanboca/blink.lib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     blink-pairs = {
@@ -38,7 +34,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         fenix.follows = "fenix";
-        flake-parts.follows = "flake-parts";
       };
     };
 
@@ -74,7 +69,7 @@
     # keep-sorted end
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     treefmt-nix,
@@ -86,7 +81,16 @@
     systems = ["x86_64-linux" "aarch64-linux"];
 
     forAllSystems = genAttrs systems;
-    nixpkgsFor = forAllSystems (system: nixpkgs.legacyPackages.${system});
+    nixpkgsFor = forAllSystems (system:
+      import nixpkgs {
+        inherit system;
+        overlays = [
+          inputs.blink-lib.overlays.default
+          inputs.blink-cmp.overlays.default
+          inputs.blink-pairs.overlays.default
+          inputs.fenix.overlays.default
+        ];
+      });
     treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
 
     snv-package = import ./package.nix self;

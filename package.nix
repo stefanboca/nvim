@@ -85,8 +85,6 @@ self: {
         operator = item: map toItem (item.value.dependencies or []);
       });
 
-  inherit (self.inputs.blink-cmp.packages.${system}) blink-cmp;
-  inherit (self.inputs.blink-lib.packages.${system}) blink-lib;
   inherit (self.inputs.blink-pairs.packages.${system}) blink-pairs;
   inherit (self.inputs.fenix.packages.${system}) rust-analyzer;
   # keep-sorted start block=yes
@@ -156,8 +154,6 @@ self: {
   optPlugins =
     [
       # keep-sorted start
-      blink-cmp
-      blink-lib
       blink-pairs
       nvim-treesitter-runtime # manually added to rtp in init.lua
       tiny-code-action-nvim
@@ -165,7 +161,9 @@ self: {
     ]
     ++ (with vimPlugins; [
       # keep-sorted start
+      blink-cmp
       blink-indent
+      blink-lib
       conform-nvim
       crates-nvim
       dial-nvim
@@ -308,7 +306,7 @@ in
     passthru = {
       inherit neovim rust-analyzer;
       inherit allLibs allOptPlugins allPackages allSearchPaths allStartPlugins;
-      vimPlugins = {inherit blink-cmp blink-pairs blink-lib clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime tiny-code-action-nvim unnest-nvim;};
+      vimPlugins = {inherit blink-pairs clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime tiny-code-action-nvim unnest-nvim;};
     };
 
     meta = {
