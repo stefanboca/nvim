@@ -14,7 +14,6 @@ MiniDeps.now(function()
       grug_far = true,
       lsp_trouble = true,
       mini = { enabled = true },
-      neogit = true,
       neotest = true,
       snacks = { enabled = true },
       treesitter_context = true,

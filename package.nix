@@ -172,7 +172,6 @@ self: {
       lean-nvim
       live-rename-nvim
       neogen
-      neogit
       neotest
       neotest-python
       nvim-dap

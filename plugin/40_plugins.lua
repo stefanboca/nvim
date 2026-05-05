@@ -282,11 +282,6 @@ later(function()
 end)
 
 later(function()
-  packadd("neogit")
-  require("neogit").setup({})
-end)
-
-later(function()
   packadd("quicker.nvim")
   local quicker = require("quicker")
   quicker.setup({
