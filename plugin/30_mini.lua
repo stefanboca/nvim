@@ -91,7 +91,10 @@ later(function() require("mini.bufremove").setup() end)
 later(function()
   local miniclue = require("mini.clue")
   miniclue.setup({
-    window = { delay = vim.o.timeoutlen },
+    window = {
+      delay = vim.o.timeoutlen,
+      config = { width = "auto" },
+    },
     clues = {
       _G.Config.leader_group_clues,
       miniclue.gen_clues.builtin_completion(),
