@@ -286,6 +286,22 @@ later(function()
   require("neogit").setup({})
 end)
 
+later(function()
+  packadd("quicker.nvim")
+  local quicker = require("quicker")
+  quicker.setup({
+    follow = { enabled = true },
+    keys = {
+      {
+        ">",
+        function() quicker.expand({ before = 2, after = 2, add_to_existing = true }) end,
+        desc = "Expand quickfix context",
+      },
+      { "<", quicker.collapse, desc = "Collapse quickfix context" },
+    },
+  })
+end)
+
 _G.Config.on_cmd("DiffEditor", function()
   packadd("hunk.nvim")
 

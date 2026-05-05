@@ -185,6 +185,7 @@ self: {
       nvim-treesitter-textobjects
       nvim-ts-autotag
       one-small-step-for-vimkind
+      quicker-nvim
       snacks-nvim
       toggleterm-nvim
       trouble-nvim
