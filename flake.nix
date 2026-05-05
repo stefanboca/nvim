@@ -84,6 +84,7 @@
     nixpkgsFor = forAllSystems (system:
       import nixpkgs {
         inherit system;
+        config.allowUnfree = true;
         overlays = [
           inputs.blink-lib.overlays.default
           inputs.blink-cmp.overlays.default
