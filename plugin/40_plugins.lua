@@ -35,7 +35,15 @@ now_if_args(function()
     max_lines = 3,
   })
 
-  vim.filetype.add({ extension = { koto = "koto" } })
+  vim.filetype.add({
+    extension = {
+      koto = "koto",
+      caddy = "caddy",
+    },
+    filename = {
+      Caddyfile = "caddy",
+    },
+  })
 end)
 
 now_if_args(function()
@@ -111,6 +119,7 @@ later(function()
           return vim.api.nvim_buf_call(ctx.buf, function() return vim.fn.search("keep-sorted", "nw") ~= 0 end)
         end,
       },
+      caddy = { command = "caddy", args = { "fmt", "--overwrite", "--", "$FILENAME" }, stdin = false },
       koto = { command = "koto", args = { "--format" } },
       typstyle = {
         prepend_args = function(_, ctx)
@@ -124,6 +133,7 @@ later(function()
       -- keep-sorted start
       astro = { "biome" },
       c = { "clang-format" },
+      caddy = { "caddy" },
       cpp = { "clang-format" },
       css = { "biome" },
       docker = { "dockerfmt" },

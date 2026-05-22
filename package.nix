@@ -3,6 +3,7 @@ self: {
   alejandra,
   bash-language-server,
   biome,
+  caddy,
   clang-tools,
   cmake-lint,
   deadnix,
@@ -198,6 +199,7 @@ self: {
     alejandra # nix
     bash-language-server
     biome
+    caddy
     clang-tools # c/cpp
     cmake-lint
     deadnix # nix
