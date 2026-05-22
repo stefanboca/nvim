@@ -99,10 +99,12 @@
     packages = forAllSystems (system: rec {
       default = snv;
       snv = nixpkgsFor.${system}.callPackage snv-package {};
+      snv-minimal = snv.override {minimal = true;};
     });
 
     overlays.default = final: _: {
       snv = final.callPackage snv-package {};
+      snv-minimal = final.snv.override {minimal = true;};
     };
 
     formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);

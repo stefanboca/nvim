@@ -57,6 +57,7 @@ self: {
   symlinkJoin,
   vimPlugins,
   vimUtils,
+  minimal ? false,
   extraStartPlugins ? [],
   extraOptPlugins ? [],
   extraLibs ? [],
@@ -66,7 +67,8 @@ self: {
 }: let
   inherit (builtins) catAttrs concatStringsSep genericClosure isList;
   inherit (lib.fileset) toSource unions;
-  inherit (lib.strings) getName makeBinPath makeLibraryPath;
+  inherit (lib.lists) optional optionals;
+  inherit (lib.strings) getName makeBinPath makeLibraryPath optionalString;
 
   inherit (stdenvNoCC.hostPlatform) system;
   buildVimPlugin = attrs: vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
@@ -105,7 +107,45 @@ self: {
     pname = "jj-diffconflicts";
     src = self.inputs.jj-diffconflicts;
   };
-  nvim-treesitter = vimPlugins.nvim-treesitter.withAllGrammars;
+  nvim-treesitter =
+    if minimal
+    then
+      vimPlugins.nvim-treesitter.withPlugins (p:
+        with p; [
+          # keep-sorted start
+          bash
+          c
+          comment
+          csv
+          fish
+          git-config
+          git-rebase
+          gitattributes
+          gitcommit
+          gitignore
+          ini
+          json
+          json5
+          lua
+          luadoc
+          luap
+          make
+          markdown
+          markdown-inline
+          ninja
+          printf
+          python
+          regex
+          rust
+          toml
+          udev
+          vim
+          vimdoc
+          xml
+          yaml
+          # keep-sorted end
+        ])
+    else vimPlugins.nvim-treesitter.withAllGrammars;
   nvim-treesitter-runtime = symlinkJoin {
     name = "nvim-treesitter-runtime";
     paths = depsClosure nvim-treesitter;
@@ -192,61 +232,66 @@ self: {
       # keep-sorted end
     ]);
 
-  libs = [sqlite];
+  libs = optional (!minimal) sqlite;
 
-  packages = [
-    # keep-sorted start
-    alejandra # nix
-    bash-language-server
-    biome
-    caddy
-    clang-tools # c/cpp
-    cmake-lint
-    deadnix # nix
-    docker-language-server
-    dockerfmt
-    emmylua-ls # lua
-    fd
-    fish-lsp
-    glsl_analyzer
-    graphviz # for crate graph visualtization
-    hadolint # docker
-    harper
-    inotify-tools
-    jdt-language-server # java
-    just-lsp
-    kdlfmt
-    keep-sorted
-    koto-ls
-    lspmux
-    lua-language-server
-    markdownlint-cli2
-    marksman # markdown
-    neocmakelsp # cmake
-    nil # nix
-    prettierd
-    python313Packages.debugpy
-    ripgrep
-    ruff # python
-    rust-analyzer
-    shfmt
-    statix # nix
-    stylua # lua
-    svelte-language-server
-    tailwindcss-language-server
-    tinymist # typst
-    tombi # toml
-    ts_query_ls
-    ty # python
-    typstyle # typst
-    vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
-    vtsls # typescript
-    yaml-language-server
-    zls # zig
-    # keep-sorted end
-  ];
+  packages =
+    [
+      # keep-sorted start
+      fd
+      inotify-tools
+      ripgrep
+      # keep-sorted end
+    ]
+    ++ optionals (!minimal) [
+      # keep-sorted start
+      alejandra # nix
+      bash-language-server
+      biome
+      caddy
+      clang-tools # c/cpp
+      cmake-lint
+      deadnix # nix
+      docker-language-server
+      dockerfmt
+      emmylua-ls # lua
+      fish-lsp
+      glsl_analyzer
+      graphviz # for crate graph visualtization
+      hadolint # docker
+      harper
+      jdt-language-server # java
+      just-lsp
+      kdlfmt
+      keep-sorted
+      koto-ls
+      lspmux
+      lua-language-server
+      markdownlint-cli2
+      marksman # markdown
+      neocmakelsp # cmake
+      nil # nix
+      prettierd
+      python313Packages.debugpy
+      ruff # python
+      rust-analyzer
+      shfmt
+      statix # nix
+      stylua # lua
+      svelte-language-server
+      tailwindcss-language-server
+      tinymist # typst
+      tombi # toml
+      ts_query_ls
+      ty # python
+      typstyle # typst
+      vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
+      vtsls # typescript
+      yaml-language-server
+      zls # zig
+      # keep-sorted end
+    ];
 
-  searchPaths = ["${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"];
+  searchPaths = optional (!minimal) "${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter";
 
   allLibs = libs ++ extraLibs;
   allOptPlugins = optPlugins ++ extraOptPlugins;
@@ -265,7 +310,7 @@ self: {
   inherit (self.inputs.neovim-nightly-overlay.packages.${system}) neovim;
 in
   stdenvNoCC.mkDerivation {
-    pname = "snv";
+    pname = "snv" + (optionalString (!minimal) "-minimal");
     version = "1.0.0";
 
     strictDeps = true;
@@ -299,7 +344,7 @@ in
         --inherit-argv0 \
         --add-flag -u --add-flag $out/share/snv/init.lua \
         --set NVIM_APPNAME snv \
-        --suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs} \
+        ${optionalString (allLibs != []) (makeLibraryPath allLibs)} \
         --suffix PATH : ${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}
       ln -s $out/bin/snv $out/bin/snv-dev
       ln -s $out/bin/snv $out/bin/snv-profile
