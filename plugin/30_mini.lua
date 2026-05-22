@@ -61,9 +61,6 @@ now_if_args(function()
 
   local function add_marks() MiniFiles.set_bookmark("w", vim.fn.getcwd(), { desc = "Working directory" }) end
   _G.Config.new_autocmd("User", "MiniFilesExplorerOpen", add_marks, "Add bookmarks")
-
-  local function rename(ev) Snacks.rename.on_rename_file(ev.data.from, ev.data.to) end
-  _G.Config.new_autocmd("User", "MiniFilesActionRename", rename, "Rename file")
 end)
 
 later(function() require("mini.extra").setup() end)
