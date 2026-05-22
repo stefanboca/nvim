@@ -310,7 +310,7 @@ self: {
   inherit (self.inputs.neovim-nightly-overlay.packages.${system}) neovim;
 in
   stdenvNoCC.mkDerivation {
-    pname = "snv" + (optionalString (!minimal) "-minimal");
+    pname = "snv${optionalString minimal "-minimal"}";
     version = "1.0.0";
 
     strictDeps = true;
@@ -344,8 +344,8 @@ in
         --inherit-argv0 \
         --add-flag -u --add-flag $out/share/snv/init.lua \
         --set NVIM_APPNAME snv \
-        ${optionalString (allLibs != []) "--suffix LD_LIBRARY_PATH : ${makeLibraryPath allLibs}"} \
-        --suffix PATH : ${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}
+        --suffix LD_LIBRARY_PATH : '${makeLibraryPath allLibs}' \
+        --suffix PATH : '${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}'
       ln -s $out/bin/snv $out/bin/snv-dev
       ln -s $out/bin/snv $out/bin/snv-profile
     '';
