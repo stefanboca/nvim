@@ -31,10 +31,7 @@
 
     blink-pairs = {
       url = "github:saghen/blink.pairs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        fenix.follows = "fenix";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     clasp-nvim = {
