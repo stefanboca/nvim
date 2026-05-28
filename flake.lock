@@ -43,18 +43,40 @@
         "type": "github"
       }
     },
+    "blink-lib_2": {
+      "inputs": {
+        "nixpkgs": [
+          "blink-pairs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779999494,
+        "narHash": "sha256-0oQfbISX+VQKPTyFm+V8kHtudDXnJoCCaMYutZ82gUw=",
+        "owner": "saghen",
+        "repo": "blink.lib",
+        "rev": "41bc1199dd1f5f0687efbd522061b22002c2d4c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saghen",
+        "repo": "blink.lib",
+        "type": "github"
+      }
+    },
     "blink-pairs": {
       "inputs": {
+        "blink-lib": "blink-lib_2",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1780003452,
-        "narHash": "sha256-nDWzyJtTYCAerXvbht957ggPrScjz37qsSe3rIAV2gg=",
+        "lastModified": 1780006069,
+        "narHash": "sha256-eSduKdtKRSUqFozrQAZBJS+Korvrx5bzdc9chO3uH/s=",
         "owner": "saghen",
         "repo": "blink.pairs",
-        "rev": "9d6f819404cbc442e4ba00b22e421f2edcde90ab",
+        "rev": "276554fa64a6f6c3866181cc655498948184878c",
         "type": "github"
       },
       "original": {
