@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779999503,
-        "narHash": "sha256-Ehax7v6+sL12RhOyCvMInycmY5KnxGNJX4Xm4jiuDqI=",
+        "lastModified": 1780005425,
+        "narHash": "sha256-BHc3BpaLgdWTRVotFW1KoRVARfKnJ4ZVzAJiSfyuYbo=",
         "owner": "saghen",
         "repo": "blink.cmp",
-        "rev": "ada8af0627f98c8f019cc4cb37523456a7b08a92",
+        "rev": "56507d063ff412baf49a359e7f57d8473a8b6547",
         "type": "github"
       },
       "original": {
