@@ -25,7 +25,7 @@
     };
 
     blink-lib = {
-      url = "github:stefanboca/blink.lib";
+      url = "github:saghen/blink.lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
