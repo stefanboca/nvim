@@ -1,20 +1,10 @@
 local now_if_args = _G.Config.now_if_args
-local packadd = vim.cmd.packadd
+local packadd = _G.Config.packadd
 
-MiniDeps.now(function()
-  if vim.env.SNV_DEV ~= "blink.lib" then
-    packadd("blink.lib")
-  else
-    packadd("blink.lib.dev")
-  end
-end)
+MiniDeps.now(function() packadd("blink.lib") end)
 
 now_if_args(function()
-  if vim.env.SNV_DEV ~= "blink.indent" then
-    packadd("blink.indent")
-  else
-    packadd("blink.indent.dev")
-  end
+  packadd("blink.indent")
 
   require("blink.indent").setup({
     scope = {
@@ -32,11 +22,7 @@ now_if_args(function()
 end)
 
 now_if_args(function()
-  if vim.env.SNV_DEV ~= "blink.pairs" then
-    packadd("blink.pairs")
-  else
-    packadd("blink.pairs.dev")
-  end
+  packadd("blink.pairs")
 
   require("blink.pairs").setup({
     highlights = {
@@ -58,11 +44,7 @@ now_if_args(function()
 end)
 
 now_if_args(function()
-  if vim.env.SNV_DEV ~= "blink.cmp" then
-    packadd("blink.cmp")
-  else
-    packadd("blink.cmp.dev")
-  end
+  packadd("blink.cmp")
 
   require("blink.cmp").setup({
     appearance = {

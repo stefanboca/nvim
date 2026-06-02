@@ -97,3 +97,18 @@ end
 function _G.Config.nmapb_lleader(suffix, rhs, desc, buffer)
   vim.keymap.set("n", "<LocalLeader>" .. suffix, rhs, { desc = desc, buffer = buffer or 0 })
 end
+
+local dev_plugins = {}
+for d in string.gmatch(vim.env.SNV_DEV or "", "[a-z.]+") do
+  table.insert(dev_plugins, d)
+end
+
+---@param plugin string
+function _G.Config.packadd(plugin)
+  if vim.tbl_contains(dev_plugins, plugin) then
+    print(plugin)
+    vim.cmd.packadd(plugin .. ".dev")
+  else
+    vim.cmd.packadd(plugin)
+  end
+end

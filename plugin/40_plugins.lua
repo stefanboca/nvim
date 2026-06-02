@@ -1,9 +1,5 @@
 local now_if_args, later = _G.Config.now_if_args, MiniDeps.later
-local packadd = vim.cmd.packadd
-
--- now(function()
---   add("lewis6991/async.nvim")
--- end)
+local packadd = _G.Config.packadd
 
 now_if_args(function()
   packadd("nvim-treesitter-textobjects")
