@@ -65,6 +65,7 @@ now_if_args(function()
     "neocmake",
     "nil_ls",
     "ruff",
+    "starpls",
     "svelte",
     "tailwindcss",
     "tinymist",
@@ -128,6 +129,7 @@ later(function()
       ["*"] = { "keep-sorted" },
       -- keep-sorted start
       astro = { "biome" },
+      bzl = { "buildifier" },
       c = { "clang-format" },
       caddy = { "caddy" },
       cpp = { "clang-format" },

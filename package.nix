@@ -2,6 +2,7 @@ self: {
   # keep-sorted start
   alejandra,
   bash-language-server,
+  bazel-buildtools,
   biome,
   caddy,
   clang-tools,
@@ -35,6 +36,7 @@ self: {
   ruff,
   shfmt,
   sqlite,
+  starpls,
   statix,
   stylua,
   svelte-language-server,
@@ -246,6 +248,7 @@ self: {
       # keep-sorted start
       alejandra # nix
       bash-language-server
+      bazel-buildtools
       biome
       caddy
       clang-tools # c/cpp
@@ -275,6 +278,7 @@ self: {
       ruff # python
       rust-analyzer
       shfmt
+      starpls # bazel, starlark
       statix # nix
       stylua # lua
       svelte-language-server
