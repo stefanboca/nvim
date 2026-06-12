@@ -100,16 +100,9 @@
       snv-minimal = snv.override {minimal = true;};
     });
 
-    overlays.default = final: prev: {
+    overlays.default = final: _: {
       snv = final.callPackage snv-package {};
       snv-minimal = final.snv.override {minimal = true;};
-
-      # see https://github.com/nix-community/neovim-nightly-overlay/pull/1305
-      neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (prevAttrs: {
-        patches = builtins.filter (patch: !lib.hasInfix "CVE-2026-11487" (toString patch)) (
-          prevAttrs.patches or []
-        );
-      });
     };
 
     formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);
