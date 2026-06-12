@@ -83,10 +83,11 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.blink-lib.overlays.default
           inputs.blink-cmp.overlays.default
+          inputs.blink-lib.overlays.default
           inputs.blink-pairs.overlays.default
           inputs.fenix.overlays.default
+          inputs.neovim-nightly-overlay.overlays.default
         ];
       });
     treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
@@ -99,9 +100,16 @@
       snv-minimal = snv.override {minimal = true;};
     });
 
-    overlays.default = final: _: {
+    overlays.default = final: prev: {
       snv = final.callPackage snv-package {};
       snv-minimal = final.snv.override {minimal = true;};
+
+      # see https://github.com/nix-community/neovim-nightly-overlay/pull/1305
+      neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (prevAttrs: {
+        patches = builtins.filter (patch: !lib.hasInfix "CVE-2026-11487" (toString patch)) (
+          prevAttrs.patches or []
+        );
+      });
     };
 
     formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);

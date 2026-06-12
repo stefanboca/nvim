@@ -29,11 +29,13 @@ self: {
   markdownlint-cli2,
   marksman,
   neocmakelsp,
+  neovim-unwrapped,
   nil,
   prettierd,
   python313Packages,
   ripgrep,
   ruff,
+  rust-analyzer-nightly,
   shfmt,
   sqlite,
   starpls,
@@ -90,8 +92,6 @@ self: {
         operator = item: map toItem (item.value.dependencies or []);
       });
 
-  inherit (self.inputs.blink-pairs.packages.${system}) blink-pairs;
-  inherit (self.inputs.fenix.packages.${system}) rust-analyzer;
   # keep-sorted start block=yes
   clasp-nvim = buildVimPlugin {
     pname = "clasp.nvim";
@@ -197,7 +197,6 @@ self: {
   optPlugins =
     [
       # keep-sorted start
-      blink-pairs
       nvim-treesitter-runtime # manually added to rtp in init.lua
       tiny-code-action-nvim
       # keep-sorted end
@@ -207,6 +206,7 @@ self: {
       blink-cmp
       blink-indent
       blink-lib
+      blink-pairs
       conform-nvim
       crates-nvim
       dial-nvim
@@ -276,7 +276,7 @@ self: {
       prettierd
       python313Packages.debugpy
       ruff # python
-      rust-analyzer
+      rust-analyzer-nightly
       shfmt
       starpls # bazel, starlark
       statix # nix
@@ -310,8 +310,6 @@ self: {
     });
   pluginPaths = (mkPluginPaths "start" allStartPlugins) ++ (mkPluginPaths "opt" allOptPlugins);
   plugins = linkFarm "snv-plugins" pluginPaths;
-
-  inherit (self.inputs.neovim-nightly-overlay.packages.${system}) neovim;
 in
   stdenvNoCC.mkDerivation {
     pname = "snv${optionalString minimal "-minimal"}";
@@ -334,7 +332,7 @@ in
     nativeBuildInputs = [makeBinaryWrapper];
 
     env = {
-      inherit plugins neovim;
+      inherit plugins neovim-unwrapped;
     };
 
     phases = ["unpackPhase installPhase"];
@@ -344,7 +342,7 @@ in
       substitute ./init.lua.in $out/share/snv/init.lua --subst-var out --subst-var plugins
       ln -s $src $out/share/snv/site
 
-      makeBinaryWrapper $neovim/bin/nvim $out/bin/snv \
+      makeBinaryWrapper ${neovim-unwrapped}/bin/nvim $out/bin/snv \
         --inherit-argv0 \
         --add-flag -u --add-flag $out/share/snv/init.lua \
         --set NVIM_APPNAME snv \
@@ -355,9 +353,8 @@ in
     '';
 
     passthru = {
-      inherit neovim rust-analyzer;
       inherit allLibs allOptPlugins allPackages allSearchPaths allStartPlugins;
-      vimPlugins = {inherit blink-pairs clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime tiny-code-action-nvim unnest-nvim;};
+      vimPlugins = {inherit clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime tiny-code-action-nvim unnest-nvim;};
     };
 
     meta = {
