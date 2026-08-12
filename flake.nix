@@ -87,7 +87,7 @@
           inputs.blink-lib.overlays.default
           inputs.blink-pairs.overlays.default
           inputs.fenix.overlays.default
-          inputs.neovim-nightly-overlay.overlays.default
+          self.overlays.neovim-nightly
         ];
       });
     treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
@@ -100,9 +100,17 @@
       snv-minimal = snv.override {minimal = true;};
     });
 
-    overlays.default = final: _: {
-      snv = final.callPackage snv-package {};
-      snv-minimal = final.snv.override {minimal = true;};
+    overlays = {
+      default = final: _: {
+        snv = final.callPackage snv-package {};
+        snv-minimal = final.snv.override {minimal = true;};
+      };
+
+      neovim-nightly = final: prev: let
+        neovim-nightly = inputs.neovim-nightly-overlay.overlays.default final prev;
+      in {
+        neovim-nightly-unwrapped = neovim-nightly.neovim-unwrapped;
+      };
     };
 
     formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);

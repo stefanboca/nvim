@@ -29,7 +29,7 @@ self: {
   markdownlint-cli2,
   marksman,
   neocmakelsp,
-  neovim-unwrapped,
+  neovim-nightly-unwrapped,
   nil,
   prettierd,
   python313Packages,
@@ -72,9 +72,9 @@ self: {
   inherit (builtins) catAttrs concatStringsSep genericClosure isList;
   inherit (lib.fileset) toSource unions;
   inherit (lib.lists) optional optionals;
+  inherit (lib.meta) getExe;
   inherit (lib.strings) getName makeBinPath makeLibraryPath optionalString;
 
-  inherit (stdenvNoCC.hostPlatform) system;
   buildVimPlugin = attrs: vimUtils.buildVimPlugin ({version = "0.0.0+rev=${attrs.src.shortRev}";} // attrs);
 
   depsClosure = let
@@ -332,7 +332,7 @@ in
     nativeBuildInputs = [makeBinaryWrapper];
 
     env = {
-      inherit plugins neovim-unwrapped;
+      inherit plugins;
     };
 
     phases = ["unpackPhase installPhase"];
@@ -342,7 +342,7 @@ in
       substitute ./init.lua.in $out/share/snv/init.lua --subst-var out --subst-var plugins
       ln -s $src $out/share/snv/site
 
-      makeBinaryWrapper ${neovim-unwrapped}/bin/nvim $out/bin/snv \
+      makeBinaryWrapper ${getExe neovim-nightly-unwrapped} $out/bin/snv \
         --inherit-argv0 \
         --add-flag -u --add-flag $out/share/snv/init.lua \
         --set NVIM_APPNAME snv \
