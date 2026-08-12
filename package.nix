@@ -353,7 +353,7 @@ in
     '';
 
     passthru = {
-      inherit allLibs allOptPlugins allPackages allSearchPaths allStartPlugins;
+      inherit allLibs allOptPlugins allPackages allSearchPaths allStartPlugins neovim-nightly-unwrapped;
       vimPlugins = {inherit clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime tiny-code-action-nvim unnest-nvim;};
     };
 
