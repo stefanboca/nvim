@@ -1,11 +1,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
 
+vim.o.autowrite = true
+vim.o.exrc = true
 vim.o.mouse = "a" -- Enable mouse
 vim.o.switchbuf = "usetab" -- Use already opened buffers when switching
-vim.o.undofile = true -- Enable persistent undo
-vim.o.autowrite = true
 vim.o.timeoutlen = 500
+vim.o.undofile = true -- Enable persistent undo
 vim.g.clipboard = "osc52"
 
 vim.o.shada = "'100,<50,s10,:1000,/100,@100,h" -- Limit ShaDa file (for startup)
