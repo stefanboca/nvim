@@ -67,10 +67,6 @@ local cycle_pairs = '<Cmd>lua require("clasp").wrap("next")<CR>'
 imap("<C-;>", cycle_pairs, "Cycle pairs")
 nmap("<C-;>", cycle_pairs, "Cycle pairs")
 
--- Remap macro recording to Q
-nmap("q", "<nop>")
-vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
-
 -- better indenting
 xmap("<", "<gv")
 xmap(">", ">gv")

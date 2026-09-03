@@ -6,8 +6,6 @@ now(function()
     options = { extra_ui = true },
     mappings = {
       option_toggle_prefix = "<Leader>o",
-      windows = true,
-      move_with_alt = true,
     },
   })
   --
@@ -129,6 +127,7 @@ later(function()
       { mode = "x", keys = "z" },
     },
   })
+  vim.keymap.del("n", "Q")
 end)
 
 later(function() require("mini.comment").setup() end)
