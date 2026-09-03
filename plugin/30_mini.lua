@@ -8,7 +8,7 @@ now(function()
       option_toggle_prefix = "<Leader>o",
     },
   })
-  --
+  _G.Config.new_autocmd("TextPutPost", nil, function() vim.hl.hl_op() end)
 end)
 
 now(function()
