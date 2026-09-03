@@ -12,11 +12,6 @@ vim.keymap.set({ "i", "n", "s" }, "<Esc>", function()
   return "<Esc>"
 end, { expr = true, silent = true })
 
--- Add undo break-points
-imap(",", ",<c-g>u")
-imap(".", ".<c-g>u")
-imap(";", ";<c-g>u")
-
 -- Paste linewise before/after current line
 nmap("[p", '<Cmd>exe "put! " . v:register<CR>', "Paste Above")
 nmap("]p", '<Cmd>exe "put "  . v:register<CR>', "Paste Below")
@@ -271,8 +266,6 @@ nmap_leader("sd", '<Cmd>lua MiniSessions.select("delete")<CR>', "Delete")
 nmap_leader("sn", "<Cmd>lua " .. session_new .. "<CR>", "New")
 nmap_leader("sr", '<Cmd>lua MiniSessions.select("read")<CR>', "Read")
 nmap_leader("sw", "<Cmd>lua MiniSessions.write()<CR>", "Write current")
-nmap_leader("sR", "<Cmd>restart<CR>", "Restart")
-nmap_leader("sq", "<cmd>qa<cr>", "Quit All")
 
 local function make_pick_core(cwd, desc)
   return function()
@@ -342,7 +335,6 @@ _G.Config.new_autocmd("LspAttach", nil, function(ev)
   nmapb_lleader("p", "<cmd>RustLsp parentModule<CR>", "Parent Module open", ev.buf)
   nmapb_lleader("R", "<cmd>RustLsp debuggables<CR>", "Debuggables", ev.buf)
 end)
-
 local function organize()
   vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" }, diagnostics = {} } })
 end
@@ -350,4 +342,51 @@ _G.Config.new_autocmd("LspAttach", nil, function(ev)
   local client = vim.lsp.get_client_by_id(ev.data.client_id)
   if not client or client.name ~= "ruff" then return end
   nmapb_lleader("o", organize, "Imports organize", ev.buf)
+end)
+
+-- Close some filetypes with <q>
+_G.Config.new_autocmd("FileType", {
+  "checkhealth",
+  "dap-float",
+  "grug-far",
+  "help",
+  "lspinfo",
+  "neotest-output-panel",
+  "neotest-summary",
+  "nvim-undotree",
+  "qf",
+}, function(event)
+  vim.bo[event.buf].buflisted = false
+  vim.schedule(function()
+    vim.keymap.set("n", "q", function()
+      vim.cmd.close()
+      pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+    end, { buffer = event.buf, silent = true, desc = "Quit buffer" })
+  end)
+end, "Close with q")
+
+-- `:h motion-repeat` and `:h edit-repeat`
+local last_motion ---@type vim.event.cmdatom.data?
+local last_edit ---@type vim.event.cmdatom.data?
+local maxseq = {} ---@type table<integer, integer>
+_G.Config.new_autocmd("CmdAtom", nil, function(ev)
+  -- Skip edits, and the "," mapping itself.
+  local motion = ev.data.moved or ev.match == "motion"
+  if motion and not (ev.data.changed or ev.data.lhs == ",") then last_motion = ev.data end
+
+  local is_redo_or_undo = ev.data.changed and (ev.data.undoseq or 0) <= (maxseq[ev.buf] or 0)
+  maxseq[ev.buf] = vim.fn.undotree(ev.buf).seq_last
+  if ev.data.changed and not is_redo_or_undo and ev.data.lhs ~= "." then last_edit = ev.data end
+end)
+vim.keymap.set("n", ",", function()
+  vim.schedule(function()
+    if last_motion then
+      vim.api.nvim_feedkeys(last_motion.keys or last_motion.lhs, last_motion.keys and "n" or "m", false)
+    end
+  end)
+end)
+vim.keymap.set("n", ".", function()
+  vim.schedule(function()
+    if last_edit then vim.api.nvim_feedkeys(last_edit.keys or last_edit.lhs, last_edit.keys and "n" or "m", false) end
+  end)
 end)

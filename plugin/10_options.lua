@@ -140,7 +140,7 @@ end, "Create dir on save")
 _G.Config.new_autocmd("FileType", "man", function(event) vim.bo[event.buf].buflisted = false end, "Delist man buffers")
 
 -- TODO: remove once LspProgress is deprecated
--- see https://github.com/neovim/neovim/pull/35973
+-- see https://github.com/neovim/neovim/issues/36209
 _G.Config.new_autocmd("LspProgress", nil, function(ev)
   local value = ev.data.params.value
   vim.api.nvim_echo({ { value.message or "done" } }, false, {
@@ -153,51 +153,6 @@ _G.Config.new_autocmd("LspProgress", nil, function(ev)
   })
 end, "Lsp Progress")
 
--- Close some filetypes with <q>
-_G.Config.new_autocmd("FileType", {
-  "checkhealth",
-  "dap-float",
-  "grug-far",
-  "help",
-  "lspinfo",
-  "neotest-output-panel",
-  "neotest-summary",
-  "nvim-undotree",
-  "qf",
-}, function(event)
-  vim.bo[event.buf].buflisted = false
-  vim.schedule(function()
-    vim.keymap.set("n", "q", function()
-      vim.cmd.close()
-      pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-    end, { buffer = event.buf, silent = true, desc = "Quit buffer" })
-  end)
-end, "Close with q")
-
--- Sets the current line's color based on the current mode
--- Equivalent to modicator but fast
-local CTRL_S = vim.api.nvim_replace_termcodes("<C-S>", true, true, true)
-local CTRL_V = vim.api.nvim_replace_termcodes("<C-V>", true, true, true)
-local mode_hl_groups = {
-  ["n"] = "MiniStatuslineModeNormal",
-  ["v"] = "MiniStatuslineModeVisual",
-  ["V"] = "MiniStatuslineModeVisual",
-  [CTRL_V] = "MiniStatuslineModeVisual",
-  ["s"] = "MiniStatuslineModeVisual",
-  ["S"] = "MiniStatuslineModeVisual",
-  [CTRL_S] = "MiniStatuslineModeVisual",
-  ["i"] = "MiniStatuslineModeInsert",
-  ["R"] = "MiniStatuslineModeReplace",
-  ["c"] = "MiniStatuslineModeCommand",
-}
-_G.Config.new_autocmd({ "BufEnter", "ModeChanged" }, nil, function()
-  local mode = vim.api.nvim_get_mode().mode
-  local mode_hl_group = mode_hl_groups[mode] or "MiniStatuslineModeOther"
-  local cursorline_hl = vim.api.nvim_get_hl(0, { name = "CursorLine", link = false, create = false })
-  local hl = vim.api.nvim_get_hl(0, { name = mode_hl_group, link = false, create = false })
-  hl = vim.tbl_extend("force", cursorline_hl, { fg = hl.bg, bold = true })
-  vim.api.nvim_set_hl(0, "CursorLineNr", hl)
-end, "Modicator")
 -- Diagnostics ================================================================
 local diagnostic_opts = {
   signs = {

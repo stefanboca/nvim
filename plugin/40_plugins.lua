@@ -17,11 +17,11 @@ now_if_args(function()
     vim.treesitter.start(ev.buf)
 
     if vim.treesitter.query.get(lang, "indents") ~= nil then
-      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      vim.bo.indentexpr = require("nvim-treesitter").indentexpr
     end
     if vim.treesitter.query.get(lang, "folds") ~= nil then
       vim.wo.foldmethod = "expr"
-      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo.foldexpr = vim.treesitter.foldexpr
     end
   end
   _G.Config.new_autocmd("FileType", filetypes, ts_start, "Start tree-sitter")
