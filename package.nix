@@ -344,7 +344,7 @@ in
 
       makeBinaryWrapper ${getExe neovim-nightly-unwrapped} $out/bin/snv \
         --inherit-argv0 \
-        --add-flag -u --add-flag $out/share/snv/init.lua \
+        --set VIMINIT "luafile $out/share/snv/init.lua" \
         --set NVIM_APPNAME snv \
         --suffix LD_LIBRARY_PATH : '${makeLibraryPath allLibs}' \
         --suffix PATH : '${(makeBinPath allPackages)}:${(concatStringsSep ":" allSearchPaths)}'
