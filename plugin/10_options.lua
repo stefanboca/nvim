@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
 
 vim.o.autowrite = true
-vim.o.exrc = true
 vim.o.mouse = "a" -- Enable mouse
 vim.o.switchbuf = "usetab" -- Use already opened buffers when switching
 vim.o.timeoutlen = 500
