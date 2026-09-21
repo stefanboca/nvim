@@ -364,14 +364,13 @@ end, "Close with q")
 -- `:h motion-repeat` and `:h edit-repeat`
 local last_motion ---@type vim.event.cmdatom.data?
 local last_edit ---@type vim.event.cmdatom.data?
-local maxseq = {} ---@type table<integer, integer>
 _G.Config.new_autocmd("CmdAtom", nil, function(ev)
   -- Skip edits, and the "," mapping itself.
   local motion = ev.data.moved or ev.match == "motion"
   if motion and not (ev.data.changed or ev.data.lhs == ",") then last_motion = ev.data end
 
-  local is_redo_or_undo = ev.data.changed and (ev.data.undoseq or 0) <= (maxseq[ev.buf] or 0)
-  maxseq[ev.buf] = vim.fn.undotree(ev.buf).seq_last
+  local is_redo_or_undo = ev.data.changed and (ev.data.undoseq or 0) <= (vim.b[ev.buf].maxseq or 0)
+  vim.b[ev.buf].maxseq = math.max(vim.b[ev.buf].maxseq or 0, ev.data.undoseq or 0)
   if ev.data.changed and not is_redo_or_undo and ev.data.lhs ~= "." then last_edit = ev.data end
 end)
 vim.keymap.set("n", ",", function()
@@ -382,6 +381,13 @@ vim.keymap.set("n", ",", function()
   end)
 end)
 vim.keymap.set("n", ".", function()
+  -- Multicursors: degrade to builtin "." (cascades).
+  local mc = vim.api.nvim_create_namespace("nvim.multicursor")
+  if #vim.api.nvim_buf_get_extmarks(0, mc, 0, -1, { limit = 1 }) > 0 then
+    vim.api.nvim_feedkeys(".", "n", false)
+    return
+  end
+  -- CmdAtom is deferred; schedule the replay, in case "." follows an edit.
   vim.schedule(function()
     if last_edit then vim.api.nvim_feedkeys(last_edit.keys or last_edit.lhs, last_edit.keys and "n" or "m", false) end
   end)
