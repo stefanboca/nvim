@@ -48,6 +48,7 @@ self: {
   ts_query_ls,
   ty,
   typstyle,
+  unzip,
   vscode-extensions,
   vscode-langservers-extracted,
   vtsls,
@@ -288,6 +289,7 @@ self: {
       ts_query_ls
       ty # python
       typstyle # typst
+      unzip
       vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
       vtsls # typescript
       yaml-language-server
