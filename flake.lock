@@ -239,7 +239,6 @@
         "jj-diffconflicts": "jj-diffconflicts",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs",
-        "tiny-code-action-nvim": "tiny-code-action-nvim",
         "treefmt-nix": "treefmt-nix",
         "unnest-nvim": "unnest-nvim"
       }
@@ -258,22 +257,6 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
-        "type": "github"
-      }
-    },
-    "tiny-code-action-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1790121465,
-        "narHash": "sha256-PLGomUsZt5KPabBtl1xof83sOxI7bv7DkHKjOnf8+/Q=",
-        "owner": "rachartier",
-        "repo": "tiny-code-action.nvim",
-        "rev": "91a9c32228e9a7761d241023d9ebb9d11d8fb10d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rachartier",
-        "repo": "tiny-code-action.nvim",
         "type": "github"
       }
     },

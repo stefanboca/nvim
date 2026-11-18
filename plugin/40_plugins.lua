@@ -47,6 +47,7 @@ now_if_args(function()
 
   vim.lsp.log.set_level(vim.env.SNV_LSP_DEBUG ~= nil and vim.log.levels.TRACE or vim.log.levels.OFF)
   vim.lsp.inlay_hint.enable()
+  vim.lsp.document_color.enable()
 
   vim.lsp.enable({
     -- keep-sorted start

@@ -49,11 +49,6 @@
       flake = false;
     };
 
-    tiny-code-action-nvim = {
-      url = "github:rachartier/tiny-code-action.nvim";
-      flake = false;
-    };
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -153,16 +153,6 @@ self: {
     name = "nvim-treesitter-runtime";
     paths = depsClosure nvim-treesitter;
   };
-  tiny-code-action-nvim = buildVimPlugin {
-    pname = "tiny-code-action.nvim";
-    src = self.inputs.tiny-code-action-nvim;
-    nvimSkipModules = [
-      "tiny-code-action.backend.delta"
-      "tiny-code-action.backend.diffsofancy"
-      "tiny-code-action.backend.difftastic"
-      "tiny-code-action.previewers.snacks"
-    ];
-  };
   unnest-nvim = buildVimPlugin {
     pname = "unnest.nvim";
     src = self.inputs.unnest-nvim;
@@ -196,12 +186,7 @@ self: {
     ]);
 
   optPlugins =
-    [
-      # keep-sorted start
-      nvim-treesitter-runtime # manually added to rtp in init.lua
-      tiny-code-action-nvim
-      # keep-sorted end
-    ]
+    [nvim-treesitter-runtime] # manually added to rtp in init.lua
     ++ (with vimPlugins; [
       # keep-sorted start
       blink-cmp
@@ -230,6 +215,7 @@ self: {
       one-small-step-for-vimkind
       quicker-nvim
       snacks-nvim
+      tiny-code-action-nvim
       toggleterm-nvim
       trouble-nvim
       # keep-sorted end
@@ -356,7 +342,7 @@ in
 
     passthru = {
       inherit allLibs allOptPlugins allPackages allSearchPaths allStartPlugins neovim-nightly-unwrapped;
-      vimPlugins = {inherit clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime tiny-code-action-nvim unnest-nvim;};
+      vimPlugins = {inherit clasp-nvim filler-begone-nvim jj-diffconflicts nvim-treesitter nvim-treesitter-runtime unnest-nvim;};
     };
 
     meta = {
